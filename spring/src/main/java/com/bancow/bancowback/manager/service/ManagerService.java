@@ -148,18 +148,9 @@ public class ManagerService {
 		return ServiceResult.success(manager.getUsername() + " 님의 상태를 ADMIN으로 변경하였습니다.");
 	}
 
-	private void authenticateToken(String token) {
-		Token findToken = tokenRepository.findByToken(token)
-			.orElseThrow(() -> new BizException("토큰 정보를 찾을 수 없습니다."));
-		ManagerStatus status = findToken.getManager().getManagerStatus();
-		if (!status.equals(ManagerStatus.SUPER)) {
-			throw new BizException("슈퍼 계정이 아닙니다.");
-		}
-	}
-
 	public List<ManagerDto> findAllManager(String token) {
 
-		checkTokenValid(token);
+		authenticateToken(token);
 		List<Manager> allManager = managerRepository.findAll();
 		List<ManagerDto> allManagerDto = new ArrayList<>();
 		allManager.forEach(e -> {
@@ -176,12 +167,13 @@ public class ManagerService {
 		return allManagerDto;
 	}
 
-	private void checkTokenValid(String token) {
+	private void authenticateToken(String token) {
 		Token findToken = tokenRepository.findByToken(token)
-			.orElseThrow(() -> new BizException("Not Found Token"));
-		if (!(findToken.getManager().getManagerStatus().equals(ManagerStatus.ADMIN) ||
-			findToken.getManager().getManagerStatus().equals(ManagerStatus.SUPER))) {
-			throw new BizException("유저 권한이 없습니다.");
+			.orElseThrow(() -> new BizException("토큰 정보를 찾을 수 없습니다."));
+		ManagerStatus status = findToken.getManager().getManagerStatus();
+		if (!status.equals(ManagerStatus.SUPER)) {
+			throw new BizException("슈퍼 계정이 아닙니다.");
 		}
 	}
+
 }
