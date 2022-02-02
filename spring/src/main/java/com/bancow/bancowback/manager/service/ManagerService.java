@@ -10,6 +10,7 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.bancow.bancowback.common.dto.ServiceResult;
 import com.bancow.bancowback.common.exception.BizException;
+import com.bancow.bancowback.manager.dto.ManagerLoginDto;
 import com.bancow.bancowback.manager.dto.ManagerRegisterDto;
 import com.bancow.bancowback.manager.entity.Manager;
 import com.bancow.bancowback.manager.entity.ManagerStatus;
@@ -60,6 +61,27 @@ public class ManagerService {
 		sendMail(manager, "MANAGER_REGISTER");
 
 		return ServiceResult.success("회원가입을 성공하였습니다.");
+	}
+
+	public ServiceResult loginManager(ManagerLoginDto managerLoginDto) {
+
+		Manager manager = managerRepository.findByEmail(managerLoginDto.getEmail())
+			.orElseThrow(() -> new BizException("사용자 정보가 없습니다."));
+
+		if (!PasswordUtils.equalPassword(managerLoginDto.getPassword(), manager.getPassword())) {
+			throw new BizException("비밀번호가 일치하지 않습니다.");
+		}
+
+		String authenticationKey = makeJwtToken(manager);
+		Token token = Token.builder()
+			.token(authenticationKey)
+			.manager(manager)
+			.expiredDate(LocalDateTime.now().plusDays(1))
+			.build();
+
+		tokenRepository.save(token);
+
+		return ServiceResult.success(manager.getUsername() + " 님의 로그인에 성공하였습니다.");
 	}
 
 	private void sendMail(Manager manager, String templateId) {

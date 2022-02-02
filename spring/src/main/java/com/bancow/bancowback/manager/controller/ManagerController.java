@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.bancow.bancowback.common.dto.Response;
 import com.bancow.bancowback.common.dto.ServiceResult;
+import com.bancow.bancowback.manager.dto.ManagerLoginDto;
 import com.bancow.bancowback.manager.dto.ManagerRegisterDto;
 import com.bancow.bancowback.manager.service.ManagerService;
 
@@ -26,6 +27,12 @@ public class ManagerController {
 	@PostMapping("/register")
 	public ResponseEntity<?> registerManager(@RequestBody @Valid ManagerRegisterDto managerRegisterDto) {
 		ServiceResult result = managerService.registerManager(managerRegisterDto);
+		return ResponseEntity.ok().body(new Response<>(result, HttpStatus.OK));
+	}
+
+	@PostMapping("/login")
+	public ResponseEntity<?> login(@RequestBody @Valid ManagerLoginDto managerLoginDto) {
+		ServiceResult result = managerService.loginManager(managerLoginDto);
 		return ResponseEntity.ok().body(new Response<>(result, HttpStatus.OK));
 	}
 
