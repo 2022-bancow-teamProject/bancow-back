@@ -1,7 +1,9 @@
 package com.bancow.bancowback.manager.service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
@@ -10,6 +12,7 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.bancow.bancowback.common.dto.ServiceResult;
 import com.bancow.bancowback.common.exception.BizException;
+import com.bancow.bancowback.manager.dto.ManagerDto;
 import com.bancow.bancowback.manager.dto.ManagerLoginDto;
 import com.bancow.bancowback.manager.dto.ManagerRegisterDto;
 import com.bancow.bancowback.manager.entity.Manager;
@@ -154,4 +157,31 @@ public class ManagerService {
 		}
 	}
 
+	public List<ManagerDto> findAllManager(String token) {
+
+		checkTokenValid(token);
+		List<Manager> allManager = managerRepository.findAll();
+		List<ManagerDto> allManagerDto = new ArrayList<>();
+		allManager.forEach(e -> {
+			ManagerDto build = ManagerDto.builder()
+				.email(e.getEmail())
+				.username(e.getUsername())
+				.managerStatus(e.getManagerStatus())
+				.createDate(e.getCreateDate())
+				.updateDate(e.getUpdateDate())
+				.build();
+			allManagerDto.add(build);
+		});
+
+		return allManagerDto;
+	}
+
+	private void checkTokenValid(String token) {
+		Token findToken = tokenRepository.findByToken(token)
+			.orElseThrow(() -> new BizException("Not Found Token"));
+		if (!(findToken.getManager().getManagerStatus().equals(ManagerStatus.ADMIN) ||
+			findToken.getManager().getManagerStatus().equals(ManagerStatus.SUPER))) {
+			throw new BizException("유저 권한이 없습니다.");
+		}
+	}
 }
