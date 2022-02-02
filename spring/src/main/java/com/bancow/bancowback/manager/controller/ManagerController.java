@@ -4,6 +4,8 @@ import javax.validation.Valid;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,4 +38,9 @@ public class ManagerController {
 		return ResponseEntity.ok().body(new Response<>(result, HttpStatus.OK));
 	}
 
+	@GetMapping("/authentication/{token}")
+	public ResponseEntity<?> authentication(@PathVariable String token) {
+		ServiceResult result = managerService.authentication(token);
+		return ResponseEntity.ok().body(new Response<>(result, HttpStatus.OK));
+	}
 }

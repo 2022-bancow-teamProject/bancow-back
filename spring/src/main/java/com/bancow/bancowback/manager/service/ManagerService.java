@@ -84,6 +84,19 @@ public class ManagerService {
 		return ServiceResult.success(manager.getUsername() + " 님의 로그인에 성공하였습니다.");
 	}
 
+	public ServiceResult authentication(String token) {
+		Token findToken = tokenRepository.findByToken(token)
+			.orElseThrow(() -> new BizException("Not Found Token"));
+		String email = findToken.getManager().getEmail();
+		Manager user = managerRepository.findByEmail(email)
+			.orElseThrow(() -> new BizException("User Not Found"));
+		user.setManagerStatus(ManagerStatus.PENDING_SUPER);
+		managerRepository.save(user);
+		tokenRepository.delete(findToken);
+
+		return ServiceResult.success(user.getUsername() + " 님의 인증에 성공하였습니다.");
+	}
+
 	private void sendMail(Manager manager, String templateId) {
 		String serverURL = "http://localhost:8080";
 
