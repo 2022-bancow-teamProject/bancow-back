@@ -132,4 +132,26 @@ public class ManagerService {
 			.withIssuer(manager.getEmail())
 			.sign(Algorithm.HMAC512("bancowAlgorithm".getBytes()));
 	}
+
+	public ServiceResult statusToAdmin(String token, Long id) {
+
+		authenticateToken(token);
+
+		Manager manager = managerRepository.findById(id)
+			.orElseThrow(() -> new BizException("해당 정보의 유저가 존재하지 않습니다."));
+		manager.setManagerStatus(ManagerStatus.ADMIN);
+		managerRepository.save(manager);
+
+		return ServiceResult.success(manager.getUsername() + " 님의 상태를 ADMIN으로 변경하였습니다.");
+	}
+
+	private void authenticateToken(String token) {
+		Token findToken = tokenRepository.findByToken(token)
+			.orElseThrow(() -> new BizException("토큰 정보를 찾을 수 없습니다."));
+		ManagerStatus status = findToken.getManager().getManagerStatus();
+		if (!status.equals(ManagerStatus.SUPER)) {
+			throw new BizException("슈퍼 계정이 아닙니다.");
+		}
+	}
+
 }
