@@ -21,6 +21,7 @@ import com.bancow.bancowback.common.dto.ServiceResult;
 import com.bancow.bancowback.manager.dto.ManagerDto;
 import com.bancow.bancowback.manager.dto.ManagerFindDto;
 import com.bancow.bancowback.manager.dto.ManagerLoginDto;
+import com.bancow.bancowback.manager.dto.ManagerPasswordDto;
 import com.bancow.bancowback.manager.dto.ManagerRegisterDto;
 import com.bancow.bancowback.manager.entity.Manager;
 import com.bancow.bancowback.manager.service.ManagerService;
@@ -74,5 +75,12 @@ public class ManagerController {
 	public ResponseEntity<?> authenticationPassword(@PathVariable String token) {
 		Manager manager = managerService.authenticationPassword(token);
 		return ResponseEntity.ok().body(new Response<>(manager.getUsername() + "님의 비밀번호 변경을 위한 인증에 성공하였습니다.", HttpStatus.OK));
+	}
+
+	@PatchMapping("/authentication/find-manager/{token}/change-password")
+	public ResponseEntity<?> changePassword(@PathVariable String token,
+		@RequestBody @Valid ManagerPasswordDto managerPasswordDto) {
+		ServiceResult result = managerService.changePassword(token, managerPasswordDto);
+		return ResponseEntity.ok().body(new Response<>(result, HttpStatus.OK));
 	}
 }
