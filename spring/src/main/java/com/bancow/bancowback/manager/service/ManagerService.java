@@ -13,6 +13,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.bancow.bancowback.common.dto.ServiceResult;
 import com.bancow.bancowback.common.exception.BizException;
 import com.bancow.bancowback.manager.dto.ManagerDto;
+import com.bancow.bancowback.manager.dto.ManagerFindDto;
 import com.bancow.bancowback.manager.dto.ManagerLoginDto;
 import com.bancow.bancowback.manager.dto.ManagerRegisterDto;
 import com.bancow.bancowback.manager.entity.Manager;
@@ -176,4 +177,17 @@ public class ManagerService {
 		}
 	}
 
+	public ServiceResult findManager(ManagerFindDto managerFindDto) {
+		Optional<Manager> optionalManager = managerRepository.findByEmail(managerFindDto.getEmail());
+		if (optionalManager.isEmpty()) {
+			throw new BizException("존재하지 않는 이메일입니다.");
+		}
+		Manager manager = optionalManager.get();
+		if (!manager.getUsername().equals(managerFindDto.getUsername())) {
+			throw new BizException("회원정보가 틀립니다.");
+		}
+
+		sendMail(manager, "FIND_MANAGER");
+		return ServiceResult.success(manager.getUsername() + " 님의 이메일로 비밀번호 초기화 메시지가 발송되었습니다.");
+	}
 }
