@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.bancow.bancowback.common.dto.Response;
 import com.bancow.bancowback.common.dto.ServiceResult;
 import com.bancow.bancowback.manager.dto.ManagerDto;
+import com.bancow.bancowback.manager.dto.ManagerFindDto;
 import com.bancow.bancowback.manager.dto.ManagerLoginDto;
 import com.bancow.bancowback.manager.dto.ManagerRegisterDto;
 import com.bancow.bancowback.manager.entity.Manager;
@@ -61,5 +62,11 @@ public class ManagerController {
 	public ResponseEntity<?> findAllManager(@RequestHeader("TOKEN") String token) {
 		List<ManagerDto> allManager = managerService.findAllManager(token);
 		return ResponseEntity.ok().body(new Response<>(allManager, HttpStatus.OK));
+	}
+
+	@PostMapping("/find-manager")
+	public ResponseEntity<?> findManager(@RequestBody @Valid ManagerFindDto managerFindDto) {
+		ServiceResult result = managerService.findManager(managerFindDto);
+		return ResponseEntity.ok().body(new Response<>(result, HttpStatus.OK));
 	}
 }
