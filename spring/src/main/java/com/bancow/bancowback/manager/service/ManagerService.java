@@ -15,6 +15,7 @@ import com.bancow.bancowback.common.exception.BizException;
 import com.bancow.bancowback.manager.dto.ManagerDto;
 import com.bancow.bancowback.manager.dto.ManagerFindDto;
 import com.bancow.bancowback.manager.dto.ManagerLoginDto;
+import com.bancow.bancowback.manager.dto.ManagerPasswordDto;
 import com.bancow.bancowback.manager.dto.ManagerRegisterDto;
 import com.bancow.bancowback.manager.entity.Manager;
 import com.bancow.bancowback.manager.entity.ManagerStatus;
@@ -195,7 +196,21 @@ public class ManagerService {
 		Token findToken = tokenRepository.findByToken(token)
 			.orElseThrow(() -> new BizException("Not Found Token"));
 		String email = findToken.getManager().getEmail();
-		tokenRepository.delete(findToken);
 		return managerRepository.findByEmail(email).orElseThrow(() -> new BizException("User Not Found"));
+	}
+
+	public ServiceResult changePassword(String token, ManagerPasswordDto managerPasswordDto) {
+		Manager manager = authenticationPassword(token);
+		if (!managerPasswordDto.getPassword1().equals(managerPasswordDto.getPassword2())) {
+			throw new BizException("비밀번호1, 2가 일치하지 않습니다.");
+		}
+		String encryptPassword = PasswordUtils.encryptedPassword(managerPasswordDto.getPassword1());
+		manager.setPassword(encryptPassword);
+		managerRepository.save(manager);
+
+		Token findToken = tokenRepository.findByToken(token).get();
+		tokenRepository.delete(findToken);
+
+		return ServiceResult.success(manager.getUsername() + " 님의 비밀번호 변경에 성공하였습니다.");
 	}
 }
