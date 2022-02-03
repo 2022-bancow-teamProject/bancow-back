@@ -190,4 +190,12 @@ public class ManagerService {
 		sendMail(manager, "FIND_MANAGER");
 		return ServiceResult.success(manager.getUsername() + " 님의 이메일로 비밀번호 초기화 메시지가 발송되었습니다.");
 	}
+
+	public Manager authenticationPassword(String token) {
+		Token findToken = tokenRepository.findByToken(token)
+			.orElseThrow(() -> new BizException("Not Found Token"));
+		String email = findToken.getManager().getEmail();
+		tokenRepository.delete(findToken);
+		return managerRepository.findByEmail(email).orElseThrow(() -> new BizException("User Not Found"));
+	}
 }
