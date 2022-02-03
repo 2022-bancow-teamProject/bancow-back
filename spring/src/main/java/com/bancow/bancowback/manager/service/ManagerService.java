@@ -1,7 +1,9 @@
 package com.bancow.bancowback.manager.service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
@@ -10,6 +12,7 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.bancow.bancowback.common.dto.ServiceResult;
 import com.bancow.bancowback.common.exception.BizException;
+import com.bancow.bancowback.manager.dto.ManagerDto;
 import com.bancow.bancowback.manager.dto.ManagerLoginDto;
 import com.bancow.bancowback.manager.dto.ManagerRegisterDto;
 import com.bancow.bancowback.manager.entity.Manager;
@@ -143,6 +146,25 @@ public class ManagerService {
 		managerRepository.save(manager);
 
 		return ServiceResult.success(manager.getUsername() + " 님의 상태를 ADMIN으로 변경하였습니다.");
+	}
+
+	public List<ManagerDto> findAllManager(String token) {
+
+		authenticateToken(token);
+		List<Manager> allManager = managerRepository.findAll();
+		List<ManagerDto> allManagerDto = new ArrayList<>();
+		allManager.forEach(e -> {
+			ManagerDto build = ManagerDto.builder()
+				.email(e.getEmail())
+				.username(e.getUsername())
+				.managerStatus(e.getManagerStatus())
+				.createDate(e.getCreateDate())
+				.updateDate(e.getUpdateDate())
+				.build();
+			allManagerDto.add(build);
+		});
+
+		return allManagerDto;
 	}
 
 	private void authenticateToken(String token) {
