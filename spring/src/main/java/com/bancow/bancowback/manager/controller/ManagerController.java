@@ -47,6 +47,12 @@ public class ManagerController {
 		return ResponseEntity.ok().body(new Response<>(result, HttpStatus.OK));
 	}
 
+	@PostMapping("/logout")
+	public ResponseEntity<?> logout(@RequestHeader("TOKEN") String token) {
+		ServiceResult result = managerService.logoutManager(token);
+		return ResponseEntity.ok().body(new Response<>(result, HttpStatus.OK));
+	}
+
 	@GetMapping("/authentication/{token}")
 	public ResponseEntity<?> authentication(@PathVariable String token) {
 		ServiceResult result = managerService.authentication(token);
