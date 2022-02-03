@@ -1,16 +1,11 @@
-package com.bancow.bancowback.util.token.entity;
+package com.bancow.bancowback.common.util.mail.entity;
 
 import java.time.LocalDateTime;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
-
-import com.bancow.bancowback.manager.entity.Manager;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,17 +19,18 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Token {
+public class MailTemplate {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column
-	private String token;
+	private String templateId;
 
-	@OneToOne(fetch = FetchType.LAZY)
-	private Manager manager;
+	private String title;
+	private String contents;
 
-	@Column(name = "expired_date")
-	private LocalDateTime expiredDate;
+	private String sendEmail;
+	private String sendUserName;
+
+	private LocalDateTime regDate;
 }

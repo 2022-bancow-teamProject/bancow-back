@@ -12,6 +12,12 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.bancow.bancowback.common.dto.ServiceResult;
 import com.bancow.bancowback.common.exception.BizException;
+import com.bancow.bancowback.common.util.PasswordUtils;
+import com.bancow.bancowback.common.util.mail.MailComponent;
+import com.bancow.bancowback.common.util.mail.entity.MailTemplate;
+import com.bancow.bancowback.common.util.mail.repository.MailTemplateRepository;
+import com.bancow.bancowback.common.util.token.entity.Token;
+import com.bancow.bancowback.common.util.token.repository.TokenRepository;
 import com.bancow.bancowback.manager.dto.ManagerDto;
 import com.bancow.bancowback.manager.dto.ManagerFindDto;
 import com.bancow.bancowback.manager.dto.ManagerLoginDto;
@@ -20,12 +26,6 @@ import com.bancow.bancowback.manager.dto.ManagerRegisterDto;
 import com.bancow.bancowback.manager.entity.Manager;
 import com.bancow.bancowback.manager.entity.ManagerStatus;
 import com.bancow.bancowback.manager.repository.ManagerRepository;
-import com.bancow.bancowback.util.PasswordUtils;
-import com.bancow.bancowback.util.mail.MailComponent;
-import com.bancow.bancowback.util.mail.entity.MailTemplate;
-import com.bancow.bancowback.util.mail.repository.MailTemplateRepository;
-import com.bancow.bancowback.util.token.entity.Token;
-import com.bancow.bancowback.util.token.repository.TokenRepository;
 
 import lombok.RequiredArgsConstructor;
 
