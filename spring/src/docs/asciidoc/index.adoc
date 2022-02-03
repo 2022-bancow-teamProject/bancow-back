@@ -1,0 +1,8 @@
+= REST Docs
+Bancow;
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 2
+:sectlinks:
