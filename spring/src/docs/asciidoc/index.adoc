@@ -6,3 +6,23 @@ Bancow;
 :toc: left
 :toclevels: 2
 :sectlinks:
+
+[[Manager-회원가입]]
+== Manager 회원가입
+
+==== Curl Request
+include::{snippets}/manager-controller-test/register-manager/curl-request.adoc[]
+==== Http Request
+include::{snippets}/manager-controller-test/register-manager/http-request.adoc[]
+==== Http Response
+include::{snippets}/manager-controller-test/register-manager/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/manager-controller-test/register-manager/httpie-request.adoc[]
+==== Request Body
+include::{snippets}/manager-controller-test/register-manager/response-body.adoc[]
+==== Request Fields
+include::{snippets}/manager-controller-test/register-manager/request-fields.adoc[]
+==== Response Body
+include::{snippets}/manager-controller-test/register-manager/response-body.adoc[]
+==== Response Fields
+include::{snippets}/manager-controller-test/register-manager/response-fields.adoc[]
