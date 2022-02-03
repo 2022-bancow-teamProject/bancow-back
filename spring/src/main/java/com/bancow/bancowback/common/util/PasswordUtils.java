@@ -1,4 +1,4 @@
-package com.bancow.bancowback.util;
+package com.bancow.bancowback.common.util;
 
 import org.springframework.security.crypto.bcrypt.BCrypt;
 

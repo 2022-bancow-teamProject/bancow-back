@@ -1,4 +1,4 @@
-package com.bancow.bancowback.util.mail;
+package com.bancow.bancowback.common.util.mail;
 
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
