@@ -69,4 +69,10 @@ public class ManagerController {
 		ServiceResult result = managerService.findManager(managerFindDto);
 		return ResponseEntity.ok().body(new Response<>(result, HttpStatus.OK));
 	}
+
+	@GetMapping("/authentication/find-manager/{token}")
+	public ResponseEntity<?> authenticationPassword(@PathVariable String token) {
+		Manager manager = managerService.authenticationPassword(token);
+		return ResponseEntity.ok().body(new Response<>(manager.getUsername() + "님의 비밀번호 변경을 위한 인증에 성공하였습니다.", HttpStatus.OK));
+	}
 }
