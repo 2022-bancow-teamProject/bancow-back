@@ -89,6 +89,14 @@ public class ManagerService {
 		return ServiceResult.success(manager.getUsername() + " 님의 로그인에 성공하였습니다.");
 	}
 
+	public ServiceResult logoutManager(String token) {
+		Token findToken = tokenRepository.findByToken(token)
+			.orElseThrow(() -> new BizException("토큰 정보를 찾을 수 없습니다."));
+		String username = findToken.getManager().getUsername();
+		tokenRepository.delete(findToken);
+		return ServiceResult.success(username + " 님의 로그아웃에 성공하였습니다.");
+	}
+
 	public ServiceResult authentication(String token) {
 		Token findToken = tokenRepository.findByToken(token)
 			.orElseThrow(() -> new BizException("Not Found Token"));
