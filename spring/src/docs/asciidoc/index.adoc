@@ -7,9 +7,11 @@ Bancow;
 :toclevels: 2
 :sectlinks:
 
-[[Manager-회원가입]]
-== Manager 회원가입
+[[Manager]]
+== Manager
 
+[[회원가입]]
+=== 회원가입
 ==== Curl Request
 include::{snippets}/manager-controller-test/register-manager/curl-request.adoc[]
 ==== Http Request
@@ -26,3 +28,22 @@ include::{snippets}/manager-controller-test/register-manager/request-fields.adoc
 include::{snippets}/manager-controller-test/register-manager/response-body.adoc[]
 ==== Response Fields
 include::{snippets}/manager-controller-test/register-manager/response-fields.adoc[]
+
+[[로그인]]
+=== 로그인
+==== Curl Request
+include::{snippets}/manager-controller-test/login/curl-request.adoc[]
+==== Http Request
+include::{snippets}/manager-controller-test/login/http-request.adoc[]
+==== Http Response
+include::{snippets}/manager-controller-test/login/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/manager-controller-test/login/httpie-request.adoc[]
+==== Request Body
+include::{snippets}/manager-controller-test/login/response-body.adoc[]
+==== Request Fields
+include::{snippets}/manager-controller-test/login/request-fields.adoc[]
+==== Response Body
+include::{snippets}/manager-controller-test/login/response-body.adoc[]
+==== Response Fields
+include::{snippets}/manager-controller-test/login/response-fields.adoc[]
