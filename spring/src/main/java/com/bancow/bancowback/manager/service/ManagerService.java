@@ -18,6 +18,7 @@ import com.bancow.bancowback.common.util.mail.entity.MailTemplate;
 import com.bancow.bancowback.common.util.mail.repository.MailTemplateRepository;
 import com.bancow.bancowback.common.util.token.entity.Token;
 import com.bancow.bancowback.common.util.token.repository.TokenRepository;
+import com.bancow.bancowback.common.util.token.service.TokenService;
 import com.bancow.bancowback.manager.dto.ManagerDto;
 import com.bancow.bancowback.manager.dto.ManagerFindDto;
 import com.bancow.bancowback.manager.dto.ManagerLoginDto;
@@ -35,6 +36,7 @@ public class ManagerService {
 
 	private final ManagerRepository managerRepository;
 	private final TokenRepository tokenRepository;
+	private final TokenService tokenService;
 
 	private final MailTemplateRepository mailTemplateRepository;
 	private final MailComponent mailComponent;
@@ -148,7 +150,7 @@ public class ManagerService {
 
 	public ServiceResult statusToAdmin(String token, Long id) {
 
-		authenticateToken(token);
+		tokenService.checkTokenSuper(token);
 
 		Manager manager = managerRepository.findById(id)
 			.orElseThrow(() -> new BizException("해당 정보의 유저가 존재하지 않습니다."));
@@ -160,7 +162,7 @@ public class ManagerService {
 
 	public List<ManagerDto> findAllManager(String token) {
 
-		authenticateToken(token);
+		tokenService.checkTokenSuper(token);
 		List<Manager> allManager = managerRepository.findAll();
 		List<ManagerDto> allManagerDto = new ArrayList<>();
 		allManager.forEach(e -> {
@@ -175,15 +177,6 @@ public class ManagerService {
 		});
 
 		return allManagerDto;
-	}
-
-	private void authenticateToken(String token) {
-		Token findToken = tokenRepository.findByToken(token)
-			.orElseThrow(() -> new BizException("토큰 정보를 찾을 수 없습니다."));
-		ManagerStatus status = findToken.getManager().getManagerStatus();
-		if (!status.equals(ManagerStatus.SUPER)) {
-			throw new BizException("슈퍼 계정이 아닙니다.");
-		}
 	}
 
 	public ServiceResult findManager(ManagerFindDto managerFindDto) {
