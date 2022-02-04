@@ -67,6 +67,7 @@ class ManagerControllerTest extends TestSupport {
 	}
 
 	@Test
+	@Transactional
 	void login() throws Exception {
 		mockMvc.perform(
 			post("/api/login")
@@ -97,6 +98,7 @@ class ManagerControllerTest extends TestSupport {
 	}
 
 	@Test
+	@Transactional
 	void logout() throws Exception {
 		ManagerLoginDto managerLoginDto =
 			ManagerLoginDto.builder()
@@ -161,4 +163,50 @@ class ManagerControllerTest extends TestSupport {
 			);
 	}
 
+	@Test
+	@Transactional
+	void statusToAdmin() throws Exception {
+
+		ManagerRegisterDto managerRegisterDto =
+			ManagerRegisterDto.builder()
+				.email("gmldnr2222@naver.com")
+				.password("비밀번호")
+				.password2("비밀번호")
+				.username("가나다")
+				.build();
+		managerService.registerManager(managerRegisterDto);
+		Manager manager = managerRepository.findByEmail(managerRegisterDto.getEmail()).get();
+
+		ManagerLoginDto managerLoginDto =
+			ManagerLoginDto.builder()
+				.email("smtptestkk@gmail.com")
+				.password("1111")
+				.build();
+		managerService.loginManager(managerLoginDto);
+		Manager superManager = managerRepository.findByEmail(managerLoginDto.getEmail()).get();
+		Token tokenSuper = tokenRepository.findByManager(superManager).get();
+
+		mockMvc.perform(
+			patch("/api/statusadmin")
+				.param("id", String.valueOf(manager.getId()))
+				.header("TOKEN", tokenSuper.getToken())
+		)
+			.andExpect(status().isOk())
+			.andDo(
+				restDocs.document(
+					requestHeaders(
+						headerWithName("TOKEN").description("로그인한 SUPER 계정의 토큰값")
+					),
+					requestParameters(
+						parameterWithName("id").description("권한을 변경할 Manager의 Id")
+					),
+					responseFields(
+						fieldWithPath("data").description("결과 데이터"),
+						fieldWithPath("data.result").description("인증 성공 여부"),
+						fieldWithPath("data.message").description("response 메시지"),
+						fieldWithPath("status").description("HTTP Status")
+					)
+				)
+			);
+	}
 }
