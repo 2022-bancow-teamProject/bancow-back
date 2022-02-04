@@ -85,3 +85,22 @@ include::{snippets}/manager-controller-test/authentication/response-body.adoc[]
 include::{snippets}/manager-controller-test/authentication/response-body.adoc[]
 ==== Response Fields
 include::{snippets}/manager-controller-test/authentication/response-fields.adoc[]
+
+[[권한-변경]]
+=== 권한 변경
+==== Curl Request
+include::{snippets}/manager-controller-test/status-to-admin/curl-request.adoc[]
+==== Http Request
+include::{snippets}/manager-controller-test/status-to-admin/http-request.adoc[]
+==== Http Response
+include::{snippets}/manager-controller-test/status-to-admin/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/manager-controller-test/status-to-admin/httpie-request.adoc[]
+==== Request Header
+include::{snippets}/manager-controller-test/status-to-admin/request-headers.adoc[]
+==== Request Parameter
+include::{snippets}/manager-controller-test/status-to-admin/request-parameters.adoc[]
+==== Response Body
+include::{snippets}/manager-controller-test/status-to-admin/response-body.adoc[]
+==== Response Fields
+include::{snippets}/manager-controller-test/status-to-admin/response-fields.adoc[]
