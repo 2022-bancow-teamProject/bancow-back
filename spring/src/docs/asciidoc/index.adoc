@@ -66,3 +66,22 @@ include::{snippets}/manager-controller-test/logout/request-headers.adoc[]
 include::{snippets}/manager-controller-test/logout/response-body.adoc[]
 ==== Response Fields
 include::{snippets}/manager-controller-test/logout/response-fields.adoc[]
+
+[[인증]]
+=== 인증
+==== Curl Request
+include::{snippets}/manager-controller-test/authentication/curl-request.adoc[]
+==== Http Request
+include::{snippets}/manager-controller-test/authentication/http-request.adoc[]
+==== Http Response
+include::{snippets}/manager-controller-test/authentication/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/manager-controller-test/authentication/httpie-request.adoc[]
+==== Path Parameter
+include::{snippets}/manager-controller-test/authentication/path-parameters.adoc[]
+==== Request Body
+include::{snippets}/manager-controller-test/authentication/response-body.adoc[]
+==== Response Body
+include::{snippets}/manager-controller-test/authentication/response-body.adoc[]
+==== Response Fields
+include::{snippets}/manager-controller-test/authentication/response-fields.adoc[]
