@@ -3,16 +3,19 @@ package com.bancow.bancowback.domain.manager.controller;
 import static org.springframework.restdocs.headers.HeaderDocumentation.*;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.*;
 import static org.springframework.restdocs.payload.PayloadDocumentation.*;
+import static org.springframework.restdocs.request.RequestDocumentation.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.bancow.bancowback.TestSupport;
 import com.bancow.bancowback.domain.common.util.token.entity.Token;
 import com.bancow.bancowback.domain.common.util.token.repository.TokenRepository;
 import com.bancow.bancowback.domain.manager.dto.ManagerLoginDto;
+import com.bancow.bancowback.domain.manager.dto.ManagerRegisterDto;
 import com.bancow.bancowback.domain.manager.entity.Manager;
 import com.bancow.bancowback.domain.manager.repository.ManagerRepository;
 import com.bancow.bancowback.domain.manager.service.ManagerService;
@@ -29,6 +32,7 @@ class ManagerControllerTest extends TestSupport {
 	private TokenRepository tokenRepository;
 
 	@Test
+	@Transactional
 	void registerManager() throws Exception {
 		mockMvc.perform(
 			post("/api/register")
@@ -116,6 +120,40 @@ class ManagerControllerTest extends TestSupport {
 					responseFields(
 						fieldWithPath("data").description("결과 데이터"),
 						fieldWithPath("data.result").description("로그아웃 성공 여부"),
+						fieldWithPath("data.message").description("response 메시지"),
+						fieldWithPath("status").description("HTTP Status")
+					)
+				)
+			);
+	}
+
+	@Test
+	@Transactional
+	void authentication() throws Exception {
+		ManagerRegisterDto managerRegisterDto =
+			ManagerRegisterDto.builder()
+				.email("gmldnr2222@naver.com")
+				.password("비밀번호")
+				.password2("비밀번호")
+				.username("김지훈")
+				.build();
+		managerService.registerManager(managerRegisterDto);
+		Manager manager = managerRepository.findByEmail(managerRegisterDto.getEmail()).get();
+		Token token = tokenRepository.findByManager(manager).get();
+
+		mockMvc.perform(
+			get("/api/authentication/{token}", token.getToken())
+				.accept(MediaType.APPLICATION_JSON)
+		)
+			.andExpect(status().isOk())
+			.andDo(
+				restDocs.document(
+					pathParameters(
+						parameterWithName("token").description("회원가입한 manager의 토큰 값")
+					),
+					responseFields(
+						fieldWithPath("data").description("결과 데이터"),
+						fieldWithPath("data.result").description("인증 성공 여부"),
 						fieldWithPath("data.message").description("response 메시지"),
 						fieldWithPath("status").description("HTTP Status")
 					)
