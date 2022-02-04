@@ -100,13 +100,7 @@ class ManagerControllerTest extends TestSupport {
 	@Test
 	@Transactional
 	void logout() throws Exception {
-		ManagerLoginDto managerLoginDto =
-			ManagerLoginDto.builder()
-				.email("smtptestkk@gmail.com")
-				.password("1111")
-				.build();
-		managerService.loginManager(managerLoginDto);
-		Manager manager = managerRepository.findByEmail(managerLoginDto.getEmail()).get();
+		Manager manager = superManagerLogin();
 		Token token = tokenRepository.findByManager(manager).get();
 		mockMvc.perform(
 			post("/api/logout")
@@ -132,15 +126,7 @@ class ManagerControllerTest extends TestSupport {
 	@Test
 	@Transactional
 	void authentication() throws Exception {
-		ManagerRegisterDto managerRegisterDto =
-			ManagerRegisterDto.builder()
-				.email("gmldnr2222@naver.com")
-				.password("비밀번호")
-				.password2("비밀번호")
-				.username("김지훈")
-				.build();
-		managerService.registerManager(managerRegisterDto);
-		Manager manager = managerRepository.findByEmail(managerRegisterDto.getEmail()).get();
+		Manager manager = managerRegister();
 		Token token = tokenRepository.findByManager(manager).get();
 
 		mockMvc.perform(
@@ -167,23 +153,9 @@ class ManagerControllerTest extends TestSupport {
 	@Transactional
 	void statusToAdmin() throws Exception {
 
-		ManagerRegisterDto managerRegisterDto =
-			ManagerRegisterDto.builder()
-				.email("gmldnr2222@naver.com")
-				.password("비밀번호")
-				.password2("비밀번호")
-				.username("가나다")
-				.build();
-		managerService.registerManager(managerRegisterDto);
-		Manager manager = managerRepository.findByEmail(managerRegisterDto.getEmail()).get();
+		Manager manager = managerRegister();
 
-		ManagerLoginDto managerLoginDto =
-			ManagerLoginDto.builder()
-				.email("smtptestkk@gmail.com")
-				.password("1111")
-				.build();
-		managerService.loginManager(managerLoginDto);
-		Manager superManager = managerRepository.findByEmail(managerLoginDto.getEmail()).get();
+		Manager superManager = superManagerLogin();
 		Token tokenSuper = tokenRepository.findByManager(superManager).get();
 
 		mockMvc.perform(
@@ -208,5 +180,59 @@ class ManagerControllerTest extends TestSupport {
 					)
 				)
 			);
+	}
+
+	@Test
+	@Transactional
+	void findAllManager() throws Exception {
+
+		Manager manager = managerRegister();
+		Manager superManager = superManagerLogin();
+		Token tokenSuper = tokenRepository.findByManager(superManager).get();
+
+		mockMvc.perform(
+			get("/api/allmanager")
+				.header("TOKEN", tokenSuper.getToken())
+		)
+			.andExpect(status().isOk())
+			.andDo(
+				restDocs.document(
+					requestHeaders(
+						headerWithName("TOKEN").description("로그인한 SUPER 계정의 토큰값")
+					),
+					responseFields(
+						fieldWithPath("data").description("결과 데이터"),
+						fieldWithPath("data[0].email").description("이메일"),
+						fieldWithPath("data[0].username").description("이름"),
+						fieldWithPath("data[0].managerStatus").description("Manager 상태"),
+						fieldWithPath("data[0].createDate").description("Manager 생성일"),
+						fieldWithPath("data[0].updateDate").description("Manager 수정일"),
+						fieldWithPath("status").description("HTTP Status")
+					)
+				)
+			);
+
+	}
+
+	private Manager superManagerLogin() {
+		ManagerLoginDto managerLoginDto =
+			ManagerLoginDto.builder()
+				.email("smtptestkk@gmail.com")
+				.password("1111")
+				.build();
+		managerService.loginManager(managerLoginDto);
+		return managerRepository.findByEmail(managerLoginDto.getEmail()).get();
+	}
+
+	private Manager managerRegister() {
+		ManagerRegisterDto managerRegisterDto =
+			ManagerRegisterDto.builder()
+				.email("gmldnr2222@naver.com")
+				.password("비밀번호")
+				.password2("비밀번호")
+				.username("가나다")
+				.build();
+		managerService.registerManager(managerRegisterDto);
+		return managerRepository.findByEmail(managerRegisterDto.getEmail()).get();
 	}
 }

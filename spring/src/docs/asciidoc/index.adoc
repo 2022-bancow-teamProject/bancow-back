@@ -104,3 +104,20 @@ include::{snippets}/manager-controller-test/status-to-admin/request-parameters.a
 include::{snippets}/manager-controller-test/status-to-admin/response-body.adoc[]
 ==== Response Fields
 include::{snippets}/manager-controller-test/status-to-admin/response-fields.adoc[]
+
+[[모든-Manager-가져오기]]
+=== 모든 Manager 가져오기
+==== Curl Request
+include::{snippets}/manager-controller-test/find-all-manager/curl-request.adoc[]
+==== Http Request
+include::{snippets}/manager-controller-test/find-all-manager/http-request.adoc[]
+==== Http Response
+include::{snippets}/manager-controller-test/find-all-manager/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/manager-controller-test/find-all-manager/httpie-request.adoc[]
+==== Request Header
+include::{snippets}/manager-controller-test/find-all-manager/request-headers.adoc[]
+==== Response Body
+include::{snippets}/manager-controller-test/find-all-manager/response-body.adoc[]
+==== Response Fields
+include::{snippets}/manager-controller-test/find-all-manager/response-fields.adoc[]
