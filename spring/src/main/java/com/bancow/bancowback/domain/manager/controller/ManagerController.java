@@ -59,31 +59,31 @@ public class ManagerController {
 		return ResponseEntity.ok().body(new Response<>(result, HttpStatus.OK));
 	}
 
-	@PatchMapping("/status-to-admin")
+	@PatchMapping("/statusadmin")
 	public ResponseEntity<?> statusToAdmin(@RequestHeader("TOKEN") String token, @RequestParam Long id) {
 		ServiceResult result = managerService.statusToAdmin(token, id);
 		return ResponseEntity.ok().body(new Response<>(result, HttpStatus.OK));
 	}
 
-	@GetMapping("/allManager")
+	@GetMapping("/allmanager")
 	public ResponseEntity<?> findAllManager(@RequestHeader("TOKEN") String token) {
 		List<ManagerDto> allManager = managerService.findAllManager(token);
 		return ResponseEntity.ok().body(new Response<>(allManager, HttpStatus.OK));
 	}
 
-	@PostMapping("/find-manager")
+	@PostMapping("/findmanager")
 	public ResponseEntity<?> findManager(@RequestBody @Valid ManagerFindDto managerFindDto) {
 		ServiceResult result = managerService.findManager(managerFindDto);
 		return ResponseEntity.ok().body(new Response<>(result, HttpStatus.OK));
 	}
 
-	@GetMapping("/authentication/find-manager/{token}")
+	@GetMapping("/authentication/findmanager/{token}")
 	public ResponseEntity<?> authenticationPassword(@PathVariable String token) {
 		Manager manager = managerService.authenticationPassword(token);
 		return ResponseEntity.ok().body(new Response<>(manager.getUsername() + "님의 비밀번호 변경을 위한 인증에 성공하였습니다.", HttpStatus.OK));
 	}
 
-	@PatchMapping("/authentication/find-manager/{token}/change-password")
+	@PatchMapping("/authentication/findmanager/{token}/change-password")
 	public ResponseEntity<?> changePassword(@PathVariable String token,
 		@RequestBody @Valid ManagerPasswordDto managerPasswordDto) {
 		ServiceResult result = managerService.changePassword(token, managerPasswordDto);
