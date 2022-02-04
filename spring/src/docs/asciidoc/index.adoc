@@ -47,3 +47,22 @@ include::{snippets}/manager-controller-test/login/request-fields.adoc[]
 include::{snippets}/manager-controller-test/login/response-body.adoc[]
 ==== Response Fields
 include::{snippets}/manager-controller-test/login/response-fields.adoc[]
+
+[[로그아웃]]
+=== 로그아웃
+==== Curl Request
+include::{snippets}/manager-controller-test/logout/curl-request.adoc[]
+==== Http Request
+include::{snippets}/manager-controller-test/logout/http-request.adoc[]
+==== Http Response
+include::{snippets}/manager-controller-test/logout/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/manager-controller-test/logout/httpie-request.adoc[]
+==== Request Body
+include::{snippets}/manager-controller-test/logout/response-body.adoc[]
+==== Request Header
+include::{snippets}/manager-controller-test/logout/request-headers.adoc[]
+==== Response Body
+include::{snippets}/manager-controller-test/logout/response-body.adoc[]
+==== Response Fields
+include::{snippets}/manager-controller-test/logout/response-fields.adoc[]
