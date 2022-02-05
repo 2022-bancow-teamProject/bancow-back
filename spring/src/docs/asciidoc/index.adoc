@@ -121,3 +121,22 @@ include::{snippets}/manager-controller-test/find-all-manager/request-headers.ado
 include::{snippets}/manager-controller-test/find-all-manager/response-body.adoc[]
 ==== Response Fields
 include::{snippets}/manager-controller-test/find-all-manager/response-fields.adoc[]
+
+[[비밀번호-변경-인증]]
+=== 비밀번호 변경 인증
+==== Curl Request
+include::{snippets}/manager-controller-test/find-manager/curl-request.adoc[]
+==== Http Request
+include::{snippets}/manager-controller-test/find-manager/http-request.adoc[]
+==== Http Response
+include::{snippets}/manager-controller-test/find-manager/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/manager-controller-test/find-manager/httpie-request.adoc[]
+==== Request Body
+include::{snippets}/manager-controller-test/find-manager/response-body.adoc[]
+==== Request Fields
+include::{snippets}/manager-controller-test/find-manager/request-fields.adoc[]
+==== Response Body
+include::{snippets}/manager-controller-test/find-manager/response-body.adoc[]
+==== Response Fields
+include::{snippets}/manager-controller-test/find-manager/response-fields.adoc[]
