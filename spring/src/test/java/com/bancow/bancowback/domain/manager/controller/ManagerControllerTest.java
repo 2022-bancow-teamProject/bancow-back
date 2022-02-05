@@ -214,6 +214,37 @@ class ManagerControllerTest extends TestSupport {
 
 	}
 
+	@Test
+	void findManager() throws Exception {
+		managerRegister();
+
+		mockMvc.perform(
+			post("/api/findmanager")
+				.contentType(MediaType.APPLICATION_JSON)
+				.content("{\n"
+					+ "\"email\": \"gmldnr2222@naver.com\",\n"
+					+ "\"username\": \"가나다\"\n"
+					+ "}")
+		)
+			.andExpect(status().isOk())
+			.andDo(
+				restDocs.document(
+					requestFields(
+						fieldWithPath("email").description("이메일"),
+						fieldWithPath("username").description("이름")
+					),
+					responseFields(
+						fieldWithPath("data").description("결과 데이터"),
+						fieldWithPath("data.result").description("이메일 전송 성공 여부"),
+						fieldWithPath("data.message").description("response 메시지"),
+						fieldWithPath("status").description("HTTP Status")
+					)
+				)
+			)
+		;
+
+	}
+
 	private Manager superManagerLogin() {
 		ManagerLoginDto managerLoginDto =
 			ManagerLoginDto.builder()
