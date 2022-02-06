@@ -44,5 +44,11 @@ public class GlobalExceptionHandler {
 		return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
+	@ExceptionHandler(NcpException.class)
+	protected ResponseEntity<ErrorResponse> handleNcpException(NcpException e) {
+		log.error("handleNcpException", e);
+		final ErrorResponse response = ErrorResponse.of(ErrorCode.NOT_IMAGE);
+		return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+	}
 }
 
