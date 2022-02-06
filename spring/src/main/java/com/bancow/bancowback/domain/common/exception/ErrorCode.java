@@ -10,6 +10,10 @@ public enum ErrorCode {
 	METHOD_NOT_ALLOWED( "C002", "METHOD_NOT_ALLOWED"),
 	INTERNAL_SERVER_ERROR("C003", "Server Error"),
 	INVALID_TYPE_VALUE( "C004",  "Invalid Type Value"),
+
+	// Ncp
+	NOT_IMAGE("N001", "Not Image file"),
+	NOT_S3_ERROR("N002","NOT_S3_ERROR"),
 	;
 	private final String code;
 	private final String message;
