@@ -78,4 +78,18 @@ public class NcpService {
         }
     }
 
+    public void deleteObject(@NotNull final String objectName) {
+        try {
+            s3Client.deleteObject(bucketName, getObjectName(objectName));
+        } catch (AmazonS3Exception e) {
+            e.printStackTrace();
+            throw new NcpException(ErrorCode.NOT_S3_ERROR,"S3 삭제가 안됨");
+        }
+
+    }
+
+    public String getObjectName(String objectName){
+        return objectName.replace("https://kr.object.ncloudstorage.com/bancowback/","");
+    }
+
 }
