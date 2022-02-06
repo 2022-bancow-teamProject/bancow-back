@@ -157,3 +157,20 @@ include::{snippets}/manager-controller-test/authentication-password/path-paramet
 include::{snippets}/manager-controller-test/authentication-password/response-body.adoc[]
 ==== Response Fields
 include::{snippets}/manager-controller-test/authentication-password/response-fields.adoc[]
+
+[[비밀번호-변경]]
+=== 비밀번호 변경
+==== Curl Request
+include::{snippets}/manager-controller-test/authentication-password/curl-request.adoc[]
+==== Http Request
+include::{snippets}/manager-controller-test/authentication-password/http-request.adoc[]
+==== Http Response
+include::{snippets}/manager-controller-test/authentication-password/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/manager-controller-test/authentication-password/httpie-request.adoc[]
+==== Path Parameter
+include::{snippets}/manager-controller-test/authentication-password/path-parameters.adoc[]
+==== Response Body
+include::{snippets}/manager-controller-test/authentication-password/response-body.adoc[]
+==== Response Fields
+include::{snippets}/manager-controller-test/authentication-password/response-fields.adoc[]
