@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.bancow.bancowback.TestSupport;
 import com.bancow.bancowback.domain.common.util.token.entity.Token;
 import com.bancow.bancowback.domain.common.util.token.repository.TokenRepository;
+import com.bancow.bancowback.domain.manager.dto.ManagerFindDto;
 import com.bancow.bancowback.domain.manager.dto.ManagerLoginDto;
 import com.bancow.bancowback.domain.manager.dto.ManagerRegisterDto;
 import com.bancow.bancowback.domain.manager.entity.Manager;
@@ -215,6 +216,7 @@ class ManagerControllerTest extends TestSupport {
 	}
 
 	@Test
+	@Transactional
 	void findManager() throws Exception {
 		managerRegister();
 
@@ -243,6 +245,42 @@ class ManagerControllerTest extends TestSupport {
 			)
 		;
 
+	}
+
+	@Test
+	@Transactional
+	void authenticationPassword() throws Exception {
+		Manager manager = managerRegister();
+		Token registerToken = tokenRepository.findByManager(manager).get();
+		managerService.authentication(registerToken.getToken());
+
+		ManagerFindDto managerFindDto = ManagerFindDto.builder()
+			.email("gmldnr2222@naver.com")
+			.username("가나다")
+			.build();
+
+		managerService.findManager(managerFindDto);
+		Token findToken = tokenRepository.findByManager(manager).get();
+
+		mockMvc.perform(
+			get("/api//authentication/findmanager/{token}", findToken.getToken())
+				.contentType(MediaType.APPLICATION_JSON)
+		)
+			.andExpect(status().isOk())
+			.andDo(
+				restDocs.document(
+					pathParameters(
+						parameterWithName("token").description("회원가입한 manager의 토큰 값")
+					),
+					responseFields(
+						fieldWithPath("data").description("결과 데이터"),
+						fieldWithPath("data.result").description("이메일 인증 성공 여부"),
+						fieldWithPath("data.message").description("response 메시지"),
+						fieldWithPath("status").description("HTTP Status")
+					)
+				)
+			)
+		;
 	}
 
 	private Manager superManagerLogin() {
