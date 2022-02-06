@@ -19,12 +19,12 @@ import com.bancow.bancowback.domain.common.util.mail.repository.MailTemplateRepo
 import com.bancow.bancowback.domain.common.util.token.entity.Token;
 import com.bancow.bancowback.domain.common.util.token.repository.TokenRepository;
 import com.bancow.bancowback.domain.common.util.token.service.TokenService;
-import com.bancow.bancowback.domain.manager.dto.ManagerRegisterDto;
-import com.bancow.bancowback.domain.manager.entity.Manager;
 import com.bancow.bancowback.domain.manager.dto.ManagerDto;
 import com.bancow.bancowback.domain.manager.dto.ManagerFindDto;
 import com.bancow.bancowback.domain.manager.dto.ManagerLoginDto;
 import com.bancow.bancowback.domain.manager.dto.ManagerPasswordDto;
+import com.bancow.bancowback.domain.manager.dto.ManagerRegisterDto;
+import com.bancow.bancowback.domain.manager.entity.Manager;
 import com.bancow.bancowback.domain.manager.entity.ManagerStatus;
 import com.bancow.bancowback.domain.manager.repository.ManagerRepository;
 
@@ -193,15 +193,21 @@ public class ManagerService {
 		return ServiceResult.success(manager.getUsername() + " 님의 이메일로 비밀번호 초기화 메시지가 발송되었습니다.");
 	}
 
-	public Manager authenticationPassword(String token) {
+	public ServiceResult authenticationPassword(String token) {
+		Manager manager = getManagerAuthenticationPassword(token);
+		return ServiceResult.success(manager.getUsername() + " 님의 비밀번호 변경을 위한 인증에 성공하였습니다.");
+	}
+
+	private Manager getManagerAuthenticationPassword(String token) {
 		Token findToken = tokenRepository.findByToken(token)
 			.orElseThrow(() -> new BizException("Not Found Token"));
 		String email = findToken.getManager().getEmail();
-		return managerRepository.findByEmail(email).orElseThrow(() -> new BizException("User Not Found"));
+		Manager manager = managerRepository.findByEmail(email).orElseThrow(() -> new BizException("User Not Found"));
+		return manager;
 	}
 
 	public ServiceResult changePassword(String token, ManagerPasswordDto managerPasswordDto) {
-		Manager manager = authenticationPassword(token);
+		Manager manager = getManagerAuthenticationPassword(token);
 		if (!managerPasswordDto.getPassword1().equals(managerPasswordDto.getPassword2())) {
 			throw new BizException("비밀번호1, 2가 일치하지 않습니다.");
 		}
