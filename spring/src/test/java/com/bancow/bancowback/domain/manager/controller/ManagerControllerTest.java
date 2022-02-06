@@ -283,6 +283,47 @@ class ManagerControllerTest extends TestSupport {
 		;
 	}
 
+	@Test
+	@Transactional
+	void changePassword() throws Exception {
+		Manager manager = managerRegister();
+		Token registerToken = tokenRepository.findByManager(manager).get();
+		managerService.authentication(registerToken.getToken());
+
+		ManagerFindDto managerFindDto = ManagerFindDto.builder()
+			.email("gmldnr2222@naver.com")
+			.username("가나다")
+			.build();
+
+		managerService.findManager(managerFindDto);
+		Token findToken = tokenRepository.findByManager(manager).get();
+		managerService.authenticationPassword(findToken.getToken());
+
+		mockMvc.perform(
+			patch("/api//authentication/findmanager/{token}/change-password", findToken.getToken())
+				.contentType(MediaType.APPLICATION_JSON)
+				.content("{"
+					+ "\"password1\" : \"123123\",\n"
+					+ "\"password2\" : \"123123\"\n"
+					+ "}")
+		)
+			.andExpect(status().isOk())
+			.andDo(
+				restDocs.document(
+					pathParameters(
+						parameterWithName("token").description("회원가입한 manager의 토큰 값")
+					),
+					responseFields(
+						fieldWithPath("data").description("결과 데이터"),
+						fieldWithPath("data.result").description("이메일 인증 성공 여부"),
+						fieldWithPath("data.message").description("response 메시지"),
+						fieldWithPath("status").description("HTTP Status")
+					)
+				)
+			)
+		;
+	}
+
 	private Manager superManagerLogin() {
 		ManagerLoginDto managerLoginDto =
 			ManagerLoginDto.builder()
