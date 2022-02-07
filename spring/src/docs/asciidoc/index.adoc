@@ -176,3 +176,23 @@ include::{snippets}/manager-controller-test/authentication-password/path-paramet
 include::{snippets}/manager-controller-test/authentication-password/response-body.adoc[]
 ==== Response Fields
 include::{snippets}/manager-controller-test/authentication-password/response-fields.adoc[]
+
+[[Popup]]
+== Popup
+
+[[팝업-생성]]
+=== 팝업 생성
+==== Curl Request
+include::{snippets}/popup-controller-test/add-Popup/curl-request.adoc[]
+==== Http Response
+include::{snippets}/popup-controller-test/add-Popup/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/popup-controller-test/add-Popup/httpie-request.adoc[]
+==== Request Part Popup Request Body
+include::{snippets}/popup-controller-test/add-Popup/request-part-popup_request-body.adoc[]
+==== Request Part Popup Request Fields
+include::{snippets}/popup-controller-test/add-Popup/request-part-popup_request-fields.adoc[]
+==== Request Parts
+include::{snippets}/popup-controller-test/add-Popup/request-parts.adoc[]
+==== Response Body
+include::{snippets}/popup-controller-test/add-Popup/response-body.adoc[]

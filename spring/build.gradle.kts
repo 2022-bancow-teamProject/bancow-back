@@ -38,6 +38,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-mail")
     implementation ("com.amazonaws:aws-java-sdk-s3:1.11.238")
     implementation("com.auth0:java-jwt:3.18.3")
+    implementation("io.micrometer:micrometer-core:1.8.2")
     compileOnly("org.projectlombok:lombok")
     runtimeOnly("com.h2database:h2")
     annotationProcessor("org.projectlombok:lombok")
