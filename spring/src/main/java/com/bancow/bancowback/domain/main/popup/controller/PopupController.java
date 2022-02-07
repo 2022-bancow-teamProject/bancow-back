@@ -4,12 +4,14 @@ import java.io.IOException;
 
 import javax.validation.Valid;
 
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -18,6 +20,7 @@ import com.bancow.bancowback.domain.common.dto.Response;
 import com.bancow.bancowback.domain.common.util.token.service.TokenService;
 import com.bancow.bancowback.domain.main.popup.dto.PopupAddRequestDto;
 import com.bancow.bancowback.domain.main.popup.dto.PopupInfo;
+import com.bancow.bancowback.domain.main.popup.dto.PopupResponseDto;
 import com.bancow.bancowback.domain.main.popup.service.PopupService;
 import com.bancow.bancowback.infra.ncp.NcpService;
 
@@ -46,6 +49,12 @@ public class PopupController {
 	public Response<?> getPopupDetail(@RequestHeader("TOKEN") String token, @PathVariable Long id) {
 		tokenService.validTokenAuthority(token);
 		return new Response<>(popupService.getPopupDetail(id), HttpStatus.OK);
+	}
+
+	@GetMapping()
+	public Response<?> getPopupPaging(@RequestHeader("TOKEN") String token, @RequestParam("page") int page) {
+		Page<PopupResponseDto> result = popupService.getPopupPaging(page);
+		return new Response<>(result, HttpStatus.OK);
 	}
 
 }

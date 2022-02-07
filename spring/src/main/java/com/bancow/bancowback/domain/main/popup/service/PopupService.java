@@ -1,5 +1,8 @@
 package com.bancow.bancowback.domain.main.popup.service;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.bancow.bancowback.domain.common.dto.ServiceResult;
@@ -37,4 +40,8 @@ public class PopupService {
 			.orElseThrow(() -> new PopupException(ErrorCode.NOT_FOUND_POPUP, "해당 팝업 없음"));
 	}
 
+	public Page<PopupResponseDto> getPopupPaging(int page) {
+		Page<Popup> popupList =  popupRepository.findAll(PageRequest.of(page, 10, Sort.by(Sort.Direction.DESC, "id")));
+		return popupList.map(popup -> popupMapper.toResponseDto(popup));
+	}
 }
