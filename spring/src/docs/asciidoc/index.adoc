@@ -196,3 +196,20 @@ include::{snippets}/popup-controller-test/add-Popup/request-part-popup_request-f
 include::{snippets}/popup-controller-test/add-Popup/request-parts.adoc[]
 ==== Response Body
 include::{snippets}/popup-controller-test/add-Popup/response-body.adoc[]
+
+[[팝업-상세-페이지]]
+=== 팝업 상세 페이지
+==== Curl Request
+include::{snippets}/popup-controller-test/get-popup-detail/curl-request.adoc[]
+==== Http Request
+include::{snippets}/popup-controller-test/get-popup-detail/http-request.adoc[]
+==== Http Response
+include::{snippets}/popup-controller-test/get-popup-detail/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/popup-controller-test/get-popup-detail/httpie-request.adoc[]
+==== Path Parameter
+include::{snippets}/popup-controller-test/get-popup-detail/path-parameters.adoc[]
+==== Response Body
+include::{snippets}/popup-controller-test/get-popup-detail/response-body.adoc[]
+==== Response Fields
+include::{snippets}/popup-controller-test/get-popup-detail/response-fields.adoc[]

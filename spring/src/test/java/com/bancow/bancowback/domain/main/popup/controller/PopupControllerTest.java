@@ -58,4 +58,38 @@ class PopupControllerTest extends TestSupport {
 			));
 	}
 
+	@Test
+	@Transactional
+	void getPopupDetail() throws Exception {
+		Long id = 1L;
+		Manager adminManager = adminManagerLogin();
+		Token tokenAdmin = tokenRepository.findByManager(adminManager).get();
+
+		mockMvc.perform(
+				get("/api/popup/{id}", id)
+					.header("TOKEN", tokenAdmin.getToken())
+
+			).andExpect(status().isOk())
+			.andDo(
+				restDocs.document(
+
+					pathParameters(
+						parameterWithName("id").description("팝업 번호")
+					),
+					responseFields(
+						fieldWithPath("data").description("결과 데이터"),
+						fieldWithPath("data.id").description("팝업 번호"),
+						fieldWithPath("data.title").description("팝업 제목"),
+						fieldWithPath("data.image").description("팝업 이미지"),
+						fieldWithPath("data.status").description("팝업 사용 유무"),
+						fieldWithPath("data.username").description("팝업 등록한 관리자"),
+						fieldWithPath("data.start_date").description("팝업 게시 시작 날짜"),
+						fieldWithPath("data.end_date").description("팝업 게시 마감 날짜"),
+						fieldWithPath("data.create_date").description("팝업 생성 시간"),
+						fieldWithPath("status").description("HTTP Status")
+					)
+				)
+			)
+		;
+	}
 }
