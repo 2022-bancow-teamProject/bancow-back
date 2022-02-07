@@ -22,6 +22,7 @@ import com.bancow.bancowback.domain.common.util.token.service.TokenService;
 import com.bancow.bancowback.domain.manager.dto.ManagerDto;
 import com.bancow.bancowback.domain.manager.dto.ManagerFindDto;
 import com.bancow.bancowback.domain.manager.dto.ManagerLoginDto;
+import com.bancow.bancowback.domain.manager.dto.ManagerLoginResultDto;
 import com.bancow.bancowback.domain.manager.dto.ManagerPasswordDto;
 import com.bancow.bancowback.domain.manager.dto.ManagerRegisterDto;
 import com.bancow.bancowback.domain.manager.entity.Manager;
@@ -70,7 +71,7 @@ public class ManagerService {
 		return ServiceResult.success("회원가입을 성공하였습니다.");
 	}
 
-	public ServiceResult loginManager(ManagerLoginDto managerLoginDto) {
+	public ManagerLoginResultDto loginManager(ManagerLoginDto managerLoginDto) {
 
 		Manager manager = managerRepository.findByEmail(managerLoginDto.getEmail())
 			.orElseThrow(() -> new BizException("사용자 정보가 없습니다."));
@@ -88,7 +89,9 @@ public class ManagerService {
 
 		tokenRepository.save(token);
 
-		return ServiceResult.success(manager.getUsername() + " 님의 로그인에 성공하였습니다.");
+		return ManagerLoginResultDto.builder()
+			.token(token.getToken())
+			.build();
 	}
 
 	public ServiceResult logoutManager(String token) {
