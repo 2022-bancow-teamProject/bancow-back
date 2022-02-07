@@ -32,4 +32,3 @@ spring:
           auth:
           starttls:
             enable:
-
