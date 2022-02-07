@@ -1,11 +1,12 @@
 package com.bancow.bancowback.domain.manager.service;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.auth0.jwt.JWT;
@@ -19,7 +20,7 @@ import com.bancow.bancowback.domain.common.util.mail.repository.MailTemplateRepo
 import com.bancow.bancowback.domain.common.util.token.entity.Token;
 import com.bancow.bancowback.domain.common.util.token.repository.TokenRepository;
 import com.bancow.bancowback.domain.common.util.token.service.TokenService;
-import com.bancow.bancowback.domain.manager.dto.ManagerDto;
+import com.bancow.bancowback.domain.manager.dto.ManagerRequestDto;
 import com.bancow.bancowback.domain.manager.dto.ManagerFindDto;
 import com.bancow.bancowback.domain.manager.dto.ManagerLoginDto;
 import com.bancow.bancowback.domain.manager.dto.ManagerLoginResultDto;
@@ -163,23 +164,21 @@ public class ManagerService {
 		return ServiceResult.success(manager.getUsername() + " 님의 상태를 ADMIN으로 변경하였습니다.");
 	}
 
-	public List<ManagerDto> findAllManager(String token) {
+	public Page<ManagerRequestDto> findAllManager(int page, String token) {
 
 		tokenService.checkTokenSuper(token);
-		List<Manager> allManager = managerRepository.findAll();
-		List<ManagerDto> allManagerDto = new ArrayList<>();
-		allManager.forEach(e -> {
-			ManagerDto build = ManagerDto.builder()
-				.email(e.getEmail())
-				.username(e.getUsername())
-				.managerStatus(e.getManagerStatus())
-				.createDate(e.getCreateDate())
-				.updateDate(e.getUpdateDate())
-				.build();
-			allManagerDto.add(build);
-		});
-
-		return allManagerDto;
+		Page<Manager> allManager = managerRepository.findAll(
+			PageRequest.of(page, 10, Sort.by(Sort.Direction.DESC, "id")));
+		return allManager.map(manager ->
+			ManagerRequestDto.builder()
+				.id(manager.getId())
+				.email(manager.getEmail())
+				.username(manager.getUsername())
+				.managerStatus(manager.getManagerStatus())
+				.createDate(manager.getCreateDate())
+				.updateDate(manager.getUpdateDate())
+				.build()
+		);
 	}
 
 	public ServiceResult findManager(ManagerFindDto managerFindDto) {

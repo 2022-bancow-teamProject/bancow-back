@@ -16,7 +16,9 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ManagerDto {
+public class ManagerRequestDto {
+
+	private Long id;
 
 	private String email;
 

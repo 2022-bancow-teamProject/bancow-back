@@ -1,11 +1,9 @@
 package com.bancow.bancowback.domain.manager.controller;
 
-import java.util.List;
-
 import javax.validation.Valid;
 
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.bancow.bancowback.domain.common.dto.Response;
 import com.bancow.bancowback.domain.common.dto.ServiceResult;
-import com.bancow.bancowback.domain.manager.dto.ManagerDto;
+import com.bancow.bancowback.domain.manager.dto.ManagerRequestDto;
 import com.bancow.bancowback.domain.manager.dto.ManagerFindDto;
 import com.bancow.bancowback.domain.manager.dto.ManagerLoginDto;
 import com.bancow.bancowback.domain.manager.dto.ManagerLoginResultDto;
@@ -66,8 +64,8 @@ public class ManagerController {
 	}
 
 	@GetMapping("/allmanager")
-	public Response<List<ManagerDto>> findAllManager(@RequestHeader("TOKEN") String token) {
-		List<ManagerDto> allManager = managerService.findAllManager(token);
+	public Response<Page<ManagerRequestDto>> findAllManager(@RequestParam int page, @RequestHeader("TOKEN") String token) {
+		Page<ManagerRequestDto> allManager = managerService.findAllManager(page, token);
 		return new Response<>(allManager, HttpStatus.OK);
 	}
 
