@@ -50,5 +50,12 @@ public class GlobalExceptionHandler {
 		final ErrorResponse response = ErrorResponse.of(ErrorCode.NOT_IMAGE);
 		return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
+
+	@ExceptionHandler(QnaException.class)
+	protected ResponseEntity<ErrorResponse> handleQnaException(QnaException e) {
+		log.error("qnaException", e);
+		final ErrorResponse response = ErrorResponse.of(ErrorCode.NOT_Found_QNA);
+		return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+	}
 }
 
