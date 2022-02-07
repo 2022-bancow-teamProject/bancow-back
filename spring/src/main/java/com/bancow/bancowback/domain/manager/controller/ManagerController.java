@@ -36,57 +36,57 @@ public class ManagerController {
 	private final ManagerService managerService;
 
 	@PostMapping("/register")
-	public ResponseEntity<?> registerManager(@RequestBody @Valid ManagerRegisterDto managerRegisterDto) {
+	public Response<ServiceResult> registerManager(@RequestBody @Valid ManagerRegisterDto managerRegisterDto) {
 		ServiceResult result = managerService.registerManager(managerRegisterDto);
-		return ResponseEntity.ok().body(new Response<>(result, HttpStatus.OK));
+		return new Response<>(result, HttpStatus.OK);
 	}
 
 	@PostMapping("/login")
-	public ResponseEntity<?> login(@RequestBody @Valid ManagerLoginDto managerLoginDto) {
+	public Response<ManagerLoginResultDto> login(@RequestBody @Valid ManagerLoginDto managerLoginDto) {
 		ManagerLoginResultDto result = managerService.loginManager(managerLoginDto);
-		return ResponseEntity.ok().body(new Response<>(result, HttpStatus.OK));
+		return new Response<>(result, HttpStatus.OK);
 	}
 
 	@PostMapping("/logout")
-	public ResponseEntity<?> logout(@RequestHeader("TOKEN") String token) {
+	public Response<ServiceResult> logout(@RequestHeader("TOKEN") String token) {
 		ServiceResult result = managerService.logoutManager(token);
-		return ResponseEntity.ok().body(new Response<>(result, HttpStatus.OK));
+		return new Response<>(result, HttpStatus.OK);
 	}
 
 	@GetMapping("/authentication/{token}")
-	public ResponseEntity<?> authentication(@PathVariable String token) {
+	public Response<ServiceResult> authentication(@PathVariable String token) {
 		ServiceResult result = managerService.authentication(token);
-		return ResponseEntity.ok().body(new Response<>(result, HttpStatus.OK));
+		return new Response<>(result, HttpStatus.OK);
 	}
 
 	@PatchMapping("/statusadmin")
-	public ResponseEntity<?> statusToAdmin(@RequestHeader("TOKEN") String token, @RequestParam Long id) {
+	public Response<ServiceResult> statusToAdmin(@RequestHeader("TOKEN") String token, @RequestParam Long id) {
 		ServiceResult result = managerService.statusToAdmin(token, id);
-		return ResponseEntity.ok().body(new Response<>(result, HttpStatus.OK));
+		return new Response<>(result, HttpStatus.OK);
 	}
 
 	@GetMapping("/allmanager")
-	public ResponseEntity<?> findAllManager(@RequestHeader("TOKEN") String token) {
+	public Response<List<ManagerDto>> findAllManager(@RequestHeader("TOKEN") String token) {
 		List<ManagerDto> allManager = managerService.findAllManager(token);
-		return ResponseEntity.ok().body(new Response<>(allManager, HttpStatus.OK));
+		return new Response<>(allManager, HttpStatus.OK);
 	}
 
 	@PostMapping("/findmanager")
-	public ResponseEntity<?> findManager(@RequestBody @Valid ManagerFindDto managerFindDto) {
+	public Response<ServiceResult> findManager(@RequestBody @Valid ManagerFindDto managerFindDto) {
 		ServiceResult result = managerService.findManager(managerFindDto);
-		return ResponseEntity.ok().body(new Response<>(result, HttpStatus.OK));
+		return new Response<>(result, HttpStatus.OK);
 	}
 
 	@GetMapping("/authentication/findmanager/{token}")
-	public ResponseEntity<?> authenticationPassword(@PathVariable String token) {
-		ServiceResult serviceResult = managerService.authenticationPassword(token);
-		return ResponseEntity.ok().body(new Response<>(serviceResult, HttpStatus.OK));
+	public Response<ServiceResult> authenticationPassword(@PathVariable String token) {
+		ServiceResult result = managerService.authenticationPassword(token);
+		return new Response<>(result, HttpStatus.OK);
 	}
 
 	@PatchMapping("/authentication/findmanager/{token}/change-password")
-	public ResponseEntity<?> changePassword(@PathVariable String token,
+	public Response<ServiceResult> changePassword(@PathVariable String token,
 		@RequestBody @Valid ManagerPasswordDto managerPasswordDto) {
 		ServiceResult result = managerService.changePassword(token, managerPasswordDto);
-		return ResponseEntity.ok().body(new Response<>(result, HttpStatus.OK));
+		return new Response<>(result, HttpStatus.OK);
 	}
 }
