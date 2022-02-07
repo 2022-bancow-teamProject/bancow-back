@@ -213,3 +213,22 @@ include::{snippets}/popup-controller-test/get-popup-detail/path-parameters.adoc[
 include::{snippets}/popup-controller-test/get-popup-detail/response-body.adoc[]
 ==== Response Fields
 include::{snippets}/popup-controller-test/get-popup-detail/response-fields.adoc[]
+
+[[팝업-페이징]]
+=== 팝업 10개씩 가져오기
+==== Curl Request
+include::{snippets}/popup-controller-test/get-popup-paging/curl-request.adoc[]
+==== Http Request
+include::{snippets}/popup-controller-test/get-popup-paging/http-request.adoc[]
+==== Http Response
+include::{snippets}/popup-controller-test/get-popup-paging/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/popup-controller-test/get-popup-paging/httpie-request.adoc[]
+==== Request Header
+include::{snippets}/popup-controller-test/get-popup-paging/request-headers.adoc[]
+==== Request Parameters
+include::{snippets}/popup-controller-test/get-popup-paging/request-parameters.adoc[]
+==== Response Body
+include::{snippets}/popup-controller-test/get-popup-paging/response-body.adoc[]
+==== Response Fields
+include::{snippets}/popup-controller-test/get-popup-paging/response-fields.adoc[]
