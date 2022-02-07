@@ -18,13 +18,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.bancow.bancowback.domain.common.dto.Response;
 import com.bancow.bancowback.domain.common.dto.ServiceResult;
-import com.bancow.bancowback.domain.manager.dto.ManagerFindDto;
-import com.bancow.bancowback.domain.manager.dto.ManagerRegisterDto;
-import com.bancow.bancowback.domain.manager.entity.Manager;
-import com.bancow.bancowback.domain.manager.service.ManagerService;
 import com.bancow.bancowback.domain.manager.dto.ManagerDto;
+import com.bancow.bancowback.domain.manager.dto.ManagerFindDto;
 import com.bancow.bancowback.domain.manager.dto.ManagerLoginDto;
+import com.bancow.bancowback.domain.manager.dto.ManagerLoginResultDto;
 import com.bancow.bancowback.domain.manager.dto.ManagerPasswordDto;
+import com.bancow.bancowback.domain.manager.dto.ManagerRegisterDto;
+import com.bancow.bancowback.domain.manager.service.ManagerService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -43,7 +43,7 @@ public class ManagerController {
 
 	@PostMapping("/login")
 	public ResponseEntity<?> login(@RequestBody @Valid ManagerLoginDto managerLoginDto) {
-		ServiceResult result = managerService.loginManager(managerLoginDto);
+		ManagerLoginResultDto result = managerService.loginManager(managerLoginDto);
 		return ResponseEntity.ok().body(new Response<>(result, HttpStatus.OK));
 	}
 
