@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import com.bancow.bancowback.domain.common.exception.BizException;
 import com.bancow.bancowback.domain.common.util.token.entity.Token;
 import com.bancow.bancowback.domain.common.util.token.repository.TokenRepository;
+import com.bancow.bancowback.domain.manager.entity.Manager;
 import com.bancow.bancowback.domain.manager.entity.ManagerStatus;
 
 import lombok.RequiredArgsConstructor;
@@ -15,16 +16,17 @@ public class TokenService {
 
 	private final TokenRepository tokenRepository;
 
-	public String findUsernameByToken(String token) {
-		Token findToken = tokenRepository.findByToken(token)
-			.orElseThrow(() -> new BizException("해당 토큰을 찾을 수 없습니다."));
-
-		return findToken.getManager().getUsername();
+	public Manager getManager(String token) {
+		return getToken(token).getManager();
 	}
 
-	public void checkTokenManager(String token) {
-		Token findToken = tokenRepository.findByToken(token)
-			.orElseThrow(() -> new BizException("Not Found Token"));
+	public Token getToken(String token){
+		return tokenRepository.findByToken(token)
+			.orElseThrow(() -> new BizException("해당 토큰을 찾을 수 없습니다."));
+	}
+
+	public void validTokenAuthority(String token) {
+		Token findToken = getToken(token);
 		if (!(findToken.getManager().getManagerStatus().equals(ManagerStatus.ADMIN) ||
 			findToken.getManager().getManagerStatus().equals(ManagerStatus.SUPER))) {
 			throw new BizException("유저 권한이 없습니다.");
@@ -32,8 +34,7 @@ public class TokenService {
 	}
 
 	public void checkTokenSuper(String token) {
-		Token findToken = tokenRepository.findByToken(token)
-			.orElseThrow(() -> new BizException("Not Found Token"));
+		Token findToken = getToken(token);
 		if (!(findToken.getManager().getManagerStatus().equals(ManagerStatus.SUPER))) {
 			throw new BizException("SUPER 계정이 아닙니다.");
 		}
