@@ -89,7 +89,7 @@ class ManagerControllerTest extends TestSupport {
 					),
 					responseFields(
 						fieldWithPath("data").description("결과 데이터"),
-						fieldWithPath("data.result").description("로그인 성공 여부"),
+						fieldWithPath("data.token").description("로그인 토큰"),
 						fieldWithPath("data.message").description("response 메시지"),
 						fieldWithPath("status").description("HTTP Status")
 					)
@@ -193,6 +193,7 @@ class ManagerControllerTest extends TestSupport {
 
 		mockMvc.perform(
 			get("/api/allmanager")
+				.param("page", "0")
 				.header("TOKEN", tokenSuper.getToken())
 		)
 			.andExpect(status().isOk())
@@ -201,13 +202,40 @@ class ManagerControllerTest extends TestSupport {
 					requestHeaders(
 						headerWithName("TOKEN").description("로그인한 SUPER 계정의 토큰값")
 					),
+					requestParameters(
+						parameterWithName("page").description("페이징 처리를 위한 페이지 값 (0부터 시작)")
+					),
 					responseFields(
 						fieldWithPath("data").description("결과 데이터"),
-						fieldWithPath("data[0].email").description("이메일"),
-						fieldWithPath("data[0].username").description("이름"),
-						fieldWithPath("data[0].managerStatus").description("Manager 상태"),
-						fieldWithPath("data[0].createDate").description("Manager 생성일"),
-						fieldWithPath("data[0].updateDate").description("Manager 수정일"),
+						fieldWithPath("data.content").description("모든 Manager의 정보"),
+						fieldWithPath("data.content[0].id").description("Manager id (pk)"),
+						fieldWithPath("data.content[0].email").description("이메일"),
+						fieldWithPath("data.content[0].username").description("이름"),
+						fieldWithPath("data.content[0].managerStatus").description("Manager 상태"),
+						fieldWithPath("data.content[0].createDate").description("Manager 생성일"),
+						fieldWithPath("data.content[0].updateDate").description("Manager 수정일"),
+						fieldWithPath("data.pageable").description("Pageable 설명"),
+						fieldWithPath("data.pageable.sort").description("페이지 정렬 설명"),
+						fieldWithPath("data.pageable.sort.empty").description("비어있는 지 여부"),
+						fieldWithPath("data.pageable.sort.unsorted").description("비정렬 여부"),
+						fieldWithPath("data.pageable.sort.sorted").description("정렬 여부"),
+						fieldWithPath("data.pageable.offset").description("Skip할 데이터 양"),
+						fieldWithPath("data.pageable.pageNumber").description("페이지 번호"),
+						fieldWithPath("data.pageable.pageSize").description("페이지 크기"),
+						fieldWithPath("data.pageable.paged").description("페이지 수를 매긴 여부"),
+						fieldWithPath("data.pageable.unpaged").description("페이지 수를 매기지 않은 여부"),
+						fieldWithPath("data.totalPages").description("총 페이지"),
+						fieldWithPath("data.totalElements").description("모든 데이터 개수"),
+						fieldWithPath("data.last").description("마지막 페이지 여부"),
+						fieldWithPath("data.size").description("한 페이지에서 보여줄 데이터의 개수"),
+						fieldWithPath("data.numberOfElements").description("모든 데이터 개수"),
+						fieldWithPath("data.number").description("페이지 번호"),
+						fieldWithPath("data.sort").description("data 정렬 설명"),
+						fieldWithPath("data.sort.empty").description("비어있는 지 여부"),
+						fieldWithPath("data.sort.unsorted").description("비정렬 여부"),
+						fieldWithPath("data.sort.sorted").description("정렬 여부"),
+						fieldWithPath("data.first").description("첫번째 페이지 여부"),
+						fieldWithPath("data.empty").description("비어있는 지 여부"),
 						fieldWithPath("status").description("HTTP Status")
 					)
 				)
