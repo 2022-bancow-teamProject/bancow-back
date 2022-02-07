@@ -57,5 +57,12 @@ public class GlobalExceptionHandler {
 		final ErrorResponse response = ErrorResponse.of(ErrorCode.NOT_Found_QNA);
 		return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
+
+	@ExceptionHandler(PopupException.class)
+	protected ResponseEntity<ErrorResponse> handlePopupException(PopupException e) {
+		log.error("PopupException", e);
+		final ErrorResponse response = ErrorResponse.of(ErrorCode.NOT_FOUND_POPUP);
+		return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+	}
 }
 
