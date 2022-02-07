@@ -17,6 +17,10 @@ public enum ErrorCode {
 
 	// Qna
 	NOT_Found_QNA("Q001", "Not Found Qna"),
+
+	// Popup
+	NOT_FOUND_POPUP("P001", "Not Found Popup"),
+
 	;
 	private final String code;
 	private final String message;
