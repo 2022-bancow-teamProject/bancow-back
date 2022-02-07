@@ -14,6 +14,9 @@ public enum ErrorCode {
 	// Ncp
 	NOT_IMAGE("N001", "Not Image file"),
 	NOT_S3_ERROR("N002","NOT_S3_ERROR"),
+
+	// Qna
+	NOT_Found_QNA("Q001", "Not Found Qna"),
 	;
 	private final String code;
 	private final String message;
