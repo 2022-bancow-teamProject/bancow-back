@@ -1,14 +1,18 @@
 package com.bancow.bancowback.domain.main.notice.entity;
 
+import java.time.LocalDateTime;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import javax.persistence.*;
-import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -25,19 +29,19 @@ public class Notice {
 	@Column(name = "notice_category")
 	private String noticeCategory;
 
-	@Column
+	@Column(nullable = false)
 	private String username;
 
-	@Column
+	@Column(nullable = false)
 	private String title;
 
-	@Column
+	@Column(nullable = false)
 	private String message;
 
-	@Column
+	@Column(nullable = false)
 	private boolean status;
 
-	@Column(name = "create_date")
+	@Column(name = "create_date", nullable = false)
 	private LocalDateTime createDate;
 
 	@Column(name = "update_date")
