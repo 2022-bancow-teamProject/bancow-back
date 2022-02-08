@@ -57,4 +57,9 @@ public class PopupService {
 		popupRepository.save(popup);
 		return ServiceResult.success("팝업이 업데이트가 되었습니다.");
 	}
+
+	public ServiceResult deletePopupOne(Long id) {
+		popupRepository.delete(getPopupId(id));
+		return ServiceResult.success("팝업이 삭제 되었습니다.");
+	}
 }
