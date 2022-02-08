@@ -340,6 +340,25 @@ include::{snippets}/popup-controller-test/delete-popup-one/response-body.adoc[]
 ==== Response Fields
 include::{snippets}/popup-controller-test/delete-popup-one/response-fields.adoc[]
 
+[[팝업-선택-삭제]]
+=== 팝업 선택 삭제
+==== Curl Request
+include::{snippets}/popup-controller-test/delete-popup-List/curl-request.adoc[]
+==== Http Request
+include::{snippets}/popup-controller-test/delete-popup-List/http-request.adoc[]
+==== Http Response
+include::{snippets}/popup-controller-test/delete-popup-List/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/popup-controller-test/delete-popup-List/httpie-request.adoc[]
+==== Request Header
+include::{snippets}/popup-controller-test/delete-popup-List/request-headers.adoc[]
+==== Path Parameters
+include::{snippets}/popup-controller-test/delete-popup-List/path-parameters.adoc[]
+==== Response Body
+include::{snippets}/popup-controller-test/delete-popup-List/response-body.adoc[]
+==== Response Fields
+include::{snippets}/popup-controller-test/delete-popup-List/response-fields.adoc[]
+
 [[Qna]]
 == Qna
 
