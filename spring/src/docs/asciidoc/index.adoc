@@ -255,3 +255,22 @@ include::{snippets}/qna-controller-test/get-qna/path-parameters.adoc[]
 include::{snippets}/qna-controller-test/get-qna/response-body.adoc[]
 ==== Response Fields
 include::{snippets}/qna-controller-test/get-qna/response-fields.adoc[]
+
+[[문의-10개씩-가져오기]]
+=== 문의 10개씩 가져오기
+==== Curl Request
+include::{snippets}/qna-controller-test/get-qna-paging/curl-request.adoc[]
+==== Http Request
+include::{snippets}/qna-controller-test/get-qna-paging/http-request.adoc[]
+==== Http Response
+include::{snippets}/qna-controller-test/get-qna-paging/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/qna-controller-test/get-qna-paging/httpie-request.adoc[]
+==== Request Header
+include::{snippets}/qna-controller-test/get-qna-paging/request-headers.adoc[]
+==== Request Parameters
+include::{snippets}/qna-controller-test/get-qna-paging/request-parameters.adoc[]
+==== Response Body
+include::{snippets}/qna-controller-test/get-qna-paging/response-body.adoc[]
+==== Response Fields
+include::{snippets}/qna-controller-test/get-qna-paging/response-fields.adoc[]
