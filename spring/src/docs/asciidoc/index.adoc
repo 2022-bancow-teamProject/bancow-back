@@ -7,6 +7,56 @@ Bancow;
 :toclevels: 2
 :sectlinks:
 
+[[overview-http-status-code]]
+== Overview
+=== Common Error Code
+
+|===
+| Error Code | Usage
+
+| C001
+| Invalid Input Value
+
+| C002
+| Method Not Allowed
+
+| C003
+| Server Error
+
+| C004
+| Invalid Type Value
+
+| C005
+| Missing Required Request Parameter
+|===
+
+=== NCP Error Code
+|===
+| Error Code | Usage
+
+| N001
+| Not Image file
+
+| N002
+| Not S3 Error
+|===
+
+=== QNA Error Code
+|===
+| Error Code | Usage
+
+| Q001
+| Not Found Qna
+|===
+
+=== POPUP Error Code
+|===
+| Error Code | Usage
+
+| P001
+| Not Found Popup
+|===
+
 [[Manager]]
 == Manager
 
