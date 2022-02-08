@@ -42,7 +42,7 @@ class PopupControllerTest extends TestSupport {
 			.andExpect(status().isOk())
 			.andDo(restDocs.document(
 				requestHeaders(
-					headerWithName("TOKEN").description("로그인한 SUPER 계정의 토큰값")
+					headerWithName("TOKEN").description("해당 로그인 유저의 토큰값")
 				),
 				requestParts(
 					partWithName("popup_image").description("이미지 파일"),
@@ -77,7 +77,7 @@ class PopupControllerTest extends TestSupport {
 			.andDo(
 				restDocs.document(
 					requestHeaders(
-						headerWithName("TOKEN").description("로그인한 SUPER 계정의 토큰값")
+						headerWithName("TOKEN").description("해당 로그인 유저의 토큰값")
 					),
 					pathParameters(
 						parameterWithName("id").description("팝업 번호")
@@ -114,7 +114,7 @@ class PopupControllerTest extends TestSupport {
 			.andDo(
 				restDocs.document(
 					requestHeaders(
-						headerWithName("TOKEN").description("로그인한 SUPER 계정의 토큰값")
+						headerWithName("TOKEN").description("해당 로그인 유저의 토큰값")
 					),
 					requestParameters(
 						parameterWithName("page").description("페이징 처리를 위한 페이지 값 (0부터 시작)")
@@ -216,7 +216,7 @@ class PopupControllerTest extends TestSupport {
 			.andExpect(status().isOk())
 			.andDo(restDocs.document(
 				requestHeaders(
-					headerWithName("TOKEN").description("로그인한 SUPER 계정의 토큰값")
+					headerWithName("TOKEN").description("해당 로그인 유저의 토큰값")
 				),
 				requestFields(
 					fieldWithPath("id").description("팝업 번호"),
@@ -232,5 +232,36 @@ class PopupControllerTest extends TestSupport {
 					fieldWithPath("status").description("HTTP Status")
 				)
 			));
+	}
+
+	@Test
+	@Transactional
+	void deletePopupOne() throws Exception {
+		Manager adminManager = adminManagerLogin();
+		Token tokenAdmin = tokenRepository.findByManager(adminManager).get();
+
+		mockMvc.perform(
+				delete("/api/popup/{id}", 1)
+					.header("TOKEN", tokenAdmin.getToken())
+					.accept(MediaType.APPLICATION_JSON)
+			)
+			.andExpect(status().isOk())
+			.andDo(
+				restDocs.document(
+					requestHeaders(
+						headerWithName("TOKEN").description("해당 로그인 유저의 토큰값")
+					),
+					pathParameters(
+						parameterWithName("id").description("팝업 ID")
+					),
+					responseFields(
+						fieldWithPath("data").description("결과 데이터"),
+						fieldWithPath("data.result").description("문의 삭제 전송 성공 여부"),
+						fieldWithPath("data.message").description("response 메시지"),
+						fieldWithPath("status").description("HTTP Status")
+					)
+				)
+			)
+		;
 	}
 }
