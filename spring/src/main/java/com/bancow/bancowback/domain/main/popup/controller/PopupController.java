@@ -7,7 +7,7 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.bancow.bancowback.domain.common.dto.Response;
-import com.bancow.bancowback.domain.common.dto.ServiceResult;
 import com.bancow.bancowback.domain.common.util.token.service.TokenService;
 import com.bancow.bancowback.domain.main.popup.dto.PopupAddRequestDto;
 import com.bancow.bancowback.domain.main.popup.dto.PopupInfo;
@@ -52,7 +51,8 @@ public class PopupController {
 	}
 
 	@GetMapping("/{id}")
-	public Response<?> getPopupDetail(@RequestHeader("TOKEN") final String token,@NotNull @PathVariable final Long id) {
+	public Response<?> getPopupDetail(@RequestHeader("TOKEN") final String token,
+		@NotNull @PathVariable final Long id) {
 		tokenService.validTokenAuthority(token);
 		return new Response<>(popupService.getPopupDetail(id), HttpStatus.OK);
 	}
@@ -77,9 +77,16 @@ public class PopupController {
 	}
 
 	@PatchMapping("/edit")
-	public Response<?> editPopupNotImage(@RequestHeader("TOKEN") final String token, @Valid @RequestBody PopupUpdateRequestDto popupDto){
+	public Response<?> editPopupNotImage(@RequestHeader("TOKEN") final String token,
+		@Valid @RequestBody PopupUpdateRequestDto popupDto) {
 		tokenService.validTokenAuthority(token);
 		return new Response<>(popupService.editPopupNotImage(popupDto), HttpStatus.OK);
+	}
+
+	@DeleteMapping("/{id}")
+	public Response<?> deletePopupOne(@RequestHeader("TOKEN") final String token, @PathVariable Long id) {
+		tokenService.validTokenAuthority(token);
+		return new Response<>(popupService.deletePopupOne(id), HttpStatus.OK);
 	}
 
 }
