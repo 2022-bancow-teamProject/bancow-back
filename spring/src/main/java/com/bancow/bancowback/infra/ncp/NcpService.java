@@ -50,7 +50,7 @@ public class NcpService {
     public String objectUpload(@NotNull final String folderName,@NotNull final MultipartFile file) throws IOException {
         validImageExtensionCheck(file);
         String fileName = getUuidImageName(file.getOriginalFilename());
-        String filePath = folderName + "/"+ getUuidImageName(file.getOriginalFilename());
+        String filePath = folderName + "/"+ fileName;
         try {
             s3Client.putObject(new PutObjectRequest(bucketName, filePath, file.getInputStream(), null)
                     .withCannedAcl(CannedAccessControlList.PublicRead));
@@ -62,8 +62,8 @@ public class NcpService {
         return getFileUrl(folderName, fileName);
     }
 
-    public String getFileUrl(String bucketName,String fileName) {
-        return s3Client.getUrl(bucketName, fileName).toString();
+    public String getFileUrl(String folderName,String fileName) {
+        return folderName+ "/"+ fileName;
     }
 
     public String getUuidImageName(String imageName){
