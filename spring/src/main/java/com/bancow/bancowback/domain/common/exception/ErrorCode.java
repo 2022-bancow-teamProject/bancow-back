@@ -10,6 +10,7 @@ public enum ErrorCode {
 	METHOD_NOT_ALLOWED( "C002", "METHOD_NOT_ALLOWED"),
 	INTERNAL_SERVER_ERROR("C003", "Server Error"),
 	INVALID_TYPE_VALUE( "C004",  "Invalid Type Value"),
+	MISSING_REQUEST_PARAMETER("C005", "Missing Required Request Parameter"),
 
 	// Ncp
 	NOT_IMAGE("N001", "Not Image file"),
