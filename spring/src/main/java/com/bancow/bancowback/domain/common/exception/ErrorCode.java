@@ -22,6 +22,8 @@ public enum ErrorCode {
 	// Popup
 	NOT_FOUND_POPUP("P001", "Not Found Popup"),
 
+	// Notice
+	NOT_FOUND_NOTICE("T001", "Not Found Notice"),
 	;
 	private final String code;
 	private final String message;
