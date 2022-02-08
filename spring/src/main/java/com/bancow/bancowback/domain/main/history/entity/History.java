@@ -1,4 +1,4 @@
-package com.bancow.bancowback.domain.main.notice.entity;
+package com.bancow.bancowback.domain.main.history.entity;
 
 import java.time.LocalDateTime;
 
@@ -14,26 +14,23 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
 @Setter
-@Entity
+@Getter
 @Builder
+@Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class Notice {
+public class History {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
-	@Column(name = "notice_category")
-	private String noticeCategory;
-
 	@Column(nullable = false)
 	private String username;
 
-	@Column(nullable = false)
-	private String title;
+	@Column(name = "history_date", nullable = false)
+	private String historyDate;
 
 	@Column(nullable = false)
 	private String message;
@@ -47,4 +44,3 @@ public class Notice {
 	@Column(name = "update_date")
 	private LocalDateTime updateDate;
 }
-

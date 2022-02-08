@@ -146,4 +146,48 @@ class QnaControllerTest extends TestSupport {
 		;
 	}
 
+	@Test
+	@Transactional
+	void addQna() throws Exception {
+		mockMvc.perform(
+			post("/api/qna/add")
+				.contentType(MediaType.APPLICATION_JSON)
+				.content(
+					"{"
+						+ "  \"category\": \"INVESTMENT\",\n"
+						+ "  \"phoneNumber\": \"010-1234-5678\",\n"
+						+ "  \"email\": \"gmldnr2222@naver.com\",\n"
+						+ "  \"title\": \"투자 문의 입니다.\",\n"
+						+ "  \"message\": \"이메일 혹은 전화로 연락 부탁드립니다.\"\n"
+						+ "}"
+				)
+				.accept(MediaType.APPLICATION_JSON)
+		)
+			.andExpect(status().isOk())
+			.andDo(
+				restDocs.document(
+					requestFields(
+						fieldWithPath("category").description("카테고리"),
+						fieldWithPath("phoneNumber").description("전화번호"),
+						fieldWithPath("email").description("이메일"),
+						fieldWithPath("title").description("제목"),
+						fieldWithPath("message").description("메시지")
+						// fieldWithPath("checked").description("checked")
+					),
+					responseFields(
+						fieldWithPath("data").description("결과 데이터"),
+						fieldWithPath("data.id").description("아이디"),
+						fieldWithPath("data.category").description("문의 카테고리 (제휴, 투자, 기타)"),
+						fieldWithPath("data.phoneNumber").description("전화번호"),
+						fieldWithPath("data.email").description("이메일"),
+						fieldWithPath("data.title").description("제목"),
+						fieldWithPath("data.message").description("메시지"),
+						fieldWithPath("data.checked").description("동의 여부"),
+						fieldWithPath("data.createDate").description("문의 날짜"),
+						fieldWithPath("status").description("HTTP Status")
+					)
+				)
+			)
+		;
+	}
 }

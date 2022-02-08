@@ -38,11 +38,11 @@ public class NoticeController {
 		return new Response<>(notice, HttpStatus.OK);
 	}
 
-	@GetMapping("/allnotice")
-	public Response<?> getAllNotice(){
+	@GetMapping("/noticelist")
+	public Response<?> getNoticeList(){
 
-		List<Notice> allNotice = noticeService.getAllNotice();
-		return new Response<>(allNotice, HttpStatus.OK);
+		List<Notice> noticeList = noticeService.getNoticeList();
+		return new Response<>(noticeList, HttpStatus.OK);
 	}
 
 	@PostMapping("/add")
@@ -65,9 +65,9 @@ public class NoticeController {
 
 
 	@PostMapping("/delete")
-	public Response<?> deleteNoticeList(@RequestBody NoticeDeleteListDto noticeDeleteListInput){
+	public Response<?> deleteNoticeList(@RequestBody NoticeDeleteListDto noticeDeleteList){
 
-		ServiceResult result = noticeService.deleteNoticeList(noticeDeleteListInput);
+		ServiceResult result = noticeService.deleteNoticeList(noticeDeleteList);
 		if(!result.isResult()){
 			return new Response<>(result, HttpStatus.BAD_REQUEST);
 		}
