@@ -310,3 +310,23 @@ include::{snippets}/qna-controller-test/delete-qna/path-parameters.adoc[]
 include::{snippets}/qna-controller-test/delete-qna/response-body.adoc[]
 ==== Response Fields
 include::{snippets}/qna-controller-test/delete-qna/response-fields.adoc[]
+
+
+[[문의-하기]]
+=== 문의 하기
+==== Curl Request
+include::{snippets}/qna-controller-test/add-qna/curl-request.adoc[]
+==== Http Request
+include::{snippets}/qna-controller-test/add-qna/http-request.adoc[]
+==== Http Response
+include::{snippets}/qna-controller-test/add-qna/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/qna-controller-test/add-qna/httpie-request.adoc[]
+==== Request Body
+include::{snippets}/qna-controller-test/add-qna/request-body.adoc[]
+==== Request Field
+include::{snippets}/qna-controller-test/add-qna/request-fields.adoc[]
+==== Response Body
+include::{snippets}/qna-controller-test/add-qna/response-body.adoc[]
+==== Response Fields
+include::{snippets}/qna-controller-test/add-qna/response-fields.adoc[]
