@@ -1,35 +1,33 @@
-package com.bancow.bancowback.domain.main.notice.entity;
+package com.bancow.bancowback.domain.main.bancowhistory.entity;
+
+import java.time.LocalDateTime;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
-import java.time.LocalDateTime;
-
-@Getter
 @Setter
-@Entity
+@Getter
 @Builder
+@Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class Notice {
+public class BancowHistory {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
-	@Column(name = "notice_category")
-	private String noticeCategory;
-
 	@Column
-	private String username;
-
-	@Column
-	private String title;
+	private String historyDate;
 
 	@Column
 	private String message;
@@ -43,4 +41,3 @@ public class Notice {
 	@Column(name = "update_date")
 	private LocalDateTime updateDate;
 }
-
