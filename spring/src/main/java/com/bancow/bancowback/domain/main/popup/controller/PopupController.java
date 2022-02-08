@@ -23,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.bancow.bancowback.domain.common.dto.Response;
 import com.bancow.bancowback.domain.common.util.token.service.TokenService;
 import com.bancow.bancowback.domain.main.popup.dto.PopupAddRequestDto;
+import com.bancow.bancowback.domain.main.popup.dto.PopupDeleteRequestDto;
 import com.bancow.bancowback.domain.main.popup.dto.PopupInfo;
 import com.bancow.bancowback.domain.main.popup.dto.PopupResponseDto;
 import com.bancow.bancowback.domain.main.popup.dto.PopupUpdateRequestDto;
@@ -84,9 +85,15 @@ public class PopupController {
 	}
 
 	@DeleteMapping("/{id}")
-	public Response<?> deletePopupOne(@RequestHeader("TOKEN") final String token, @PathVariable Long id) {
+	public Response<?> deletePopupOne(@RequestHeader("TOKEN") final String token,@NotNull @PathVariable final Long id) {
 		tokenService.validTokenAuthority(token);
 		return new Response<>(popupService.deletePopupOne(id), HttpStatus.OK);
+	}
+
+	@DeleteMapping("/delete")
+	public Response<?> deletePopupList(@RequestHeader("TOKEN") final String token,@NotNull @RequestBody final PopupDeleteRequestDto dto){
+		tokenService.validTokenAuthority(token);
+		return new Response<>(popupService.deletePopupList(dto.getId()), HttpStatus.OK);
 	}
 
 }
