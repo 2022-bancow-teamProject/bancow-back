@@ -232,3 +232,26 @@ include::{snippets}/popup-controller-test/get-popup-paging/request-parameters.ad
 include::{snippets}/popup-controller-test/get-popup-paging/response-body.adoc[]
 ==== Response Fields
 include::{snippets}/popup-controller-test/get-popup-paging/response-fields.adoc[]
+
+[[Qna]]
+== Qna
+
+[[문의-상세-페이지]]
+=== 문의 상세 페이지
+
+==== Curl Request
+include::{snippets}/qna-controller-test/get-qna/curl-request.adoc[]
+==== Http Request
+include::{snippets}/qna-controller-test/get-qna/http-request.adoc[]
+==== Http Response
+include::{snippets}/qna-controller-test/get-qna/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/qna-controller-test/get-qna/httpie-request.adoc[]
+==== Request Header
+include::{snippets}/qna-controller-test/get-qna/request-headers.adoc[]
+==== Path Parameters
+include::{snippets}/qna-controller-test/get-qna/path-parameters.adoc[]
+==== Response Body
+include::{snippets}/qna-controller-test/get-qna/response-body.adoc[]
+==== Response Fields
+include::{snippets}/qna-controller-test/get-qna/response-fields.adoc[]
