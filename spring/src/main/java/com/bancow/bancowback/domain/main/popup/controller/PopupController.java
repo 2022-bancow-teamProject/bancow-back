@@ -9,8 +9,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -64,14 +66,20 @@ public class PopupController {
 	}
 
 	@PostMapping("/edit")
-	public ResponseEntity<?> editPopupImage(@RequestHeader("TOKEN") final String token,
+	public Response<?> editPopupImage(@RequestHeader("TOKEN") final String token,
 		@Valid @RequestPart("popup_request") PopupUpdateRequestDto dto,
 		@RequestPart(value = "popup_image", required = false) MultipartFile popupImage) throws IOException {
 		tokenService.validTokenAuthority(token);
 		String ImageUploadPath = ncpService.objectUpload("popup", popupImage);
 		PopupInfo popupInfo = new PopupInfo<PopupUpdateRequestDto>(tokenService.getManager(token), dto,
 			ImageUploadPath);
-		return ResponseEntity.ok().body(new Response<>(popupService.editPopupImage(popupInfo), HttpStatus.OK));
+		return new Response<>(popupService.editPopupImage(popupInfo), HttpStatus.OK);
+	}
+
+	@PatchMapping("/edit")
+	public Response<?> editPopupNotImage(@RequestHeader("TOKEN") final String token, @Valid @RequestBody PopupUpdateRequestDto popupDto){
+		tokenService.validTokenAuthority(token);
+		return new Response<>(popupService.editPopupNotImage(popupDto), HttpStatus.OK);
 	}
 
 }

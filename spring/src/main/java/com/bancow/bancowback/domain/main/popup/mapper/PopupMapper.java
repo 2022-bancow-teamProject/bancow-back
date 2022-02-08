@@ -50,4 +50,17 @@ public interface PopupMapper {
 			.createDate(popup.getCreateDate())
 			.build();
 	}
+
+	default public Popup toUpdateNotImageEntity(Popup popup, PopupUpdateRequestDto popupUpdateRequestDto){
+		return Popup.builder()
+			.id(popup.getId())
+			.title(popupUpdateRequestDto.getTitle())
+			.startDate(popupUpdateRequestDto.getStartDate())
+			.endDate(popupUpdateRequestDto.getEndDate())
+			.image(popup.getImage())
+			.manager(popup.getManager())
+			.status(popupUpdateRequestDto.getStatus())
+			.createDate(popup.getCreateDate())
+			.build();
+	}
 }

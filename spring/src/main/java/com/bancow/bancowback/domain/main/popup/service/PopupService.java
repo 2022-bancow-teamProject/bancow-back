@@ -51,4 +51,10 @@ public class PopupService {
 		popupRepository.save(popup);
 		return ServiceResult.success("팝업이 업데이트가 되었습니다.");
 	}
+
+	public ServiceResult editPopupNotImage(PopupUpdateRequestDto dto) {
+		Popup popup = popupMapper.toUpdateNotImageEntity(getPopupId(dto.getId()),dto);
+		popupRepository.save(popup);
+		return ServiceResult.success("팝업이 업데이트가 되었습니다.");
+	}
 }
