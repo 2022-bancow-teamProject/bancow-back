@@ -233,6 +233,23 @@ include::{snippets}/popup-controller-test/get-popup-paging/response-body.adoc[]
 ==== Response Fields
 include::{snippets}/popup-controller-test/get-popup-paging/response-fields.adoc[]
 
+[[팝업-수정]]
+=== 팝업 수정
+==== Curl Request
+include::{snippets}/popup-controller-test/edit-Popup-Image/curl-request.adoc[]
+==== Http Response
+include::{snippets}/popup-controller-test/edit-Popup-Image/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/popup-controller-test/edit-Popup-Image/httpie-request.adoc[]
+==== Request Part Popup Request Body
+include::{snippets}/popup-controller-test/edit-Popup-Image/request-part-popup_request-body.adoc[]
+==== Request Part Popup Request Fields
+include::{snippets}/popup-controller-test/edit-Popup-Image/request-part-popup_request-fields.adoc[]
+==== Request Parts
+include::{snippets}/popup-controller-test/edit-Popup-Image/request-parts.adoc[]
+==== Response Body
+include::{snippets}/popup-controller-test/edit-Popup-Image/response-body.adoc[]
+
 [[Qna]]
 == Qna
 
