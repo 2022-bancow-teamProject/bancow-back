@@ -25,8 +25,8 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequestMapping("/api/notice")
 public class NoticeController {
-	private final NoticeService noticeService;
 
+	private final NoticeService noticeService;
 
 	@GetMapping("/{id}")
 	public Response<?> getNotice(@PathVariable Long id) {
