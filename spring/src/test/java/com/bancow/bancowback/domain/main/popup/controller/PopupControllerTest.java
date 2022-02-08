@@ -154,4 +154,43 @@ class PopupControllerTest extends TestSupport {
 
 	}
 
+	@Test
+	@Transactional
+	void editPopupImage() throws Exception {
+		Manager adminManager = adminManagerLogin();
+		Token tokenAdmin = tokenRepository.findByManager(adminManager).get();
+
+		MockMultipartFile popup_image = new MockMultipartFile("popup_image", "뱅 카 우.png", "image/png",
+			readImage("/img/뱅 카 우.png").getBytes());
+		MockMultipartFile popup_request = new MockMultipartFile("popup_request", "update.json", "application/json",
+			readJson("/json/update.json").getBytes());
+
+		mockMvc.perform(
+				multipart("/api/popup/edit")
+					.file(popup_image)
+					.file(popup_request)
+					.header("TOKEN", tokenAdmin.getToken())
+					.accept(MediaType.APPLICATION_JSON))
+			.andExpect(status().isOk())
+			.andDo(restDocs.document(
+				requestParts(
+					partWithName("popup_image").description("이미지 파일"),
+					partWithName("popup_request").description("Json 파일")),
+				requestPartBody("popup_request"),
+				requestPartFields("popup_request",
+					fieldWithPath("id").description("팝업 번호"),
+					fieldWithPath("title").description("팝업 제목"),
+					fieldWithPath("start_date").description("팝업 게시 시작 날짜"),
+					fieldWithPath("end_date").description("팝업 게시 마감 날짜"),
+					fieldWithPath("status").description("팝업 상태 값")
+				),
+				responseFields(
+					fieldWithPath("data").description("결과 데이터"),
+					fieldWithPath("data.result").description("결과"),
+					fieldWithPath("data.message").description("메시지"),
+					fieldWithPath("status").description("HTTP Status")
+				)
+			));
+	}
+
 }
