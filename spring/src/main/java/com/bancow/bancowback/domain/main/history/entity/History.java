@@ -1,4 +1,4 @@
-package com.bancow.bancowback.domain.main.bancowhistory.entity;
+package com.bancow.bancowback.domain.main.history.entity;
 
 import java.time.LocalDateTime;
 
@@ -20,22 +20,25 @@ import lombok.Setter;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class BancowHistory {
+public class History {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
-	@Column
+	@Column(nullable = false)
+	private String username;
+
+	@Column(name = "history_date", nullable = false)
 	private String historyDate;
 
-	@Column
+	@Column(nullable = false)
 	private String message;
 
-	@Column
+	@Column(nullable = false)
 	private boolean status;
 
-	@Column(name = "create_date")
+	@Column(name = "create_date", nullable = false)
 	private LocalDateTime createDate;
 
 	@Column(name = "update_date")
