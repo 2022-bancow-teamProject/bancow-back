@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -26,8 +28,9 @@ public class Notice {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
-	@Column(name = "notice_category")
-	private String noticeCategory;
+	@Enumerated(EnumType.STRING)
+	@Column(name = "notice_category", nullable = false)
+	private NoticeCategory noticeCategory;
 
 	@Column(nullable = false)
 	private String username;

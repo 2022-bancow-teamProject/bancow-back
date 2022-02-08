@@ -2,6 +2,8 @@ package com.bancow.bancowback.domain.main.notice.dto;
 
 import javax.validation.constraints.NotBlank;
 
+import com.bancow.bancowback.domain.main.notice.entity.NoticeCategory;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -13,10 +15,10 @@ import lombok.Setter;
 @Builder
 @Getter
 @Setter
-public class NoticeInputDto {
+public class NoticeRequestDto {
 
 	@NotBlank(message = "카테고리를 선택해주세요.")
-	private String noticeCategory;
+	private NoticeCategory noticeCategory;
 
 	private String username;
 
