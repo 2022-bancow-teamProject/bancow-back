@@ -36,9 +36,9 @@ public class QnaController {
 	}
 
 	@GetMapping
-	public Response<Page<Qna>> getAllQna(@RequestParam int page, @RequestHeader("TOKEN") String token) {
-		Page<Qna> allQna = qnaService.getAllQna(page, token);
-		return new Response<>(allQna, HttpStatus.OK);
+	public Response<Page<Qna>> getQnaPaging(@RequestParam int page, @RequestHeader("TOKEN") String token) {
+		Page<Qna> pagingQna = qnaService.getQnaPaging(page, token);
+		return new Response<>(pagingQna, HttpStatus.OK);
 	}
 
 	@DeleteMapping("/{id}")

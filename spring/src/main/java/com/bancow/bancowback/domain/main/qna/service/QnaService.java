@@ -32,7 +32,7 @@ public class QnaService {
 		return qnaRepository.save(qna);
 	}
 
-	public Page<Qna> getAllQna(int page, String token) {
+	public Page<Qna> getQnaPaging(int page, String token) {
 		tokenService.validTokenAuthority(token);
 
 		return qnaRepository.findAll(
