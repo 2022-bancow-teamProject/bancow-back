@@ -41,6 +41,9 @@ class PopupControllerTest extends TestSupport {
 				.accept(MediaType.APPLICATION_JSON))
 			.andExpect(status().isOk())
 			.andDo(restDocs.document(
+				requestHeaders(
+					headerWithName("TOKEN").description("로그인한 SUPER 계정의 토큰값")
+				),
 				requestParts(
 					partWithName("popup_image").description("이미지 파일"),
 					partWithName("popup_request").description("Json 파일")),
@@ -73,7 +76,9 @@ class PopupControllerTest extends TestSupport {
 			).andExpect(status().isOk())
 			.andDo(
 				restDocs.document(
-
+					requestHeaders(
+						headerWithName("TOKEN").description("로그인한 SUPER 계정의 토큰값")
+					),
 					pathParameters(
 						parameterWithName("id").description("팝업 번호")
 					),
@@ -173,6 +178,9 @@ class PopupControllerTest extends TestSupport {
 					.accept(MediaType.APPLICATION_JSON))
 			.andExpect(status().isOk())
 			.andDo(restDocs.document(
+				requestHeaders(
+					headerWithName("TOKEN").description("해당 로그인 유저의 토큰값")
+				),
 				requestParts(
 					partWithName("popup_image").description("이미지 파일"),
 					partWithName("popup_request").description("Json 파일")),
@@ -192,5 +200,37 @@ class PopupControllerTest extends TestSupport {
 				)
 			));
 	}
+	@Test
+	@Transactional
+	void editPopupNotImage() throws Exception {
+		Manager adminManager = adminManagerLogin();
+		Token tokenAdmin = tokenRepository.findByManager(adminManager).get();
 
+		mockMvc.perform(
+				patch("/api/popup/edit")
+					.contentType(MediaType.APPLICATION_JSON)
+					.header("TOKEN", tokenAdmin.getToken())
+					.content(readJson("/json/update.json"))
+					)
+
+			.andExpect(status().isOk())
+			.andDo(restDocs.document(
+				requestHeaders(
+					headerWithName("TOKEN").description("로그인한 SUPER 계정의 토큰값")
+				),
+				requestFields(
+					fieldWithPath("id").description("팝업 번호"),
+					fieldWithPath("title").description("팝업 제목"),
+					fieldWithPath("start_date").description("팝업 게시 시작 날짜"),
+					fieldWithPath("end_date").description("팝업 게시 마감 날짜"),
+					fieldWithPath("status").description("팝업 상태 값")
+				),
+				responseFields(
+					fieldWithPath("data").description("결과 데이터"),
+					fieldWithPath("data.result").description("인증 성공 여부"),
+					fieldWithPath("data.message").description("response 메시지"),
+					fieldWithPath("status").description("HTTP Status")
+				)
+			));
+	}
 }
