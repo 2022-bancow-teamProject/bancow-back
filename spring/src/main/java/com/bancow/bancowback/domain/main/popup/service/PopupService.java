@@ -1,5 +1,7 @@
 package com.bancow.bancowback.domain.main.popup.service;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -61,5 +63,19 @@ public class PopupService {
 	public ServiceResult deletePopupOne(Long id) {
 		popupRepository.delete(getPopupId(id));
 		return ServiceResult.success("팝업이 삭제 되었습니다.");
+	}
+
+	public ServiceResult deletePopupList(List<Long> id) {
+		List<Popup> deletePopupList = popupRepository.findByIdIn(id);
+
+		if(deletePopupList.size() == 0){
+			throw new PopupException(ErrorCode.NOT_FOUND_POPUP, "해당 팝업 없음");
+		}
+
+		deletePopupList
+			.stream().forEach(e -> {popupRepository.delete(e);
+		});
+
+		return ServiceResult.success("팝업 삭제 성공.");
 	}
 }
