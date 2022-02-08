@@ -64,9 +64,9 @@ public class ManagerController {
 	}
 
 	@GetMapping("/allmanager")
-	public Response<Page<ManagerRequestDto>> findAllManager(@RequestParam int page, @RequestHeader("TOKEN") String token) {
-		Page<ManagerRequestDto> allManager = managerService.findAllManager(page, token);
-		return new Response<>(allManager, HttpStatus.OK);
+	public Response<Page<ManagerRequestDto>> findPagingManager(@RequestParam int page, @RequestHeader("TOKEN") String token) {
+		Page<ManagerRequestDto> pagingManager = managerService.findPagingManager(page, token);
+		return new Response<>(pagingManager, HttpStatus.OK);
 	}
 
 	@PostMapping("/findmanager")
