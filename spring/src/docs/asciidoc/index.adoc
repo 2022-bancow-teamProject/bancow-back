@@ -274,3 +274,22 @@ include::{snippets}/qna-controller-test/get-qna-paging/request-parameters.adoc[]
 include::{snippets}/qna-controller-test/get-qna-paging/response-body.adoc[]
 ==== Response Fields
 include::{snippets}/qna-controller-test/get-qna-paging/response-fields.adoc[]
+
+[[문의-삭제하기]]
+=== 문의 삭제하기
+==== Curl Request
+include::{snippets}/qna-controller-test/delete-qna/curl-request.adoc[]
+==== Http Request
+include::{snippets}/qna-controller-test/delete-qna/http-request.adoc[]
+==== Http Response
+include::{snippets}/qna-controller-test/delete-qna/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/qna-controller-test/delete-qna/httpie-request.adoc[]
+==== Request Header
+include::{snippets}/qna-controller-test/delete-qna/request-headers.adoc[]
+==== Path Parameters
+include::{snippets}/qna-controller-test/delete-qna/path-parameters.adoc[]
+==== Response Body
+include::{snippets}/qna-controller-test/delete-qna/response-body.adoc[]
+==== Response Fields
+include::{snippets}/qna-controller-test/delete-qna/response-fields.adoc[]
