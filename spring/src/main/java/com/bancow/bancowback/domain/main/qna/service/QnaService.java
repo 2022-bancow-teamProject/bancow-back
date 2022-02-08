@@ -2,8 +2,6 @@ package com.bancow.bancowback.domain.main.qna.service;
 
 import static com.bancow.bancowback.domain.common.exception.ErrorCode.*;
 
-import java.util.List;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -12,7 +10,9 @@ import org.springframework.stereotype.Service;
 import com.bancow.bancowback.domain.common.dto.ServiceResult;
 import com.bancow.bancowback.domain.common.exception.QnaException;
 import com.bancow.bancowback.domain.common.util.token.service.TokenService;
+import com.bancow.bancowback.domain.main.qna.dto.QnaRequestDto;
 import com.bancow.bancowback.domain.main.qna.entity.Qna;
+import com.bancow.bancowback.domain.main.qna.mapper.QnaMapper;
 import com.bancow.bancowback.domain.main.qna.repository.QnaRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -21,6 +21,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class QnaService {
 	private final QnaRepository qnaRepository;
+	private final QnaMapper qnaMapper;
 	private final TokenService tokenService;
 
 	public Qna getQna(String token, Long qnaId) {
@@ -46,5 +47,10 @@ public class QnaService {
 
 		qnaRepository.delete(qna);
 		return ServiceResult.success("QnA를 성공적으로 삭제하였습니다.");
+	}
+
+	public Qna addQna(QnaRequestDto qnaRequestDto) {
+		Qna qna = qnaMapper.toEntity(qnaRequestDto);
+		return qnaRepository.save(qna);
 	}
 }
