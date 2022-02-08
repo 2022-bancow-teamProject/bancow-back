@@ -32,7 +32,7 @@ public class NoticeService {
 		return noticeRepository.save(notice);
 	}
 
-	public List<Notice> getAllNotice(){
+	public List<Notice> getNoticeList(){
 
 		return noticeRepository.findAll();
 	}
@@ -54,11 +54,11 @@ public class NoticeService {
 
 	public ServiceResult deleteNotice(@PathVariable Long id) {
 
-		Optional<Notice> optionalnotice = noticeRepository.findById(id);
-		if(!optionalnotice.isPresent()){
+		Optional<Notice> optionalNotice = noticeRepository.findById(id);
+		if(!optionalNotice.isPresent()){
 			return ServiceResult.fail("존재하지 않는 게시글입니다.");
 		}
-		Notice notice = optionalnotice.get();
+		Notice notice = optionalNotice.get();
 
 		noticeRepository.delete(notice);
 		return ServiceResult.success("글 삭제 성공.");
@@ -74,7 +74,6 @@ public class NoticeService {
 
 		noticeList.stream().forEach(e -> {
 			noticeRepository.delete(e);
-			//noticeRepository.saveAll(noticeList);
 		});
 		return ServiceResult.success("글 삭제 성공.");
 
