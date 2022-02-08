@@ -3,9 +3,11 @@ package com.bancow.bancowback.domain.main.popup.controller;
 import java.io.IOException;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,10 +19,12 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.bancow.bancowback.domain.common.dto.Response;
+import com.bancow.bancowback.domain.common.dto.ServiceResult;
 import com.bancow.bancowback.domain.common.util.token.service.TokenService;
 import com.bancow.bancowback.domain.main.popup.dto.PopupAddRequestDto;
 import com.bancow.bancowback.domain.main.popup.dto.PopupInfo;
 import com.bancow.bancowback.domain.main.popup.dto.PopupResponseDto;
+import com.bancow.bancowback.domain.main.popup.dto.PopupUpdateRequestDto;
 import com.bancow.bancowback.domain.main.popup.service.PopupService;
 import com.bancow.bancowback.infra.ncp.NcpService;
 
@@ -37,8 +41,8 @@ public class PopupController {
 
 	@PostMapping("/add")
 	public Response<?> addPopup(@RequestHeader("TOKEN") String token,
-		@Valid @RequestPart("popup_request") PopupAddRequestDto dto,
-		@RequestPart(value = "popup_image", required = false) MultipartFile popupImage) throws IOException {
+		@Valid @RequestPart("popup_request") final PopupAddRequestDto dto,
+		@RequestPart(value = "popup_image", required = false) final MultipartFile popupImage) throws IOException {
 		tokenService.validTokenAuthority(token);
 		String ImageUploadPath = ncpService.objectUpload("popup", popupImage);
 		PopupInfo popupInfo = new PopupInfo<PopupAddRequestDto>(tokenService.getManager(token), dto, ImageUploadPath);
@@ -46,15 +50,28 @@ public class PopupController {
 	}
 
 	@GetMapping("/{id}")
-	public Response<?> getPopupDetail(@RequestHeader("TOKEN") String token, @PathVariable Long id) {
+	public Response<?> getPopupDetail(@RequestHeader("TOKEN") final String token,@NotNull @PathVariable final Long id) {
 		tokenService.validTokenAuthority(token);
 		return new Response<>(popupService.getPopupDetail(id), HttpStatus.OK);
 	}
 
 	@GetMapping()
-	public Response<?> getPopupPaging(@RequestHeader("TOKEN") String token, @RequestParam("page") int page) {
+	public Response<?> getPopupPaging(@RequestHeader("TOKEN") final String token,
+		@NotNull @RequestParam("page") final int page) {
+		tokenService.validTokenAuthority(token);
 		Page<PopupResponseDto> result = popupService.getPopupPaging(page);
 		return new Response<>(result, HttpStatus.OK);
+	}
+
+	@PostMapping("/edit")
+	public ResponseEntity<?> editPopupImage(@RequestHeader("TOKEN") final String token,
+		@Valid @RequestPart("popup_request") PopupUpdateRequestDto dto,
+		@RequestPart(value = "popup_image", required = false) MultipartFile popupImage) throws IOException {
+		tokenService.validTokenAuthority(token);
+		String ImageUploadPath = ncpService.objectUpload("popup", popupImage);
+		PopupInfo popupInfo = new PopupInfo<PopupUpdateRequestDto>(tokenService.getManager(token), dto,
+			ImageUploadPath);
+		return ResponseEntity.ok().body(new Response<>(popupService.editPopupImage(popupInfo), HttpStatus.OK));
 	}
 
 }
