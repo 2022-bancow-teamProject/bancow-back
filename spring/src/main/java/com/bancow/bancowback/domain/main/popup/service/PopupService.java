@@ -10,6 +10,7 @@ import com.bancow.bancowback.domain.common.exception.ErrorCode;
 import com.bancow.bancowback.domain.common.exception.PopupException;
 import com.bancow.bancowback.domain.main.popup.dto.PopupAddRequestDto;
 import com.bancow.bancowback.domain.main.popup.dto.PopupResponseDto;
+import com.bancow.bancowback.domain.main.popup.dto.PopupUpdateRequestDto;
 import com.bancow.bancowback.domain.main.popup.entity.Popup;
 import com.bancow.bancowback.domain.main.popup.dto.PopupInfo;
 import com.bancow.bancowback.domain.main.popup.mapper.PopupMapper;
@@ -41,7 +42,13 @@ public class PopupService {
 	}
 
 	public Page<PopupResponseDto> getPopupPaging(int page) {
-		Page<Popup> popupList =  popupRepository.findAll(PageRequest.of(page, 10, Sort.by(Sort.Direction.DESC, "id")));
+		Page<Popup> popupList = popupRepository.findAll(PageRequest.of(page, 10, Sort.by(Sort.Direction.DESC, "id")));
 		return popupList.map(popup -> popupMapper.toResponseDto(popup));
+	}
+
+	public ServiceResult editPopupImage(PopupInfo<PopupUpdateRequestDto> dto) {
+		Popup popup = popupMapper.toUpdateEntity(getPopupId(dto.getDto().getId()), dto.getDto(), dto.getImagePath());
+		popupRepository.save(popup);
+		return ServiceResult.success("팝업이 업데이트가 되었습니다.");
 	}
 }

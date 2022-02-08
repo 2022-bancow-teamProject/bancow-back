@@ -5,6 +5,7 @@ import org.mapstruct.factory.Mappers;
 
 import com.bancow.bancowback.domain.main.popup.dto.PopupAddRequestDto;
 import com.bancow.bancowback.domain.main.popup.dto.PopupResponseDto;
+import com.bancow.bancowback.domain.main.popup.dto.PopupUpdateRequestDto;
 import com.bancow.bancowback.domain.main.popup.entity.Popup;
 import com.bancow.bancowback.domain.manager.entity.Manager;
 
@@ -30,10 +31,23 @@ public interface PopupMapper {
 			.title(popup.getTitle())
 			.startDate(popup.getStartDate())
 			.endDate(popup.getEndDate())
-			.image(popup.getImage())
+			.image("https://kr.object.ncloudstorage.com/bancowback/"+popup.getImage())
 			.status(popup.getStatus())
 			.createDate(popup.getCreateDate())
 			.username(popup.getManager().getUsername())
+			.build();
+	}
+
+	default public Popup toUpdateEntity(Popup popup, PopupUpdateRequestDto popupUpdateRequestDto , String popupUploadPath){
+		return Popup.builder()
+			.id(popup.getId())
+			.title(popupUpdateRequestDto.getTitle())
+			.startDate(popupUpdateRequestDto.getStartDate())
+			.endDate(popupUpdateRequestDto.getEndDate())
+			.image(popupUploadPath)
+			.manager(popup.getManager())
+			.status(popupUpdateRequestDto.getStatus())
+			.createDate(popup.getCreateDate())
 			.build();
 	}
 }

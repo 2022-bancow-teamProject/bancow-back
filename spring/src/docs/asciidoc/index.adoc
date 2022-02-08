@@ -7,6 +7,56 @@ Bancow;
 :toclevels: 2
 :sectlinks:
 
+[[overview-http-status-code]]
+== Overview
+=== Common Error Code
+
+|===
+| Error Code | Usage
+
+| C001
+| Invalid Input Value
+
+| C002
+| Method Not Allowed
+
+| C003
+| Server Error
+
+| C004
+| Invalid Type Value
+
+| C005
+| Missing Required Request Parameter
+|===
+
+=== NCP Error Code
+|===
+| Error Code | Usage
+
+| N001
+| Not Image file
+
+| N002
+| Not S3 Error
+|===
+
+=== QNA Error Code
+|===
+| Error Code | Usage
+
+| Q001
+| Not Found Qna
+|===
+
+=== POPUP Error Code
+|===
+| Error Code | Usage
+
+| P001
+| Not Found Popup
+|===
+
 [[Manager]]
 == Manager
 
@@ -232,3 +282,101 @@ include::{snippets}/popup-controller-test/get-popup-paging/request-parameters.ad
 include::{snippets}/popup-controller-test/get-popup-paging/response-body.adoc[]
 ==== Response Fields
 include::{snippets}/popup-controller-test/get-popup-paging/response-fields.adoc[]
+
+[[팝업-수정]]
+=== 팝업 수정
+==== Curl Request
+include::{snippets}/popup-controller-test/edit-Popup-Image/curl-request.adoc[]
+==== Http Response
+include::{snippets}/popup-controller-test/edit-Popup-Image/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/popup-controller-test/edit-Popup-Image/httpie-request.adoc[]
+==== Request Part Popup Request Body
+include::{snippets}/popup-controller-test/edit-Popup-Image/request-part-popup_request-body.adoc[]
+==== Request Part Popup Request Fields
+include::{snippets}/popup-controller-test/edit-Popup-Image/request-part-popup_request-fields.adoc[]
+==== Request Parts
+include::{snippets}/popup-controller-test/edit-Popup-Image/request-parts.adoc[]
+==== Response Body
+include::{snippets}/popup-controller-test/edit-Popup-Image/response-body.adoc[]
+
+[[Qna]]
+== Qna
+
+[[문의-상세-페이지]]
+=== 문의 상세 페이지
+
+==== Curl Request
+include::{snippets}/qna-controller-test/get-qna/curl-request.adoc[]
+==== Http Request
+include::{snippets}/qna-controller-test/get-qna/http-request.adoc[]
+==== Http Response
+include::{snippets}/qna-controller-test/get-qna/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/qna-controller-test/get-qna/httpie-request.adoc[]
+==== Request Header
+include::{snippets}/qna-controller-test/get-qna/request-headers.adoc[]
+==== Path Parameters
+include::{snippets}/qna-controller-test/get-qna/path-parameters.adoc[]
+==== Response Body
+include::{snippets}/qna-controller-test/get-qna/response-body.adoc[]
+==== Response Fields
+include::{snippets}/qna-controller-test/get-qna/response-fields.adoc[]
+
+[[문의-10개씩-가져오기]]
+=== 문의 10개씩 가져오기
+==== Curl Request
+include::{snippets}/qna-controller-test/get-qna-paging/curl-request.adoc[]
+==== Http Request
+include::{snippets}/qna-controller-test/get-qna-paging/http-request.adoc[]
+==== Http Response
+include::{snippets}/qna-controller-test/get-qna-paging/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/qna-controller-test/get-qna-paging/httpie-request.adoc[]
+==== Request Header
+include::{snippets}/qna-controller-test/get-qna-paging/request-headers.adoc[]
+==== Request Parameters
+include::{snippets}/qna-controller-test/get-qna-paging/request-parameters.adoc[]
+==== Response Body
+include::{snippets}/qna-controller-test/get-qna-paging/response-body.adoc[]
+==== Response Fields
+include::{snippets}/qna-controller-test/get-qna-paging/response-fields.adoc[]
+
+[[문의-삭제하기]]
+=== 문의 삭제하기
+==== Curl Request
+include::{snippets}/qna-controller-test/delete-qna/curl-request.adoc[]
+==== Http Request
+include::{snippets}/qna-controller-test/delete-qna/http-request.adoc[]
+==== Http Response
+include::{snippets}/qna-controller-test/delete-qna/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/qna-controller-test/delete-qna/httpie-request.adoc[]
+==== Request Header
+include::{snippets}/qna-controller-test/delete-qna/request-headers.adoc[]
+==== Path Parameters
+include::{snippets}/qna-controller-test/delete-qna/path-parameters.adoc[]
+==== Response Body
+include::{snippets}/qna-controller-test/delete-qna/response-body.adoc[]
+==== Response Fields
+include::{snippets}/qna-controller-test/delete-qna/response-fields.adoc[]
+
+
+[[문의-하기]]
+=== 문의 하기
+==== Curl Request
+include::{snippets}/qna-controller-test/add-qna/curl-request.adoc[]
+==== Http Request
+include::{snippets}/qna-controller-test/add-qna/http-request.adoc[]
+==== Http Response
+include::{snippets}/qna-controller-test/add-qna/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/qna-controller-test/add-qna/httpie-request.adoc[]
+==== Request Body
+include::{snippets}/qna-controller-test/add-qna/request-body.adoc[]
+==== Request Field
+include::{snippets}/qna-controller-test/add-qna/request-fields.adoc[]
+==== Response Body
+include::{snippets}/qna-controller-test/add-qna/response-body.adoc[]
+==== Response Fields
+include::{snippets}/qna-controller-test/add-qna/response-fields.adoc[]

@@ -164,7 +164,7 @@ public class ManagerService {
 		return ServiceResult.success(manager.getUsername() + " 님의 상태를 ADMIN으로 변경하였습니다.");
 	}
 
-	public Page<ManagerRequestDto> findAllManager(int page, String token) {
+	public Page<ManagerRequestDto> findPagingManager(int page, String token) {
 
 		tokenService.checkTokenSuper(token);
 		Page<Manager> allManager = managerRepository.findAll(
