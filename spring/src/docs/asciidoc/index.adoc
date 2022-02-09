@@ -59,6 +59,88 @@ Bancow;
 
 [[Manager]]
 == Manager
+[[Manager-Overview]]
+=== Manager Overview
+==== Manager Status 설명
+|===
+| managerStatus | 설명
+
+| PENDING_EMAIL
+| 회원가입 후에 받아지는 상태, 이메일 인증이 필요합니다.
+
+| PENDING_SUPER
+| 이메일 인증 후에 받아지는 상태, SUPER 계정의 승인이 필요합니다.
+
+| ADMIN
+| 모든 인증이 끝난 후에 로그인 할 수 있는 상태입니다.
+
+| SUPER
+| Manager의 권한을 바꿀 수 있는 SUPER 계정입니다.
+|===
+
+==== Manager 회원가입 로직
+|===
+| http Method | url | 기능 | managerStatus | description | request body
+
+| post
+| /api/register
+| 회원 가입
+| PENDING_EMAIL - 이메일 인증 필요
+| 가입 때 적은 이메일로 토큰이 포함된 인증 링크 전송
+| email, username, password, password2
+
+| get
+| /api/authentication/{token}
+| 이메일 인증
+| PENDING_SUPER - SUPER 계정의 승인 필요
+| 이메일로 발급된 링크를 클릭하면 인증 완료
+| X
+
+| patch
+| /api/statustoadmin?id={id}
+| SUPER 계정의 승인
+| ADMIN
+| SUPER 계정은 statusadmin을 통해 해당 계정을 PENDING_SUPER 에서 ADMIN으로 변경
+| X
+
+| post
+| /api/login
+| 로그인
+| ADMIN
+| 토큰 발급하여 token db에 저장
+| X
+
+| post
+| /api/logout
+| 로그아웃
+| -
+| token db에서 삭제
+| X
+|===
+
+==== Manager 비밀번호 변경 로직
+|===
+| http Method | url | 기능 | description | request body
+
+| post
+| /api/findmanager
+| 비밀번호 초기화
+| 해당 이메일로 토큰이 포함된 인증 링크 전송
+| email, username
+
+| get
+| /api/authentication/findmanager/{token}
+| 이메일 인증
+| 이메일로 토큰이 포함된 링크를 클릭하면 인증 완료
+| X
+
+| patch
+| /api/authentication/findmanager/{token}/change-password
+| 비밀번호 변경
+| password1, password2를 입력하고 일치하면 비밀번호 변경
+| password1, password2
+|===
+
 
 [[회원가입]]
 === 회원가입
@@ -71,13 +153,30 @@ include::{snippets}/manager-controller-test/register-manager/http-response.adoc[
 ==== Httpie Request
 include::{snippets}/manager-controller-test/register-manager/httpie-request.adoc[]
 ==== Request Body
-include::{snippets}/manager-controller-test/register-manager/response-body.adoc[]
+include::{snippets}/manager-controller-test/register-manager/request-body.adoc[]
 ==== Request Fields
 include::{snippets}/manager-controller-test/register-manager/request-fields.adoc[]
 ==== Response Body
 include::{snippets}/manager-controller-test/register-manager/response-body.adoc[]
 ==== Response Fields
 include::{snippets}/manager-controller-test/register-manager/response-fields.adoc[]
+
+[[인증]]
+=== 인증
+==== Curl Request
+include::{snippets}/manager-controller-test/authentication/curl-request.adoc[]
+==== Http Request
+include::{snippets}/manager-controller-test/authentication/http-request.adoc[]
+==== Http Response
+include::{snippets}/manager-controller-test/authentication/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/manager-controller-test/authentication/httpie-request.adoc[]
+==== Path Parameter
+include::{snippets}/manager-controller-test/authentication/path-parameters.adoc[]
+==== Response Body
+include::{snippets}/manager-controller-test/authentication/response-body.adoc[]
+==== Response Fields
+include::{snippets}/manager-controller-test/authentication/response-fields.adoc[]
 
 [[로그인]]
 === 로그인
@@ -90,7 +189,7 @@ include::{snippets}/manager-controller-test/login/http-response.adoc[]
 ==== Httpie Request
 include::{snippets}/manager-controller-test/login/httpie-request.adoc[]
 ==== Request Body
-include::{snippets}/manager-controller-test/login/response-body.adoc[]
+include::{snippets}/manager-controller-test/login/request-body.adoc[]
 ==== Request Fields
 include::{snippets}/manager-controller-test/login/request-fields.adoc[]
 ==== Response Body
@@ -108,33 +207,12 @@ include::{snippets}/manager-controller-test/logout/http-request.adoc[]
 include::{snippets}/manager-controller-test/logout/http-response.adoc[]
 ==== Httpie Request
 include::{snippets}/manager-controller-test/logout/httpie-request.adoc[]
-==== Request Body
-include::{snippets}/manager-controller-test/logout/response-body.adoc[]
 ==== Request Header
 include::{snippets}/manager-controller-test/logout/request-headers.adoc[]
 ==== Response Body
 include::{snippets}/manager-controller-test/logout/response-body.adoc[]
 ==== Response Fields
 include::{snippets}/manager-controller-test/logout/response-fields.adoc[]
-
-[[인증]]
-=== 인증
-==== Curl Request
-include::{snippets}/manager-controller-test/authentication/curl-request.adoc[]
-==== Http Request
-include::{snippets}/manager-controller-test/authentication/http-request.adoc[]
-==== Http Response
-include::{snippets}/manager-controller-test/authentication/http-response.adoc[]
-==== Httpie Request
-include::{snippets}/manager-controller-test/authentication/httpie-request.adoc[]
-==== Path Parameter
-include::{snippets}/manager-controller-test/authentication/path-parameters.adoc[]
-==== Request Body
-include::{snippets}/manager-controller-test/authentication/response-body.adoc[]
-==== Response Body
-include::{snippets}/manager-controller-test/authentication/response-body.adoc[]
-==== Response Fields
-include::{snippets}/manager-controller-test/authentication/response-fields.adoc[]
 
 [[권한-변경]]
 === 권한 변경
@@ -314,8 +392,8 @@ include::{snippets}/popup-controller-test/edit-Popup-Not-Image/request-body.adoc
 include::{snippets}/popup-controller-test/edit-Popup-Not-Image/request-fields.adoc[]
 ==== Request headers
 include::{snippets}/popup-controller-test/edit-Popup-Not-Image/request-headers.adoc[]
-==== Request Parameters
-include::{snippets}/popup-controller-test/edit-Popup-Not-Image/request-parameters.adoc[]
+//==== Request Parameters
+//include::{snippets}/popup-controller-test/edit-Popup-Not-Image/request-parameters.adoc[]
 ==== Response Body
 include::{snippets}/popup-controller-test/edit-Popup-Not-Image/response-body.adoc[]
 ==== Response Fields
@@ -352,8 +430,8 @@ include::{snippets}/popup-controller-test/delete-popup-List/http-response.adoc[]
 include::{snippets}/popup-controller-test/delete-popup-List/httpie-request.adoc[]
 ==== Request Header
 include::{snippets}/popup-controller-test/delete-popup-List/request-headers.adoc[]
-==== Path Parameters
-include::{snippets}/popup-controller-test/delete-popup-List/path-parameters.adoc[]
+//==== Path Parameters
+//include::{snippets}/popup-controller-test/delete-popup-List/path-parameters.adoc[]
 ==== Response Body
 include::{snippets}/popup-controller-test/delete-popup-List/response-body.adoc[]
 ==== Response Fields
@@ -362,9 +440,28 @@ include::{snippets}/popup-controller-test/delete-popup-List/response-fields.adoc
 [[Qna]]
 == Qna
 
+
+[[문의-하기]]
+=== 문의 하기
+==== Curl Request
+include::{snippets}/qna-controller-test/add-qna/curl-request.adoc[]
+==== Http Request
+include::{snippets}/qna-controller-test/add-qna/http-request.adoc[]
+==== Http Response
+include::{snippets}/qna-controller-test/add-qna/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/qna-controller-test/add-qna/httpie-request.adoc[]
+==== Request Body
+include::{snippets}/qna-controller-test/add-qna/request-body.adoc[]
+==== Request Field
+include::{snippets}/qna-controller-test/add-qna/request-fields.adoc[]
+==== Response Body
+include::{snippets}/qna-controller-test/add-qna/response-body.adoc[]
+==== Response Fields
+include::{snippets}/qna-controller-test/add-qna/response-fields.adoc[]
+
 [[문의-상세-페이지]]
 === 문의 상세 페이지
-
 ==== Curl Request
 include::{snippets}/qna-controller-test/get-qna/curl-request.adoc[]
 ==== Http Request
@@ -420,22 +517,3 @@ include::{snippets}/qna-controller-test/delete-qna/response-body.adoc[]
 ==== Response Fields
 include::{snippets}/qna-controller-test/delete-qna/response-fields.adoc[]
 
-
-[[문의-하기]]
-=== 문의 하기
-==== Curl Request
-include::{snippets}/qna-controller-test/add-qna/curl-request.adoc[]
-==== Http Request
-include::{snippets}/qna-controller-test/add-qna/http-request.adoc[]
-==== Http Response
-include::{snippets}/qna-controller-test/add-qna/http-response.adoc[]
-==== Httpie Request
-include::{snippets}/qna-controller-test/add-qna/httpie-request.adoc[]
-==== Request Body
-include::{snippets}/qna-controller-test/add-qna/request-body.adoc[]
-==== Request Field
-include::{snippets}/qna-controller-test/add-qna/request-fields.adoc[]
-==== Response Body
-include::{snippets}/qna-controller-test/add-qna/response-body.adoc[]
-==== Response Fields
-include::{snippets}/qna-controller-test/add-qna/response-fields.adoc[]
