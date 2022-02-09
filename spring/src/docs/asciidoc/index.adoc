@@ -517,3 +517,22 @@ include::{snippets}/qna-controller-test/delete-qna/response-body.adoc[]
 ==== Response Fields
 include::{snippets}/qna-controller-test/delete-qna/response-fields.adoc[]
 
+[[농가-입점]]
+== 농가 입점
+
+[[농가-입점-문의하기]]
+=== 농가 입점 문의하기
+==== Curl Request
+include::{snippets}/farm-qna-controller-test/add-farm-qna/curl-request.adoc[]
+==== Http Request
+include::{snippets}/farm-qna-controller-test/add-farm-qna/http-request.adoc[]
+==== Http Response
+include::{snippets}/farm-qna-controller-test/add-farm-qna/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/farm-qna-controller-test/add-farm-qna/httpie-request.adoc[]
+==== Request Body
+include::{snippets}/farm-qna-controller-test/add-farm-qna/request-body.adoc[]
+==== Response Body
+include::{snippets}/farm-qna-controller-test/add-farm-qna/response-body.adoc[]
+==== Response Fields
+include::{snippets}/farm-qna-controller-test/add-farm-qna/response-fields.adoc[]
