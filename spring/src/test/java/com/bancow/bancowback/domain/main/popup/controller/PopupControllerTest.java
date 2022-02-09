@@ -6,6 +6,8 @@ import static org.springframework.restdocs.payload.PayloadDocumentation.*;
 import static org.springframework.restdocs.request.RequestDocumentation.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import java.nio.charset.StandardCharsets;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -29,10 +31,10 @@ class PopupControllerTest extends TestSupport {
 		Manager adminManager = adminManagerLogin();
 		Token tokenAdmin = tokenRepository.findByManager(adminManager).get();
 
-		MockMultipartFile popup_image = new MockMultipartFile("popup_image", "뱅 카 우.png", "image/png",
-			readImage("/img/뱅 카 우.png").getBytes());
+		MockMultipartFile popup_image = new MockMultipartFile("popup_image", "bancow.png", "image/png",
+			readImage("/img/bancow.png").getBytes());
 		MockMultipartFile popup_request = new MockMultipartFile("popup_request", "req.json", "application/json",
-			readJson("/json/req.json").getBytes());
+			readJson("/json/req.json").getBytes(StandardCharsets.UTF_8));
 
 		mockMvc.perform(multipart("/api/popup/add")
 				.file(popup_image)
@@ -165,10 +167,10 @@ class PopupControllerTest extends TestSupport {
 		Manager adminManager = adminManagerLogin();
 		Token tokenAdmin = tokenRepository.findByManager(adminManager).get();
 
-		MockMultipartFile popup_image = new MockMultipartFile("popup_image", "뱅 카 우.png", "image/png",
-			readImage("/img/뱅 카 우.png").getBytes());
+		MockMultipartFile popup_image = new MockMultipartFile("popup_image", "bancow.png", "image/png",
+			readImage("/img/bancow.png").getBytes());
 		MockMultipartFile popup_request = new MockMultipartFile("popup_request", "update.json", "application/json",
-			readJson("/json/update.json").getBytes());
+			readJson("/json/update.json").getBytes(StandardCharsets.UTF_8));
 
 		mockMvc.perform(
 				multipart("/api/popup/edit")
