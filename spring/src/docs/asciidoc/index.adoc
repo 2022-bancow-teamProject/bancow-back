@@ -441,8 +441,8 @@ include::{snippets}/popup-controller-test/delete-popup-List/response-fields.adoc
 == Qna
 
 
-[[문의-하기]]
-=== 문의 하기
+[[문의-하기-생성]]
+=== 문의 하기 생성
 ==== Curl Request
 include::{snippets}/qna-controller-test/add-qna/curl-request.adoc[]
 ==== Http Request
@@ -520,8 +520,8 @@ include::{snippets}/qna-controller-test/delete-qna/response-fields.adoc[]
 [[농가-입점]]
 == 농가 입점
 
-[[농가-입점-문의하기]]
-=== 농가 입점 문의하기
+[[농가-입점-문의-생성]]
+=== 농가 입점 문의 생성
 ==== Curl Request
 include::{snippets}/farm-qna-controller-test/add-farm-qna/curl-request.adoc[]
 ==== Http Request
@@ -536,3 +536,21 @@ include::{snippets}/farm-qna-controller-test/add-farm-qna/request-body.adoc[]
 include::{snippets}/farm-qna-controller-test/add-farm-qna/response-body.adoc[]
 ==== Response Fields
 include::{snippets}/farm-qna-controller-test/add-farm-qna/response-fields.adoc[]
+
+
+[[농가-입점-문의-상세-페이지]]
+=== 농가 입점 문의 상세 페이지
+==== Curl Request
+include::{snippets}/farm-qna-controller-test/get-farm-qna/curl-request.adoc[]
+==== Http Request
+include::{snippets}/farm-qna-controller-test/get-farm-qna/http-request.adoc[]
+==== Http Response
+include::{snippets}/farm-qna-controller-test/get-farm-qna/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/farm-qna-controller-test/get-farm-qna/httpie-request.adoc[]
+==== Request Header
+include::{snippets}/farm-qna-controller-test/get-farm-qna/request-headers.adoc[]
+==== Response Body
+include::{snippets}/farm-qna-controller-test/get-farm-qna/response-body.adoc[]
+==== Response Fields
+include::{snippets}/farm-qna-controller-test/get-farm-qna/response-fields.adoc[]
