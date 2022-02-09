@@ -1,5 +1,6 @@
 package com.bancow.bancowback.domain.main.farmqna.entity;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
@@ -49,6 +50,9 @@ public class FarmQna {
 
 	@Column(nullable = false)
 	private Boolean checked;
+
+	@Column(name = "available_date", nullable = false)
+	private LocalDate availableDate;
 
 	@Column(name = "create_date", nullable = false)
 	private LocalDateTime createDate;

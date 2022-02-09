@@ -22,6 +22,7 @@ public interface FarmQnaMapper {
 			.cowNum(dto.getCowNum())
 			.feedName(dto.getFeedName())
 			.checked(false)
+			.availableDate(dto.getAvailableDate())
 			.createDate(LocalDateTime.now())
 			.build();
 	}
