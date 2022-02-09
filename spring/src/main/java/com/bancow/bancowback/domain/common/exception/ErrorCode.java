@@ -19,6 +19,9 @@ public enum ErrorCode {
 	// Qna
 	NOT_Found_QNA("Q001", "Not Found Qna"),
 
+	// FarmQna
+	NOT_FOUND_FARM_QNA("F001", "Not Found Farm Qna"),
+
 	// Popup
 	NOT_FOUND_POPUP("P001", "Not Found Popup"),
 
