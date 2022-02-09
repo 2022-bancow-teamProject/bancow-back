@@ -1,5 +1,6 @@
 package com.bancow.bancowback.domain.main.farmqna.controller;
 
+import static org.springframework.restdocs.headers.HeaderDocumentation.*;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.*;
 import static org.springframework.restdocs.payload.PayloadDocumentation.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -10,12 +11,14 @@ import org.springframework.http.MediaType;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.bancow.bancowback.TestSupport;
-import com.bancow.bancowback.domain.main.farmqna.service.FarmQnaService;
+import com.bancow.bancowback.domain.common.util.token.entity.Token;
+import com.bancow.bancowback.domain.common.util.token.repository.TokenRepository;
+import com.bancow.bancowback.domain.manager.entity.Manager;
 
 class FarmQnaControllerTest extends TestSupport {
 
 	@Autowired
-	private FarmQnaService farmQnaService;
+	private TokenRepository tokenRepository;
 
 	@Test
 	@Transactional
@@ -58,4 +61,43 @@ class FarmQnaControllerTest extends TestSupport {
 			)
 		;
 	}
+
+	@Test
+	void getFarmQna() throws Exception {
+
+		Manager manager = adminManagerLogin();
+		Token token = tokenRepository.findByManager(manager).get();
+
+		mockMvc.perform(
+			get("/api/farmqna/{id}", 1)
+				.header("TOKEN", token.getToken())
+				.accept(MediaType.APPLICATION_JSON)
+		)
+			.andExpect(status().isOk())
+			.andDo(
+				restDocs.document(
+					requestHeaders(
+						headerWithName("TOKEN").description("해당 로그인 유저의 토큰값")
+					),
+					responseFields(
+						fieldWithPath("data").description("결과 데이터"),
+						fieldWithPath("data.id").description("아이디"),
+						fieldWithPath("data.name").description("이름"),
+						fieldWithPath("data.phoneNumber").description("전화번호"),
+						fieldWithPath("data.email").description("이메일"),
+						fieldWithPath("data.farmName").description("농가 이름"),
+						fieldWithPath("data.id").description("아이디"),
+						fieldWithPath("data.farmAddress").description("농가 주소"),
+						fieldWithPath("data.cowNum").description("사육 두수"),
+						fieldWithPath("data.feedName").description("사용사료"),
+						fieldWithPath("data.checked").description("답변여부"),
+						fieldWithPath("data.availableDate").description("실사 가능 일자"),
+						fieldWithPath("data.createDate").description("문의 날짜"),
+						fieldWithPath("status").description("HTTP Status")
+					)
+				)
+			)
+		;
+	}
+
 }
