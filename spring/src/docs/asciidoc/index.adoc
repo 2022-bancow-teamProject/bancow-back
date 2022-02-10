@@ -605,3 +605,22 @@ include::{snippets}/farm-qna-controller-test/delete-farm-qna/path-parameters.ado
 include::{snippets}/farm-qna-controller-test/delete-farm-qna/response-body.adoc[]
 ==== Response Fields
 include::{snippets}/farm-qna-controller-test/delete-farm-qna/response-fields.adoc[]
+
+[[농가-입점-문의-여래개-삭제]]
+=== 농가 입점 문의 여러개 삭제
+==== Curl Request
+include::{snippets}/farm-qna-controller-test/delete-farm-qna-list/curl-request.adoc[]
+==== Http Request
+include::{snippets}/farm-qna-controller-test/delete-farm-qna-list/http-request.adoc[]
+==== Http Response
+include::{snippets}/farm-qna-controller-test/delete-farm-qna-list/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/farm-qna-controller-test/delete-farm-qna-list/httpie-request.adoc[]
+==== Request Header
+include::{snippets}/farm-qna-controller-test/delete-farm-qna-list//request-headers.adoc[]
+==== Request Fields
+include::{snippets}/farm-qna-controller-test/delete-farm-qna-list/request-fields.adoc[]
+==== Response Body
+include::{snippets}/farm-qna-controller-test/delete-farm-qna-list/response-body.adoc[]
+==== Response Fields
+include::{snippets}/farm-qna-controller-test/delete-farm-qna-list/response-fields.adoc[]
