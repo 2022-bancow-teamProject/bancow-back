@@ -11,6 +11,7 @@ import com.bancow.bancowback.domain.common.dto.ServiceResult;
 import com.bancow.bancowback.domain.common.exception.ErrorCode;
 import com.bancow.bancowback.domain.common.exception.PopupException;
 import com.bancow.bancowback.domain.main.popup.dto.PopupAddRequestDto;
+import com.bancow.bancowback.domain.main.popup.dto.PopupDistributeResponseDto;
 import com.bancow.bancowback.domain.main.popup.dto.PopupResponseDto;
 import com.bancow.bancowback.domain.main.popup.dto.PopupUpdateRequestDto;
 import com.bancow.bancowback.domain.main.popup.entity.Popup;
@@ -48,14 +49,23 @@ public class PopupService {
 		return popupList.map(popup -> popupMapper.toResponseDto(popup));
 	}
 
-	public ServiceResult editPopupImage(PopupInfo<PopupUpdateRequestDto> dto) {
-		Popup popup = popupMapper.toUpdateEntity(getPopupId(dto.getDto().getId()), dto.getDto(), dto.getImagePath());
+	public void getPopupStatusFalse(Boolean status){
+		if(status == Boolean.TRUE){
+			Popup popup = popupMapper.toPopupStatusFalse(popupRepository.findByStatus(status));
+			popupRepository.save(popup);
+		}
+	}
+
+	public ServiceResult editPopupImage(PopupInfo<PopupUpdateRequestDto> PopupInfo) {
+		getPopupStatusFalse(PopupInfo.getDto().getStatus());
+		Popup popup = popupMapper.toUpdateEntity(getPopupId(PopupInfo.getDto().getId()), PopupInfo.getDto(), PopupInfo.getImagePath());
 		popupRepository.save(popup);
 		return ServiceResult.success("팝업이 업데이트가 되었습니다.");
 	}
 
-	public ServiceResult editPopupNotImage(PopupUpdateRequestDto dto) {
-		Popup popup = popupMapper.toUpdateNotImageEntity(getPopupId(dto.getId()),dto);
+	public ServiceResult editPopupNotImage(PopupUpdateRequestDto PopupUpdateRequestDto) {
+		getPopupStatusFalse(PopupUpdateRequestDto.getStatus());
+		Popup popup = popupMapper.toUpdateNotImageEntity(getPopupId(PopupUpdateRequestDto.getId()),PopupUpdateRequestDto);
 		popupRepository.save(popup);
 		return ServiceResult.success("팝업이 업데이트가 되었습니다.");
 	}
