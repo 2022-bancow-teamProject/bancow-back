@@ -199,4 +199,36 @@ class FarmQnaControllerTest extends TestSupport {
 		;
 	}
 
+
+
+	@Test
+	@Transactional
+	public void deleteFarmQnaList() throws Exception {
+		Manager manager = adminManagerLogin();
+		Token token = tokenRepository.findByManager(manager).get();
+		mockMvc.perform(
+			delete("/api/farmqna/delete")
+				.header("TOKEN", token.getToken())
+				.contentType(MediaType.APPLICATION_JSON)
+				.content(readJson("/json/farmQna/deleteFarmQnaList.json"))
+				.accept(MediaType.APPLICATION_JSON)
+		)
+			.andExpect(status().isOk())
+			.andDo(
+				restDocs.document(
+					requestHeaders(
+						headerWithName("TOKEN").description("해당 로그인 유저의 토큰값")
+					),
+					requestFields(
+						fieldWithPath("id").description("id 리스트")
+					),
+					responseFields(
+						fieldWithPath("data").description("결과 데이터"),
+						fieldWithPath("data.result").description("농가입점 문의 삭제여부"),
+						fieldWithPath("data.message").description("response 메시지"),
+						fieldWithPath("status").description("HTTP Status"))
+				)
+			)
+		;
+	}
 }
