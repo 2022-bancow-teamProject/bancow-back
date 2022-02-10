@@ -561,6 +561,8 @@ include::{snippets}/farm-qna-controller-test/get-farm-qna/http-response.adoc[]
 include::{snippets}/farm-qna-controller-test/get-farm-qna/httpie-request.adoc[]
 ==== Request Header
 include::{snippets}/farm-qna-controller-test/get-farm-qna/request-headers.adoc[]
+==== Path Parameters
+include::{snippets}/farm-qna-controller-test/get-farm-qna/path-parameters.adoc[]
 ==== Response Body
 include::{snippets}/farm-qna-controller-test/get-farm-qna/response-body.adoc[]
 ==== Response Fields
@@ -584,3 +586,22 @@ include::{snippets}/farm-qna-controller-test/get-farm-qna-paging/request-paramet
 include::{snippets}/farm-qna-controller-test/get-farm-qna-paging/response-body.adoc[]
 ==== Response Fields
 include::{snippets}/farm-qna-controller-test/get-farm-qna-paging/response-fields.adoc[]
+
+[[농가-입점-문의-단일-삭제]]
+=== 농가 입점 문의 단일 삭제
+==== Curl Request
+include::{snippets}/farm-qna-controller-test/delete-farm-qna/curl-request.adoc[]
+==== Http Request
+include::{snippets}/farm-qna-controller-test/delete-farm-qna/http-request.adoc[]
+==== Http Response
+include::{snippets}/farm-qna-controller-test/delete-farm-qna/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/farm-qna-controller-test/delete-farm-qna/httpie-request.adoc[]
+==== Request Header
+include::{snippets}/farm-qna-controller-test/delete-farm-qna/request-headers.adoc[]
+==== Path Parameters
+include::{snippets}/farm-qna-controller-test/delete-farm-qna/path-parameters.adoc[]
+==== Response Body
+include::{snippets}/farm-qna-controller-test/delete-farm-qna/response-body.adoc[]
+==== Response Fields
+include::{snippets}/farm-qna-controller-test/delete-farm-qna/response-fields.adoc[]
