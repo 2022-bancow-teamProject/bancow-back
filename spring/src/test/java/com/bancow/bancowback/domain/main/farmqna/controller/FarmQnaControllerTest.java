@@ -81,6 +81,9 @@ class FarmQnaControllerTest extends TestSupport {
 					requestHeaders(
 						headerWithName("TOKEN").description("해당 로그인 유저의 토큰값")
 					),
+					pathParameters(
+						parameterWithName("id").description("농가 입점 문의 게시글의 id")
+					),
 					responseFields(
 						fieldWithPath("data").description("결과 데이터"),
 						fieldWithPath("data.id").description("아이디"),
@@ -162,6 +165,35 @@ class FarmQnaControllerTest extends TestSupport {
 						fieldWithPath("data.empty").description("비어있는 지 여부"),
 						fieldWithPath("status").description("HTTP Status")
 					)
+				)
+			)
+		;
+	}
+
+	@Test
+	@Transactional
+	public void deleteFarmQna() throws Exception {
+		Manager manager = adminManagerLogin();
+		Token token = tokenRepository.findByManager(manager).get();
+		mockMvc.perform(
+			delete("/api/farmqna/{id}", 1)
+				.header("TOKEN", token.getToken())
+				.accept(MediaType.APPLICATION_JSON)
+		)
+			.andExpect(status().isOk())
+			.andDo(
+				restDocs.document(
+					requestHeaders(
+						headerWithName("TOKEN").description("해당 로그인 유저의 토큰값")
+					),
+					pathParameters(
+						parameterWithName("id").description("농가 입점 문의 게시글의 id")
+					),
+					responseFields(
+						fieldWithPath("data").description("결과 데이터"),
+						fieldWithPath("data.result").description("농가입점 문의 삭제여부"),
+						fieldWithPath("data.message").description("response 메시지"),
+						fieldWithPath("status").description("HTTP Status"))
 				)
 			)
 		;
