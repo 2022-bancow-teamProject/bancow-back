@@ -45,4 +45,12 @@ public class FarmQnaService {
 			PageRequest.of(page, 10, Sort.by(Sort.Direction.DESC, "id"))
 		);
 	}
+
+	public ServiceResult deleteFarmQna(String token, Long id) {
+		tokenService.validTokenAuthority(token);
+		FarmQna farmQna = farmQnaRepository.findById(id)
+			.orElseThrow(() -> new FarmQnaException(NOT_FOUND_FARM_QNA, "해당 Id의 농가 입점 문의를 찾을 수 없습니다."));
+		farmQnaRepository.delete(farmQna);
+		return ServiceResult.success("해당 농가입점 문의를 성공적으로 삭제하였습니다.");
+	}
 }
