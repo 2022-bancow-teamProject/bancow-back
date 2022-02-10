@@ -2,15 +2,19 @@ package com.bancow.bancowback.domain.main.farmqna.service;
 
 import static com.bancow.bancowback.domain.common.exception.ErrorCode.*;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.bancow.bancowback.domain.common.dto.ServiceResult;
+import com.bancow.bancowback.domain.common.exception.ErrorCode;
 import com.bancow.bancowback.domain.common.exception.FarmQnaException;
 import com.bancow.bancowback.domain.common.util.token.service.TokenService;
 import com.bancow.bancowback.domain.main.farmqna.dto.FarmQnaAddRequestDto;
+import com.bancow.bancowback.domain.main.farmqna.dto.FarmQnaDeleteRequestDto;
 import com.bancow.bancowback.domain.main.farmqna.entity.FarmQna;
 import com.bancow.bancowback.domain.main.farmqna.mapper.FarmQnaMapper;
 import com.bancow.bancowback.domain.main.farmqna.repository.FarmQnaRepository;
@@ -51,6 +55,18 @@ public class FarmQnaService {
 		FarmQna farmQna = farmQnaRepository.findById(id)
 			.orElseThrow(() -> new FarmQnaException(NOT_FOUND_FARM_QNA, "해당 Id의 농가 입점 문의를 찾을 수 없습니다."));
 		farmQnaRepository.delete(farmQna);
+		return ServiceResult.success("해당 농가입점 문의를 성공적으로 삭제하였습니다.");
+	}
+
+	public ServiceResult deleteFarmQnaList(String token, FarmQnaDeleteRequestDto dto) {
+		tokenService.validTokenAuthority(token);
+		List<FarmQna> deleteList = farmQnaRepository.findByIdIn(dto.getId());
+		if (deleteList.size() == 0) {
+			throw new FarmQnaException(NOT_FOUND_FARM_QNA, "해당 농가 입점 문의가 업습니다.");
+		}
+		deleteList.stream()
+			.forEach(farmQnaRepository::delete);
+
 		return ServiceResult.success("해당 농가입점 문의를 성공적으로 삭제하였습니다.");
 	}
 }

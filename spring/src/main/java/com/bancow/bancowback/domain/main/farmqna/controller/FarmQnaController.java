@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.bancow.bancowback.domain.common.dto.Response;
 import com.bancow.bancowback.domain.common.dto.ServiceResult;
 import com.bancow.bancowback.domain.main.farmqna.dto.FarmQnaAddRequestDto;
+import com.bancow.bancowback.domain.main.farmqna.dto.FarmQnaDeleteRequestDto;
 import com.bancow.bancowback.domain.main.farmqna.entity.FarmQna;
 import com.bancow.bancowback.domain.main.farmqna.service.FarmQnaService;
 
@@ -50,6 +51,13 @@ public class FarmQnaController {
 	@DeleteMapping("/{id}")
 	public Response<ServiceResult> deleteFarmQna(@PathVariable Long id, @RequestHeader("TOKEN") String token) {
 		ServiceResult result = farmQnaService.deleteFarmQna(token, id);
+		return new Response<>(result, HttpStatus.OK);
+	}
+
+	@DeleteMapping("/delete")
+	public Response<ServiceResult> deleteFarmQnaList(@RequestHeader("TOKEN") final String token,
+		@RequestBody @Valid final FarmQnaDeleteRequestDto dto) {
+		ServiceResult result = farmQnaService.deleteFarmQnaList(token, dto);
 		return new Response<>(result, HttpStatus.OK);
 	}
 }
