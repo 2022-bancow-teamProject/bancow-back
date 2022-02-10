@@ -4,6 +4,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
 import com.bancow.bancowback.domain.main.popup.dto.PopupAddRequestDto;
+import com.bancow.bancowback.domain.main.popup.dto.PopupDistributeResponseDto;
 import com.bancow.bancowback.domain.main.popup.dto.PopupResponseDto;
 import com.bancow.bancowback.domain.main.popup.dto.PopupUpdateRequestDto;
 import com.bancow.bancowback.domain.main.popup.entity.Popup;
@@ -21,7 +22,7 @@ public interface PopupMapper {
 			.endDate(addDto.getEndDate())
 			.image(imagePath)
 			.manager(manager)
-			.status(Boolean.TRUE)
+			.status(Boolean.FALSE)
 			.build();
 	}
 
@@ -35,6 +36,27 @@ public interface PopupMapper {
 			.status(popup.getStatus())
 			.createDate(popup.getCreateDate())
 			.username(popup.getManager().getUsername())
+			.build();
+	}
+
+	default public PopupDistributeResponseDto toDistributeResponseDto(Popup popup) {
+		return PopupDistributeResponseDto.builder()
+			.startDate(popup.getStartDate())
+			.endDate(popup.getEndDate())
+			.image("https://kr.object.ncloudstorage.com/bancowback/"+popup.getImage())
+			.build();
+	}
+
+	default public Popup toPopupStatusFalse(Popup popup) {
+		return Popup.builder()
+			.id(popup.getId())
+			.title(popup.getTitle())
+			.startDate(popup.getStartDate())
+			.endDate(popup.getEndDate())
+			.image(popup.getImage())
+			.manager(popup.getManager())
+			.status(Boolean.FALSE)
+			.createDate(popup.getCreateDate())
 			.build();
 	}
 
