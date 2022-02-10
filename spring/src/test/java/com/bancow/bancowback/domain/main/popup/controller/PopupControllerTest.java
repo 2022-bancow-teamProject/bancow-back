@@ -103,6 +103,36 @@ class PopupControllerTest extends TestSupport {
 
 	@Test
 	@Transactional
+	void getPopup() throws Exception {
+		Long id = 1L;
+		Manager adminManager = adminManagerLogin();
+		Token tokenAdmin = tokenRepository.findByManager(adminManager).get();
+
+		mockMvc.perform(
+				get("/api/popup/distribute")
+					.header("TOKEN", tokenAdmin.getToken())
+
+			).andExpect(status().isOk())
+			.andDo(
+				restDocs.document(
+					requestHeaders(
+						headerWithName("TOKEN").description("해당 로그인 유저의 토큰값")
+					),
+					responseFields(
+						fieldWithPath("data").description("결과 데이터"),
+						fieldWithPath("data.image").description("팝업 이미지"),
+						fieldWithPath("data.start_date").description("팝업 게시 시작 날짜"),
+						fieldWithPath("data.end_date").description("팝업 게시 마감 날짜"),
+						fieldWithPath("status").description("HTTP Status")
+					)
+				)
+			)
+		;
+	}
+
+
+	@Test
+	@Transactional
 	void getPopupPaging() throws Exception {
 		Manager adminManager = adminManagerLogin();
 		Token tokenAdmin = tokenRepository.findByManager(adminManager).get();
