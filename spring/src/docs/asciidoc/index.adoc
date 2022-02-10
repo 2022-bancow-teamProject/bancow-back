@@ -361,6 +361,21 @@ include::{snippets}/popup-controller-test/get-popup-paging/response-body.adoc[]
 ==== Response Fields
 include::{snippets}/popup-controller-test/get-popup-paging/response-fields.adoc[]
 
+[[팝업-배포]]
+=== 팝업 배포
+==== Curl Request
+include::{snippets}/popup-controller-test/get-popup/curl-request.adoc[]
+==== Http Request
+include::{snippets}/popup-controller-test/get-popup/http-request.adoc[]
+==== Http Response
+include::{snippets}/popup-controller-test/get-popup/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/popup-controller-test/get-popup/httpie-request.adoc[]
+==== Response Body
+include::{snippets}/popup-controller-test/get-popup/response-body.adoc[]
+==== Response Fields
+include::{snippets}/popup-controller-test/get-popup/response-fields.adoc[]
+
 [[팝업-수정]]
 === 팝업 수정 이미지 있을 경우
 ==== Curl Request
@@ -392,8 +407,6 @@ include::{snippets}/popup-controller-test/edit-Popup-Not-Image/request-body.adoc
 include::{snippets}/popup-controller-test/edit-Popup-Not-Image/request-fields.adoc[]
 ==== Request headers
 include::{snippets}/popup-controller-test/edit-Popup-Not-Image/request-headers.adoc[]
-//==== Request Parameters
-//include::{snippets}/popup-controller-test/edit-Popup-Not-Image/request-parameters.adoc[]
 ==== Response Body
 include::{snippets}/popup-controller-test/edit-Popup-Not-Image/response-body.adoc[]
 ==== Response Fields
@@ -430,8 +443,6 @@ include::{snippets}/popup-controller-test/delete-popup-List/http-response.adoc[]
 include::{snippets}/popup-controller-test/delete-popup-List/httpie-request.adoc[]
 ==== Request Header
 include::{snippets}/popup-controller-test/delete-popup-List/request-headers.adoc[]
-//==== Path Parameters
-//include::{snippets}/popup-controller-test/delete-popup-List/path-parameters.adoc[]
 ==== Response Body
 include::{snippets}/popup-controller-test/delete-popup-List/response-body.adoc[]
 ==== Response Fields
