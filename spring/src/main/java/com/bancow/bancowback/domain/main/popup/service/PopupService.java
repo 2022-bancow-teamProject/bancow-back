@@ -49,6 +49,10 @@ public class PopupService {
 		return popupList.map(popup -> popupMapper.toResponseDto(popup));
 	}
 
+	public PopupDistributeResponseDto getPopupDistribute() {
+		return popupMapper.toDistributeResponseDto(popupRepository.findByStatus(true));
+	}
+
 	public void getPopupStatusFalse(Boolean status){
 		if(status == Boolean.TRUE){
 			Popup popup = popupMapper.toPopupStatusFalse(popupRepository.findByStatus(status));

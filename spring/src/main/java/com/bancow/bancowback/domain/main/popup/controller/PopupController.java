@@ -5,7 +5,6 @@ import java.io.IOException;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
-import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +24,6 @@ import com.bancow.bancowback.domain.common.util.token.service.TokenService;
 import com.bancow.bancowback.domain.main.popup.dto.PopupAddRequestDto;
 import com.bancow.bancowback.domain.main.popup.dto.PopupDeleteRequestDto;
 import com.bancow.bancowback.domain.main.popup.dto.PopupInfo;
-import com.bancow.bancowback.domain.main.popup.dto.PopupResponseDto;
 import com.bancow.bancowback.domain.main.popup.dto.PopupUpdateRequestDto;
 import com.bancow.bancowback.domain.main.popup.service.PopupService;
 import com.bancow.bancowback.infra.ncp.NcpService;
@@ -62,8 +60,13 @@ public class PopupController {
 	public Response<?> getPopupPaging(@RequestHeader("TOKEN") final String token,
 		@NotNull @RequestParam("page") final int page) {
 		tokenService.validTokenAuthority(token);
-		Page<PopupResponseDto> result = popupService.getPopupPaging(page);
-		return new Response<>(result, HttpStatus.OK);
+		return new Response<>(popupService.getPopupPaging(page), HttpStatus.OK);
+	}
+
+	@GetMapping("/distribute")
+	public Response<?> getPopup(@RequestHeader("TOKEN") final String token) {
+		tokenService.validTokenAuthority(token);
+		return new Response<>(popupService.getPopupDistribute(), HttpStatus.OK);
 	}
 
 	@PostMapping("/edit")
@@ -85,13 +88,15 @@ public class PopupController {
 	}
 
 	@DeleteMapping("/{id}")
-	public Response<?> deletePopupOne(@RequestHeader("TOKEN") final String token,@NotNull @PathVariable final Long id) {
+	public Response<?> deletePopupOne(@RequestHeader("TOKEN") final String token,
+		@NotNull @PathVariable final Long id) {
 		tokenService.validTokenAuthority(token);
 		return new Response<>(popupService.deletePopupOne(id), HttpStatus.OK);
 	}
 
 	@DeleteMapping("/delete")
-	public Response<?> deletePopupList(@RequestHeader("TOKEN") final String token,@NotNull @RequestBody final PopupDeleteRequestDto dto){
+	public Response<?> deletePopupList(@RequestHeader("TOKEN") final String token,
+		@NotNull @RequestBody final PopupDeleteRequestDto dto) {
 		tokenService.validTokenAuthority(token);
 		return new Response<>(popupService.deletePopupList(dto.getId()), HttpStatus.OK);
 	}
