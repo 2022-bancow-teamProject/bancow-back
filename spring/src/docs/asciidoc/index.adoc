@@ -565,3 +565,22 @@ include::{snippets}/farm-qna-controller-test/get-farm-qna/request-headers.adoc[]
 include::{snippets}/farm-qna-controller-test/get-farm-qna/response-body.adoc[]
 ==== Response Fields
 include::{snippets}/farm-qna-controller-test/get-farm-qna/response-fields.adoc[]
+
+[[농가-입점-문의-10개씩-가져오기]]
+=== 농가 입점 문의 10개씩 가져오기
+==== Curl Request
+include::{snippets}/farm-qna-controller-test/get-farm-qna-paging/curl-request.adoc[]
+==== Http Request
+include::{snippets}/farm-qna-controller-test/get-farm-qna-paging/http-request.adoc[]
+==== Http Response
+include::{snippets}/farm-qna-controller-test/get-farm-qna-paging/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/farm-qna-controller-test/get-farm-qna-paging/httpie-request.adoc[]
+==== Request Header
+include::{snippets}/farm-qna-controller-test/get-farm-qna-paging/request-headers.adoc[]
+==== Request Parameter
+include::{snippets}/farm-qna-controller-test/get-farm-qna-paging/request-parameters.adoc[]
+==== Response Body
+include::{snippets}/farm-qna-controller-test/get-farm-qna-paging/response-body.adoc[]
+==== Response Fields
+include::{snippets}/farm-qna-controller-test/get-farm-qna-paging/response-fields.adoc[]
