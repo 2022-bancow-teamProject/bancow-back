@@ -2,6 +2,9 @@ package com.bancow.bancowback.domain.main.farmqna.service;
 
 import static com.bancow.bancowback.domain.common.exception.ErrorCode.*;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.bancow.bancowback.domain.common.dto.ServiceResult;
@@ -33,5 +36,13 @@ public class FarmQnaService {
 		FarmQna farmQna = farmQnaRepository.findById(id)
 			.orElseThrow(() -> new FarmQnaException(NOT_FOUND_FARM_QNA, "해당 Id의 농가 입점 문의를 찾을 수 없습니다."));
 		return farmQnaRepository.save(farmQna);
+	}
+
+	public Page<FarmQna> getFarmQnaPaging(int page, String token) {
+		tokenService.validTokenAuthority(token);
+
+		return farmQnaRepository.findAll(
+			PageRequest.of(page, 10, Sort.by(Sort.Direction.DESC, "id"))
+		);
 	}
 }
