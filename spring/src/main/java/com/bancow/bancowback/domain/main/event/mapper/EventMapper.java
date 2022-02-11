@@ -5,6 +5,7 @@ import org.mapstruct.factory.Mappers;
 
 import com.bancow.bancowback.domain.main.event.dto.EventAddRequestDto;
 import com.bancow.bancowback.domain.main.event.dto.EventDistributeResponseDto;
+import com.bancow.bancowback.domain.main.event.dto.EventUpdateRequestDto;
 import com.bancow.bancowback.domain.main.event.entity.Event;
 import com.bancow.bancowback.domain.manager.entity.Manager;
 
@@ -33,4 +34,17 @@ public interface EventMapper {
 			.build();
 	}
 
+	default public Event toUpdateEntity(Event event, EventUpdateRequestDto eventUpdateRequestDto,
+		String eventUploadPath) {
+		return Event.builder()
+			.id(event.getId())
+			.title(eventUpdateRequestDto.getTitle())
+			.startDate(eventUpdateRequestDto.getStartDate())
+			.endDate(eventUpdateRequestDto.getEndDate())
+			.image(eventUploadPath)
+			.manager(event.getManager())
+			.status(eventUpdateRequestDto.getStatus())
+			.createDate(event.getCreateDate())
+			.build();
+	}
 }
