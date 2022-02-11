@@ -17,7 +17,6 @@ public interface QnaMapper {
 		return Qna.builder()
 			.category(qnaInputDto.getCategory())
 			.phoneNumber(qnaInputDto.getPhoneNumber())
-			.name(qnaInputDto.getName())
 			.email(qnaInputDto.getEmail())
 			.title(qnaInputDto.getTitle())
 			.message(qnaInputDto.getMessage())
