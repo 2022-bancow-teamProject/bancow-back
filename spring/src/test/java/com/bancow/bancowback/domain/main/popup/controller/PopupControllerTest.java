@@ -110,14 +110,10 @@ class PopupControllerTest extends TestSupport {
 
 		mockMvc.perform(
 				get("/api/popup/distribute")
-					.header("TOKEN", tokenAdmin.getToken())
 
 			).andExpect(status().isOk())
 			.andDo(
 				restDocs.document(
-					requestHeaders(
-						headerWithName("TOKEN").description("해당 로그인 유저의 토큰값")
-					),
 					responseFields(
 						fieldWithPath("data").description("결과 데이터"),
 						fieldWithPath("data.image").description("팝업 이미지"),
@@ -129,7 +125,6 @@ class PopupControllerTest extends TestSupport {
 			)
 		;
 	}
-
 
 	@Test
 	@Transactional
