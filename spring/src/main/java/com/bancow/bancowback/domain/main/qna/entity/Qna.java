@@ -32,6 +32,9 @@ public class Qna {
 	@Column(nullable = false)
 	private QnaCategory category;
 
+	@Column(nullable = false)
+	private String name;
+
 	@Column(name = "phone_number", nullable = false)
 	private String phoneNumber;
 
