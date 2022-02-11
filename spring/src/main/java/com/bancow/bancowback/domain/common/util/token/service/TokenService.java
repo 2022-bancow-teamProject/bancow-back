@@ -1,7 +1,13 @@
 package com.bancow.bancowback.domain.common.util.token.service;
 
+import java.time.LocalDateTime;
+import java.util.Date;
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.algorithms.Algorithm;
 import com.bancow.bancowback.domain.common.exception.BizException;
 import com.bancow.bancowback.domain.common.util.token.entity.Token;
 import com.bancow.bancowback.domain.common.util.token.repository.TokenRepository;
@@ -33,10 +39,40 @@ public class TokenService {
 		}
 	}
 
-	public void checkTokenSuper(String token) {
+	public void validTokenSuper(String token) {
 		Token findToken = getToken(token);
 		if (!(findToken.getManager().getManagerStatus().equals(ManagerStatus.SUPER))) {
 			throw new BizException("SUPER 계정이 아닙니다.");
 		}
+	}
+
+	public String makeJwtToken(Manager manager) {
+		LocalDateTime expiredDatetime = LocalDateTime.now().plusMonths(1);
+		Date expiredDate = java.sql.Timestamp.valueOf(expiredDatetime);
+		return JWT.create()
+			.withExpiresAt(expiredDate)
+			.withClaim("user_id", manager.getId())
+			.withSubject(manager.getUsername())
+			.withIssuer(manager.getEmail())
+			.sign(Algorithm.HMAC512("bancowAlgorithm".getBytes()));
+	}
+
+	public Optional<Token> findByToken(String token) {
+		return tokenRepository.findByToken(token);
+	}
+
+	public void delete(Token token) {
+		tokenRepository.delete(token);
+	}
+
+	public Token saveByManager(Manager manager) {
+		String tokenString = makeJwtToken(manager);
+		Token token = Token.builder()
+			.token(tokenString)
+			.manager(manager)
+			.expiredDate(LocalDateTime.now().plusDays(1))
+			.build();
+
+		return tokenRepository.save(token);
 	}
 }
