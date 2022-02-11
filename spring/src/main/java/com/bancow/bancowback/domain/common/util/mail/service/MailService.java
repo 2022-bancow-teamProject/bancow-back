@@ -51,11 +51,11 @@ public class MailService {
 		optionalMailTemplate.ifPresent(e -> {
 			String fromEmail = e.getSendEmail();
 			String fromUserName = e.getSendUserName();
-			String title = e.getTitle().replaceAll("\\{USER_NAME\\}", farmQna.getName())
+			String title = e.getTitle().replaceAll("\\{USER_NAME\\}", farmQna.getFarmQnaName())
 				.replaceAll("\\{TITLE\\}", dto.getMailTitle());
 			String contents = e.getContents().replaceAll("\\{ANSWER\\}", dto.getAnswer());
 
-			mailComponent.send(fromEmail, fromUserName, farmQna.getEmail(), farmQna.getName(), title, contents);
+			mailComponent.send(fromEmail, fromUserName, farmQna.getEmail(), farmQna.getFarmQnaName(), title, contents);
 		});
 	}
 
@@ -65,11 +65,11 @@ public class MailService {
 		optionalMailTemplate.ifPresent(e -> {
 			String fromEmail = e.getSendEmail();
 			String fromUserName = e.getSendUserName();
-			String title = e.getTitle().replaceAll("\\{USER_NAME\\}", qna.getName())
+			String title = e.getTitle().replaceAll("\\{USER_NAME\\}", qna.getQnaName())
 				.replaceAll("\\{TITLE\\}", dto.getMailTitle());
 			String contents = e.getContents().replaceAll("\\{ANSWER\\}", dto.getAnswer());
 
-			mailComponent.send(fromEmail, fromUserName, qna.getEmail(), qna.getName(), title, contents);
+			mailComponent.send(fromEmail, fromUserName, qna.getEmail(), qna.getQnaName(), title, contents);
 		});
 	}
 }

@@ -27,8 +27,8 @@ public class FarmQna {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(nullable = false)
-	private String name;
+	@Column(name = "farm_qna_name", nullable = false)
+	private String farmQnaName;
 
 	@Column(name = "phone_number", nullable = false)
 	private String phoneNumber;

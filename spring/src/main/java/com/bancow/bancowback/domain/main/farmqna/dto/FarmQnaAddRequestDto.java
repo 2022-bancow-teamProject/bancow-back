@@ -6,6 +6,8 @@ import java.time.LocalDateTime;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -18,7 +20,8 @@ import lombok.NoArgsConstructor;
 public class FarmQnaAddRequestDto {
 
 	@NotBlank
-	private String name;
+	@JsonProperty("farm_qna_name")
+	private String farmQnaName;
 
 	@NotBlank
 	private String phoneNumber;

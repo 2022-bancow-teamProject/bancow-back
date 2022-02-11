@@ -5,6 +5,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import com.bancow.bancowback.domain.main.qna.entity.QnaCategory;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,7 +25,8 @@ public class QnaRequestDto {
 	private String phoneNumber;
 
 	@NotEmpty
-	private String name;
+	@JsonProperty("qna_name")
+	private String qnaName;
 
 	@Email
 	@NotEmpty

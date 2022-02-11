@@ -16,7 +16,7 @@ public interface QnaMapper {
 	default public Qna toEntity(QnaRequestDto qnaInputDto) {
 		return Qna.builder()
 			.category(qnaInputDto.getCategory())
-			.name(qnaInputDto.getName())
+			.qnaName(qnaInputDto.getQnaName())
 			.phoneNumber(qnaInputDto.getPhoneNumber())
 			.email(qnaInputDto.getEmail())
 			.title(qnaInputDto.getTitle())

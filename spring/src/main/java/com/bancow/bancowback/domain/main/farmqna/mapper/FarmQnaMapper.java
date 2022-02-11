@@ -14,7 +14,7 @@ public interface FarmQnaMapper {
 
 	default public FarmQna toEntity(FarmQnaAddRequestDto dto) {
 		return FarmQna.builder()
-			.name(dto.getName())
+			.farmQnaName(dto.getFarmQnaName())
 			.phoneNumber(dto.getPhoneNumber())
 			.email(dto.getEmail())
 			.farmName(dto.getFarmName())
