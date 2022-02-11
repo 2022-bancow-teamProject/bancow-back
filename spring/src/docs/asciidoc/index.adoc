@@ -706,3 +706,22 @@ include::{snippets}/event-controller-test/edit-event-Not-Image/request-headers.a
 include::{snippets}/event-controller-test/edit-event-Not-Image/response-body.adoc[]
 ==== Response Fields
 include::{snippets}/event-controller-test/edit-event-Not-Image/response-fields.adoc[]
+
+[[이벤트-한개만-삭제]]
+=== 이벤트 한개만 삭제
+==== Curl Request
+include::{snippets}/event-controller-test/delete-event-one/curl-request.adoc[]
+==== Http Request
+include::{snippets}/event-controller-test/delete-event-one/http-request.adoc[]
+==== Http Response
+include::{snippets}/event-controller-test/delete-event-one/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/event-controller-test/delete-event-one/httpie-request.adoc[]
+==== Request Header
+include::{snippets}/event-controller-test/delete-event-one/request-headers.adoc[]
+==== Path Parameters
+include::{snippets}/event-controller-test/delete-event-one/path-parameters.adoc[]
+==== Response Body
+include::{snippets}/event-controller-test/delete-event-one/response-body.adoc[]
+==== Response Fields
+include::{snippets}/event-controller-test/delete-event-one/response-fields.adoc[]
