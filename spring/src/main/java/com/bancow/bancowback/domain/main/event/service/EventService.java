@@ -37,7 +37,7 @@ public class EventService {
 		if(eventList.size() == 0){
 			throw new EventException(ErrorCode.NOT_FOUND_EVENT, "이벤트 없음");
 		}
-		
+
 		return eventList.stream().map(event -> eventMapper.toDistributeResponseDto(event)).collect(Collectors.toList());
 	}
 }
