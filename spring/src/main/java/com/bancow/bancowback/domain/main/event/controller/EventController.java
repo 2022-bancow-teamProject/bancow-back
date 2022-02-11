@@ -3,10 +3,13 @@ package com.bancow.bancowback.domain.main.event.controller;
 import java.io.IOException;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -65,6 +68,13 @@ public class EventController {
 		@Valid @RequestBody EventUpdateRequestDto eventDto) {
 		tokenService.validTokenAuthority(token);
 		return new Response<>(eventService.editEventNotImage(eventDto), HttpStatus.OK);
+	}
+
+	@DeleteMapping("/{id}")
+	public Response<?> deleteEventOne(@RequestHeader("TOKEN") final String token,
+		@NotNull @PathVariable final Long id) {
+		tokenService.validTokenAuthority(token);
+		return new Response<>(eventService.deleteEventOne(id), HttpStatus.OK);
 	}
 
 }
