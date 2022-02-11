@@ -23,6 +23,9 @@ public class QnaRequestDto {
 	@NotEmpty
 	private String phoneNumber;
 
+	@NotEmpty
+	private String name;
+
 	@Email
 	@NotEmpty
 	private String email;
