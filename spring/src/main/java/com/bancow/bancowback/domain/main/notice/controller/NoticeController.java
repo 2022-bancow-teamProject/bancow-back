@@ -32,53 +32,39 @@ public class NoticeController {
 	private final NoticeService noticeService;
 
 	@GetMapping("/{id}")
-	public Response<Notice> getNotice(@PathVariable Long id, @RequestHeader("TOKEN") String token) {
+	public Response<Notice> getNotice(@RequestHeader("TOKEN") String token, @PathVariable Long id) {
 		Notice notice = noticeService.getNotice(token, id);
 		return new Response<>(notice, HttpStatus.OK);
 	}
 
 	@GetMapping
-	public Response<Page<Notice>> getNoticePaging(@RequestHeader("TOKEN") String token, @RequestParam int page){
+	public Response<Page<Notice>> getNoticePaging(@RequestHeader("TOKEN") String token, @RequestParam int page) {
 		Page<Notice> pagingNotice = noticeService.getNoticePaging(page, token);
 		return new Response<>(pagingNotice, HttpStatus.OK);
 	}
 
 	@PostMapping("/add")
-	public Response<Notice> addNotice(@RequestBody @Valid NoticeRequestDto noticeRequestDto) {
-		Notice result = noticeService.addNotice(noticeRequestDto);
+	public Response<Notice> addNotice(@RequestHeader("TOKEN") String token, @RequestBody @Valid NoticeRequestDto noticeRequestDto) {
+		Notice result = noticeService.addNotice(token, noticeRequestDto);
 		return new Response<>(result, HttpStatus.OK);
 	}
-
 
 	@DeleteMapping("/delete/{id}")
-	public Response<?> deleteNotice(@PathVariable Long id) {
-
-		ServiceResult result = noticeService.deleteNotice(id);
-		if(!result.isResult()){
-			return new Response<>(result, HttpStatus.BAD_REQUEST);
-		}
+	public Response<?> deleteNotice(@RequestHeader("TOKEN") String token, @PathVariable Long id) {
+		ServiceResult result = noticeService.deleteNotice(token, id);
 		return new Response<>(result, HttpStatus.OK);
 	}
-
 
 	@PostMapping("/delete")
-	public Response<?> deleteNoticeList(@RequestBody NoticeDeleteListDto noticeDeleteList){
-
-		ServiceResult result = noticeService.deleteNoticeList(noticeDeleteList);
-		if(!result.isResult()){
-			return new Response<>(result, HttpStatus.BAD_REQUEST);
-		}
+	public Response<?> deleteNoticeList(@RequestHeader("TOKEN") String token, @RequestBody NoticeDeleteListDto noticeDeleteList){
+		ServiceResult result = noticeService.deleteNoticeList(token, noticeDeleteList);
 		return new Response<>(result, HttpStatus.OK);
 	}
 
-
 	@PutMapping("/update/{id}")
-	public Response<?> updateNotice(@PathVariable Long id, @RequestBody NoticeRequestDto noticeInput){
+	public Response<?> updateNotice(@RequestHeader("TOKEN") String token, @PathVariable Long id, @RequestBody NoticeRequestDto noticeInput){
 
-		ServiceResult result = noticeService.updateNotice(id, noticeInput);
-		if(!result.isResult()){
-			return new Response<>(result, HttpStatus.BAD_REQUEST);
-		}
+		ServiceResult result = noticeService.updateNotice(token, id, noticeInput);
 		return new Response<>(result, HttpStatus.OK);
 	}
 

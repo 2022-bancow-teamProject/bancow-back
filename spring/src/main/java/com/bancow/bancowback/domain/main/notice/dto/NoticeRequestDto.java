@@ -1,8 +1,11 @@
 package com.bancow.bancowback.domain.main.notice.dto;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import com.bancow.bancowback.domain.main.notice.entity.NoticeCategory;
+import com.bancow.bancowback.domain.manager.entity.Manager;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,18 +20,19 @@ import lombok.Setter;
 @Setter
 public class NoticeRequestDto {
 
-	@NotBlank(message = "카테고리를 선택해주세요.")
+	@NotNull
 	private NoticeCategory noticeCategory;
 
+	@NotEmpty
 	private String username;
 
-	@NotBlank(message = "제목을 입력해주세요.")
+	@NotEmpty
 	private String title;
 
-	@NotBlank(message = "내용을 입력해주세요.")
+	@NotEmpty
 	private String message;
 
-	@NotBlank(message = "공개여부를 선택해주세요.")
+	@NotNull
 	private boolean status;
 
 }
