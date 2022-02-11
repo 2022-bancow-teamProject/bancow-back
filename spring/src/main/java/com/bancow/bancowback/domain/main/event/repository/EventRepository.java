@@ -6,7 +6,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.bancow.bancowback.domain.main.event.entity.Event;
 
+
 public interface EventRepository extends JpaRepository<Event, Long> {
 
 	List<Event> findByStatus(boolean b);
+
+	List<Event> findByIdIn(List<Long> id);
 }
