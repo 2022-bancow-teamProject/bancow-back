@@ -320,19 +320,19 @@ include::{snippets}/manager-controller-test/authentication-password/response-fie
 [[팝업-생성]]
 === 팝업 생성
 ==== Curl Request
-include::{snippets}/popup-controller-test/add-Popup/curl-request.adoc[]
+include::{snippets}/popup-controller-test/add-popup/curl-request.adoc[]
 ==== Http Response
-include::{snippets}/popup-controller-test/add-Popup/http-response.adoc[]
+include::{snippets}/popup-controller-test/add-popup/http-response.adoc[]
 ==== Httpie Request
-include::{snippets}/popup-controller-test/add-Popup/httpie-request.adoc[]
+include::{snippets}/popup-controller-test/add-popup/httpie-request.adoc[]
 ==== Request Part Popup Request Body
-include::{snippets}/popup-controller-test/add-Popup/request-part-popup_request-body.adoc[]
+include::{snippets}/popup-controller-test/add-popup/request-part-popup_request-body.adoc[]
 ==== Request Part Popup Request Fields
-include::{snippets}/popup-controller-test/add-Popup/request-part-popup_request-fields.adoc[]
+include::{snippets}/popup-controller-test/add-popup/request-part-popup_request-fields.adoc[]
 ==== Request Parts
-include::{snippets}/popup-controller-test/add-Popup/request-parts.adoc[]
+include::{snippets}/popup-controller-test/add-popup/request-parts.adoc[]
 ==== Response Body
-include::{snippets}/popup-controller-test/add-Popup/response-body.adoc[]
+include::{snippets}/popup-controller-test/add-popup/response-body.adoc[]
 
 [[팝업-상세-페이지]]
 === 팝업 상세 페이지
@@ -388,38 +388,38 @@ include::{snippets}/popup-controller-test/get-popup/response-fields.adoc[]
 [[팝업-수정]]
 === 팝업 수정 이미지 있을 경우
 ==== Curl Request
-include::{snippets}/popup-controller-test/edit-Popup-Image/curl-request.adoc[]
+include::{snippets}/popup-controller-test/edit-popup-image/curl-request.adoc[]
 ==== Http Response
-include::{snippets}/popup-controller-test/edit-Popup-Image/http-response.adoc[]
+include::{snippets}/popup-controller-test/edit-popup-image/http-response.adoc[]
 ==== Httpie Request
-include::{snippets}/popup-controller-test/edit-Popup-Image/httpie-request.adoc[]
+include::{snippets}/popup-controller-test/edit-popup-image/httpie-request.adoc[]
 ==== Request Part Popup Request Body
-include::{snippets}/popup-controller-test/edit-Popup-Image/request-part-popup_request-body.adoc[]
+include::{snippets}/popup-controller-test/edit-popup-image/request-part-popup_request-body.adoc[]
 ==== Request Part Popup Request Fields
-include::{snippets}/popup-controller-test/edit-Popup-Image/request-part-popup_request-fields.adoc[]
+include::{snippets}/popup-controller-test/edit-popup-image/request-part-popup_request-fields.adoc[]
 ==== Request Parts
-include::{snippets}/popup-controller-test/edit-Popup-Image/request-parts.adoc[]
+include::{snippets}/popup-controller-test/edit-popup-image/request-parts.adoc[]
 ==== Response Body
-include::{snippets}/popup-controller-test/edit-Popup-Image/response-body.adoc[]
+include::{snippets}/popup-controller-test/edit-popup-image/response-body.adoc[]
 
 [[팝업-수정]]
 === 팝업 수정 이미지 없을 경우
 ==== Curl Request
-include::{snippets}/popup-controller-test/edit-Popup-Not-Image/curl-request.adoc[]
+include::{snippets}/popup-controller-test/edit-popup-not-image/curl-request.adoc[]
 ==== Http Response
-include::{snippets}/popup-controller-test/edit-Popup-Not-Image/http-response.adoc[]
+include::{snippets}/popup-controller-test/edit-popup-not-image/http-response.adoc[]
 ==== Httpie Request
-include::{snippets}/popup-controller-test/edit-Popup-Not-Image/httpie-request.adoc[]
+include::{snippets}/popup-controller-test/edit-popup-not-image/httpie-request.adoc[]
 ==== Request Body
-include::{snippets}/popup-controller-test/edit-Popup-Not-Image/request-body.adoc[]
+include::{snippets}/popup-controller-test/edit-popup-not-image/request-body.adoc[]
 ==== Request Fields
-include::{snippets}/popup-controller-test/edit-Popup-Not-Image/request-fields.adoc[]
+include::{snippets}/popup-controller-test/edit-popup-not-image/request-fields.adoc[]
 ==== Request headers
-include::{snippets}/popup-controller-test/edit-Popup-Not-Image/request-headers.adoc[]
+include::{snippets}/popup-controller-test/edit-popup-not-image/request-headers.adoc[]
 ==== Response Body
-include::{snippets}/popup-controller-test/edit-Popup-Not-Image/response-body.adoc[]
+include::{snippets}/popup-controller-test/edit-popup-not-image/response-body.adoc[]
 ==== Response Fields
-include::{snippets}/popup-controller-test/edit-Popup-Not-Image/response-fields.adoc[]
+include::{snippets}/popup-controller-test/edit-popup-not-image/response-fields.adoc[]
 
 [[팝업-한개만-삭제]]
 === 팝업 한개만 삭제
@@ -443,19 +443,19 @@ include::{snippets}/popup-controller-test/delete-popup-one/response-fields.adoc[
 [[팝업-선택-삭제]]
 === 팝업 선택 삭제
 ==== Curl Request
-include::{snippets}/popup-controller-test/delete-popup-List/curl-request.adoc[]
+include::{snippets}/popup-controller-test/delete-popup-list/curl-request.adoc[]
 ==== Http Request
-include::{snippets}/popup-controller-test/delete-popup-List/http-request.adoc[]
+include::{snippets}/popup-controller-test/delete-popup-list/http-request.adoc[]
 ==== Http Response
-include::{snippets}/popup-controller-test/delete-popup-List/http-response.adoc[]
+include::{snippets}/popup-controller-test/delete-popup-list/http-response.adoc[]
 ==== Httpie Request
-include::{snippets}/popup-controller-test/delete-popup-List/httpie-request.adoc[]
+include::{snippets}/popup-controller-test/delete-popup-list/httpie-request.adoc[]
 ==== Request Header
-include::{snippets}/popup-controller-test/delete-popup-List/request-headers.adoc[]
+include::{snippets}/popup-controller-test/delete-popup-list/request-headers.adoc[]
 ==== Response Body
-include::{snippets}/popup-controller-test/delete-popup-List/response-body.adoc[]
+include::{snippets}/popup-controller-test/delete-popup-list/response-body.adoc[]
 ==== Response Fields
-include::{snippets}/popup-controller-test/delete-popup-List/response-fields.adoc[]
+include::{snippets}/popup-controller-test/delete-popup-list/response-fields.adoc[]
 
 [[Qna]]
 == Qna
@@ -711,38 +711,38 @@ include::{snippets}/event-controller-test/get-event/response-fields.adoc[]
 [[이벤트-수정]]
 === 이벤트 수정 이미지 있을 경우
 ==== Curl Request
-include::{snippets}/event-controller-test/edit-event-Image/curl-request.adoc[]
+include::{snippets}/event-controller-test/edit-event-image/curl-request.adoc[]
 ==== Http Response
-include::{snippets}/event-controller-test/edit-event-Image/http-response.adoc[]
+include::{snippets}/event-controller-test/edit-event-image/http-response.adoc[]
 ==== Httpie Request
-include::{snippets}/event-controller-test/edit-event-Image/httpie-request.adoc[]
+include::{snippets}/event-controller-test/edit-event-image/httpie-request.adoc[]
 ==== Request Part event Request Body
-include::{snippets}/event-controller-test/edit-event-Image/request-part-event_request-body.adoc[]
+include::{snippets}/event-controller-test/edit-event-image/request-part-event_request-body.adoc[]
 ==== Request Part event Request Fields
-include::{snippets}/event-controller-test/edit-event-Image/request-part-event_request-fields.adoc[]
+include::{snippets}/event-controller-test/edit-event-image/request-part-event_request-fields.adoc[]
 ==== Request Parts
-include::{snippets}/event-controller-test/edit-event-Image/request-parts.adoc[]
+include::{snippets}/event-controller-test/edit-event-image/request-parts.adoc[]
 ==== Response Body
-include::{snippets}/event-controller-test/edit-event-Image/response-body.adoc[]
+include::{snippets}/event-controller-test/edit-event-image/response-body.adoc[]
 
 [[이벤트-수정]]
 === 이벤트 수정 이미지 없을 경우
 ==== Curl Request
-include::{snippets}/event-controller-test/edit-event-Not-Image/curl-request.adoc[]
+include::{snippets}/event-controller-test/edit-event-not-image/curl-request.adoc[]
 ==== Http Response
-include::{snippets}/event-controller-test/edit-event-Not-Image/http-response.adoc[]
+include::{snippets}/event-controller-test/edit-event-not-image/http-response.adoc[]
 ==== Httpie Request
-include::{snippets}/event-controller-test/edit-event-Not-Image/httpie-request.adoc[]
+include::{snippets}/event-controller-test/edit-event-not-image/httpie-request.adoc[]
 ==== Request Body
-include::{snippets}/event-controller-test/edit-event-Not-Image/request-body.adoc[]
+include::{snippets}/event-controller-test/edit-event-not-image/request-body.adoc[]
 ==== Request Fields
-include::{snippets}/event-controller-test/edit-event-Not-Image/request-fields.adoc[]
+include::{snippets}/event-controller-test/edit-event-not-image/request-fields.adoc[]
 ==== Request headers
-include::{snippets}/event-controller-test/edit-event-Not-Image/request-headers.adoc[]
+include::{snippets}/event-controller-test/edit-event-not-image/request-headers.adoc[]
 ==== Response Body
-include::{snippets}/event-controller-test/edit-event-Not-Image/response-body.adoc[]
+include::{snippets}/event-controller-test/edit-event-not-image/response-body.adoc[]
 ==== Response Fields
-include::{snippets}/event-controller-test/edit-event-Not-Image/response-fields.adoc[]
+include::{snippets}/event-controller-test/edit-event-not-image/response-fields.adoc[]
 
 [[이벤트-한개만-삭제]]
 === 이벤트 한개만 삭제
@@ -762,3 +762,127 @@ include::{snippets}/event-controller-test/delete-event-one/path-parameters.adoc[
 include::{snippets}/event-controller-test/delete-event-one/response-body.adoc[]
 ==== Response Fields
 include::{snippets}/event-controller-test/delete-event-one/response-fields.adoc[]
+
+
+[[공지사항-등록]]
+=== 공지사항 등록
+==== Curl Request
+include::{snippets}/notice-controller-test/add-notice/curl-request.adoc[]
+==== Http Request
+include::{snippets}/notice-controller-test/add-notice/http-request.adoc[]
+==== Http Response
+include::{snippets}/notice-controller-test/add-notice/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/notice-controller-test/add-notice/httpie-request.adoc[]
+==== Request Body
+include::{snippets}/notice-controller-test/add-notice/request-body.adoc[]
+==== Request Fields
+include::{snippets}/notice-controller-test/add-notice/request-fields.adoc[]
+==== Request Headers
+include::{snippets}/notice-controller-test/add-notice/request-headers.adoc[]
+==== Response Body
+include::{snippets}/notice-controller-test/add-notice/response-body.adoc[]
+==== Response Fields
+include::{snippets}/notice-controller-test/add-notice/response-fields.adoc[]
+
+[[공지사항-단일-삭제]]
+=== 공지사항 단일 삭제
+==== Curl Request
+include::{snippets}/notice-controller-test/delete-notice/curl-request.adoc[]
+==== Http Request
+include::{snippets}/notice-controller-test/delete-notice/http-request.adoc[]
+==== Http Response
+include::{snippets}/notice-controller-test/delete-notice/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/notice-controller-test/delete-notice/httpie-request.adoc[]
+==== Path Parameters
+include::{snippets}/notice-controller-test/delete-notice/path-parameters.adoc[]
+==== Request Headers
+include::{snippets}/notice-controller-test/delete-notice/request-headers.adoc[]
+==== Response Body
+include::{snippets}/notice-controller-test/delete-notice/response-body.adoc[]
+==== Response Fields
+include::{snippets}/notice-controller-test/delete-notice/response-fields.adoc[]
+
+[[공지사항-다중-삭제]]
+=== 공지사항 다중 삭제
+==== Curl Request
+include::{snippets}/notice-controller-test/delete-notice-list/curl-request.adoc[]
+==== Http Request
+include::{snippets}/notice-controller-test/delete-notice-list/http-request.adoc[]
+==== Http Response
+include::{snippets}/notice-controller-test/delete-notice-list/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/notice-controller-test/delete-notice-list/httpie-request.adoc[]
+==== Request Body
+include::{snippets}/notice-controller-test/delete-notice-list/request-body.adoc[]
+==== Request Fields
+include::{snippets}/notice-controller-test/delete-notice-list/request-fields.adoc[]
+==== Request Headers
+include::{snippets}/notice-controller-test/delete-notice-list/request-headers.adoc[]
+==== Response Body
+include::{snippets}/notice-controller-test/delete-notice-list/response-body.adoc[]
+==== Response Fields
+include::{snippets}/notice-controller-test/delete-notice-list/response-fields.adoc[]
+
+
+[[공지사항-단일-가져오기]]
+=== 공지사항 단일 가져오기
+==== Curl Request
+include::{snippets}/notice-controller-test/get-notice/curl-request.adoc[]
+==== Http Request
+include::{snippets}/notice-controller-test/get-notice/http-request.adoc[]
+==== Http Response
+include::{snippets}/notice-controller-test/get-notice/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/notice-controller-test/get-notice/httpie-request.adoc[]
+==== Path Parameters
+include::{snippets}/notice-controller-test/get-notice/path-parameters.adoc[]
+==== Request Header
+include::{snippets}/notice-controller-test/get-notice/request-headers.adoc[]
+==== Response Body
+include::{snippets}/notice-controller-test/get-notice/response-body.adoc[]
+==== Response Fields
+include::{snippets}/notice-controller-test/get-notice/response-fields.adoc[]
+
+
+[[공지사항-다중-가져오기]]
+=== 공지사항 다중 가져오기
+==== Curl Request
+include::{snippets}/notice-controller-test/get-notice-paging/curl-request.adoc[]
+==== Http Request
+include::{snippets}/notice-controller-test/get-notice-paging/http-request.adoc[]
+==== Http Response
+include::{snippets}/notice-controller-test/get-notice-paging/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/notice-controller-test/get-notice-paging/httpie-request.adoc[]
+==== Request Headers
+include::{snippets}/notice-controller-test/get-notice-paging/request-headers.adoc[]
+==== Request Parameters
+include::{snippets}/notice-controller-test/get-notice-paging/request-parameters.adoc[]
+==== Response Body
+include::{snippets}/notice-controller-test/get-notice-paging/response-body.adoc[]
+==== Response Fields
+include::{snippets}/notice-controller-test/get-notice-paging/response-fields.adoc[]
+
+
+[[공지사항-수정]]
+=== 공지사항 수정
+==== Curl Request
+include::{snippets}/notice-controller-test/update-notice/curl-request.adoc[]
+==== Http Request
+include::{snippets}/notice-controller-test/update-notice/http-request.adoc[]
+==== Http Response
+include::{snippets}/notice-controller-test/update-notice/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/notice-controller-test/update-notice/httpie-request.adoc[]
+==== Request Body
+include::{snippets}/notice-controller-test/update-notice/request-body.adoc[]
+==== Request Fields
+include::{snippets}/notice-controller-test/update-notice/request-fields.adoc[]
+==== Request Headers
+include::{snippets}/notice-controller-test/update-notice/request-headers.adoc[]
+==== Response Body
+include::{snippets}/notice-controller-test/update-notice/response-body.adoc[]
+==== Response Fields
+include::{snippets}/notice-controller-test/update-notice/response-fields.adoc[]
