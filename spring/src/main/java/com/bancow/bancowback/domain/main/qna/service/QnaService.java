@@ -75,4 +75,12 @@ public class QnaService {
 
 		return ServiceResult.success("QnA 답변 이메일 보내기를 성공하였습니다.");
 	}
+
+	public Integer countQna() {
+		return qnaRepository.countQna();
+	}
+
+	public Integer uncheckedQna() {
+		return qnaRepository.uncheckedQna();
+	}
 }
