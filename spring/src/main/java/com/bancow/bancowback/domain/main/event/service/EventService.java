@@ -64,4 +64,20 @@ public class EventService {
 		eventRepository.delete(getEventId(id));
 		return ServiceResult.success("이벤트가 삭제 됐습니다.");
 	}
+
+	public Object deleteEventList(List<Long> id) {
+		List<Event> deleteEventList = eventRepository.findByIdIn(id);
+
+		if (deleteEventList.size() == 0) {
+			throw new EventException(ErrorCode.NOT_FOUND_EVENT, "해당 이벤트 없음");
+		}
+
+		deleteEventList
+			.stream().forEach(e -> {
+				eventRepository.delete(e);
+			});
+
+		return ServiceResult.success("이벤트 삭제 성공.");
+
+	}
 }

@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.bancow.bancowback.domain.common.dto.Response;
 import com.bancow.bancowback.domain.common.util.token.service.TokenService;
 import com.bancow.bancowback.domain.main.event.dto.EventAddRequestDto;
+import com.bancow.bancowback.domain.main.event.dto.EventDeleteRequestDto;
 import com.bancow.bancowback.domain.main.event.dto.EventInfo;
 import com.bancow.bancowback.domain.main.event.dto.EventUpdateRequestDto;
 import com.bancow.bancowback.domain.main.event.service.EventService;
@@ -75,6 +76,13 @@ public class EventController {
 		@NotNull @PathVariable final Long id) {
 		tokenService.validTokenAuthority(token);
 		return new Response<>(eventService.deleteEventOne(id), HttpStatus.OK);
+	}
+
+	@DeleteMapping("/delete")
+	public Response<?> deleteEventList(@RequestHeader("TOKEN") final String token,
+		@NotNull @RequestBody final EventDeleteRequestDto dto) {
+		tokenService.validTokenAuthority(token);
+		return new Response<>(eventService.deleteEventList(dto.getId()), HttpStatus.OK);
 	}
 
 }
