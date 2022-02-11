@@ -47,4 +47,17 @@ public interface EventMapper {
 			.createDate(event.getCreateDate())
 			.build();
 	}
+
+	default public Event toUpdateNotImageEntity(Event event, EventUpdateRequestDto eventUpdateRequestDto){
+		return Event.builder()
+			.id(event.getId())
+			.title(eventUpdateRequestDto.getTitle())
+			.startDate(eventUpdateRequestDto.getStartDate())
+			.endDate(eventUpdateRequestDto.getEndDate())
+			.image(event.getImage())
+			.manager(event.getManager())
+			.status(eventUpdateRequestDto.getStatus())
+			.createDate(event.getCreateDate())
+			.build();
+	}
 }

@@ -51,6 +51,12 @@ public class EventService {
 		Event event = eventMapper.toUpdateEntity(getEventId(eventInfo.getDto().getId()), eventInfo.getDto(),
 			eventInfo.getImagePath());
 		eventRepository.save(event);
-		return ServiceResult.success("이벤트가 업데이트가 되었습니다.");
+		return ServiceResult.success("이벤트가 업데이트 됐습니다.");
+	}
+
+	public Object editEventNotImage(EventUpdateRequestDto eventDto) {
+		Event event = eventMapper.toUpdateNotImageEntity(getEventId(eventDto.getId()), eventDto);
+		eventRepository.save(event);
+		return ServiceResult.success("이벤트가 업데이트 됐습니다.");
 	}
 }

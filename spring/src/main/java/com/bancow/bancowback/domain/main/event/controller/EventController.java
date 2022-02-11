@@ -6,7 +6,9 @@ import javax.validation.Valid;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestPart;
@@ -57,4 +59,12 @@ public class EventController {
 			ImageUploadPath);
 		return new Response<>(eventService.editEventImage(eventInfo), HttpStatus.OK);
 	}
+
+	@PatchMapping("/edit")
+	public Response<?> editEventNotImage(@RequestHeader("TOKEN") final String token,
+		@Valid @RequestBody EventUpdateRequestDto eventDto) {
+		tokenService.validTokenAuthority(token);
+		return new Response<>(eventService.editEventNotImage(eventDto), HttpStatus.OK);
+	}
+
 }
