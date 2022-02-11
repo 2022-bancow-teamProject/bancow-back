@@ -1,4 +1,4 @@
-package com.bancow.bancowback.domain.main.farmqna.dto;
+package com.bancow.bancowback.domain.main.qna.dto;
 
 import javax.validation.constraints.NotBlank;
 
@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class FarmQnaReplyDto {
+public class QnaReplyDto {
 
 	@NotBlank
 	@JsonProperty("mail_title")

@@ -11,6 +11,8 @@ import com.bancow.bancowback.domain.common.util.token.repository.TokenRepository
 import com.bancow.bancowback.domain.common.util.token.service.TokenService;
 import com.bancow.bancowback.domain.main.farmqna.dto.FarmQnaReplyDto;
 import com.bancow.bancowback.domain.main.farmqna.entity.FarmQna;
+import com.bancow.bancowback.domain.main.qna.dto.QnaReplyDto;
+import com.bancow.bancowback.domain.main.qna.entity.Qna;
 import com.bancow.bancowback.domain.manager.entity.Manager;
 
 import lombok.RequiredArgsConstructor;
@@ -54,6 +56,20 @@ public class MailService {
 			String contents = e.getContents().replaceAll("\\{ANSWER\\}", dto.getAnswer());
 
 			mailComponent.send(fromEmail, fromUserName, farmQna.getEmail(), farmQna.getName(), title, contents);
+		});
+	}
+
+	public void sendQnaReplyMail(Qna qna, QnaReplyDto dto, String templateId) {
+
+		Optional<MailTemplate> optionalMailTemplate = mailTemplateRepository.findByTemplateId(templateId);
+		optionalMailTemplate.ifPresent(e -> {
+			String fromEmail = e.getSendEmail();
+			String fromUserName = e.getSendUserName();
+			String title = e.getTitle().replaceAll("\\{USER_NAME\\}", qna.getName())
+				.replaceAll("\\{TITLE\\}", dto.getMailTitle());
+			String contents = e.getContents().replaceAll("\\{ANSWER\\}", dto.getAnswer());
+
+			mailComponent.send(fromEmail, fromUserName, qna.getEmail(), qna.getName(), title, contents);
 		});
 	}
 }

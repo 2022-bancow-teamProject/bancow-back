@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.bancow.bancowback.domain.common.dto.Response;
 import com.bancow.bancowback.domain.common.dto.ServiceResult;
+import com.bancow.bancowback.domain.main.qna.dto.QnaReplyDto;
 import com.bancow.bancowback.domain.main.qna.dto.QnaRequestDto;
 import com.bancow.bancowback.domain.main.qna.entity.Qna;
 import com.bancow.bancowback.domain.main.qna.service.QnaService;
@@ -50,6 +51,13 @@ public class QnaController {
 	@PostMapping("/add")
 	public Response<Qna> addQna(@RequestBody @Valid QnaRequestDto qnaRequestDto) {
 		Qna result = qnaService.addQna(qnaRequestDto);
+		return new Response<>(result, HttpStatus.OK);
+	}
+
+	@PostMapping("/{id}/reply")
+	public Response<ServiceResult> replyQna(@RequestHeader("TOKEN") String token, @PathVariable Long id,
+		@RequestBody QnaReplyDto dto) {
+		ServiceResult result = qnaService.replyQna(dto, token, id);
 		return new Response<>(result, HttpStatus.OK);
 	}
 }

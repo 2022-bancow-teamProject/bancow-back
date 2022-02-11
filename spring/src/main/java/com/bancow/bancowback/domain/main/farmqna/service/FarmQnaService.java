@@ -86,6 +86,7 @@ public class FarmQnaService {
 		mailService.sendReplyMail(farmQna, dto, "FARM_QNA_REPLY");
 
 		FarmQnaReply farmQnaReply = farmQnaReplyMapper.toEntity(dto, farmQna, tokenService.getManager(token));
+		farmQna.setChecked(true);
 		farmQnaReplyRepository.save(farmQnaReply);
 
 		return ServiceResult.success("농가입점 답변 이메일 보내기를 성공하였습니다.");
