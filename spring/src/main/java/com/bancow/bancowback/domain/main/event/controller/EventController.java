@@ -17,6 +17,7 @@ import com.bancow.bancowback.domain.common.dto.Response;
 import com.bancow.bancowback.domain.common.util.token.service.TokenService;
 import com.bancow.bancowback.domain.main.event.dto.EventAddRequestDto;
 import com.bancow.bancowback.domain.main.event.dto.EventInfo;
+import com.bancow.bancowback.domain.main.event.dto.EventUpdateRequestDto;
 import com.bancow.bancowback.domain.main.event.service.EventService;
 
 import com.bancow.bancowback.infra.ncp.NcpService;
@@ -42,8 +43,18 @@ public class EventController {
 	}
 
 	@GetMapping("/distribute")
-	public Response<?> getPopupDistribute() {
+	public Response<?> getEventDistribute() {
 		return new Response<>(eventService.getEventDistribute(), HttpStatus.OK);
 	}
 
+	@PostMapping("/edit")
+	public Response<?> editEventImage(@RequestHeader("TOKEN") final String token,
+		@Valid @RequestPart("event_request") EventUpdateRequestDto dto,
+		@RequestPart(value = "event_image", required = false) MultipartFile eventImage) throws IOException {
+		tokenService.validTokenAuthority(token);
+		String ImageUploadPath = ncpService.objectUpload("event", eventImage);
+		EventInfo eventInfo = new EventInfo<EventUpdateRequestDto>(tokenService.getManager(token), dto,
+			ImageUploadPath);
+		return new Response<>(eventService.editEventImage(eventInfo), HttpStatus.OK);
+	}
 }

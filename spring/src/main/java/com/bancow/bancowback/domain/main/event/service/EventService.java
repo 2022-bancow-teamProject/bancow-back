@@ -12,6 +12,7 @@ import com.bancow.bancowback.domain.common.exception.EventException;
 import com.bancow.bancowback.domain.main.event.dto.EventAddRequestDto;
 import com.bancow.bancowback.domain.main.event.dto.EventDistributeResponseDto;
 import com.bancow.bancowback.domain.main.event.dto.EventInfo;
+import com.bancow.bancowback.domain.main.event.dto.EventUpdateRequestDto;
 import com.bancow.bancowback.domain.main.event.entity.Event;
 import com.bancow.bancowback.domain.main.event.mapper.EventMapper;
 import com.bancow.bancowback.domain.main.event.repository.EventRepository;
@@ -34,10 +35,22 @@ public class EventService {
 	public List<EventDistributeResponseDto> getEventDistribute() {
 		List<Event> eventList = eventRepository.findByStatus(true);
 
-		if(eventList.size() == 0){
+		if (eventList.size() == 0) {
 			throw new EventException(ErrorCode.NOT_FOUND_EVENT, "이벤트 없음");
 		}
 
 		return eventList.stream().map(event -> eventMapper.toDistributeResponseDto(event)).collect(Collectors.toList());
+	}
+
+	public Event getEventId(Long id) {
+		return eventRepository.findById(id)
+			.orElseThrow(() -> new EventException(ErrorCode.NOT_FOUND_EVENT, "이벤트 없음"));
+	}
+
+	public ServiceResult editEventImage(EventInfo<EventUpdateRequestDto> eventInfo) {
+		Event event = eventMapper.toUpdateEntity(getEventId(eventInfo.getDto().getId()), eventInfo.getDto(),
+			eventInfo.getImagePath());
+		eventRepository.save(event);
+		return ServiceResult.success("이벤트가 업데이트가 되었습니다.");
 	}
 }
