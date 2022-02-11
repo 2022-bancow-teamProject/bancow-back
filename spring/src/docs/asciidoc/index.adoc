@@ -763,8 +763,8 @@ include::{snippets}/event-controller-test/delete-event-one/response-body.adoc[]
 ==== Response Fields
 include::{snippets}/event-controller-test/delete-event-one/response-fields.adoc[]
 
-[[팝업-선택-삭제]]
-=== 팝업 선택 삭제
+[[이벤트-선택-삭제]]
+=== 이벤트 선택 삭제
 ==== Curl Request
 include::{snippets}/event-controller-test/delete-event-List/curl-request.adoc[]
 ==== Http Request
@@ -905,3 +905,24 @@ include::{snippets}/notice-controller-test/update-notice/request-headers.adoc[]
 include::{snippets}/notice-controller-test/update-notice/response-body.adoc[]
 ==== Response Fields
 include::{snippets}/notice-controller-test/update-notice/response-fields.adoc[]
+
+
+[[차트]]
+== 차트
+
+[[QnA-농가입점-갯수]]
+=== QNA 농가입점 갯수
+==== Curl Request
+include::{snippets}/chart-controller-test/qna-num/curl-request.adoc[]
+==== Http Request
+include::{snippets}/chart-controller-test/qna-num/http-request.adoc[]
+==== Http Response
+include::{snippets}/chart-controller-test/qna-num/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/chart-controller-test/qna-num/httpie-request.adoc[]
+==== Request Headers
+include::{snippets}/chart-controller-test/qna-num/request-headers.adoc[]
+==== Response Body
+include::{snippets}/chart-controller-test/qna-num/response-body.adoc[]
+==== Response Fields
+include::{snippets}/chart-controller-test/qna-num/response-fields.adoc[]
