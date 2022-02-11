@@ -38,7 +38,7 @@ public class NoticeController {
 	}
 
 	@GetMapping
-	public Response<Page<Notice>> getNoticePaging(@RequestParam int page, @RequestHeader("TOKEN") String token){
+	public Response<Page<Notice>> getNoticePaging(@RequestHeader("TOKEN") String token, @RequestParam int page){
 		Page<Notice> pagingNotice = noticeService.getNoticePaging(page, token);
 		return new Response<>(pagingNotice, HttpStatus.OK);
 	}

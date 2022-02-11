@@ -40,6 +40,7 @@ public class Event extends BaseTimeEntity {
 
 	@Column(name = "start_date", nullable = false)
 	private LocalDate startDate;
+
 	@Column(name = "end_date", nullable = false)
 	private LocalDate endDate;
 

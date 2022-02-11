@@ -27,6 +27,9 @@ public enum ErrorCode {
 
 	// Notice
 	NOT_FOUND_NOTICE("T001", "Not Found Notice"),
+
+	// Event
+	NOT_FOUND_EVENT("E001", "Not Found Event"),
 	;
 	private final String code;
 	private final String message;
