@@ -315,7 +315,7 @@ include::{snippets}/manager-controller-test/authentication-password/response-bod
 include::{snippets}/manager-controller-test/authentication-password/response-fields.adoc[]
 
 [[Popup]]
-== Popup
+== popup
 
 [[팝업-생성]]
 === 팝업 생성
@@ -687,3 +687,22 @@ include::{snippets}/event-controller-test/edit-event-Image/request-part-event_re
 include::{snippets}/event-controller-test/edit-event-Image/request-parts.adoc[]
 ==== Response Body
 include::{snippets}/event-controller-test/edit-event-Image/response-body.adoc[]
+
+[[이벤트-수정]]
+=== 이벤트 수정 이미지 없을 경우
+==== Curl Request
+include::{snippets}/event-controller-test/edit-event-Not-Image/curl-request.adoc[]
+==== Http Response
+include::{snippets}/event-controller-test/edit-event-Not-Image/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/event-controller-test/edit-event-Not-Image/httpie-request.adoc[]
+==== Request Body
+include::{snippets}/event-controller-test/edit-event-Not-Image/request-body.adoc[]
+==== Request Fields
+include::{snippets}/event-controller-test/edit-event-Not-Image/request-fields.adoc[]
+==== Request headers
+include::{snippets}/event-controller-test/edit-event-Not-Image/request-headers.adoc[]
+==== Response Body
+include::{snippets}/event-controller-test/edit-event-Not-Image/response-body.adoc[]
+==== Response Fields
+include::{snippets}/event-controller-test/edit-event-Not-Image/response-fields.adoc[]
