@@ -62,4 +62,30 @@ class EventControllerTest extends TestSupport {
 				)
 			));
 	}
+
+	@Test
+	@Transactional
+	void getEvent() throws Exception {
+		Manager adminManager = adminManagerLogin();
+		Token tokenAdmin = tokenRepository.findByManager(adminManager).get();
+
+		mockMvc.perform(
+				get("/api/event/distribute")
+
+			).andExpect(status().isOk())
+			.andDo(
+				restDocs.document(
+					responseFields(
+						fieldWithPath("data").description("결과 데이터"),
+						fieldWithPath("data[0].id").description("id"),
+						fieldWithPath("data[0].image").description("이미지"),
+						fieldWithPath("data[0].start_date").description("게시 시작 날짜"),
+						fieldWithPath("data[0].end_date").description("게시 마감 날짜"),
+						fieldWithPath("status").description("HTTP Status")
+					)
+				)
+			)
+		;
+	}
+
 }
