@@ -763,6 +763,25 @@ include::{snippets}/event-controller-test/delete-event-one/response-body.adoc[]
 ==== Response Fields
 include::{snippets}/event-controller-test/delete-event-one/response-fields.adoc[]
 
+[[팝업-선택-삭제]]
+=== 팝업 선택 삭제
+==== Curl Request
+include::{snippets}/event-controller-test/delete-event-List/curl-request.adoc[]
+==== Http Request
+include::{snippets}/event-controller-test/delete-event-List/http-request.adoc[]
+==== Http Response
+include::{snippets}/event-controller-test/delete-event-List/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/event-controller-test/delete-event-List/httpie-request.adoc[]
+==== Request Header
+include::{snippets}/event-controller-test/delete-event-List/request-headers.adoc[]
+==== Response Body
+include::{snippets}/event-controller-test/delete-event-List/response-body.adoc[]
+==== Response Fields
+include::{snippets}/event-controller-test/delete-event-List/response-fields.adoc[]
+
+[[공지사항]]
+== 공지사항
 
 [[공지사항-등록]]
 === 공지사항 등록
