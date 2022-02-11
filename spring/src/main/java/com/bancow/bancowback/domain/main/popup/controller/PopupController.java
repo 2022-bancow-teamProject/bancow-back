@@ -64,8 +64,7 @@ public class PopupController {
 	}
 
 	@GetMapping("/distribute")
-	public Response<?> getPopup(@RequestHeader("TOKEN") final String token) {
-		tokenService.validTokenAuthority(token);
+	public Response<?> getPopup() {
 		return new Response<>(popupService.getPopupDistribute(), HttpStatus.OK);
 	}
 
