@@ -4,6 +4,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
 import com.bancow.bancowback.domain.main.event.dto.EventAddRequestDto;
+import com.bancow.bancowback.domain.main.event.dto.EventDistributeResponseDto;
 import com.bancow.bancowback.domain.main.event.entity.Event;
 import com.bancow.bancowback.domain.manager.entity.Manager;
 
@@ -22,4 +23,14 @@ public interface EventMapper {
 			.status(Boolean.FALSE)
 			.build();
 	}
+
+	default public EventDistributeResponseDto toDistributeResponseDto(Event event) {
+		return EventDistributeResponseDto.builder()
+			.id(event.getId())
+			.startDate(event.getStartDate())
+			.endDate(event.getEndDate())
+			.image(event.getImage())
+			.build();
+	}
+
 }

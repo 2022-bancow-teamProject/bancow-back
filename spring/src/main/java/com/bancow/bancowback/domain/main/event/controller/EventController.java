@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.validation.Valid;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,4 +40,10 @@ public class EventController {
 		EventInfo eventInfo = new EventInfo<EventAddRequestDto>(tokenService.getManager(token), dto, ImageUploadPath);
 		return new Response<>(eventService.addEvent(eventInfo), HttpStatus.OK);
 	}
+
+	@GetMapping("/distribute")
+	public Response<?> getPopupDistribute() {
+		return new Response<>(eventService.getEventDistribute(), HttpStatus.OK);
+	}
+
 }
