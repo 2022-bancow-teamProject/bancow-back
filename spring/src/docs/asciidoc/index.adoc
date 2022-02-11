@@ -333,6 +333,8 @@ include::{snippets}/popup-controller-test/add-popup/request-part-popup_request-f
 include::{snippets}/popup-controller-test/add-popup/request-parts.adoc[]
 ==== Response Body
 include::{snippets}/popup-controller-test/add-popup/response-body.adoc[]
+==== Response Fields
+include::{snippets}/popup-controller-test/add-popup/response-fields.adoc[]
 
 [[팝업-상세-페이지]]
 === 팝업 상세 페이지
@@ -691,6 +693,8 @@ include::{snippets}/event-controller-test/add-event/request-part-event_request-f
 include::{snippets}/event-controller-test/add-event/request-parts.adoc[]
 ==== Response Body
 include::{snippets}/event-controller-test/add-event/response-body.adoc[]
+==== Response Fields
+include::{snippets}/event-controller-test/add-event/response-fields.adoc[]
 
 
 [[이벤트-배포]]
@@ -926,3 +930,27 @@ include::{snippets}/chart-controller-test/qna-num/request-headers.adoc[]
 include::{snippets}/chart-controller-test/qna-num/response-body.adoc[]
 ==== Response Fields
 include::{snippets}/chart-controller-test/qna-num/response-fields.adoc[]
+
+
+[[농가소개]]
+== 농가소개
+
+[[농가-생성]]
+=== 농가 생성
+==== Curl Request
+include::{snippets}/farm-controller-test/add-farm/curl-request.adoc[]
+==== Http Response
+include::{snippets}/farm-controller-test/add-farm/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/farm-controller-test/add-farm/httpie-request.adoc[]
+==== Request Part Popup Request Body
+include::{snippets}/farm-controller-test/add-farm/request-part-farm_request-body.adoc[]
+==== Request Part Popup Request Fields
+include::{snippets}/farm-controller-test/add-farm/request-part-farm_request-fields.adoc[]
+==== Request Parts
+include::{snippets}/farm-controller-test/add-farm/request-parts.adoc[]
+==== Response Body
+include::{snippets}/farm-controller-test/add-farm/response-body.adoc[]
+==== Response Fields
+include::{snippets}/farm-controller-test/add-farm/response-fields.adoc[]
+
