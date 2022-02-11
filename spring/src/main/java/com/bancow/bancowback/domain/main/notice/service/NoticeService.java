@@ -1,5 +1,7 @@
 package com.bancow.bancowback.domain.main.notice.service;
 
+import static com.bancow.bancowback.domain.common.exception.ErrorCode.*;
+
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -8,11 +10,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import com.bancow.bancowback.domain.common.dto.ServiceResult;
-import com.bancow.bancowback.domain.common.exception.ErrorCode;
 import com.bancow.bancowback.domain.common.exception.NoticeException;
 import com.bancow.bancowback.domain.common.util.token.service.TokenService;
 import com.bancow.bancowback.domain.main.notice.dto.NoticeDeleteListDto;
@@ -33,12 +32,12 @@ public class NoticeService {
 	public Notice getNotice(String token, Long id) {
 		tokenService.validTokenAuthority(token);
 		Notice notice = noticeRepository.findById(id)
-			.orElseThrow(() -> new NoticeException(ErrorCode.NOT_FOUND_NOTICE, "해당 ID의 Notice를 찾을 수 없습니다."));
+			.orElseThrow(() -> new NoticeException(NOT_FOUND_NOTICE, "해당 ID의 Notice를 찾을 수 없습니다."));
 
 		return noticeRepository.save(notice);
 	}
 
-	public Page<Notice> getNoticePaging(int page, String token){
+	public Page<Notice> getNoticePaging(int page, String token) {
 		tokenService.validTokenAuthority(token);
 
 		return noticeRepository.findAll(
@@ -46,53 +45,50 @@ public class NoticeService {
 		);
 	}
 
-	public Notice addNotice(NoticeRequestDto noticeRequestDto) {
+	public Notice addNotice(String token, NoticeRequestDto noticeRequestDto) {
+		tokenService.validTokenAuthority(token);
 		Notice notice = noticeMapper.toEntity(noticeRequestDto);
 		return noticeRepository.save(notice);
 	}
 
-	public ServiceResult deleteNotice(@PathVariable Long id) {
+	public ServiceResult deleteNotice(String token, Long id) {
 
-		Optional<Notice> optionalNotice = noticeRepository.findById(id);
-		if(!optionalNotice.isPresent()){
-			return ServiceResult.fail("존재하지 않는 게시글입니다.");
-		}
-		Notice notice = optionalNotice.get();
+		tokenService.validTokenAuthority(token);
+		Notice notice = noticeRepository.findById(id)
+			.orElseThrow(() -> new NoticeException(NOT_FOUND_NOTICE, "해당 ID의 Notice를 찾을 수 없습니다."));
 
 		noticeRepository.delete(notice);
-		return ServiceResult.success("글 삭제 성공.");
+		return ServiceResult.success("Notice를 성공적으로 삭제했습니다.");
 	}
 
-
-	public ServiceResult deleteNoticeList(@RequestBody NoticeDeleteListDto noticeDeleteListInput){
+	public ServiceResult deleteNoticeList(String token, NoticeDeleteListDto noticeDeleteListInput) {
+		tokenService.validTokenAuthority(token);
 		Optional<List<Notice>> optionalNoticeList = noticeRepository.findByIdIn(noticeDeleteListInput.getIdList());
 		List<Notice> noticeList = optionalNoticeList.get();
-		if(!optionalNoticeList.isPresent()){
-			return ServiceResult.fail("존재하지 않는 게시글입니다.");
-		}
 
+		if (noticeList.size() == 0) {
+			throw new NoticeException(NOT_FOUND_NOTICE, "해당 공지사항 없음");
+		}
 		noticeList.stream().forEach(e -> {
 			noticeRepository.delete(e);
 		});
 		return ServiceResult.success("글 삭제 성공.");
-
 	}
 
+	public ServiceResult updateNotice(String token, Long id, NoticeRequestDto noticeInput) {
 
-	public ServiceResult updateNotice(@PathVariable Long id, @RequestBody NoticeRequestDto noticeInput){
+		tokenService.validTokenAuthority(token);
+		Notice notice = noticeRepository.findById(id)
+			.orElseThrow(() -> new NoticeException(NOT_FOUND_NOTICE, "해당 ID의 Notice를 찾을 수 없습니다."));
 
-		Optional<Notice> notice = noticeRepository.findById(id);
-		if(!notice.isPresent()){
-			return ServiceResult.fail("존재하지 않는 게시글입니다.");
-		}
-		notice.get().setNoticeCategory(noticeInput.getNoticeCategory());
-		notice.get().setUsername(noticeInput.getUsername());
-		notice.get().setTitle(noticeInput.getTitle());
-		notice.get().setMessage(noticeInput.getMessage());
-		notice.get().setStatus(noticeInput.isStatus());
-		notice.get().setUpdateDate(LocalDateTime.now());
+		notice.setNoticeCategory(noticeInput.getNoticeCategory());
+		notice.setUsername(noticeInput.getUsername());
+		notice.setTitle(noticeInput.getTitle());
+		notice.setMessage(noticeInput.getMessage());
+		notice.setStatus(noticeInput.isStatus());
+		notice.setUpdateDate(LocalDateTime.now());
 
-		noticeRepository.save(notice.get());
+		noticeRepository.save(notice);
 		return ServiceResult.success("글 수정 성공.");
 	}
 }
