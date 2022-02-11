@@ -88,4 +88,46 @@ class EventControllerTest extends TestSupport {
 		;
 	}
 
+	@Test
+	@Transactional
+	void editEventImage() throws Exception {
+		Manager adminManager = adminManagerLogin();
+		Token tokenAdmin = tokenRepository.findByManager(adminManager).get();
+
+		MockMultipartFile event_image = new MockMultipartFile("event_image", "bancow.png", "image/png",
+			readImage("/img/bancow.png").getBytes());
+		MockMultipartFile event_request = new MockMultipartFile("event_request", "update.json", "application/json",
+			readJson("/json/update.json").getBytes(StandardCharsets.UTF_8));
+
+		mockMvc.perform(
+				multipart("/api/event/edit")
+					.file(event_image)
+					.file(event_request)
+					.header("TOKEN", tokenAdmin.getToken())
+					.accept(MediaType.APPLICATION_JSON))
+			.andExpect(status().isOk())
+			.andDo(restDocs.document(
+				requestHeaders(
+					headerWithName("TOKEN").description("해당 로그인 유저의 토큰값")
+				),
+				requestParts(
+					partWithName("event_image").description("이미지 파일"),
+					partWithName("event_request").description("Json 파일")),
+				requestPartBody("event_request"),
+				requestPartFields("event_request",
+					fieldWithPath("id").description("번호"),
+					fieldWithPath("title").description("제목"),
+					fieldWithPath("start_date").description("게시 시작 날짜"),
+					fieldWithPath("end_date").description("게시 마감 날짜"),
+					fieldWithPath("status").description("상태 값")
+				),
+				responseFields(
+					fieldWithPath("data").description("결과 데이터"),
+					fieldWithPath("data.result").description("결과"),
+					fieldWithPath("data.message").description("메시지"),
+					fieldWithPath("status").description("HTTP Status")
+				)
+			));
+	}
+
 }
