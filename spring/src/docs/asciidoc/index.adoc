@@ -624,3 +624,24 @@ include::{snippets}/farm-qna-controller-test/delete-farm-qna-list/request-fields
 include::{snippets}/farm-qna-controller-test/delete-farm-qna-list/response-body.adoc[]
 ==== Response Fields
 include::{snippets}/farm-qna-controller-test/delete-farm-qna-list/response-fields.adoc[]
+
+
+[[Event]]
+== Event
+
+[[이벤트-생성]]
+=== 이벤트 생성
+==== Curl Request
+include::{snippets}/event-controller-test/add-event/curl-request.adoc[]
+==== Http Response
+include::{snippets}/event-controller-test/add-event/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/event-controller-test/add-event/httpie-request.adoc[]
+==== Request Part Popup Request Body
+include::{snippets}/event-controller-test/add-event/request-part-event_request-body.adoc[]
+==== Request Part Popup Request Fields
+include::{snippets}/event-controller-test/add-event/request-part-event_request-fields.adoc[]
+==== Request Parts
+include::{snippets}/event-controller-test/add-event/request-parts.adoc[]
+==== Response Body
+include::{snippets}/event-controller-test/add-event/response-body.adoc[]
