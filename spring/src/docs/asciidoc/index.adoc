@@ -49,13 +49,22 @@ Bancow;
 | Not Found Qna
 |===
 
-=== POPUP Error Code
+=== Popup Error Code
 |===
 | Error Code | Usage
 
 | P001
 | Not Found Popup
 |===
+
+=== Event Error Code
+|===
+| Error Code | Usage
+
+| E001
+| Not Found Event
+|===
+
 
 [[Manager]]
 == Manager
@@ -661,3 +670,20 @@ include::{snippets}/event-controller-test/get-event/httpie-request.adoc[]
 include::{snippets}/event-controller-test/get-event/response-body.adoc[]
 ==== Response Fields
 include::{snippets}/event-controller-test/get-event/response-fields.adoc[]
+
+[[이벤트-수정]]
+=== 이벤트 수정 이미지 있을 경우
+==== Curl Request
+include::{snippets}/event-controller-test/edit-event-Image/curl-request.adoc[]
+==== Http Response
+include::{snippets}/event-controller-test/edit-event-Image/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/event-controller-test/edit-event-Image/httpie-request.adoc[]
+==== Request Part event Request Body
+include::{snippets}/event-controller-test/edit-event-Image/request-part-event_request-body.adoc[]
+==== Request Part event Request Fields
+include::{snippets}/event-controller-test/edit-event-Image/request-part-event_request-fields.adoc[]
+==== Request Parts
+include::{snippets}/event-controller-test/edit-event-Image/request-parts.adoc[]
+==== Response Body
+include::{snippets}/event-controller-test/edit-event-Image/response-body.adoc[]
