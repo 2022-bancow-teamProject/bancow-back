@@ -91,4 +91,12 @@ public class FarmQnaService {
 
 		return ServiceResult.success("농가입점 답변 이메일 보내기를 성공하였습니다.");
 	}
+
+	public Integer countFarmQna() {
+		return farmQnaRepository.countFarmQna();
+	}
+
+	public Integer uncheckedFarmQna() {
+		return farmQnaRepository.uncheckedFarmQna();
+	}
 }
