@@ -645,3 +645,19 @@ include::{snippets}/event-controller-test/add-event/request-part-event_request-f
 include::{snippets}/event-controller-test/add-event/request-parts.adoc[]
 ==== Response Body
 include::{snippets}/event-controller-test/add-event/response-body.adoc[]
+
+
+[[이벤트-배포]]
+=== 이벤트 배포
+==== Curl Request
+include::{snippets}/event-controller-test/get-event/curl-request.adoc[]
+==== Http Request
+include::{snippets}/event-controller-test/get-event/http-request.adoc[]
+==== Http Response
+include::{snippets}/event-controller-test/get-event/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/event-controller-test/get-event/httpie-request.adoc[]
+==== Response Body
+include::{snippets}/event-controller-test/get-event/response-body.adoc[]
+==== Response Fields
+include::{snippets}/event-controller-test/get-event/response-fields.adoc[]
