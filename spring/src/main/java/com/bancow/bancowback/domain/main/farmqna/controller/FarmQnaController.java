@@ -18,6 +18,7 @@ import com.bancow.bancowback.domain.common.dto.Response;
 import com.bancow.bancowback.domain.common.dto.ServiceResult;
 import com.bancow.bancowback.domain.main.farmqna.dto.FarmQnaAddRequestDto;
 import com.bancow.bancowback.domain.main.farmqna.dto.FarmQnaDeleteRequestDto;
+import com.bancow.bancowback.domain.main.farmqna.dto.FarmQnaReplyDto;
 import com.bancow.bancowback.domain.main.farmqna.entity.FarmQna;
 import com.bancow.bancowback.domain.main.farmqna.service.FarmQnaService;
 
@@ -58,6 +59,13 @@ public class FarmQnaController {
 	public Response<ServiceResult> deleteFarmQnaList(@RequestHeader("TOKEN") final String token,
 		@RequestBody @Valid final FarmQnaDeleteRequestDto dto) {
 		ServiceResult result = farmQnaService.deleteFarmQnaList(token, dto);
+		return new Response<>(result, HttpStatus.OK);
+	}
+
+	@PostMapping("/{id}/reply")
+	public Response<ServiceResult> replyFarmQna(@RequestHeader("TOKEN") String token, @PathVariable Long id,
+		@RequestBody FarmQnaReplyDto farmQnaReplyDto) {
+		ServiceResult result = farmQnaService.replyFarmQna(farmQnaReplyDto, token, id);
 		return new Response<>(result, HttpStatus.OK);
 	}
 }
