@@ -28,7 +28,7 @@ class FarmQnaControllerTest extends TestSupport {
 			post("/api/farmqna/add")
 				.contentType(MediaType.APPLICATION_JSON)
 				.content("{\n"
-					+ "  \"name\": \"김철수\",\n"
+					+ "  \"farm_qna_name\": \"김철수\",\n"
 					+ "  \"phoneNumber\": \"010-3991-7102\",\n"
 					+ "  \"email\": \"gmldnr2222@naver.com\",\n"
 					+ "  \"farmName\": \"속초농장\",\n"
@@ -43,7 +43,7 @@ class FarmQnaControllerTest extends TestSupport {
 			.andDo(
 				restDocs.document(
 					requestFields(
-						fieldWithPath("name").description("이름"),
+						fieldWithPath("farm_qna_name").description("이름"),
 						fieldWithPath("phoneNumber").description("전화 번호"),
 						fieldWithPath("email").description("이메일"),
 						fieldWithPath("farmName").description("농가 이름"),
@@ -87,7 +87,7 @@ class FarmQnaControllerTest extends TestSupport {
 					responseFields(
 						fieldWithPath("data").description("결과 데이터"),
 						fieldWithPath("data.id").description("아이디"),
-						fieldWithPath("data.name").description("이름"),
+						fieldWithPath("data.farmQnaName").description("이름"),
 						fieldWithPath("data.phoneNumber").description("전화번호"),
 						fieldWithPath("data.email").description("이메일"),
 						fieldWithPath("data.farmName").description("농가 이름"),
@@ -130,7 +130,7 @@ class FarmQnaControllerTest extends TestSupport {
 						fieldWithPath("data").description("결과 데이터"),
 						fieldWithPath("data.content").description("농가 입점 문의 정보"),
 						fieldWithPath("data.content[0].id").description("아이디"),
-						fieldWithPath("data.content[0].name").description("이름"),
+						fieldWithPath("data.content[0].farmQnaName").description("이름"),
 						fieldWithPath("data.content[0].phoneNumber").description("전화번호"),
 						fieldWithPath("data.content[0].email").description("이메일"),
 						fieldWithPath("data.content[0].farmName").description("농가 이름"),
@@ -230,5 +230,41 @@ class FarmQnaControllerTest extends TestSupport {
 				)
 			)
 		;
+	}
+
+	@Test
+	@Transactional
+	void replyFarmQna() throws Exception {
+		Manager manager = adminManagerLogin();
+		Token token = tokenRepository.findByManager(manager).get();
+		mockMvc.perform(
+			post("/api/farmqna/{id}/reply", 1)
+				.contentType(MediaType.APPLICATION_JSON)
+				.header("TOKEN", token.getToken())
+				.content(readJson("json/farmQna/replyFarmQna.json"))
+		)
+			.andExpect(status().isOk())
+			.andDo(
+				restDocs.document(
+					requestHeaders(
+						headerWithName("TOKEN").description("해당 로그인 유저의 토큰값")
+					),
+					pathParameters(
+						parameterWithName("id").description("게시글 ID")
+					),
+					requestFields(
+						fieldWithPath("mail_title").description("메일 제목"),
+						fieldWithPath("answer").description("메일 답변")
+					),
+					responseFields(
+						fieldWithPath("data").description("결과 데이터"),
+						fieldWithPath("data.result").description("문의 답변 이메일 전송 성공 여부"),
+						fieldWithPath("data.message").description("response 메시지"),
+						fieldWithPath("status").description("HTTP Status")
+					)
+				)
+			)
+		;
+
 	}
 }

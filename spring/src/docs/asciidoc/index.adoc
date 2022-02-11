@@ -537,6 +537,25 @@ include::{snippets}/qna-controller-test/delete-qna/response-body.adoc[]
 ==== Response Fields
 include::{snippets}/qna-controller-test/delete-qna/response-fields.adoc[]
 
+[[문의-하기-이메일-답변]]
+=== 문의 하기 이메일 답변
+==== Curl Request
+include::{snippets}/qna-controller-test/reply-qna/curl-request.adoc[]
+==== Http Request
+include::{snippets}/qna-controller-test/reply-qna/http-request.adoc[]
+==== Http Response
+include::{snippets}/qna-controller-test/reply-qna/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/qna-controller-test/reply-qna/httpie-request.adoc[]
+==== Request Body
+include::{snippets}/qna-controller-test/reply-qna/request-body.adoc[]
+==== Request Field
+include::{snippets}/qna-controller-test/reply-qna/request-fields.adoc[]
+==== Response Body
+include::{snippets}/qna-controller-test/reply-qna/response-body.adoc[]
+==== Response Fields
+include::{snippets}/qna-controller-test/reply-qna/response-fields.adoc[]
+
 [[농가-입점]]
 == 농가 입점
 
@@ -634,6 +653,24 @@ include::{snippets}/farm-qna-controller-test/delete-farm-qna-list/response-body.
 ==== Response Fields
 include::{snippets}/farm-qna-controller-test/delete-farm-qna-list/response-fields.adoc[]
 
+[[농가-입점-문의-이메일-답변]]
+=== 농가 입점 문의 이메일 답변
+==== Curl Request
+include::{snippets}/farm-qna-controller-test/reply-farm-qna/curl-request.adoc[]
+==== Http Request
+include::{snippets}/farm-qna-controller-test/reply-farm-qna/http-request.adoc[]
+==== Http Response
+include::{snippets}/farm-qna-controller-test/reply-farm-qna/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/farm-qna-controller-test/reply-farm-qna/httpie-request.adoc[]
+==== Request Body
+include::{snippets}/farm-qna-controller-test/reply-farm-qna/request-body.adoc[]
+==== Request Field
+include::{snippets}/farm-qna-controller-test/reply-farm-qna/request-fields.adoc[]
+==== Response Body
+include::{snippets}/farm-qna-controller-test/reply-farm-qna/response-body.adoc[]
+==== Response Fields
+include::{snippets}/farm-qna-controller-test/reply-farm-qna/response-fields.adoc[]
 
 [[Event]]
 == Event

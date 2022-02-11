@@ -45,7 +45,7 @@ class QnaControllerTest extends TestSupport {
 						fieldWithPath("data").description("결과 데이터"),
 						fieldWithPath("data.id").description("아이디"),
 						fieldWithPath("data.category").description("문의 카테고리 (제휴, 투자, 기타)"),
-						fieldWithPath("data.name").description("이름"),
+						fieldWithPath("data.qnaName").description("문의자 이름"),
 						fieldWithPath("data.phoneNumber").description("전화번호"),
 						fieldWithPath("data.email").description("이메일"),
 						fieldWithPath("data.title").description("제목"),
@@ -83,7 +83,7 @@ class QnaControllerTest extends TestSupport {
 						fieldWithPath("data.content").description("모든 문의 정보"),
 						fieldWithPath("data.content[0].id").description("아이디"),
 						fieldWithPath("data.content[0].category").description("문의 카테고리 (제휴, 투자, 기타)"),
-						fieldWithPath("data.content[0].name").description("이름"),
+						fieldWithPath("data.content[0].qnaName").description("문의자 이름"),
 						fieldWithPath("data.content[0].phoneNumber").description("전화번호"),
 						fieldWithPath("data.content[0].email").description("이메일"),
 						fieldWithPath("data.content[0].title").description("제목"),
@@ -157,7 +157,7 @@ class QnaControllerTest extends TestSupport {
 				.content(
 					"{"
 						+ "  \"category\": \"INVESTMENT\",\n"
-						+ "  \"name\": \"KimJiHun\",\n"
+						+ "  \"qna_name\": \"KimJiHun\",\n"
 						+ "  \"phoneNumber\": \"010-1234-5678\",\n"
 						+ "  \"email\": \"gmldnr2222@naver.com\",\n"
 						+ "  \"title\": \"투자 문의 입니다.\",\n"
@@ -171,7 +171,7 @@ class QnaControllerTest extends TestSupport {
 				restDocs.document(
 					requestFields(
 						fieldWithPath("category").description("카테고리"),
-						fieldWithPath("name").description("이름"),
+						fieldWithPath("qna_name").description("이름"),
 						fieldWithPath("phoneNumber").description("전화번호"),
 						fieldWithPath("email").description("이메일"),
 						fieldWithPath("title").description("제목"),
@@ -181,7 +181,7 @@ class QnaControllerTest extends TestSupport {
 						fieldWithPath("data").description("결과 데이터"),
 						fieldWithPath("data.id").description("아이디"),
 						fieldWithPath("data.category").description("문의 카테고리 (제휴, 투자, 기타)"),
-						fieldWithPath("data.name").description("이름"),
+						fieldWithPath("data.qnaName").description("문의자 이름"),
 						fieldWithPath("data.phoneNumber").description("전화번호"),
 						fieldWithPath("data.email").description("이메일"),
 						fieldWithPath("data.title").description("제목"),
@@ -193,5 +193,41 @@ class QnaControllerTest extends TestSupport {
 				)
 			)
 		;
+	}
+
+	@Test
+	@Transactional
+	void replyQna() throws Exception {
+		Manager manager = adminManagerLogin();
+		Token token = tokenRepository.findByManager(manager).get();
+		mockMvc.perform(
+			post("/api/qna/{id}/reply", 1)
+				.contentType(MediaType.APPLICATION_JSON)
+				.header("TOKEN", token.getToken())
+				.content(readJson("json/qna/replyQna.json"))
+		)
+			.andExpect(status().isOk())
+			.andDo(
+				restDocs.document(
+					requestHeaders(
+						headerWithName("TOKEN").description("해당 로그인 유저의 토큰값")
+					),
+					pathParameters(
+						parameterWithName("id").description("게시글 ID")
+					),
+					requestFields(
+						fieldWithPath("mail_title").description("메일 제목"),
+						fieldWithPath("answer").description("메일 답변")
+					),
+					responseFields(
+						fieldWithPath("data").description("결과 데이터"),
+						fieldWithPath("data.result").description("문의 답변 이메일 전송 성공 여부"),
+						fieldWithPath("data.message").description("response 메시지"),
+						fieldWithPath("status").description("HTTP Status")
+					)
+				)
+			)
+		;
+
 	}
 }
