@@ -130,4 +130,38 @@ class EventControllerTest extends TestSupport {
 			));
 	}
 
+	@Test
+	@Transactional
+	void editEventNotImage() throws Exception {
+		Manager adminManager = adminManagerLogin();
+		Token tokenAdmin = tokenRepository.findByManager(adminManager).get();
+
+		mockMvc.perform(
+				patch("/api/event/edit")
+					.contentType(MediaType.APPLICATION_JSON)
+					.header("TOKEN", tokenAdmin.getToken())
+					.content(readJson("/json/update.json"))
+			)
+
+			.andExpect(status().isOk())
+			.andDo(restDocs.document(
+				requestHeaders(
+					headerWithName("TOKEN").description("해당 로그인 유저의 토큰값")
+				),
+				requestFields(
+					fieldWithPath("id").description("번호"),
+					fieldWithPath("title").description("제목"),
+					fieldWithPath("start_date").description("게시 시작 날짜"),
+					fieldWithPath("end_date").description("게시 마감 날짜"),
+					fieldWithPath("status").description("상태 값")
+				),
+				responseFields(
+					fieldWithPath("data").description("결과 데이터"),
+					fieldWithPath("data.result").description("인증 성공 여부"),
+					fieldWithPath("data.message").description("response 메시지"),
+					fieldWithPath("status").description("HTTP Status")
+				)
+			));
+	}
+
 }
