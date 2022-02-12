@@ -4,6 +4,7 @@ import static com.bancow.bancowback.domain.common.exception.ErrorCode.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -98,5 +99,9 @@ public class FarmQnaService {
 
 	public Integer uncheckedFarmQna() {
 		return farmQnaRepository.uncheckedFarmQna();
+	}
+
+	public List<Map<String, Object>> countMonth(int year) {
+		return farmQnaRepository.countMonth(year);
 	}
 }

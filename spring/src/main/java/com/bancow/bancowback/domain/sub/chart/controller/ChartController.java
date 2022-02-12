@@ -1,7 +1,11 @@
 package com.bancow.bancowback.domain.sub.chart.controller;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,4 +28,11 @@ public class ChartController {
 		QnaNumResponseDto result = chartService.qnaNum(token);
 		return new Response<>(result, HttpStatus.OK);
 	}
+
+	@GetMapping("/farmqna/{year}")
+	public Response<?> farmQnaYear(@RequestHeader("TOKEN") String token, @PathVariable int year) {
+		List<Map<String, Object>> maps = chartService.farmQnaYear(token, year);
+		return new Response<>(maps, HttpStatus.OK);
+	}
+
 }
