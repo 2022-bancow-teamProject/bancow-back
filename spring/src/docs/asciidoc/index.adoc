@@ -1082,7 +1082,6 @@ include::{snippets}/buyer-controller-test/edit-buyer/response-body.adoc[]
 include::{snippets}/buyer-controller-test/edit-buyer/response-fields.adoc[]
 
 
-
 [[자주묻는질문]]
 == 자주묻는질문
 
@@ -1244,3 +1243,167 @@ include::{snippets}/faq-controller-test/update-faq/request-headers.adoc[]
 include::{snippets}/faq-controller-test/update-faq/response-body.adoc[]
 ==== Response Fields
 include::{snippets}/faq-controller-test/update-faq/response-fields.adoc[]
+
+
+
+[[HISTORY]]
+== HISTORY
+
+[[HISTORY-등록]]
+=== HISTORY 등록
+==== Curl Request
+include::{snippets}/history-controller-test/add-history/curl-request.adoc[]
+==== Http Request
+include::{snippets}/history-controller-test/add-history/http-request.adoc[]
+==== Http Response
+include::{snippets}/history-controller-test/add-history/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/history-controller-test/add-history/httpie-request.adoc[]
+==== Request Body
+include::{snippets}/history-controller-test/add-history/request-body.adoc[]
+==== Request Fields
+include::{snippets}/history-controller-test/add-history/request-fields.adoc[]
+==== Request Headers
+include::{snippets}/history-controller-test/add-history/request-headers.adoc[]
+==== Response Body
+include::{snippets}/history-controller-test/add-history/response-body.adoc[]
+==== Response Fields
+include::{snippets}/history-controller-test/add-history/response-fields.adoc[]
+
+[[HISTORY-단일-삭제]]
+=== HISTORY 단일 삭제
+==== Curl Request
+include::{snippets}/history-controller-test/delete-history/curl-request.adoc[]
+==== Http Request
+include::{snippets}/history-controller-test/delete-history/http-request.adoc[]
+==== Http Response
+include::{snippets}/history-controller-test/delete-history/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/history-controller-test/delete-history/httpie-request.adoc[]
+==== Path Parameters
+include::{snippets}/history-controller-test/delete-history/path-parameters.adoc[]
+==== Request Headers
+include::{snippets}/history-controller-test/delete-history/request-headers.adoc[]
+==== Response Body
+include::{snippets}/history-controller-test/delete-history/response-body.adoc[]
+==== Response Fields
+include::{snippets}/history-controller-test/delete-history/response-fields.adoc[]
+
+[[HISTORY-다중-삭제]]
+=== HISTORY 다중 삭제
+==== Curl Request
+include::{snippets}/history-controller-test/delete-history-list/curl-request.adoc[]
+==== Http Request
+include::{snippets}/history-controller-test/delete-history-list/http-request.adoc[]
+==== Http Response
+include::{snippets}/history-controller-test/delete-history-list/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/history-controller-test/delete-history-list/httpie-request.adoc[]
+==== Request Body
+include::{snippets}/history-controller-test/delete-history-list/request-body.adoc[]
+==== Request Fields
+include::{snippets}/history-controller-test/delete-history-list/request-fields.adoc[]
+==== Request Headers
+include::{snippets}/history-controller-test/delete-history-list/request-headers.adoc[]
+==== Response Body
+include::{snippets}/history-controller-test/delete-history-list/response-body.adoc[]
+==== Response Fields
+include::{snippets}/history-controller-test/delete-history-list/response-fields.adoc[]
+
+
+[[HISTORY-단일-가져오기]]
+=== HISTORY 단일 가져오기
+==== Curl Request
+include::{snippets}/history-controller-test/get-history/curl-request.adoc[]
+==== Http Request
+include::{snippets}/history-controller-test/get-history/http-request.adoc[]
+==== Http Response
+include::{snippets}/history-controller-test/get-history/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/history-controller-test/get-history/httpie-request.adoc[]
+==== Path Parameters
+include::{snippets}/history-controller-test/get-history/path-parameters.adoc[]
+==== Request Header
+include::{snippets}/history-controller-test/get-history/request-headers.adoc[]
+==== Response Body
+include::{snippets}/history-controller-test/get-history/response-body.adoc[]
+==== Response Fields
+include::{snippets}/history-controller-test/get-history/response-fields.adoc[]
+
+
+[[HISTORY-다중-가져오기]]
+=== HISTORY 다중 가져오기
+==== Curl Request
+include::{snippets}/history-controller-test/get-history-paging/curl-request.adoc[]
+==== Http Request
+include::{snippets}/history-controller-test/get-history-paging/http-request.adoc[]
+==== Http Response
+include::{snippets}/history-controller-test/get-history-paging/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/history-controller-test/get-history-paging/httpie-request.adoc[]
+==== Request Headers
+include::{snippets}/history-controller-test/get-history-paging/request-headers.adoc[]
+==== Request Parameters
+include::{snippets}/history-controller-test/get-history-paging/request-parameters.adoc[]
+==== Response Body
+include::{snippets}/history-controller-test/get-history-paging/response-body.adoc[]
+==== Response Fields
+include::{snippets}/history-controller-test/get-history-paging/response-fields.adoc[]
+
+
+[[HISTORY-비로그인-단일-가져오기]]
+=== HISTORY 비로그인 단일 가져오기
+==== Curl Request
+include::{snippets}/history-controller-test/get-public-history/curl-request.adoc[]
+==== Http Request
+include::{snippets}/history-controller-test/get-public-history/http-request.adoc[]
+==== Http Response
+include::{snippets}/history-controller-test/get-public-history/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/history-controller-test/get-public-history/httpie-request.adoc[]
+==== Path Parameters
+include::{snippets}/history-controller-test/get-public-history/path-parameters.adoc[]
+==== Response Body
+include::{snippets}/history-controller-test/get-public-history/response-body.adoc[]
+==== Response Fields
+include::{snippets}/history-controller-test/get-public-history/response-fields.adoc[]
+
+
+[[HISTORY-비로그인-다중-가져오기]]
+=== HISTORY 비로그인 다중 가져오기
+==== Curl Request
+include::{snippets}/history-controller-test/get-public-history-paging/curl-request.adoc[]
+==== Http Request
+include::{snippets}/history-controller-test/get-public-history-paging/http-request.adoc[]
+==== Http Response
+include::{snippets}/history-controller-test/get-public-history-paging/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/history-controller-test/get-public-history-paging/httpie-request.adoc[]
+==== Request Parameters
+include::{snippets}/history-controller-test/get-public-history-paging/request-parameters.adoc[]
+==== Response Body
+include::{snippets}/history-controller-test/get-public-history-paging/response-body.adoc[]
+==== Response Fields
+include::{snippets}/history-controller-test/get-public-history-paging/response-fields.adoc[]
+
+
+[[HISTORY-수정]]
+=== HISTORY 수정
+==== Curl Request
+include::{snippets}/history-controller-test/update-history/curl-request.adoc[]
+==== Http Request
+include::{snippets}/history-controller-test/update-history/http-request.adoc[]
+==== Http Response
+include::{snippets}/history-controller-test/update-history/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/history-controller-test/update-history/httpie-request.adoc[]
+==== Request Body
+include::{snippets}/history-controller-test/update-history/request-body.adoc[]
+==== Request Fields
+include::{snippets}/history-controller-test/update-history/request-fields.adoc[]
+==== Request Headers
+include::{snippets}/history-controller-test/update-history/request-headers.adoc[]
+==== Response Body
+include::{snippets}/history-controller-test/update-history/response-body.adoc[]
+==== Response Fields
+include::{snippets}/history-controller-test/update-history/response-fields.adoc[]
