@@ -28,6 +28,9 @@ public enum ErrorCode {
 	// Notice
 	NOT_FOUND_NOTICE("T001", "Not Found Notice"),
 
+	// Faq
+	NOT_FOUND_FAQ("G001", "Not Found Faq"),
+
 	// Event
 	NOT_FOUND_EVENT("E001", "Not Found Event"),
 

@@ -1,4 +1,4 @@
-package com.bancow.bancowback.domain.main.history.dto;
+package com.bancow.bancowback.domain.main.faq.dto;
 
 import java.util.List;
 
@@ -7,7 +7,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class HistoryDeleteListDto {
+public class FaqDeleteListDto {
 
 	private List<Long> idList;
 }
