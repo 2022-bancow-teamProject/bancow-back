@@ -99,5 +99,12 @@ public class GlobalExceptionHandler {
 		final ErrorResponse response = ErrorResponse.of(ErrorCode.NOT_FOUND_NOTICE);
 		return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
+
+	@ExceptionHandler(BuyerException.class)
+	protected ResponseEntity<ErrorResponse> handlerFarmException(BuyerException e) {
+		log.error("BuyerException", e);
+		final ErrorResponse response = ErrorResponse.of(ErrorCode.NOT_FOUND_BUYER);
+		return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+	}
 }
 
