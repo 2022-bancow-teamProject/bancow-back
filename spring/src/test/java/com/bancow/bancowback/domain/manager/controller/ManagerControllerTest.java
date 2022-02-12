@@ -76,7 +76,7 @@ class ManagerControllerTest extends TestSupport {
 				.content(
 					"{\n"
 						+ "  \"email\": \"smtptestkk@gmail.com\",\n"
-						+ "  \"password\": \"1111\"\n"
+						+ "  \"password\": \"q1w2e3r4\"\n"
 						+ "}"
 				)
 		)
@@ -356,7 +356,7 @@ class ManagerControllerTest extends TestSupport {
 		ManagerLoginDto managerLoginDto =
 			ManagerLoginDto.builder()
 				.email("smtptestkk@gmail.com")
-				.password("1111")
+				.password("q1w2e3r4")
 				.build();
 		managerService.loginManager(managerLoginDto);
 		return managerRepository.findByEmail(managerLoginDto.getEmail()).get();
