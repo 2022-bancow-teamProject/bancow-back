@@ -889,6 +889,42 @@ include::{snippets}/notice-controller-test/get-notice-paging/response-body.adoc[
 include::{snippets}/notice-controller-test/get-notice-paging/response-fields.adoc[]
 
 
+[[공지사항-비로그인-단일-가져오기]]
+=== 공지사항 비로그인 단일 가져오기
+==== Curl Request
+include::{snippets}/notice-controller-test/get-public-notice/curl-request.adoc[]
+==== Http Request
+include::{snippets}/notice-controller-test/get-public-notice/http-request.adoc[]
+==== Http Response
+include::{snippets}/notice-controller-test/get-public-notice/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/notice-controller-test/get-public-notice/httpie-request.adoc[]
+==== Path Parameters
+include::{snippets}/notice-controller-test/get-public-notice/path-parameters.adoc[]
+==== Response Body
+include::{snippets}/notice-controller-test/get-public-notice/response-body.adoc[]
+==== Response Fields
+include::{snippets}/notice-controller-test/get-public-notice/response-fields.adoc[]
+
+
+[[공지사항-비로그인-다중-가져오기]]
+=== 공지사항 비로그인 다중 가져오기
+==== Curl Request
+include::{snippets}/notice-controller-test/get-public-notice-paging/curl-request.adoc[]
+==== Http Request
+include::{snippets}/notice-controller-test/get-public-notice-paging/http-request.adoc[]
+==== Http Response
+include::{snippets}/notice-controller-test/get-public-notice-paging/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/notice-controller-test/get-public-notice-paging/httpie-request.adoc[]
+==== Request Parameters
+include::{snippets}/notice-controller-test/get-public-notice-paging/request-parameters.adoc[]
+==== Response Body
+include::{snippets}/notice-controller-test/get-public-notice-paging/response-body.adoc[]
+==== Response Fields
+include::{snippets}/notice-controller-test/get-public-notice-paging/response-fields.adoc[]
+
+
 [[공지사항-수정]]
 === 공지사항 수정
 ==== Curl Request
@@ -957,14 +993,14 @@ include::{snippets}/farm-controller-test/add-farm/response-fields.adoc[]
 [[농가-배포]]
 === 농가 배포
 ==== Curl Request
-include::{snippets}/farm-controller-test/get-farm/curl-request.adoc[]
+include::{snippets}/farm-controller-test/get-farm-distribute/curl-request.adoc[]
 ==== Http Request
-include::{snippets}/farm-controller-test/get-farm/http-request.adoc[]
+include::{snippets}/farm-controller-test/get-farm-distribute/http-request.adoc[]
 ==== Http Response
-include::{snippets}/farm-controller-test/get-farm/http-response.adoc[]
+include::{snippets}/farm-controller-test/get-farm-distribute/http-response.adoc[]
 ==== Httpie Request
-include::{snippets}/farm-controller-test/get-farm/httpie-request.adoc[]
+include::{snippets}/farm-controller-test/get-farm-distribute/httpie-request.adoc[]
 ==== Response Body
-include::{snippets}/farm-controller-test/get-farm/response-body.adoc[]
+include::{snippets}/farm-controller-test/get-farm-distribute/response-body.adoc[]
 ==== Response Fields
-include::{snippets}/farm-controller-test/get-farm/response-fields.adoc[]
+include::{snippets}/farm-controller-test/get-farm-distribute/response-fields.adoc[]
