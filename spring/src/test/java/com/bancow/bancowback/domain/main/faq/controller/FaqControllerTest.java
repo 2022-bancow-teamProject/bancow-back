@@ -216,8 +216,8 @@ class FaqControllerTest extends TestSupport {
 					.content(
 						"{"
 							+ "  \"faqCategory\": \"AUCTION\",\n"
-							+ "  \"title\": \"공지사항 제목입니다..\",\n"
-							+ "  \"message\": \"공지사항 내용입니다.\",\n"
+							+ "  \"title\": \"FAQ 제목입니다..\",\n"
+							+ "  \"message\": \"FAQ 내용입니다.\",\n"
 							+ "  \"status\": false\n"
 							+ "}"
 					)
@@ -267,7 +267,7 @@ class FaqControllerTest extends TestSupport {
 					),
 					responseFields(
 						fieldWithPath("data").description("결과 데이터"),
-						fieldWithPath("data.result").description("공지사항 삭제 전송 성공 여부"),
+						fieldWithPath("data.result").description("FAQ 삭제 전송 성공 여부"),
 						fieldWithPath("data.message").description("response 메시지"),
 						fieldWithPath("status").description("HTTP Status")
 					)
@@ -327,8 +327,8 @@ class FaqControllerTest extends TestSupport {
 						"{"
 							+ "  \"id\": \"1\",\n"
 							+ "  \"faqCategory\": \"AUCTION\",\n"
-							+ "  \"title\": \"수정된 공지사항 제목입니다.\",\n"
-							+ "  \"message\": \"수정된 공지사항 내용입니다.\",\n"
+							+ "  \"title\": \"수정된 FAQ 제목입니다.\",\n"
+							+ "  \"message\": \"수정된 FAQ 내용입니다.\",\n"
 							+ "  \"status\": false\n"
 							+ "}")
 					.accept(MediaType.APPLICATION_JSON)
