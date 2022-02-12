@@ -954,3 +954,17 @@ include::{snippets}/farm-controller-test/add-farm/response-body.adoc[]
 ==== Response Fields
 include::{snippets}/farm-controller-test/add-farm/response-fields.adoc[]
 
+[[농가-배포]]
+=== 농가 배포
+==== Curl Request
+include::{snippets}/farm-controller-test/get-farm/curl-request.adoc[]
+==== Http Request
+include::{snippets}/farm-controller-test/get-farm/http-request.adoc[]
+==== Http Response
+include::{snippets}/farm-controller-test/get-farm/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/farm-controller-test/get-farm/httpie-request.adoc[]
+==== Response Body
+include::{snippets}/farm-controller-test/get-farm/response-body.adoc[]
+==== Response Fields
+include::{snippets}/farm-controller-test/get-farm/response-fields.adoc[]
