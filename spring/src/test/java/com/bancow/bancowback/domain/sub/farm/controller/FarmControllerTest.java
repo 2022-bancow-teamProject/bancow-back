@@ -68,4 +68,29 @@ public class FarmControllerTest extends TestSupport {
 			));
 	}
 
+	@Test
+	@Transactional
+	void getFarmDistribute() throws Exception {
+		Manager adminManager = adminManagerLogin();
+		Token tokenAdmin = tokenRepository.findByManager(adminManager).get();
+
+		mockMvc.perform(
+				get("/api/farm/distribute")
+
+			).andExpect(status().isOk())
+			.andDo(
+				restDocs.document(
+					responseFields(
+						fieldWithPath("data").description("결과 데이터"),
+						fieldWithPath("data[0].id").description("id"),
+						fieldWithPath("data[0].title").description("제목"),
+						fieldWithPath("data[0].farm_name").description("농장 이름"),
+						fieldWithPath("data[0].ceo_name").description("농장 대표님"),
+						fieldWithPath("data[0].farm_ceo_image").description("대표님 사진"),
+						fieldWithPath("status").description("HTTP Status")
+					)
+				)
+			)
+		;
+	}
 }
