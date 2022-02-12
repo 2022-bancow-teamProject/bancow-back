@@ -31,6 +31,9 @@ public enum ErrorCode {
 	// Faq
 	NOT_FOUND_FAQ("G001", "Not Found Faq"),
 
+	// History
+	NOT_FOUND_HISTORY("H001", "Not Found History"),
+
 	// Event
 	NOT_FOUND_EVENT("E001", "Not Found Event"),
 
