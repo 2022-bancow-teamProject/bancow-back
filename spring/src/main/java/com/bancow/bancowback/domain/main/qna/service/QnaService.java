@@ -2,6 +2,9 @@ package com.bancow.bancowback.domain.main.qna.service;
 
 import static com.bancow.bancowback.domain.common.exception.ErrorCode.*;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -82,5 +85,9 @@ public class QnaService {
 
 	public Integer uncheckedQna() {
 		return qnaRepository.uncheckedQna();
+	}
+
+	public List<Map<String, Object>> countMonth(int year) {
+		return qnaRepository.countMonth(year);
 	}
 }
