@@ -92,5 +92,12 @@ public class GlobalExceptionHandler {
 		final ErrorResponse response = ErrorResponse.of(ErrorCode.NOT_FOUND_FARM);
 		return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
+
+	@ExceptionHandler(NoticeException.class)
+	protected ResponseEntity<ErrorResponse> handlePopupException(NoticeException e) {
+		log.error("NoticeException", e);
+		final ErrorResponse response = ErrorResponse.of(ErrorCode.NOT_FOUND_NOTICE);
+		return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+	}
 }
 
