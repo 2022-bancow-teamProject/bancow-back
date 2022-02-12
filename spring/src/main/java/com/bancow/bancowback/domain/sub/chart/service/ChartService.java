@@ -38,31 +38,32 @@ public class ChartService {
 	}
 
 	public List<Map<String, Object>> farmQnaYear(String token, int year) {
-		tokenService.validTokenAuthority(token);
-		List<Map<String, Object>> res = farmQnaService.countMonth(year);
+		return makeYearMonthData(token, farmQnaService.countMonth(year));
+	}
 
+	public List<Map<String, Object>> qnaYear(String token, int year) {
+		return makeYearMonthData(token, qnaService.countMonth(year));
+	}
+
+	private List<Map<String, Object>> makeYearMonthData(String token, List<Map<String, Object>> monthData) {
+		tokenService.validTokenAuthority(token);
 		List<Integer> existMonth = new ArrayList<>();
-		for (Map<String, Object> map : res) {
+		for (Map<String, Object> map : monthData) {
 			existMonth.add(Integer.parseInt(map.get("YEAR_MONTH").toString().substring(5)));
 		}
-		String yearInfo = res.get(0).get("YEAR_MONTH").toString().substring(0, 5);
-		existMonth.forEach(System.out::println);
+		String yearInfo = monthData.get(0).get("YEAR_MONTH").toString().substring(0, 5);
 
-		noMonthZero(res, existMonth, yearInfo);
-
-		res.sort(mapSortComparator());
-		return res;
+		noMonthZero(monthData, existMonth, yearInfo);
+		monthData.sort(mapSortComparator());
+		return monthData;
 	}
 
 	private Comparator<Map<String, Object>> mapSortComparator() {
-		return new Comparator<Map<String, Object>>() {
-			@Override
-			public int compare(Map<String, Object> o1, Map<String, Object> o2) {
-				String year_month = (String)o1.get("YEAR_MONTH");
-				String year_month2 = (String)o2.get("YEAR_MONTH");
+		return (o1, o2) -> {
+			String year_month = (String)o1.get("YEAR_MONTH");
+			String year_month2 = (String)o2.get("YEAR_MONTH");
 
-				return year_month.compareTo(year_month2);
-			}
+			return year_month.compareTo(year_month2);
 		};
 	}
 
