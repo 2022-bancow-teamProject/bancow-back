@@ -33,6 +33,9 @@ public enum ErrorCode {
 
 	// Farm
 	NOT_FOUND_FARM("F001", "Not Found Farm"),
+
+	//Buyer
+	NOT_FOUND_BUYER("B001", "Not Found Buyer"),
 	;
 	private final String code;
 	private final String message;
