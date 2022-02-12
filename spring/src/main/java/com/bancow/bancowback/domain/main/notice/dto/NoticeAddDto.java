@@ -1,6 +1,15 @@
 package com.bancow.bancowback.domain.main.notice.dto;
 
-import javax.validation.constraints.NotBlank;
+import java.time.LocalDateTime;
+
+import javax.persistence.Column;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -18,13 +27,10 @@ import lombok.Setter;
 @Builder
 @Getter
 @Setter
-public class NoticeRequestDto {
+public class NoticeAddDto {
 
 	@NotNull
 	private NoticeCategory noticeCategory;
-
-	@NotEmpty
-	private String username;
 
 	@NotEmpty
 	private String title;
@@ -34,5 +40,4 @@ public class NoticeRequestDto {
 
 	@NotNull
 	private boolean status;
-
 }

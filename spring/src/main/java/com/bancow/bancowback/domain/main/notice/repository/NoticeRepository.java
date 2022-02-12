@@ -10,6 +10,6 @@ import com.bancow.bancowback.domain.main.notice.entity.Notice;
 @Repository
 public interface NoticeRepository extends JpaRepository<Notice, Long> {
 
-	Optional<List<Notice>> findByIdIn(List<Long> idList);
+	List<Notice> findByIdIn(List<Long> idList);
 
 }
