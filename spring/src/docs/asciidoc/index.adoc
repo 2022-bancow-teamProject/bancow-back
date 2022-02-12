@@ -1082,3 +1082,165 @@ include::{snippets}/buyer-controller-test/edit-buyer/response-body.adoc[]
 include::{snippets}/buyer-controller-test/edit-buyer/response-fields.adoc[]
 
 
+
+[[자주묻는질문]]
+== 자주묻는질문
+
+[[자주묻는질문-등록]]
+=== 자주묻는질문 등록
+==== Curl Request
+include::{snippets}/faq-controller-test/add-faq/curl-request.adoc[]
+==== Http Request
+include::{snippets}/faq-controller-test/add-faq/http-request.adoc[]
+==== Http Response
+include::{snippets}/faq-controller-test/add-faq/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/faq-controller-test/add-faq/httpie-request.adoc[]
+==== Request Body
+include::{snippets}/faq-controller-test/add-faq/request-body.adoc[]
+==== Request Fields
+include::{snippets}/faq-controller-test/add-faq/request-fields.adoc[]
+==== Request Headers
+include::{snippets}/faq-controller-test/add-faq/request-headers.adoc[]
+==== Response Body
+include::{snippets}/faq-controller-test/add-faq/response-body.adoc[]
+==== Response Fields
+include::{snippets}/faq-controller-test/add-faq/response-fields.adoc[]
+
+[[자주묻는질문-단일-삭제]]
+=== 자주묻는질문 단일 삭제
+==== Curl Request
+include::{snippets}/faq-controller-test/delete-faq/curl-request.adoc[]
+==== Http Request
+include::{snippets}/faq-controller-test/delete-faq/http-request.adoc[]
+==== Http Response
+include::{snippets}/faq-controller-test/delete-faq/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/faq-controller-test/delete-faq/httpie-request.adoc[]
+==== Path Parameters
+include::{snippets}/faq-controller-test/delete-faq/path-parameters.adoc[]
+==== Request Headers
+include::{snippets}/faq-controller-test/delete-faq/request-headers.adoc[]
+==== Response Body
+include::{snippets}/faq-controller-test/delete-faq/response-body.adoc[]
+==== Response Fields
+include::{snippets}/faq-controller-test/delete-faq/response-fields.adoc[]
+
+[[자주묻는질문-다중-삭제]]
+=== 자주묻는질문 다중 삭제
+==== Curl Request
+include::{snippets}/faq-controller-test/delete-faq-list/curl-request.adoc[]
+==== Http Request
+include::{snippets}/faq-controller-test/delete-faq-list/http-request.adoc[]
+==== Http Response
+include::{snippets}/faq-controller-test/delete-faq-list/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/faq-controller-test/delete-faq-list/httpie-request.adoc[]
+==== Request Body
+include::{snippets}/faq-controller-test/delete-faq-list/request-body.adoc[]
+==== Request Fields
+include::{snippets}/faq-controller-test/delete-faq-list/request-fields.adoc[]
+==== Request Headers
+include::{snippets}/faq-controller-test/delete-faq-list/request-headers.adoc[]
+==== Response Body
+include::{snippets}/faq-controller-test/delete-faq-list/response-body.adoc[]
+==== Response Fields
+include::{snippets}/faq-controller-test/delete-faq-list/response-fields.adoc[]
+
+
+[[자주묻는질문-단일-가져오기]]
+=== 자주묻는질문 단일 가져오기
+==== Curl Request
+include::{snippets}/faq-controller-test/get-faq/curl-request.adoc[]
+==== Http Request
+include::{snippets}/faq-controller-test/get-faq/http-request.adoc[]
+==== Http Response
+include::{snippets}/faq-controller-test/get-faq/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/faq-controller-test/get-faq/httpie-request.adoc[]
+==== Path Parameters
+include::{snippets}/faq-controller-test/get-faq/path-parameters.adoc[]
+==== Request Header
+include::{snippets}/faq-controller-test/get-faq/request-headers.adoc[]
+==== Response Body
+include::{snippets}/faq-controller-test/get-faq/response-body.adoc[]
+==== Response Fields
+include::{snippets}/faq-controller-test/get-faq/response-fields.adoc[]
+
+
+[[자주묻는질문-다중-가져오기]]
+=== 자주묻는질문 다중 가져오기
+==== Curl Request
+include::{snippets}/faq-controller-test/get-faq-paging/curl-request.adoc[]
+==== Http Request
+include::{snippets}/faq-controller-test/get-faq-paging/http-request.adoc[]
+==== Http Response
+include::{snippets}/faq-controller-test/get-faq-paging/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/faq-controller-test/get-faq-paging/httpie-request.adoc[]
+==== Request Headers
+include::{snippets}/faq-controller-test/get-faq-paging/request-headers.adoc[]
+==== Request Parameters
+include::{snippets}/faq-controller-test/get-faq-paging/request-parameters.adoc[]
+==== Response Body
+include::{snippets}/faq-controller-test/get-faq-paging/response-body.adoc[]
+==== Response Fields
+include::{snippets}/faq-controller-test/get-faq-paging/response-fields.adoc[]
+
+
+[[자주묻는질문-비로그인-단일-가져오기]]
+=== 자주묻는질문 비로그인 단일 가져오기
+==== Curl Request
+include::{snippets}/faq-controller-test/get-public-faq/curl-request.adoc[]
+==== Http Request
+include::{snippets}/faq-controller-test/get-public-faq/http-request.adoc[]
+==== Http Response
+include::{snippets}/faq-controller-test/get-public-faq/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/faq-controller-test/get-public-faq/httpie-request.adoc[]
+==== Path Parameters
+include::{snippets}/faq-controller-test/get-public-faq/path-parameters.adoc[]
+==== Response Body
+include::{snippets}/faq-controller-test/get-public-faq/response-body.adoc[]
+==== Response Fields
+include::{snippets}/faq-controller-test/get-public-faq/response-fields.adoc[]
+
+
+[[자주묻는질문-비로그인-다중-가져오기]]
+=== 자주묻는질문 비로그인 다중 가져오기
+==== Curl Request
+include::{snippets}/faq-controller-test/get-public-faq-paging/curl-request.adoc[]
+==== Http Request
+include::{snippets}/faq-controller-test/get-public-faq-paging/http-request.adoc[]
+==== Http Response
+include::{snippets}/faq-controller-test/get-public-faq-paging/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/faq-controller-test/get-public-faq-paging/httpie-request.adoc[]
+==== Request Parameters
+include::{snippets}/faq-controller-test/get-public-faq-paging/request-parameters.adoc[]
+==== Response Body
+include::{snippets}/faq-controller-test/get-public-faq-paging/response-body.adoc[]
+==== Response Fields
+include::{snippets}/faq-controller-test/get-public-faq-paging/response-fields.adoc[]
+
+
+[[자주묻는질문-수정]]
+=== 자주묻는질문 수정
+==== Curl Request
+include::{snippets}/faq-controller-test/update-faq/curl-request.adoc[]
+==== Http Request
+include::{snippets}/faq-controller-test/update-faq/http-request.adoc[]
+==== Http Response
+include::{snippets}/faq-controller-test/update-faq/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/faq-controller-test/update-faq/httpie-request.adoc[]
+==== Request Body
+include::{snippets}/faq-controller-test/update-faq/request-body.adoc[]
+==== Request Fields
+include::{snippets}/faq-controller-test/update-faq/request-fields.adoc[]
+==== Request Headers
+include::{snippets}/faq-controller-test/update-faq/request-headers.adoc[]
+==== Response Body
+include::{snippets}/faq-controller-test/update-faq/response-body.adoc[]
+==== Response Fields
+include::{snippets}/faq-controller-test/update-faq/response-fields.adoc[]
