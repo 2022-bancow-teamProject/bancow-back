@@ -35,4 +35,10 @@ public class ChartController {
 		return new Response<>(maps, HttpStatus.OK);
 	}
 
+	@GetMapping("/qna/{year}")
+	public Response<?> qnaYear(@RequestHeader("TOKEN") String token, @PathVariable int year) {
+		List<Map<String, Object>> maps = chartService.qnaYear(token, year);
+		return new Response<>(maps, HttpStatus.OK);
+	}
+
 }
