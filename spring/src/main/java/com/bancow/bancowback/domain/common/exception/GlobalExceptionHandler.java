@@ -82,7 +82,14 @@ public class GlobalExceptionHandler {
 	@ExceptionHandler(EventException.class)
 	protected ResponseEntity<ErrorResponse> handlerEventException(EventException e) {
 		log.error("EventException", e);
-		final ErrorResponse response = ErrorResponse.of(ErrorCode.NOT_FOUND_FARM_QNA);
+		final ErrorResponse response = ErrorResponse.of(ErrorCode.NOT_FOUND_EVENT);
+		return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+
+	@ExceptionHandler(FarmException.class)
+	protected ResponseEntity<ErrorResponse> handlerFarmException(FarmException e) {
+		log.error("FarmException", e);
+		final ErrorResponse response = ErrorResponse.of(ErrorCode.NOT_FOUND_FARM);
 		return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 }
