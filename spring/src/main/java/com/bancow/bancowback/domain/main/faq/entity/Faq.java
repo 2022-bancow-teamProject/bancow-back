@@ -1,12 +1,18 @@
-package com.bancow.bancowback.domain.main.history.entity;
+package com.bancow.bancowback.domain.main.faq.entity;
 
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
+
+import com.bancow.bancowback.domain.manager.entity.Manager;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,23 +20,24 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Setter
 @Getter
-@Builder
+@Setter
 @Entity
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class History {
+public class Faq {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
+
+	@Enumerated(EnumType.STRING)
+	@Column(name = "faq_category", nullable = false)
+	private FaqCategory faqCategory;
 
 	@Column(nullable = false)
-	private String username;
-
-	@Column(name = "history_date", nullable = false)
-	private String historyDate;
+	private String title;
 
 	@Column(nullable = false)
 	private String message;
@@ -43,4 +50,7 @@ public class History {
 
 	@Column(name = "update_date")
 	private LocalDateTime updateDate;
+
+	@OneToOne(fetch = FetchType.LAZY)
+	private Manager manager;
 }
