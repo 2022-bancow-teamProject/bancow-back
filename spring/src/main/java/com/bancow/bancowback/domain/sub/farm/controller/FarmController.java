@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.validation.Valid;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,6 +47,11 @@ public class FarmController {
 			farmCEOImageUploadPath);
 		FarmInfo farmInfo = farmMapper.toFarmInfo(tokenService.getManager(token), farmAddRequestDto);
 		return new Response<>(farmService.addFarm(farmInfo), HttpStatus.OK);
+	}
+
+	@GetMapping("/distribute")
+	public Response<?> getFarmDistribute() {
+		return new Response<>(farmService.getFarmDistribute(), HttpStatus.OK);
 	}
 
 }
