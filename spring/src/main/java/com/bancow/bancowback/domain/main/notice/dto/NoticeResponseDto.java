@@ -1,9 +1,8 @@
-package com.bancow.bancowback.domain.main.notice.entity;
+package com.bancow.bancowback.domain.main.notice.dto;
 
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
@@ -11,7 +10,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
+import com.bancow.bancowback.domain.main.notice.entity.NoticeCategory;
 import com.bancow.bancowback.domain.manager.entity.Manager;
 
 import lombok.AllArgsConstructor;
@@ -20,37 +22,28 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Getter
 @Setter
-@Entity
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-public class Notice {
+public class NoticeResponseDto {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Enumerated(EnumType.STRING)
 	@Column(name = "notice_category", nullable = false)
 	private NoticeCategory noticeCategory;
 
-	@Column(nullable = false)
 	private String title;
 
-	@Column(nullable = false)
 	private String message;
 
-	@Column(nullable = false)
 	private boolean status;
 
-	@Column(name = "create_date", nullable = false)
 	private LocalDateTime createDate;
 
-	@Column(name = "update_date")
 	private LocalDateTime updateDate;
 
-	@OneToOne(fetch = FetchType.LAZY)
-	private Manager manager;
+	@Column(name = "user_name")
+	private String username;
 }
