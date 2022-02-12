@@ -62,7 +62,7 @@ public class TestSupport {
 		ManagerLoginDto managerLoginDto =
 			ManagerLoginDto.builder()
 				.email("admin@gmail.com")
-				.password("1111")
+				.password("q1w2e3r4")
 				.build();
 		managerService.loginManager(managerLoginDto);
 		return managerRepository.findByEmail(managerLoginDto.getEmail()).get();
