@@ -21,8 +21,6 @@ class BuyerControllerTest extends TestSupport {
 	@Test
 	@Transactional
 	void getBuyerDistribute() throws Exception {
-		Manager adminManager = adminManagerLogin();
-		Token tokenAdmin = tokenRepository.findByManager(adminManager).get();
 
 		mockMvc.perform(
 				get("/api/buyer/distribute")
