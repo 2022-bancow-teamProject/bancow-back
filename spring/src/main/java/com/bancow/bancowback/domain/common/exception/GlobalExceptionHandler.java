@@ -106,5 +106,12 @@ public class GlobalExceptionHandler {
 		final ErrorResponse response = ErrorResponse.of(ErrorCode.NOT_FOUND_BUYER);
 		return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
+
+	@ExceptionHandler(FaqException.class)
+	protected ResponseEntity<ErrorResponse> handlePopupException(FaqException e) {
+		log.error("FaqException", e);
+		final ErrorResponse response = ErrorResponse.of(ErrorCode.NOT_FOUND_FAQ);
+		return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+	}
 }
 
