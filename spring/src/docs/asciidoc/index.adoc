@@ -1061,3 +1061,22 @@ include::{snippets}/buyer-controller-test/get-buyer-distribute/httpie-request.ad
 include::{snippets}/buyer-controller-test/get-buyer-distribute/response-body.adoc[]
 ==== Response Fields
 include::{snippets}/buyer-controller-test/get-buyer-distribute/response-fields.adoc[]
+
+[[구매자-수정]]
+=== 구매자 배포 유무만 수정
+==== Curl Request
+include::{snippets}/buyer-controller-test/edit-buyer/curl-request.adoc[]
+==== Http Response
+include::{snippets}/buyer-controller-test/edit-buyer/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/buyer-controller-test/edit-buyer/httpie-request.adoc[]
+==== Request Body
+include::{snippets}/buyer-controller-test/edit-buyer/request-body.adoc[]
+==== Request Fields
+include::{snippets}/buyer-controller-test/edit-buyer/request-fields.adoc[]
+==== Request headers
+include::{snippets}/buyer-controller-test/edit-buyer/request-headers.adoc[]
+==== Response Body
+include::{snippets}/buyer-controller-test/edit-buyer/response-body.adoc[]
+==== Response Fields
+include::{snippets}/buyer-controller-test/edit-buyer/response-fields.adoc[]
