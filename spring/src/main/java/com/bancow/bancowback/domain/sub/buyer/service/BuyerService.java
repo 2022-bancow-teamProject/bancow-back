@@ -28,23 +28,28 @@ public class BuyerService {
 		List<Buyer> buyerList = buyerRepository.findByStatus(true);
 
 		if (buyerList.size() == 0) {
-			throw new BuyerException(ErrorCode.NOT_FOUND_BUYER, "구매자 없음 없음");
+			throw new BuyerException(ErrorCode.NOT_FOUND_BUYER, "구매자 리뷰 없음");
 		}
 
 		return buyerList.stream()
-			.map(buyer -> buyerMapper.toDistributeResponseDto(buyer))
-			.collect(Collectors.toList());
+						.map(buyer -> buyerMapper.toDistributeResponseDto(buyer))
+						.collect(Collectors.toList());
 	}
 
 	public ServiceResult editBuyer(BuyerUpdateRequestDto buyerUpdateRequestDto) {
 		Buyer buyer = buyerMapper.toUpdateNotImageEntity(getBuyerId(buyerUpdateRequestDto.getId()),
 			buyerUpdateRequestDto);
 		buyerRepository.save(buyer);
-		return ServiceResult.success("구매자 상태 값이 업데이트 됐습니다.");
+		return ServiceResult.success("구매자리뷰 상태 값이 업데이트 됐습니다.");
 	}
 
 	private Buyer getBuyerId(Long id) {
 		return buyerRepository.findById(id)
 			.orElseThrow(() -> new EventException(ErrorCode.NOT_FOUND_BUYER, "구매자 없음"));
+	}
+
+	public ServiceResult deleteBuyerOne(Long id) {
+		buyerRepository.delete(getBuyerId(id));
+		return ServiceResult.success("구매자리뷰가 삭제 됐습니다. ");
 	}
 }
