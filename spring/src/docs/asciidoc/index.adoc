@@ -300,19 +300,21 @@ include::{snippets}/manager-controller-test/authentication-password/response-fie
 [[비밀번호-변경]]
 === 비밀번호 변경
 ==== Curl Request
-include::{snippets}/manager-controller-test/authentication-password/curl-request.adoc[]
+include::{snippets}/manager-controller-test/change-password/curl-request.adoc[]
 ==== Http Request
-include::{snippets}/manager-controller-test/authentication-password/http-request.adoc[]
+include::{snippets}/manager-controller-test/change-password/http-request.adoc[]
 ==== Http Response
-include::{snippets}/manager-controller-test/authentication-password/http-response.adoc[]
+include::{snippets}/manager-controller-test/change-password/http-response.adoc[]
 ==== Httpie Request
-include::{snippets}/manager-controller-test/authentication-password/httpie-request.adoc[]
+include::{snippets}/manager-controller-test/change-password/httpie-request.adoc[]
 ==== Path Parameter
-include::{snippets}/manager-controller-test/authentication-password/path-parameters.adoc[]
+include::{snippets}/manager-controller-test/change-password/path-parameters.adoc[]
+==== Request Body
+include::{snippets}/manager-controller-test/change-password/request-body.adoc[]
 ==== Response Body
-include::{snippets}/manager-controller-test/authentication-password/response-body.adoc[]
+include::{snippets}/manager-controller-test/change-password/response-body.adoc[]
 ==== Response Fields
-include::{snippets}/manager-controller-test/authentication-password/response-fields.adoc[]
+include::{snippets}/manager-controller-test/change-password//response-fields.adoc[]
 
 [[Popup]]
 == popup
@@ -950,7 +952,7 @@ include::{snippets}/notice-controller-test/update-notice/response-fields.adoc[]
 [[차트]]
 == 차트
 
-[[QnA-농가입점-갯수]]
+[[QnA, 농가입점-갯수]]
 === QNA 농가입점 갯수
 ==== Curl Request
 include::{snippets}/chart-controller-test/qna-num/curl-request.adoc[]
@@ -967,6 +969,43 @@ include::{snippets}/chart-controller-test/qna-num/response-body.adoc[]
 ==== Response Fields
 include::{snippets}/chart-controller-test/qna-num/response-fields.adoc[]
 
+[[농가입점-연도-월별-갯수]]
+=== 농가입점 연도 월별 차트
+==== Curl Request
+include::{snippets}/chart-controller-test/farm-qna-year/curl-request.adoc[]
+==== Http Request
+include::{snippets}/chart-controller-test/farm-qna-year/http-request.adoc[]
+==== Http Response
+include::{snippets}/chart-controller-test/farm-qna-year/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/chart-controller-test/farm-qna-year/httpie-request.adoc[]
+==== Path Parameters
+include::{snippets}/chart-controller-test/farm-qna-year/path-parameters.adoc[]
+==== Request Headers
+include::{snippets}/chart-controller-test/farm-qna-year/request-headers.adoc[]
+==== Response Body
+include::{snippets}/chart-controller-test/farm-qna-year/response-body.adoc[]
+==== Response Fields
+include::{snippets}/chart-controller-test/farm-qna-year/response-fields.adoc[]
+
+[[QnA-연도-월별-갯수]]
+=== QnA 연도 월별 차트
+==== Curl Request
+include::{snippets}/chart-controller-test/qna-year/curl-request.adoc[]
+==== Http Request
+include::{snippets}/chart-controller-test/qna-year/http-request.adoc[]
+==== Http Response
+include::{snippets}/chart-controller-test/qna-year/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/chart-controller-test/qna-year/httpie-request.adoc[]
+==== Path Parameters
+include::{snippets}/chart-controller-test/qna-year/path-parameters.adoc[]
+==== Request Headers
+include::{snippets}/chart-controller-test/qna-year/request-headers.adoc[]
+==== Response Body
+include::{snippets}/chart-controller-test/qna-year/response-body.adoc[]
+==== Response Fields
+include::{snippets}/chart-controller-test/qna-year/response-fields.adoc[]
 
 [[농가소개]]
 == 농가소개
