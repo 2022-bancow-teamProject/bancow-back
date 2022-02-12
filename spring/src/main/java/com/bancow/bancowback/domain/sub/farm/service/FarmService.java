@@ -1,9 +1,17 @@
 package com.bancow.bancowback.domain.sub.farm.service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.stereotype.Service;
 
 import com.bancow.bancowback.domain.common.dto.ServiceResult;
+import com.bancow.bancowback.domain.common.exception.ErrorCode;
+
+import com.bancow.bancowback.domain.common.exception.FarmException;
+
 import com.bancow.bancowback.domain.sub.farm.dto.FarmAddRequestDto;
+import com.bancow.bancowback.domain.sub.farm.dto.FarmDistributeResponseDto;
 import com.bancow.bancowback.domain.sub.farm.entity.Farm;
 import com.bancow.bancowback.domain.sub.farm.entity.FarmInfo;
 import com.bancow.bancowback.domain.sub.farm.mapper.FarmMapper;
@@ -23,5 +31,16 @@ public class FarmService {
 		farmRepository.save(farm);
 
 		return ServiceResult.success("농장이 등록 됐습니다.");
+	}
+
+	public List<FarmDistributeResponseDto> getFarmDistribute() {
+		List<Farm> farmList = farmRepository.findByStatus(true);
+
+		if (farmList.size() == 0) {
+			throw new FarmException(ErrorCode.NOT_FOUND_FARM, "농장 없음");
+		}
+
+		return farmList.stream().map(farm -> farmMapper.toDistributeResponseDto(farm)).collect(Collectors.toList());
+
 	}
 }

@@ -4,6 +4,7 @@ import org.springframework.stereotype.Component;
 
 import com.bancow.bancowback.domain.manager.entity.Manager;
 import com.bancow.bancowback.domain.sub.farm.dto.FarmAddRequestDto;
+import com.bancow.bancowback.domain.sub.farm.dto.FarmDistributeResponseDto;
 import com.bancow.bancowback.domain.sub.farm.entity.Farm;
 import com.bancow.bancowback.domain.sub.farm.entity.FarmInfo;
 
@@ -39,6 +40,16 @@ public class FarmMapper {
 			.farmCEOImage(farmAddRequestDto.getFarmCEOImageUploadPath())
 			.status(Boolean.FALSE)
 			.manager(manager)
+			.build();
+	}
+
+	public FarmDistributeResponseDto toDistributeResponseDto(Farm farm) {
+		return FarmDistributeResponseDto.builder()
+			.id(farm.getId())
+			.farmName(farm.getFarmName())
+			.ceoName(farm.getCeoName())
+			.title(farm.getTitle())
+			.farmCEOImage("https://kr.object.ncloudstorage.com/bancowback/" + farm.getFarmCEOImage())
 			.build();
 	}
 }

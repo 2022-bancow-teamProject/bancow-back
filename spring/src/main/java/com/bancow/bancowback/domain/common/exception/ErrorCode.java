@@ -20,7 +20,7 @@ public enum ErrorCode {
 	NOT_Found_QNA("Q001", "Not Found Qna"),
 
 	// FarmQna
-	NOT_FOUND_FARM_QNA("F001", "Not Found Farm Qna"),
+	NOT_FOUND_FARM_QNA("FQ001", "Not Found Farm Qna"),
 
 	// Popup
 	NOT_FOUND_POPUP("P001", "Not Found Popup"),
@@ -30,6 +30,9 @@ public enum ErrorCode {
 
 	// Event
 	NOT_FOUND_EVENT("E001", "Not Found Event"),
+
+	// Farm
+	NOT_FOUND_FARM("F001", "Not Found Farm"),
 	;
 	private final String code;
 	private final String message;
