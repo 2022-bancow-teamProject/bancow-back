@@ -45,7 +45,7 @@ public class FaqService {
 
 	public Faq getFaqId(Long id){
 		return faqRepository.findById(id)
-			.orElseThrow(() -> new FaqException(NOT_FOUND_FAQ, "해당 공지사항 없음"));
+			.orElseThrow(() -> new FaqException(NOT_FOUND_FAQ, "해당 FAQ 없음"));
 	}
 
 	public Page<FaqResponseDto> getFaqPaging(String token, int page) {
@@ -59,13 +59,13 @@ public class FaqService {
 		Manager manager = tokenService.getManager(token);
 		Faq faq = faqMapper.toAdd(manager, faqAddDto);
 		faqRepository.save(faq);
-		return ServiceResult.success("공지사항 등록 성공!");
+		return ServiceResult.success("FAQ 등록 성공!");
 	}
 
 	public ServiceResult deleteFaq(String token, Long id) {
 		tokenService.validTokenAuthority(token);
 		faqRepository.delete(getFaqId(id));
-		return ServiceResult.success("공지사항 삭제 성공!");
+		return ServiceResult.success("FAQ 삭제 성공!");
 	}
 
 	public ServiceResult deleteFaqList(String token, List<Long> id) {
@@ -74,13 +74,13 @@ public class FaqService {
 		List<Faq> deleteFaqList = faqRepository.findByIdIn(id);
 
 		if (deleteFaqList.size() == 0) {
-			throw new FaqException(NOT_FOUND_FAQ, "해당 공지사항 없음");
+			throw new FaqException(NOT_FOUND_FAQ, "해당 FAQ 없음");
 		}
 
 		deleteFaqList.stream().forEach(e -> {
 			faqRepository.delete(e);
 		});
-		return ServiceResult.success("공지사항 삭제 성공!");
+		return ServiceResult.success("FAQ 삭제 성공!");
 	}
 
 	public ServiceResult updateFaq(String token, FaqUpdateDto faqUpdateDto) {
@@ -90,6 +90,6 @@ public class FaqService {
 			.orElseThrow(() -> new FaqException(NOT_FOUND_FAQ, "해당 팝업 없음"));
 		faq = faqMapper.toUpdate(manager, faq, faqUpdateDto);
 		faqRepository.save(faq);
-		return ServiceResult.success("공지사항 수정 성공!");
+		return ServiceResult.success("FAQ 수정 성공!");
 	}
 }

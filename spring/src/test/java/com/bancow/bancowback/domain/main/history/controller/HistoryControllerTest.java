@@ -1,4 +1,4 @@
-package com.bancow.bancowback.domain.main.faq.controller;
+package com.bancow.bancowback.domain.main.history.controller;
 
 import static org.springframework.restdocs.headers.HeaderDocumentation.*;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.*;
@@ -16,17 +16,17 @@ import com.bancow.bancowback.domain.common.util.token.entity.Token;
 import com.bancow.bancowback.domain.common.util.token.repository.TokenRepository;
 import com.bancow.bancowback.domain.manager.entity.Manager;
 
-class FaqControllerTest extends TestSupport {
+class HistoryControllerTest extends TestSupport {
 
 	@Autowired
 	private TokenRepository tokenRepository;
 
 	@Test
 	@Transactional
-	void getPublicFaq() throws Exception {
+	void getPublicHistory() throws Exception {
 		Manager manager = adminManagerLogin();
 		mockMvc.perform(
-				get("/api/faq/public/{id}", 1)
+				get("/api/history/public/{id}", 1)
 					.accept(MediaType.APPLICATION_JSON)
 			)
 			.andExpect(status().isOk())
@@ -38,8 +38,7 @@ class FaqControllerTest extends TestSupport {
 					responseFields(
 						fieldWithPath("data").description("결과 데이터"),
 						fieldWithPath("data.id").description("아이디"),
-						fieldWithPath("data.faqCategory").description("문의 카테고리(새로운 상품, 신규 기능, 점검안내"),
-						fieldWithPath("data.title").description("제목"),
+						fieldWithPath("data.title").description("히스토리 날짜"),
 						fieldWithPath("data.message").description("메시지"),
 						fieldWithPath("data.status").description("공개여부"),
 						fieldWithPath("data.createDate").description("글 작성일"),
@@ -54,10 +53,10 @@ class FaqControllerTest extends TestSupport {
 
 	@Test
 	@Transactional
-	void getPublicFaqPaging() throws Exception {
+	void getPublicHistoryPaging() throws Exception {
 		Manager manager = adminManagerLogin();
 		mockMvc.perform(
-				get("/api/faq/public")
+				get("/api/history/public")
 					.param("page", "0")
 					.accept(MediaType.APPLICATION_JSON)
 			)
@@ -71,8 +70,7 @@ class FaqControllerTest extends TestSupport {
 						fieldWithPath("data").description("결과 데이터"),
 						fieldWithPath("data.content").description("모든 문의 정보"),
 						fieldWithPath("data.content[0].id").description("아이디"),
-						fieldWithPath("data.content[0].faqCategory").description("문의 카테고리 (새로운 상품, 신규기능, 점검안내)"),
-						fieldWithPath("data.content[0].title").description("제목"),
+						fieldWithPath("data.content[0].title").description("히스토리 날짜"),
 						fieldWithPath("data.content[0].message").description("메시지"),
 						fieldWithPath("data.content[0].status").description("공개 여부"),
 						fieldWithPath("data.content[0].createDate").description("글 등록일"),
@@ -109,12 +107,12 @@ class FaqControllerTest extends TestSupport {
 
 	@Test
 	@Transactional
-	void getFaq() throws Exception {
+	void getHistory() throws Exception {
 		Manager manager = adminManagerLogin();
 		Token token = tokenRepository.findByManager(manager).get();
 
 		mockMvc.perform(
-				get("/api/faq/{id}", 1)
+				get("/api/history/{id}", 1)
 					.accept(MediaType.APPLICATION_JSON)
 					.header("TOKEN", token.getToken())
 			)
@@ -130,8 +128,7 @@ class FaqControllerTest extends TestSupport {
 					responseFields(
 						fieldWithPath("data").description("결과 데이터"),
 						fieldWithPath("data.id").description("아이디"),
-						fieldWithPath("data.faqCategory").description("문의 카테고리(새로운 상품, 신규 기능, 점검안내"),
-						fieldWithPath("data.title").description("제목"),
+						fieldWithPath("data.title").description("히스토리 날짜"),
 						fieldWithPath("data.message").description("메시지"),
 						fieldWithPath("data.status").description("공개여부"),
 						fieldWithPath("data.createDate").description("글 작성일"),
@@ -146,11 +143,11 @@ class FaqControllerTest extends TestSupport {
 
 	@Test
 	@Transactional
-	void getFaqPaging() throws Exception {
+	void getHistoryPaging() throws Exception {
 		Manager manager = adminManagerLogin();
 		Token token = tokenRepository.findByManager(manager).get();
 		mockMvc.perform(
-				get("/api/faq")
+				get("/api/history")
 					.param("page", "0")
 					.header("TOKEN", token.getToken())
 					.accept(MediaType.APPLICATION_JSON)
@@ -168,8 +165,7 @@ class FaqControllerTest extends TestSupport {
 						fieldWithPath("data").description("결과 데이터"),
 						fieldWithPath("data.content").description("모든 문의 정보"),
 						fieldWithPath("data.content[0].id").description("아이디"),
-						fieldWithPath("data.content[0].faqCategory").description("문의 카테고리 (새로운 상품, 신규기능, 점검안내)"),
-						fieldWithPath("data.content[0].title").description("제목"),
+						fieldWithPath("data.content[0].title").description("히스토리 날짜"),
 						fieldWithPath("data.content[0].message").description("메시지"),
 						fieldWithPath("data.content[0].status").description("공개 여부"),
 						fieldWithPath("data.content[0].createDate").description("글 등록일"),
@@ -206,18 +202,17 @@ class FaqControllerTest extends TestSupport {
 
 	@Test
 	@Transactional
-	void addFaq() throws Exception {
+	void addHistory() throws Exception {
 		Manager manager = adminManagerLogin();
 		Token token = tokenRepository.findByManager(manager).get();
 		mockMvc.perform(
-				post("/api/faq/add")
+				post("/api/history/add")
 					.header("TOKEN", token.getToken())
 					.contentType(MediaType.APPLICATION_JSON)
 					.content(
 						"{"
-							+ "  \"faqCategory\": \"AUCTION\",\n"
-							+ "  \"title\": \"FAQ 제목입니다..\",\n"
-							+ "  \"message\": \"FAQ 내용입니다.\",\n"
+							+ "  \"title\": \"HISTORY 날짜입니다.\",\n"
+							+ "  \"message\": \"HISTORY 내용입니다.\",\n"
 							+ "  \"status\": false\n"
 							+ "}"
 					)
@@ -230,8 +225,7 @@ class FaqControllerTest extends TestSupport {
 						headerWithName("TOKEN").description("해당 로그인 유저의 토큰값")
 					),
 					requestFields(
-						fieldWithPath("faqCategory").description("카테고리"),
-						fieldWithPath("title").description("제목"),
+						fieldWithPath("title").description("히스토리 날짜"),
 						fieldWithPath("message").description("메시지"),
 						fieldWithPath("status").description("공개 여부")
 					),
@@ -248,11 +242,11 @@ class FaqControllerTest extends TestSupport {
 
 	@Test
 	@Transactional
-	void deleteFaq() throws Exception {
+	void deleteHistory() throws Exception {
 		Manager manager = adminManagerLogin();
 		Token token = tokenRepository.findByManager(manager).get();
 		mockMvc.perform(
-				delete("/api/faq/delete/{id}", 1)
+				delete("/api/history/delete/{id}", 1)
 					.header("TOKEN", token.getToken())
 					.accept(MediaType.APPLICATION_JSON)
 			)
@@ -267,7 +261,7 @@ class FaqControllerTest extends TestSupport {
 					),
 					responseFields(
 						fieldWithPath("data").description("결과 데이터"),
-						fieldWithPath("data.result").description("FAQ 삭제 전송 성공 여부"),
+						fieldWithPath("data.result").description("HISTORY 삭제 전송 성공 여부"),
 						fieldWithPath("data.message").description("response 메시지"),
 						fieldWithPath("status").description("HTTP Status")
 					)
@@ -278,11 +272,11 @@ class FaqControllerTest extends TestSupport {
 
 	@Test
 	@Transactional
-	void deleteFaqList() throws Exception {
+	void deleteHistoryList() throws Exception {
 		Manager manager = adminManagerLogin();
 		Token token = tokenRepository.findByManager(manager).get();
 		mockMvc.perform(
-				delete("/api/faq/delete")
+				delete("/api/history/delete")
 					.header("TOKEN", token.getToken())
 					.contentType(MediaType.APPLICATION_JSON)
 					.content(
@@ -314,21 +308,20 @@ class FaqControllerTest extends TestSupport {
 
 	@Test
 	@Transactional
-	void updateFaq() throws Exception {
+	void updateHistory() throws Exception {
 
 		Manager manager = adminManagerLogin();
 		Token token = tokenRepository.findByManager(manager).get();
 
 		mockMvc.perform(
-				patch("/api/faq/update", 1)
+				patch("/api/history/update", 1)
 					.header("TOKEN", token.getToken())
 					.contentType(MediaType.APPLICATION_JSON)
 					.content(
 						"{"
 							+ "  \"id\": \"1\",\n"
-							+ "  \"faqCategory\": \"AUCTION\",\n"
-							+ "  \"title\": \"수정된 FAQ 제목입니다.\",\n"
-							+ "  \"message\": \"수정된 FAQ 내용입니다.\",\n"
+							+ "  \"title\": \"수정된 HISTORY 날짜입니다.\",\n"
+							+ "  \"message\": \"수정된 HISTORY 내용입니다.\",\n"
 							+ "  \"status\": false\n"
 							+ "}")
 					.accept(MediaType.APPLICATION_JSON)
@@ -341,8 +334,7 @@ class FaqControllerTest extends TestSupport {
 					),
 					requestFields(
 						fieldWithPath("id").description("id"),
-						fieldWithPath("faqCategory").description("카테고리"),
-						fieldWithPath("title").description("제목"),
+						fieldWithPath("title").description("히스토리 날짜"),
 						fieldWithPath("message").description("메시지"),
 						fieldWithPath("status").description("공개 여부")
 					),
