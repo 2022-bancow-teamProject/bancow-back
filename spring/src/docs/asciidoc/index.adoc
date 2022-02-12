@@ -1004,3 +1004,21 @@ include::{snippets}/farm-controller-test/get-farm-distribute/httpie-request.adoc
 include::{snippets}/farm-controller-test/get-farm-distribute/response-body.adoc[]
 ==== Response Fields
 include::{snippets}/farm-controller-test/get-farm-distribute/response-fields.adoc[]
+
+[[구매자-리뷰]]
+== 구매자 리뷰
+
+[[구매자-배포]]
+=== 구매자 배포
+==== Curl Request
+include::{snippets}/buyer-controller-test/get-buyer-distribute/curl-request.adoc[]
+==== Http Request
+include::{snippets}/buyer-controller-test/get-buyer-distribute/http-request.adoc[]
+==== Http Response
+include::{snippets}/buyer-controller-test/get-buyer-distribute/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/buyer-controller-test/get-buyer-distribute/httpie-request.adoc[]
+==== Response Body
+include::{snippets}/buyer-controller-test/get-buyer-distribute/response-body.adoc[]
+==== Response Fields
+include::{snippets}/buyer-controller-test/get-buyer-distribute/response-fields.adoc[]
