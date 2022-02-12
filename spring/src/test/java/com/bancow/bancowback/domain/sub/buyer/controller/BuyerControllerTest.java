@@ -3,6 +3,7 @@ package com.bancow.bancowback.domain.sub.buyer.controller;
 import static org.springframework.restdocs.headers.HeaderDocumentation.*;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.*;
 import static org.springframework.restdocs.payload.PayloadDocumentation.*;
+import static org.springframework.restdocs.request.RequestDocumentation.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import org.junit.jupiter.api.Test;
@@ -75,5 +76,35 @@ class BuyerControllerTest extends TestSupport {
 			));
 	}
 
+	@Test
+	@Transactional
+	void deleteBuyerOne() throws Exception {
+		Manager adminManager = adminManagerLogin();
+		Token tokenAdmin = tokenRepository.findByManager(adminManager).get();
+
+		mockMvc.perform(
+				delete("/api/buyer/{id}", 1)
+					.header("TOKEN", tokenAdmin.getToken())
+					.accept(MediaType.APPLICATION_JSON)
+			)
+			.andExpect(status().isOk())
+			.andDo(
+				restDocs.document(
+					requestHeaders(
+						headerWithName("TOKEN").description("해당 로그인 유저의 토큰값")
+					),
+					pathParameters(
+						parameterWithName("id").description("ID")
+					),
+					responseFields(
+						fieldWithPath("data").description("결과 데이터"),
+						fieldWithPath("data.result").description("삭제 전송 성공 여부"),
+						fieldWithPath("data.message").description("response 메시지"),
+						fieldWithPath("status").description("HTTP Status")
+					)
+				)
+			)
+		;
+	}
 
 }
