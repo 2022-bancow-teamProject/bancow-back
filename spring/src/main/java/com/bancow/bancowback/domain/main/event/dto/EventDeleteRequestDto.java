@@ -12,7 +12,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class EventDeleteRequestDto {
-
 	private List<Long> id;
-
 }
