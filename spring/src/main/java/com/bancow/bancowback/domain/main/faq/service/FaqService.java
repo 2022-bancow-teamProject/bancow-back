@@ -2,10 +2,8 @@ package com.bancow.bancowback.domain.main.faq.service;
 
 import static com.bancow.bancowback.domain.common.exception.ErrorCode.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import org.mapstruct.Mapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -14,12 +12,12 @@ import org.springframework.stereotype.Service;
 import com.bancow.bancowback.domain.common.dto.ServiceResult;
 import com.bancow.bancowback.domain.common.exception.FaqException;
 import com.bancow.bancowback.domain.common.util.token.service.TokenService;
-import com.bancow.bancowback.domain.main.faq.dto.FaqSearchResultDto;
-import com.bancow.bancowback.domain.main.faq.entity.Faq;
-import com.bancow.bancowback.domain.main.faq.mapper.FaqMapper;
 import com.bancow.bancowback.domain.main.faq.dto.FaqAddDto;
 import com.bancow.bancowback.domain.main.faq.dto.FaqResponseDto;
+import com.bancow.bancowback.domain.main.faq.dto.FaqSearchResultDto;
 import com.bancow.bancowback.domain.main.faq.dto.FaqUpdateDto;
+import com.bancow.bancowback.domain.main.faq.entity.Faq;
+import com.bancow.bancowback.domain.main.faq.mapper.FaqMapper;
 import com.bancow.bancowback.domain.main.faq.repository.FaqRepository;
 import com.bancow.bancowback.domain.manager.entity.Manager;
 

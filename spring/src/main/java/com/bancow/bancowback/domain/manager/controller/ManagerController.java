@@ -16,12 +16,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.bancow.bancowback.domain.common.dto.Response;
 import com.bancow.bancowback.domain.common.dto.ServiceResult;
-import com.bancow.bancowback.domain.manager.dto.ManagerResponseDto;
 import com.bancow.bancowback.domain.manager.dto.ManagerFindDto;
 import com.bancow.bancowback.domain.manager.dto.ManagerLoginDto;
 import com.bancow.bancowback.domain.manager.dto.ManagerLoginResultDto;
 import com.bancow.bancowback.domain.manager.dto.ManagerPasswordDto;
 import com.bancow.bancowback.domain.manager.dto.ManagerRegisterDto;
+import com.bancow.bancowback.domain.manager.dto.ManagerResponseDto;
 import com.bancow.bancowback.domain.manager.service.ManagerService;
 
 import lombok.RequiredArgsConstructor;

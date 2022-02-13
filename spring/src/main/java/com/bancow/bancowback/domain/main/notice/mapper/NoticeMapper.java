@@ -2,17 +2,6 @@ package com.bancow.bancowback.domain.main.notice.mapper;
 
 import java.time.LocalDateTime;
 
-import javax.persistence.Column;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
@@ -20,7 +9,6 @@ import com.bancow.bancowback.domain.main.notice.dto.NoticeAddDto;
 import com.bancow.bancowback.domain.main.notice.dto.NoticeResponseDto;
 import com.bancow.bancowback.domain.main.notice.dto.NoticeUpdateDto;
 import com.bancow.bancowback.domain.main.notice.entity.Notice;
-import com.bancow.bancowback.domain.main.notice.entity.NoticeCategory;
 import com.bancow.bancowback.domain.manager.entity.Manager;
 
 @Mapper(componentModel = "spring")

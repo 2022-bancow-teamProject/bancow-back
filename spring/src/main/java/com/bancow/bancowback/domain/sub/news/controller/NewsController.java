@@ -21,7 +21,6 @@ import com.bancow.bancowback.domain.sub.news.dto.NewsDeleteRequestDto;
 import com.bancow.bancowback.domain.sub.news.dto.NewsRequestDto;
 import com.bancow.bancowback.domain.sub.news.dto.NewsResponseDto;
 import com.bancow.bancowback.domain.sub.news.dto.NewsUpdateRequestDto;
-import com.bancow.bancowback.domain.sub.news.entity.News;
 import com.bancow.bancowback.domain.sub.news.service.NewsService;
 
 import lombok.RequiredArgsConstructor;

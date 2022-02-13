@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import com.bancow.bancowback.domain.common.dto.ServiceResult;
 import com.bancow.bancowback.domain.common.exception.ErrorCode;
 import com.bancow.bancowback.domain.common.exception.EventException;
-
 import com.bancow.bancowback.domain.main.event.dto.EventAddRequestDto;
 import com.bancow.bancowback.domain.main.event.dto.EventDistributeResponseDto;
 import com.bancow.bancowback.domain.main.event.dto.EventInfo;

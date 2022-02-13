@@ -2,9 +2,7 @@ package com.bancow.bancowback.domain.main.notice.service;
 
 import static com.bancow.bancowback.domain.common.exception.ErrorCode.*;
 
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -15,7 +13,6 @@ import com.bancow.bancowback.domain.common.dto.ServiceResult;
 import com.bancow.bancowback.domain.common.exception.NoticeException;
 import com.bancow.bancowback.domain.common.util.token.service.TokenService;
 import com.bancow.bancowback.domain.main.notice.dto.NoticeAddDto;
-import com.bancow.bancowback.domain.main.notice.dto.NoticeDeleteListDto;
 import com.bancow.bancowback.domain.main.notice.dto.NoticeResponseDto;
 import com.bancow.bancowback.domain.main.notice.dto.NoticeUpdateDto;
 import com.bancow.bancowback.domain.main.notice.entity.Notice;
