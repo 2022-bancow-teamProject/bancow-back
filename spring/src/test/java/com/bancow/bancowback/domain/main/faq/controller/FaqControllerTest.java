@@ -356,4 +356,58 @@ class FaqControllerTest extends TestSupport {
 			)
 		;
 	}
+
+	@Test
+	public void search() throws Exception {
+		mockMvc.perform(
+			get("/api/faq/search")
+				.param("word", "구매")
+				.param("page", "0")
+		)
+			.andExpect(status().isOk())
+			.andDo(
+				restDocs.document(
+					requestParameters(
+						parameterWithName("word").description("검색어"),
+						parameterWithName("page").description("페이징 처리를 위한 페이지 값 (0부터 시작)")
+					),
+					responseFields(
+						fieldWithPath("data").description("결과 데이터"),
+						fieldWithPath("data.content").description("모든 검색 결과 정보"),
+						fieldWithPath("data.content[0].id").description("FAQ id"),
+						fieldWithPath("data.content[0].title").description("FAQ 제목"),
+						fieldWithPath("data.content[0].message").description("FAQ 메시지"),
+						fieldWithPath("data.content[0].status").description("FAQ 상태"),
+						fieldWithPath("data.content[0].faq_category").description("FAQ 카테고리"),
+						fieldWithPath("data.content[0].create_date").description("FAQ 만든 날짜"),
+						fieldWithPath("data.content[0].update_date").description("FAQ 수정 날짜"),
+
+						fieldWithPath("data.pageable").description("Pageable 설명"),
+						fieldWithPath("data.pageable.sort").description("페이지 정렬 설명"),
+						fieldWithPath("data.pageable.sort.empty").description("비어있는 지 여부"),
+						fieldWithPath("data.pageable.sort.unsorted").description("비정렬 여부"),
+						fieldWithPath("data.pageable.sort.sorted").description("정렬 여부"),
+						fieldWithPath("data.pageable.offset").description("Skip할 데이터 양"),
+						fieldWithPath("data.pageable.pageNumber").description("페이지 번호"),
+						fieldWithPath("data.pageable.pageSize").description("페이지 크기"),
+						fieldWithPath("data.pageable.paged").description("페이지 수를 매긴 여부"),
+						fieldWithPath("data.pageable.unpaged").description("페이지 수를 매기지 않은 여부"),
+						fieldWithPath("data.totalPages").description("총 페이지"),
+						fieldWithPath("data.totalElements").description("모든 데이터 개수"),
+						fieldWithPath("data.last").description("마지막 페이지 여부"),
+						fieldWithPath("data.size").description("한 페이지에서 보여줄 데이터의 개수"),
+						fieldWithPath("data.numberOfElements").description("모든 데이터 개수"),
+						fieldWithPath("data.number").description("페이지 번호"),
+						fieldWithPath("data.sort").description("data 정렬 설명"),
+						fieldWithPath("data.sort.empty").description("비어있는 지 여부"),
+						fieldWithPath("data.sort.unsorted").description("비정렬 여부"),
+						fieldWithPath("data.sort.sorted").description("정렬 여부"),
+						fieldWithPath("data.first").description("첫번째 페이지 여부"),
+						fieldWithPath("data.empty").description("비어있는 지 여부"),
+						fieldWithPath("status").description("HTTP Status")
+					)
+				)
+			)
+		;
+	}
 }
