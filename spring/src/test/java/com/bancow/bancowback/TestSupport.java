@@ -1,8 +1,8 @@
 package com.bancow.bancowback;
 
-import io.micrometer.core.instrument.util.IOUtils;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +23,8 @@ import com.bancow.bancowback.domain.manager.dto.ManagerLoginDto;
 import com.bancow.bancowback.domain.manager.entity.Manager;
 import com.bancow.bancowback.domain.manager.repository.ManagerRepository;
 import com.bancow.bancowback.domain.manager.service.ManagerService;
+
+import io.micrometer.core.instrument.util.IOUtils;
 
 
 @SpringBootTest

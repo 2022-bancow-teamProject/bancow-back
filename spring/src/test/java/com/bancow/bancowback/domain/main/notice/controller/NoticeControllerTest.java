@@ -213,14 +213,7 @@ class NoticeControllerTest extends TestSupport {
 				post("/api/notice/add")
 					.header("TOKEN", token.getToken())
 					.contentType(MediaType.APPLICATION_JSON)
-					.content(
-						"{"
-							+ "  \"notice_category\": \"INSPECTION\",\n"
-							+ "  \"title\": \"공지사항 제목입니다..\",\n"
-							+ "  \"message\": \"공지사항 내용입니다.\",\n"
-							+ "  \"status\": false\n"
-							+ "}"
-					)
+					.content(readJson("json/notice/addNotice.json"))
 					.accept(MediaType.APPLICATION_JSON)
 			)
 			.andExpect(status().isOk())
@@ -282,14 +275,10 @@ class NoticeControllerTest extends TestSupport {
 		Manager manager = adminManagerLogin();
 		Token token = tokenRepository.findByManager(manager).get();
 		mockMvc.perform(
-				delete("/api/notice/delete")
-					.header("TOKEN", token.getToken())
-					.contentType(MediaType.APPLICATION_JSON)
-					.content(
-						"{"
-							+ "  \"idList\": [1]\n"
-							+ "}"
-					)
+			delete("/api/notice/delete")
+				.header("TOKEN", token.getToken())
+				.contentType(MediaType.APPLICATION_JSON)
+				.content(readJson("json/notice/deleteNoticeList.json"))
 					.accept(MediaType.APPLICATION_JSON)
 			)
 			.andExpect(status().isOk())
@@ -299,7 +288,7 @@ class NoticeControllerTest extends TestSupport {
 						headerWithName("TOKEN").description("해당 로그인 유저의 토큰값")
 					),
 					requestFields(
-						fieldWithPath("idList").description("삭제할 항목")
+						fieldWithPath("id_list").description("삭제할 항목")
 					),
 					responseFields(
 						fieldWithPath("data").description("결과 데이터"),
@@ -320,19 +309,12 @@ class NoticeControllerTest extends TestSupport {
 		Token token = tokenRepository.findByManager(manager).get();
 
 		mockMvc.perform(
-				patch("/api/notice/update", 1)
-					.header("TOKEN", token.getToken())
-					.contentType(MediaType.APPLICATION_JSON)
-					.content(
-						"{"
-							+ "  \"id\": \"1\",\n"
-							+ "  \"notice_category\": \"INSPECTION\",\n"
-							+ "  \"title\": \"수정된 공지사항 제목입니다.\",\n"
-							+ "  \"message\": \"수정된 공지사항 내용입니다.\",\n"
-							+ "  \"status\": false\n"
-							+ "}")
-					.accept(MediaType.APPLICATION_JSON)
-			)
+			patch("/api/notice/update", 1)
+				.header("TOKEN", token.getToken())
+				.contentType(MediaType.APPLICATION_JSON)
+				.content(readJson("json/notice/updateNotice.json"))
+				.accept(MediaType.APPLICATION_JSON)
+		)
 			.andExpect(status().isOk())
 			.andDo(
 				restDocs.document(

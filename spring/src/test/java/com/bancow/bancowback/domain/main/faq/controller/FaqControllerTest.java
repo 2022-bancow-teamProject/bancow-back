@@ -213,14 +213,7 @@ class FaqControllerTest extends TestSupport {
 				post("/api/faq/add")
 					.header("TOKEN", token.getToken())
 					.contentType(MediaType.APPLICATION_JSON)
-					.content(
-						"{"
-							+ "  \"faq_category\": \"AUCTION\",\n"
-							+ "  \"title\": \"FAQ 제목입니다..\",\n"
-							+ "  \"message\": \"FAQ 내용입니다.\",\n"
-							+ "  \"status\": false\n"
-							+ "}"
-					)
+					.content(readJson("json/faq/addFaq.json"))
 					.accept(MediaType.APPLICATION_JSON)
 			)
 			.andExpect(status().isOk())
@@ -282,14 +275,10 @@ class FaqControllerTest extends TestSupport {
 		Manager manager = adminManagerLogin();
 		Token token = tokenRepository.findByManager(manager).get();
 		mockMvc.perform(
-				delete("/api/faq/delete")
-					.header("TOKEN", token.getToken())
-					.contentType(MediaType.APPLICATION_JSON)
-					.content(
-						"{"
-							+ "  \"idList\": [1]\n"
-							+ "}"
-					)
+			delete("/api/faq/delete")
+				.header("TOKEN", token.getToken())
+				.contentType(MediaType.APPLICATION_JSON)
+				.content(readJson("json/faq/deleteFaqList.json"))
 					.accept(MediaType.APPLICATION_JSON)
 			)
 			.andExpect(status().isOk())
@@ -299,7 +288,7 @@ class FaqControllerTest extends TestSupport {
 						headerWithName("TOKEN").description("해당 로그인 유저의 토큰값")
 					),
 					requestFields(
-						fieldWithPath("idList").description("삭제할 항목")
+						fieldWithPath("id_list").description("삭제할 항목")
 					),
 					responseFields(
 						fieldWithPath("data").description("결과 데이터"),
@@ -320,17 +309,10 @@ class FaqControllerTest extends TestSupport {
 		Token token = tokenRepository.findByManager(manager).get();
 
 		mockMvc.perform(
-				patch("/api/faq/update", 1)
-					.header("TOKEN", token.getToken())
-					.contentType(MediaType.APPLICATION_JSON)
-					.content(
-						"{"
-							+ "  \"id\": \"1\",\n"
-							+ "  \"faq_category\": \"AUCTION\",\n"
-							+ "  \"title\": \"수정된 FAQ 제목입니다.\",\n"
-							+ "  \"message\": \"수정된 FAQ 내용입니다.\",\n"
-							+ "  \"status\": false\n"
-							+ "}")
+			patch("/api/faq/update", 1)
+				.header("TOKEN", token.getToken())
+				.contentType(MediaType.APPLICATION_JSON)
+				.content(readJson("json/faq/updateFaq.json"))
 					.accept(MediaType.APPLICATION_JSON)
 			)
 			.andExpect(status().isOk())

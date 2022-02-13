@@ -14,7 +14,6 @@ import com.bancow.bancowback.TestSupport;
 import com.bancow.bancowback.domain.common.util.token.entity.Token;
 import com.bancow.bancowback.domain.common.util.token.repository.TokenRepository;
 import com.bancow.bancowback.domain.manager.entity.Manager;
-import com.bancow.bancowback.domain.sub.chart.entity.KoreanCowCategory;
 
 class ChartControllerTest extends TestSupport {
 
