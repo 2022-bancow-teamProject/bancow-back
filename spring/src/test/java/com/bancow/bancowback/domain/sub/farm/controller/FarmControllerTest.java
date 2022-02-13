@@ -304,4 +304,35 @@ public class FarmControllerTest extends TestSupport {
 			)
 		;
 	}
+
+	@Test
+	@Transactional
+	void deleteFarmList() throws Exception {
+
+		Manager adminManager = adminManagerLogin();
+		Token tokenAdmin = tokenRepository.findByManager(adminManager).get();
+
+		mockMvc.perform(
+				delete("/api/event/delete")
+					.header("TOKEN", tokenAdmin.getToken())
+					.content(readJson("/json/delete.json"))
+					.contentType(MediaType.APPLICATION_JSON)
+			)
+			.andExpect(status().isOk())
+			.andDo(restDocs.document(
+					requestHeaders(
+						headerWithName("TOKEN").description("해당 로그인 유저의 토큰값")
+					),
+					requestFields(
+						fieldWithPath("id").description("번호")
+					),
+					responseFields(
+						fieldWithPath("data").description("결과 데이터"),
+						fieldWithPath("data.result").description("문의 삭제 전송 성공 여부"),
+						fieldWithPath("data.message").description("response 메시지"),
+						fieldWithPath("status").description("HTTP Status")
+					)
+				)
+			);
+	}
 }

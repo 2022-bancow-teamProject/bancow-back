@@ -1191,6 +1191,23 @@ include::{snippets}/farm-controller-test/delete-farm-one/response-body.adoc[]
 ==== Response Fields
 include::{snippets}/farm-controller-test/delete-farm-one/response-fields.adoc[]
 
+[[농가-선택-삭제]]
+=== 농가 선택 삭제
+==== Curl Request
+include::{snippets}/farm-controller-test/delete-farm-list/curl-request.adoc[]
+==== Http Request
+include::{snippets}/farm-controller-test/delete-farm-list/http-request.adoc[]
+==== Http Response
+include::{snippets}/farm-controller-test/delete-farm-list/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/farm-controller-test/delete-farm-list/httpie-request.adoc[]
+==== Request Header
+include::{snippets}/farm-controller-test/delete-farm-list/request-headers.adoc[]
+==== Response Body
+include::{snippets}/farm-controller-test/delete-farm-list/response-body.adoc[]
+==== Response Fields
+include::{snippets}/farm-controller-test/delete-farm-list/response-fields.adoc[]
+
 
 [[구매자-리뷰]]
 == 구매자 리뷰
