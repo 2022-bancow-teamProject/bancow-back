@@ -1,5 +1,7 @@
 package com.bancow.bancowback.domain.common.util.token.service;
 
+import static com.bancow.bancowback.domain.common.exception.ErrorCode.*;
+
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Optional;
@@ -8,7 +10,9 @@ import org.springframework.stereotype.Service;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
-import com.bancow.bancowback.domain.common.exception.BizException;
+import com.bancow.bancowback.domain.common.exception.TokenAuthorityException;
+import com.bancow.bancowback.domain.common.exception.TokenAuthoritySuperException;
+import com.bancow.bancowback.domain.common.exception.TokenNotFoundException;
 import com.bancow.bancowback.domain.common.util.token.entity.Token;
 import com.bancow.bancowback.domain.common.util.token.repository.TokenRepository;
 import com.bancow.bancowback.domain.manager.entity.Manager;
@@ -28,21 +32,21 @@ public class TokenService {
 
 	public Token getToken(String token){
 		return tokenRepository.findByToken(token)
-			.orElseThrow(() -> new BizException("해당 토큰을 찾을 수 없습니다."));
+			.orElseThrow(() -> new TokenNotFoundException(NOT_FOUND_TOKEN, "해당 토큰을 찾을 수 없습니다."));
 	}
 
 	public void validTokenAuthority(String token) {
 		Token findToken = getToken(token);
 		if (!(findToken.getManager().getManagerStatus().equals(ManagerStatus.ADMIN) ||
 			findToken.getManager().getManagerStatus().equals(ManagerStatus.SUPER))) {
-			throw new BizException("유저 권한이 없습니다.");
+			throw new TokenAuthorityException(NOT_AUTHORITY, "유저 권한이 없습니다.");
 		}
 	}
 
 	public void validTokenSuper(String token) {
 		Token findToken = getToken(token);
 		if (!(findToken.getManager().getManagerStatus().equals(ManagerStatus.SUPER))) {
-			throw new BizException("SUPER 계정이 아닙니다.");
+			throw new TokenAuthoritySuperException(NOT_AUTHORITY_SUPER, "SUPER 계정이 아닙니다.");
 		}
 	}
 
