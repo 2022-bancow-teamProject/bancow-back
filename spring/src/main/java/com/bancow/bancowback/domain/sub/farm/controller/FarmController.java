@@ -3,12 +3,14 @@ package com.bancow.bancowback.domain.sub.farm.controller;
 import java.io.IOException;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -52,6 +54,13 @@ public class FarmController {
 	@GetMapping("/distribute")
 	public Response<?> getFarmDistribute() {
 		return new Response<>(farmService.getFarmDistribute(), HttpStatus.OK);
+	}
+
+	@GetMapping()
+	public Response<?> getFarmPaging(@RequestHeader("TOKEN") final String token,
+		@NotNull @RequestParam("page") final int page) {
+		tokenService.validTokenAuthority(token);
+		return new Response<>(farmService.getFarmPaging(page), HttpStatus.OK);
 	}
 
 }
