@@ -1,6 +1,5 @@
 package com.bancow.bancowback.domain.main.faq.dto;
 
-import javax.persistence.Column;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 

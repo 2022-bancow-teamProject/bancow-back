@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bancow.bancowback.domain.common.dto.Response;
-import com.bancow.bancowback.domain.common.dto.ServiceResult;
 import com.bancow.bancowback.domain.main.notice.dto.NoticeAddDto;
 import com.bancow.bancowback.domain.main.notice.dto.NoticeDeleteListDto;
 import com.bancow.bancowback.domain.main.notice.dto.NoticeUpdateDto;

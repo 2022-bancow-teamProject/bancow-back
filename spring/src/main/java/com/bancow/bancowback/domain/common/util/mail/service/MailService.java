@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import com.bancow.bancowback.domain.common.util.mail.MailComponent;
 import com.bancow.bancowback.domain.common.util.mail.entity.MailTemplate;
 import com.bancow.bancowback.domain.common.util.mail.repository.MailTemplateRepository;
-import com.bancow.bancowback.domain.common.util.token.repository.TokenRepository;
 import com.bancow.bancowback.domain.common.util.token.service.TokenService;
 import com.bancow.bancowback.domain.main.farmqna.dto.FarmQnaReplyDto;
 import com.bancow.bancowback.domain.main.farmqna.entity.FarmQna;

@@ -2,7 +2,6 @@ package com.bancow.bancowback.domain.sub.news.dto;
 
 import java.time.LocalDateTime;
 
-import com.bancow.bancowback.domain.manager.entity.Manager;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;

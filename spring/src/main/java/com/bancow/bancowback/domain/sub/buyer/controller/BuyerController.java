@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bancow.bancowback.domain.common.dto.Response;
-
 import com.bancow.bancowback.domain.common.util.token.service.TokenService;
 import com.bancow.bancowback.domain.sub.buyer.dto.BuyerDeleteRequestDto;
 import com.bancow.bancowback.domain.sub.buyer.dto.BuyerUpdateRequestDto;

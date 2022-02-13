@@ -3,18 +3,8 @@ package com.bancow.bancowback.domain.main.notice.dto;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 
 import com.bancow.bancowback.domain.main.notice.entity.NoticeCategory;
-import com.bancow.bancowback.domain.manager.entity.Manager;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;

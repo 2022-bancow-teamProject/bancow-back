@@ -38,14 +38,7 @@ class ManagerControllerTest extends TestSupport {
 		mockMvc.perform(
 			post("/api/register")
 				.contentType(MediaType.APPLICATION_JSON)
-				.content(
-					"{\n"
-						+ "  \"email\": \"gmldnr2222@naver.com\",\n"
-						+ "  \"username\": \"김지훈\",\n"
-						+ "  \"password\": \"passwordAndPassword2\",\n"
-						+ "  \"password2\": \"passwordAndPassword2\"\n"
-						+ "}"
-				)
+				.content(readJson("json/manager/registerManger.json"))
 		)
 			.andExpect(status().isOk())
 			.andDo(
@@ -73,12 +66,7 @@ class ManagerControllerTest extends TestSupport {
 		mockMvc.perform(
 			post("/api/login")
 				.contentType(MediaType.APPLICATION_JSON)
-				.content(
-					"{\n"
-						+ "  \"email\": \"smtptestkk@gmail.com\",\n"
-						+ "  \"password\": \"q1w2e3r4\"\n"
-						+ "}"
-				)
+				.content(readJson("json/manager/login.json"))
 		)
 			.andExpect(status().isOk())
 			.andDo(
@@ -251,10 +239,7 @@ class ManagerControllerTest extends TestSupport {
 		mockMvc.perform(
 			post("/api/findmanager")
 				.contentType(MediaType.APPLICATION_JSON)
-				.content("{\n"
-					+ "\"email\": \"gmldnr2222@naver.com\",\n"
-					+ "\"username\": \"가나다\"\n"
-					+ "}")
+				.content(readJson("json/manager/findManager.json"))
 		)
 			.andExpect(status().isOk())
 			.andDo(
@@ -330,10 +315,7 @@ class ManagerControllerTest extends TestSupport {
 		mockMvc.perform(
 			patch("/api//authentication/findmanager/{token}/change-password", findToken.getToken())
 				.contentType(MediaType.APPLICATION_JSON)
-				.content("{"
-					+ "\"password1\" : \"123123\",\n"
-					+ "\"password2\" : \"123123\"\n"
-					+ "}")
+				.content(readJson("/json/manager/changePassword.json"))
 		)
 			.andExpect(status().isOk())
 			.andDo(

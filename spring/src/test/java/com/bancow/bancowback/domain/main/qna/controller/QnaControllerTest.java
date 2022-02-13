@@ -185,16 +185,7 @@ class QnaControllerTest extends TestSupport {
 		mockMvc.perform(
 			post("/api/qna/add")
 				.contentType(MediaType.APPLICATION_JSON)
-				.content(
-					"{"
-						+ "  \"category\": \"INVESTMENT\",\n"
-						+ "  \"qna_name\": \"KimJiHun\",\n"
-						+ "  \"phone_number\": \"010-1234-5678\",\n"
-						+ "  \"email\": \"gmldnr2222@naver.com\",\n"
-						+ "  \"title\": \"투자 문의 입니다.\",\n"
-						+ "  \"message\": \"이메일 혹은 전화로 연락 부탁드립니다.\"\n"
-						+ "}"
-				)
+				.content(readJson("/json/qna/addQna.json"))
 				.accept(MediaType.APPLICATION_JSON)
 		)
 			.andExpect(status().isOk())

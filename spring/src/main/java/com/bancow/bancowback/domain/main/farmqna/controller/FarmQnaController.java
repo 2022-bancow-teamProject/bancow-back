@@ -20,7 +20,6 @@ import com.bancow.bancowback.domain.main.farmqna.dto.FarmQnaAddRequestDto;
 import com.bancow.bancowback.domain.main.farmqna.dto.FarmQnaDeleteRequestDto;
 import com.bancow.bancowback.domain.main.farmqna.dto.FarmQnaReplyDto;
 import com.bancow.bancowback.domain.main.farmqna.dto.FarmQnaResponseDto;
-import com.bancow.bancowback.domain.main.farmqna.entity.FarmQna;
 import com.bancow.bancowback.domain.main.farmqna.service.FarmQnaService;
 
 import lombok.RequiredArgsConstructor;

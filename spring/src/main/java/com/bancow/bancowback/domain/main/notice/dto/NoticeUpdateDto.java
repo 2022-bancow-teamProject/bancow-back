@@ -1,13 +1,9 @@
 package com.bancow.bancowback.domain.main.notice.dto;
 
-import java.time.LocalDateTime;
-
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import com.bancow.bancowback.domain.main.notice.entity.NoticeCategory;
-import com.bancow.bancowback.domain.manager.entity.Manager;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;

@@ -27,16 +27,7 @@ class FarmQnaControllerTest extends TestSupport {
 		mockMvc.perform(
 			post("/api/farmqna/add")
 				.contentType(MediaType.APPLICATION_JSON)
-				.content("{\n"
-					+ "  \"farm_qna_name\": \"김철수\",\n"
-					+ "  \"phone_number\": \"010-3991-7102\",\n"
-					+ "  \"email\": \"gmldnr2222@naver.com\",\n"
-					+ "  \"farm_name\": \"속초농장\",\n"
-					+ "  \"farm_address\": \"강원도 속초시 교동 밤골3길\",\n"
-					+ "  \"cow_num\": \"100\",\n"
-					+ "  \"feed_name\": \"먹이이름입니다.\",\n"
-					+ "  \"available_date\": \"2022-02-20\"\n"
-					+ "}")
+				.content(readJson("json/farmQna/addFarmQna.json"))
 				.accept(MediaType.APPLICATION_JSON)
 		)
 			.andExpect(status().isOk())
