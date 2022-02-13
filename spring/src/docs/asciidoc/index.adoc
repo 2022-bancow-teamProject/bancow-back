@@ -1865,3 +1865,22 @@ include::{snippets}/news-controller-test/delete-news-list/request-headers.adoc[]
 include::{snippets}/news-controller-test/delete-news-list/response-body.adoc[]
 ==== Response Fields
 include::{snippets}/news-controller-test/delete-news-list/response-fields.adoc[]
+
+
+[[HOWTO]]
+== Howto
+
+[[Howto-배포]]
+=== Howto 배포
+==== Curl Request
+include::{snippets}/howto-controller-test/get-howto/curl-request.adoc[]
+==== Http Request
+include::{snippets}/howto-controller-test/get-howto/http-request.adoc[]
+==== Http Response
+include::{snippets}/howto-controller-test/get-howto/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/howto-controller-test/get-howto/httpie-request.adoc[]
+==== Response Body
+include::{snippets}/howto-controller-test/get-howto/response-body.adoc[]
+==== Response Fields
+include::{snippets}/howto-controller-test/get-howto/response-fields.adoc[]
