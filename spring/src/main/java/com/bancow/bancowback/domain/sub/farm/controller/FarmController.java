@@ -7,8 +7,10 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -85,4 +87,10 @@ public class FarmController {
 		return new Response<>(farmService.editFarmImage(farmInfo), HttpStatus.OK);
 	}
 
+	@PatchMapping("/edit")
+	public Response<?> editFarmNotImage(@RequestHeader("TOKEN") final String token,
+		@Valid @RequestBody FarmUpdateRequestDto farmDto) {
+		tokenService.validTokenAuthority(token);
+		return new Response<>(farmService.editFarmNotImage(tokenService.getManager(token), farmDto), HttpStatus.OK);
+	}
 }
