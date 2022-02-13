@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -39,7 +40,7 @@ public class EventController {
 	private final NcpService ncpService;
 	private final TokenService tokenService;
 
-	@PostMapping("add")
+	@PostMapping("/add")
 	public Response<?> addEvent(@RequestHeader("TOKEN") String token,
 		@Valid @RequestPart("event_request") final EventAddRequestDto dto,
 		@RequestPart(value = "event_image", required = false) final MultipartFile eventImage) throws IOException {
@@ -49,8 +50,8 @@ public class EventController {
 	}
 
 	@GetMapping("/distribute")
-	public Response<?> getEventDistribute() {
-		return new Response<>(eventService.getEventDistribute(), HttpStatus.OK);
+	public Response<?> getEventDistribute(@RequestParam("status") final Boolean status) {
+		return new Response<>(eventService.getEventDistribute(status), HttpStatus.OK);
 	}
 
 	@PostMapping("/edit")

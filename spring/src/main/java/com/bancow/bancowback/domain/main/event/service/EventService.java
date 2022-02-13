@@ -32,8 +32,8 @@ public class EventService {
 		return ServiceResult.success("이벤트가 등록 됐습니다.");
 	}
 
-	public List<EventDistributeResponseDto> getEventDistribute() {
-		List<Event> eventList = eventRepository.findByStatus(true);
+	public List<EventDistributeResponseDto> getEventDistribute(Boolean status) {
+		List<Event> eventList = eventRepository.findByStatus(status);
 
 		if (eventList.size() == 0) {
 			throw new EventException(ErrorCode.NOT_FOUND_EVENT, "이벤트 없음");

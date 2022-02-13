@@ -33,6 +33,7 @@ public interface EventMapper {
 			.title(event.getTitle())
 			.content(event.getContent())
 			.url(event.getUrl())
+			.status(event.getStatus())
 			.startDate(event.getStartDate())
 			.endDate(event.getEndDate())
 			.image(event.getImage())
