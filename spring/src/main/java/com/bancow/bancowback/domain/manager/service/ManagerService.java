@@ -115,7 +115,7 @@ public class ManagerService {
 
 		tokenService.validTokenSuper(token);
 		Page<Manager> allManager = managerRepository.findAll(
-			PageRequest.of(page, 10, Sort.by(Sort.Direction.DESC, "id")));
+			PageRequest.of(page, 5, Sort.by(Sort.Direction.DESC, "id")));
 		return allManager.map(managerMapper::toRequest);
 	}
 

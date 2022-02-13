@@ -48,7 +48,7 @@ public class QnaService {
 		tokenService.validTokenAuthority(token);
 
 		Page<Qna> qnaList = qnaRepository.findAll(
-			PageRequest.of(page, 10, Sort.by(Sort.Direction.DESC, "id"))
+			PageRequest.of(page, 5, Sort.by(Sort.Direction.DESC, "id"))
 		);
 		return qnaList.map(qnaMapper::toResponse);
 	}
