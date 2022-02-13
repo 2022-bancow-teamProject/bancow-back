@@ -16,6 +16,7 @@ import com.bancow.bancowback.domain.common.exception.FarmException;
 
 import com.bancow.bancowback.domain.manager.entity.Manager;
 import com.bancow.bancowback.domain.sub.farm.dto.FarmAddRequestDto;
+
 import com.bancow.bancowback.domain.sub.farm.dto.FarmDetailResponseDto;
 import com.bancow.bancowback.domain.sub.farm.dto.FarmDistributeResponseDto;
 import com.bancow.bancowback.domain.sub.farm.dto.FarmPagingResponseDto;
@@ -83,7 +84,22 @@ public class FarmService {
 
 	public ServiceResult deleteFarmOne(Long id) {
 		farmRepository.delete(getFarmId(id));
-		return ServiceResult.success("이벤트가 삭제 됐습니다.");
+		return ServiceResult.success("농장이 삭제 됐습니다.");
 	}
 
+	public ServiceResult deleteFarmList(List<Long> id) {
+		List<Farm> deleteFarmList = farmRepository.findByIdIn(id);
+
+		if (deleteFarmList.size() == 0) {
+			throw new FarmException(ErrorCode.NOT_FOUND_FARM, "농장 없음");
+		}
+
+		deleteFarmList
+			.stream().forEach(e -> {
+				farmRepository.delete(e);
+			});
+
+		return ServiceResult.success("농장 삭제 됐습니다.");
+
+	}
 }
