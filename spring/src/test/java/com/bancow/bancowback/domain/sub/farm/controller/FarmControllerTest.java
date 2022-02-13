@@ -307,7 +307,7 @@ public class FarmControllerTest extends TestSupport {
 
 	@Test
 	@Transactional
-	void deleteEventList() throws Exception {
+	void deleteFarmList() throws Exception {
 
 		Manager adminManager = adminManagerLogin();
 		Token tokenAdmin = tokenRepository.findByManager(adminManager).get();
