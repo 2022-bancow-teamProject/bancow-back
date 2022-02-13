@@ -6,6 +6,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -93,4 +94,12 @@ public class FarmController {
 		tokenService.validTokenAuthority(token);
 		return new Response<>(farmService.editFarmNotImage(tokenService.getManager(token), farmDto), HttpStatus.OK);
 	}
+
+	@DeleteMapping("/{id}")
+	public Response<?> deleteFarmOne(@RequestHeader("TOKEN") final String token,
+		@NotNull @PathVariable final Long id) {
+		tokenService.validTokenAuthority(token);
+		return new Response<>(farmService.deleteFarmOne(id), HttpStatus.OK);
+	}
+
 }

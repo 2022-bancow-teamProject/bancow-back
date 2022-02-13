@@ -9,4 +9,5 @@ import com.bancow.bancowback.domain.sub.farm.entity.Farm;
 public interface FarmRepository extends JpaRepository<Farm, Long> {
 
 	List<Farm> findByStatus(boolean b);
+	List<Farm> findByIdIn(List<Long> id);
 }
