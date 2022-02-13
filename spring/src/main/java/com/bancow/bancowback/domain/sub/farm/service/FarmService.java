@@ -14,6 +14,7 @@ import com.bancow.bancowback.domain.common.exception.ErrorCode;
 
 import com.bancow.bancowback.domain.common.exception.FarmException;
 
+import com.bancow.bancowback.domain.manager.entity.Manager;
 import com.bancow.bancowback.domain.sub.farm.dto.FarmAddRequestDto;
 import com.bancow.bancowback.domain.sub.farm.dto.FarmDetailResponseDto;
 import com.bancow.bancowback.domain.sub.farm.dto.FarmDistributeResponseDto;
