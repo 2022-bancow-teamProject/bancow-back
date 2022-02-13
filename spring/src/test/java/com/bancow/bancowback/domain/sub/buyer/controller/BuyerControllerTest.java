@@ -36,6 +36,8 @@ class BuyerControllerTest extends TestSupport {
 						fieldWithPath("data[0].id").description("id"),
 						fieldWithPath("data[0].buyer_name").description("구매자 이름"),
 						fieldWithPath("data[0].farm_name").description("농장 이름"),
+						fieldWithPath("data[0].title").description("제목"),
+						fieldWithPath("data[0].content").description("내용"),
 						fieldWithPath("data[0].farm_ceo_name").description("농장 대표님 이름"),
 						fieldWithPath("data[0].farm_image").description("농장 사진"),
 						fieldWithPath("status").description("HTTP Status")
