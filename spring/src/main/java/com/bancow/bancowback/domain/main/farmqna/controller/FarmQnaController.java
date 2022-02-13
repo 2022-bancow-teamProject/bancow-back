@@ -19,6 +19,7 @@ import com.bancow.bancowback.domain.common.dto.ServiceResult;
 import com.bancow.bancowback.domain.main.farmqna.dto.FarmQnaAddRequestDto;
 import com.bancow.bancowback.domain.main.farmqna.dto.FarmQnaDeleteRequestDto;
 import com.bancow.bancowback.domain.main.farmqna.dto.FarmQnaReplyDto;
+import com.bancow.bancowback.domain.main.farmqna.dto.FarmQnaResponseDto;
 import com.bancow.bancowback.domain.main.farmqna.entity.FarmQna;
 import com.bancow.bancowback.domain.main.farmqna.service.FarmQnaService;
 
@@ -38,15 +39,15 @@ public class FarmQnaController {
 	}
 
 	@GetMapping("/{id}")
-	public Response<FarmQna> getFarmQna(@PathVariable Long id, @RequestHeader("TOKEN") String token) {
-		FarmQna farmQna = farmQnaService.getFarmQna(token, id);
-		return new Response<>(farmQna, HttpStatus.OK);
+	public Response<FarmQnaResponseDto> getFarmQna(@PathVariable Long id, @RequestHeader("TOKEN") String token) {
+		FarmQnaResponseDto result = farmQnaService.getFarmQna(token, id);
+		return new Response<>(result, HttpStatus.OK);
 	}
 
 	@GetMapping
-	public Response<Page<FarmQna>> getFarmQnaPaging(@RequestParam int page, @RequestHeader("TOKEN") String token) {
-		Page<FarmQna> pagingFarmQna = farmQnaService.getFarmQnaPaging(page, token);
-		return new Response<>(pagingFarmQna, HttpStatus.OK);
+	public Response<Page<FarmQnaResponseDto>> getFarmQnaPaging(@RequestParam int page, @RequestHeader("TOKEN") String token) {
+		Page<FarmQnaResponseDto> result = farmQnaService.getFarmQnaPaging(page, token);
+		return new Response<>(result, HttpStatus.OK);
 	}
 
 	@DeleteMapping("/{id}")
