@@ -74,9 +74,14 @@ public class FarmService {
 	}
 
 	public ServiceResult editFarmNotImage(Manager manager, FarmUpdateRequestDto farmUpdateRequestDto) {
-			Farm farm = farmMapper.toUpdateNotImageEntity(manager, getFarmId(farmUpdateRequestDto.getId()), farmUpdateRequestDto);
-			farmRepository.save(farm);
-			return ServiceResult.success("농장이 수정 됐습니다.");
+		Farm farm = farmMapper.toUpdateNotImageEntity(manager, getFarmId(farmUpdateRequestDto.getId()),
+			farmUpdateRequestDto);
+		farmRepository.save(farm);
+		return ServiceResult.success("농장이 수정 됐습니다.");
 	}
 
+	public ServiceResult deleteFarmOne(Long id) {
+		farmRepository.delete(getFarmId(id));
+		return ServiceResult.success("이벤트가 삭제 됐습니다.");
+	}
 }
