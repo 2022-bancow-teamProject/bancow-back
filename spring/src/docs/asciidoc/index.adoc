@@ -717,6 +717,24 @@ include::{snippets}/event-controller-test/get-event-paging/response-body.adoc[]
 ==== Response Fields
 include::{snippets}/event-controller-test/get-event-paging/response-fields.adoc[]
 
+[[이벤트-상세-페이지]]
+=== 이벤트 상세 페이지
+==== Curl Request
+include::{snippets}/event-controller-test/get-event-detail/curl-request.adoc[]
+==== Http Request
+include::{snippets}/event-controller-test/get-event-detail/http-request.adoc[]
+==== Http Response
+include::{snippets}/event-controller-test/get-event-detail/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/event-controller-test/get-event-detail/httpie-request.adoc[]
+==== Path Parameter
+include::{snippets}/event-controller-test/get-event-detail/path-parameters.adoc[]
+==== Response Body
+include::{snippets}/event-controller-test/get-event-detail/response-body.adoc[]
+==== Response Fields
+include::{snippets}/event-controller-test/get-event-detail/response-fields.adoc[]
+
+
 [[이벤트-배포]]
 === 이벤트 배포
 ==== Curl Request

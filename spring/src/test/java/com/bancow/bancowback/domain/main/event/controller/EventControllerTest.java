@@ -98,6 +98,45 @@ class EventControllerTest extends TestSupport {
 
 	@Test
 	@Transactional
+	void getEventDetail() throws Exception {
+		Long id = 1L;
+		Manager adminManager = adminManagerLogin();
+		Token tokenAdmin = tokenRepository.findByManager(adminManager).get();
+
+		mockMvc.perform(
+				get("/api/event/{id}", id)
+					.header("TOKEN", tokenAdmin.getToken())
+
+			).andExpect(status().isOk())
+			.andDo(
+				restDocs.document(
+					requestHeaders(
+						headerWithName("TOKEN").description("해당 로그인 유저의 토큰값")
+					),
+					pathParameters(
+						parameterWithName("id").description("번호")
+					),
+					responseFields(
+						fieldWithPath("data").description("결과 데이터"),
+						fieldWithPath("data.id").description("번호"),
+						fieldWithPath("data.title").description("제목"),
+						fieldWithPath("data.content").description("내용"),
+						fieldWithPath("data.url").description("이벤트 url"),
+						fieldWithPath("data.image").description("이미지"),
+						fieldWithPath("data.status").description("사용 유무"),
+						fieldWithPath("data.user_name").description("등록한 관리자"),
+						fieldWithPath("data.start_date").description("게시 시작 날짜"),
+						fieldWithPath("data.end_date").description("게시 마감 날짜"),
+						fieldWithPath("data.create_date").description("생성 시간"),
+						fieldWithPath("status").description("HTTP Status")
+					)
+				)
+			)
+		;
+	}
+
+	@Test
+	@Transactional
 	void getEventPaging() throws Exception {
 		Manager adminManager = adminManagerLogin();
 		Token tokenAdmin = tokenRepository.findByManager(adminManager).get();
