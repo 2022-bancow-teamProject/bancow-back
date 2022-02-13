@@ -1,12 +1,15 @@
 package com.bancow.bancowback.domain.main.faq.mapper;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
 import com.bancow.bancowback.domain.main.faq.dto.FaqAddDto;
 import com.bancow.bancowback.domain.main.faq.dto.FaqResponseDto;
+import com.bancow.bancowback.domain.main.faq.dto.FaqSearchResultDto;
 import com.bancow.bancowback.domain.main.faq.dto.FaqUpdateDto;
 import com.bancow.bancowback.domain.main.faq.entity.Faq;
 import com.bancow.bancowback.domain.manager.entity.Manager;
@@ -65,5 +68,24 @@ public interface FaqMapper {
 			.updateDate(LocalDateTime.now())
 			.username(faq.getManager().getUsername())
 			.build();
+	}
+
+	default public List<FaqSearchResultDto> toSearchResultDto(List<Faq> faqList) {
+		List<FaqSearchResultDto> resultDto = new ArrayList<>();
+		faqList.forEach(e ->
+			{
+				FaqSearchResultDto dto = FaqSearchResultDto.builder()
+					.id(e.getId())
+					.faqCategory(e.getFaqCategory())
+					.title(e.getTitle())
+					.message(e.getMessage())
+					.status(e.isStatus())
+					.createDate(e.getCreateDate())
+					.updateDate(e.getUpdateDate())
+					.build();
+				resultDto.add(dto);
+			}
+		);
+		return resultDto;
 	}
 }

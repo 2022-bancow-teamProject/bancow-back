@@ -1,5 +1,7 @@
 package com.bancow.bancowback.domain.main.faq.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.http.HttpStatus;
@@ -17,7 +19,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.bancow.bancowback.domain.common.dto.Response;
 import com.bancow.bancowback.domain.main.faq.dto.FaqAddDto;
 import com.bancow.bancowback.domain.main.faq.dto.FaqDeleteListDto;
+import com.bancow.bancowback.domain.main.faq.dto.FaqSearchResultDto;
 import com.bancow.bancowback.domain.main.faq.dto.FaqUpdateDto;
+import com.bancow.bancowback.domain.main.faq.entity.Faq;
 import com.bancow.bancowback.domain.main.faq.service.FaqService;
 
 import lombok.RequiredArgsConstructor;
@@ -70,4 +74,9 @@ public class FaqController {
 		return new Response<>(faqService.updateFaq(token, faqUpdateDto), HttpStatus.OK);
 	}
 
+	@GetMapping("/search")
+	public Response<List<FaqSearchResultDto>> SearchFaq(@RequestParam String word) {
+		List<FaqSearchResultDto> result = faqService.search(word);
+		return new Response<>(result, HttpStatus.OK);
+	}
 }

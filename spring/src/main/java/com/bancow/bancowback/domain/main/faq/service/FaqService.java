@@ -2,6 +2,7 @@ package com.bancow.bancowback.domain.main.faq.service;
 
 import static com.bancow.bancowback.domain.common.exception.ErrorCode.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import com.bancow.bancowback.domain.common.dto.ServiceResult;
 import com.bancow.bancowback.domain.common.exception.FaqException;
 import com.bancow.bancowback.domain.common.util.token.service.TokenService;
+import com.bancow.bancowback.domain.main.faq.dto.FaqSearchResultDto;
 import com.bancow.bancowback.domain.main.faq.entity.Faq;
 import com.bancow.bancowback.domain.main.faq.mapper.FaqMapper;
 import com.bancow.bancowback.domain.main.faq.dto.FaqAddDto;
@@ -91,5 +93,10 @@ public class FaqService {
 		faq = faqMapper.toUpdate(manager, faq, faqUpdateDto);
 		faqRepository.save(faq);
 		return ServiceResult.success("FAQ 수정 성공!");
+	}
+
+	public List<FaqSearchResultDto> search(String word) {
+		List<Faq> result = faqRepository.findByTitleContaining(word);
+		return faqMapper.toSearchResultDto(result);
 	}
 }
