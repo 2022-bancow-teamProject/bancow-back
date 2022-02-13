@@ -52,6 +52,7 @@ public interface EventMapper {
 			.startDate(event.getStartDate())
 			.endDate(event.getEndDate())
 			.image(event.getImage())
+			.createDate(event.getCreateDate())
 			.build();
 	}
 

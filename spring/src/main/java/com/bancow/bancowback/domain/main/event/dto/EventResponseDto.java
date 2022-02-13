@@ -1,8 +1,7 @@
 package com.bancow.bancowback.domain.main.event.dto;
 
 import java.time.LocalDate;
-
-import org.joda.time.LocalDateTime;
+import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

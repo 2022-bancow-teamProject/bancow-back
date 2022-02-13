@@ -29,16 +29,21 @@ public class EventService {
 	private final EventRepository eventRepository;
 	private final EventMapper eventMapper;
 
-	public Page<EventResponseDto> getEventPaging(int page) {
-		Page<Event> eventList = eventRepository.findAll(PageRequest.of(page, 5, Sort.by(Sort.Direction.DESC, "id")));
-		return eventList.map(event -> eventMapper.toResponseDto(event));
-	}
 
 	public ServiceResult addEvent(EventInfo eventInfo) {
 		Event event = eventMapper.toEntity(eventInfo.getManager(), (EventAddRequestDto)eventInfo.getDto(),
 			eventInfo.getImagePath());
 		eventRepository.save(event);
 		return ServiceResult.success("이벤트가 등록 됐습니다.");
+	}
+
+	public Page<EventResponseDto> getEventPaging(int page) {
+		Page<Event> eventList = eventRepository.findAll(PageRequest.of(page, 5, Sort.by(Sort.Direction.DESC, "id")));
+		return eventList.map(event -> eventMapper.toResponseDto(event));
+	}
+
+	public EventResponseDto getEventDetail(Long id) {
+		return eventMapper.toResponseDto(getEventId(id));
 	}
 
 	public List<EventDistributeResponseDto> getEventDistribute(Boolean status) {
@@ -89,4 +94,6 @@ public class EventService {
 		return ServiceResult.success("이벤트 삭제 성공.");
 
 	}
+
+
 }
