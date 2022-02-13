@@ -586,8 +586,8 @@ include::{snippets}/qna-controller-test/get-qna-paging/response-body.adoc[]
 ==== Response Fields
 include::{snippets}/qna-controller-test/get-qna-paging/response-fields.adoc[]
 
-[[문의-삭제하기]]
-=== 문의 삭제하기
+[[문의-단일-삭제]]
+=== 문의 단일 삭제
 ==== Curl Request
 include::{snippets}/qna-controller-test/delete-qna/curl-request.adoc[]
 ==== Http Request
@@ -604,6 +604,25 @@ include::{snippets}/qna-controller-test/delete-qna/path-parameters.adoc[]
 include::{snippets}/qna-controller-test/delete-qna/response-body.adoc[]
 ==== Response Fields
 include::{snippets}/qna-controller-test/delete-qna/response-fields.adoc[]
+
+[[문의-다중-삭제]]
+=== 문의 다중 삭제
+==== Curl Request
+include::{snippets}/qna-controller-test/delete-qna-list/curl-request.adoc[]
+==== Http Request
+include::{snippets}/qna-controller-test/delete-qna-list/http-request.adoc[]
+==== Http Response
+include::{snippets}/qna-controller-test/delete-qna-list/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/qna-controller-test/delete-qna-list/httpie-request.adoc[]
+==== Request Header
+include::{snippets}/qna-controller-test/delete-qna-list/request-headers.adoc[]
+==== Request Fields
+include::{snippets}/qna-controller-test/delete-qna-list/request-fields.adoc[]
+==== Response Body
+include::{snippets}/qna-controller-test/delete-qna-list/response-body.adoc[]
+==== Response Fields
+include::{snippets}/qna-controller-test/delete-qna-list/response-fields.adoc[]
 
 [[문의-하기-이메일-답변]]
 === 문의 하기 이메일 답변

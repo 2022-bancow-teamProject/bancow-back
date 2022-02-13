@@ -150,6 +150,37 @@ class QnaControllerTest extends TestSupport {
 
 	@Test
 	@Transactional
+	public void deleteQnaList() throws Exception {
+		Manager manager = adminManagerLogin();
+		Token token = tokenRepository.findByManager(manager).get();
+		mockMvc.perform(
+			delete("/api/qna/delete")
+				.header("TOKEN", token.getToken())
+				.contentType(MediaType.APPLICATION_JSON)
+				.content(readJson("json/qna/deleteQnaList.json"))
+		)
+			.andExpect(status().isOk())
+			.andDo(
+				restDocs.document(
+					requestHeaders(
+						headerWithName("TOKEN").description("해당 로그인 유저의 토큰값")
+					),
+					requestFields(
+						fieldWithPath("id").description("id 리스트")
+					),
+					responseFields(
+						fieldWithPath("data").description("결과 데이터"),
+						fieldWithPath("data.result").description("QnA 삭제 성공 여부"),
+						fieldWithPath("data.message").description("response 메시지"),
+						fieldWithPath("status").description("HTTP Status")
+					)
+				)
+			)
+		;
+	}
+
+	@Test
+	@Transactional
 	void addQna() throws Exception {
 		mockMvc.perform(
 			post("/api/qna/add")
