@@ -27,6 +27,8 @@ public class EventDistributeResponseDto {
 
 	private String image;
 
+	private Boolean status;
+
 	@JsonProperty("start_date")
 	private LocalDate startDate;
 
