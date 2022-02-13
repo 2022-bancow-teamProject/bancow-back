@@ -41,8 +41,8 @@ class HistoryControllerTest extends TestSupport {
 						fieldWithPath("data.title").description("히스토리 날짜"),
 						fieldWithPath("data.message").description("메시지"),
 						fieldWithPath("data.status").description("공개여부"),
-						fieldWithPath("data.createDate").description("글 작성일"),
-						fieldWithPath("data.updateDate").description("글 수정일"),
+						fieldWithPath("data.create_date").description("글 작성일"),
+						fieldWithPath("data.update_date").description("글 수정일"),
 						fieldWithPath("data.username").description("작성자 이름"),
 						fieldWithPath("status").description("HTTP Status")
 					)
@@ -73,8 +73,8 @@ class HistoryControllerTest extends TestSupport {
 						fieldWithPath("data.content[0].title").description("히스토리 날짜"),
 						fieldWithPath("data.content[0].message").description("메시지"),
 						fieldWithPath("data.content[0].status").description("공개 여부"),
-						fieldWithPath("data.content[0].createDate").description("글 등록일"),
-						fieldWithPath("data.content[0].updateDate").description("글 수정일"),
+						fieldWithPath("data.content[0].create_date").description("글 등록일"),
+						fieldWithPath("data.content[0].update_date").description("글 수정일"),
 						fieldWithPath("data.content[0].username").description("유저이름"),
 						fieldWithPath("data.pageable").description("Pageable 설명"),
 						fieldWithPath("data.pageable.sort").description("페이지 정렬 설명"),
@@ -131,8 +131,8 @@ class HistoryControllerTest extends TestSupport {
 						fieldWithPath("data.title").description("히스토리 날짜"),
 						fieldWithPath("data.message").description("메시지"),
 						fieldWithPath("data.status").description("공개여부"),
-						fieldWithPath("data.createDate").description("글 작성일"),
-						fieldWithPath("data.updateDate").description("글 수정일"),
+						fieldWithPath("data.create_date").description("글 작성일"),
+						fieldWithPath("data.update_date").description("글 수정일"),
 						fieldWithPath("data.username").description("작성자 이름"),
 						fieldWithPath("status").description("HTTP Status")
 					)
@@ -168,8 +168,8 @@ class HistoryControllerTest extends TestSupport {
 						fieldWithPath("data.content[0].title").description("히스토리 날짜"),
 						fieldWithPath("data.content[0].message").description("메시지"),
 						fieldWithPath("data.content[0].status").description("공개 여부"),
-						fieldWithPath("data.content[0].createDate").description("글 등록일"),
-						fieldWithPath("data.content[0].updateDate").description("글 수정일"),
+						fieldWithPath("data.content[0].create_date").description("글 등록일"),
+						fieldWithPath("data.content[0].update_date").description("글 수정일"),
 						fieldWithPath("data.content[0].username").description("유저이름"),
 						fieldWithPath("data.pageable").description("Pageable 설명"),
 						fieldWithPath("data.pageable.sort").description("페이지 정렬 설명"),

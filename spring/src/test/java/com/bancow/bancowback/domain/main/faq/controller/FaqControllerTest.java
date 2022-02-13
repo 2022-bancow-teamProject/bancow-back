@@ -38,12 +38,12 @@ class FaqControllerTest extends TestSupport {
 					responseFields(
 						fieldWithPath("data").description("결과 데이터"),
 						fieldWithPath("data.id").description("아이디"),
-						fieldWithPath("data.faqCategory").description("문의 카테고리(새로운 상품, 신규 기능, 점검안내"),
+						fieldWithPath("data.faq_category").description("문의 카테고리(새로운 상품, 신규 기능, 점검안내"),
 						fieldWithPath("data.title").description("제목"),
 						fieldWithPath("data.message").description("메시지"),
 						fieldWithPath("data.status").description("공개여부"),
-						fieldWithPath("data.createDate").description("글 작성일"),
-						fieldWithPath("data.updateDate").description("글 수정일"),
+						fieldWithPath("data.create_date").description("글 작성일"),
+						fieldWithPath("data.update_date").description("글 수정일"),
 						fieldWithPath("data.username").description("작성자 이름"),
 						fieldWithPath("status").description("HTTP Status")
 					)
@@ -71,12 +71,12 @@ class FaqControllerTest extends TestSupport {
 						fieldWithPath("data").description("결과 데이터"),
 						fieldWithPath("data.content").description("모든 문의 정보"),
 						fieldWithPath("data.content[0].id").description("아이디"),
-						fieldWithPath("data.content[0].faqCategory").description("문의 카테고리 (새로운 상품, 신규기능, 점검안내)"),
+						fieldWithPath("data.content[0].faq_category").description("문의 카테고리 (새로운 상품, 신규기능, 점검안내)"),
 						fieldWithPath("data.content[0].title").description("제목"),
 						fieldWithPath("data.content[0].message").description("메시지"),
 						fieldWithPath("data.content[0].status").description("공개 여부"),
-						fieldWithPath("data.content[0].createDate").description("글 등록일"),
-						fieldWithPath("data.content[0].updateDate").description("글 수정일"),
+						fieldWithPath("data.content[0].create_date").description("글 등록일"),
+						fieldWithPath("data.content[0].update_date").description("글 수정일"),
 						fieldWithPath("data.content[0].username").description("유저이름"),
 						fieldWithPath("data.pageable").description("Pageable 설명"),
 						fieldWithPath("data.pageable.sort").description("페이지 정렬 설명"),
@@ -130,12 +130,12 @@ class FaqControllerTest extends TestSupport {
 					responseFields(
 						fieldWithPath("data").description("결과 데이터"),
 						fieldWithPath("data.id").description("아이디"),
-						fieldWithPath("data.faqCategory").description("문의 카테고리(새로운 상품, 신규 기능, 점검안내"),
+						fieldWithPath("data.faq_category").description("문의 카테고리(새로운 상품, 신규 기능, 점검안내"),
 						fieldWithPath("data.title").description("제목"),
 						fieldWithPath("data.message").description("메시지"),
 						fieldWithPath("data.status").description("공개여부"),
-						fieldWithPath("data.createDate").description("글 작성일"),
-						fieldWithPath("data.updateDate").description("글 수정일"),
+						fieldWithPath("data.create_date").description("글 작성일"),
+						fieldWithPath("data.update_date").description("글 수정일"),
 						fieldWithPath("data.username").description("작성자 이름"),
 						fieldWithPath("status").description("HTTP Status")
 					)
@@ -168,12 +168,12 @@ class FaqControllerTest extends TestSupport {
 						fieldWithPath("data").description("결과 데이터"),
 						fieldWithPath("data.content").description("모든 문의 정보"),
 						fieldWithPath("data.content[0].id").description("아이디"),
-						fieldWithPath("data.content[0].faqCategory").description("문의 카테고리 (새로운 상품, 신규기능, 점검안내)"),
+						fieldWithPath("data.content[0].faq_category").description("문의 카테고리 (새로운 상품, 신규기능, 점검안내)"),
 						fieldWithPath("data.content[0].title").description("제목"),
 						fieldWithPath("data.content[0].message").description("메시지"),
 						fieldWithPath("data.content[0].status").description("공개 여부"),
-						fieldWithPath("data.content[0].createDate").description("글 등록일"),
-						fieldWithPath("data.content[0].updateDate").description("글 수정일"),
+						fieldWithPath("data.content[0].create_date").description("글 등록일"),
+						fieldWithPath("data.content[0].update_date").description("글 수정일"),
 						fieldWithPath("data.content[0].username").description("유저이름"),
 						fieldWithPath("data.pageable").description("Pageable 설명"),
 						fieldWithPath("data.pageable.sort").description("페이지 정렬 설명"),
@@ -215,7 +215,7 @@ class FaqControllerTest extends TestSupport {
 					.contentType(MediaType.APPLICATION_JSON)
 					.content(
 						"{"
-							+ "  \"faqCategory\": \"AUCTION\",\n"
+							+ "  \"faq_category\": \"AUCTION\",\n"
 							+ "  \"title\": \"FAQ 제목입니다..\",\n"
 							+ "  \"message\": \"FAQ 내용입니다.\",\n"
 							+ "  \"status\": false\n"
@@ -230,7 +230,7 @@ class FaqControllerTest extends TestSupport {
 						headerWithName("TOKEN").description("해당 로그인 유저의 토큰값")
 					),
 					requestFields(
-						fieldWithPath("faqCategory").description("카테고리"),
+						fieldWithPath("faq_category").description("카테고리"),
 						fieldWithPath("title").description("제목"),
 						fieldWithPath("message").description("메시지"),
 						fieldWithPath("status").description("공개 여부")
@@ -326,7 +326,7 @@ class FaqControllerTest extends TestSupport {
 					.content(
 						"{"
 							+ "  \"id\": \"1\",\n"
-							+ "  \"faqCategory\": \"AUCTION\",\n"
+							+ "  \"faq_category\": \"AUCTION\",\n"
 							+ "  \"title\": \"수정된 FAQ 제목입니다.\",\n"
 							+ "  \"message\": \"수정된 FAQ 내용입니다.\",\n"
 							+ "  \"status\": false\n"
@@ -341,7 +341,7 @@ class FaqControllerTest extends TestSupport {
 					),
 					requestFields(
 						fieldWithPath("id").description("id"),
-						fieldWithPath("faqCategory").description("카테고리"),
+						fieldWithPath("faq_category").description("카테고리"),
 						fieldWithPath("title").description("제목"),
 						fieldWithPath("message").description("메시지"),
 						fieldWithPath("status").description("공개 여부")
