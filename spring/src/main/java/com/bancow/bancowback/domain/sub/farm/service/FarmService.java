@@ -74,6 +74,7 @@ public class FarmService {
 	}
 
 	public ServiceResult editFarmNotImage(Manager manager, FarmUpdateRequestDto farmUpdateRequestDto) {
+
 		Farm farm = farmMapper.toUpdateNotImageEntity(manager, getFarmId(farmUpdateRequestDto.getId()),
 			farmUpdateRequestDto);
 		farmRepository.save(farm);
@@ -84,4 +85,5 @@ public class FarmService {
 		farmRepository.delete(getFarmId(id));
 		return ServiceResult.success("이벤트가 삭제 됐습니다.");
 	}
+
 }
