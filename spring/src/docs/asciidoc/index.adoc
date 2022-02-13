@@ -1067,6 +1067,42 @@ include::{snippets}/farm-controller-test/add-farm/response-body.adoc[]
 ==== Response Fields
 include::{snippets}/farm-controller-test/add-farm/response-fields.adoc[]
 
+[[농가-상세-페이지]]
+=== 농가 상세 페이지
+==== Curl Request
+include::{snippets}/farm-controller-test/get-farm-detail/curl-request.adoc[]
+==== Http Request
+include::{snippets}/farm-controller-test/get-farm-detail/http-request.adoc[]
+==== Http Response
+include::{snippets}/farm-controller-test/get-farm-detail/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/farm-controller-test/get-farm-detail/httpie-request.adoc[]
+==== Path Parameter
+include::{snippets}/farm-controller-test/get-farm-detail/path-parameters.adoc[]
+==== Response Body
+include::{snippets}/farm-controller-test/get-farm-detail/response-body.adoc[]
+==== Response Fields
+include::{snippets}/farm-controller-test/get-farm-detail/response-fields.adoc[]
+
+[[농가-페이징]]
+=== 농가 5개씩 가져오기
+==== Curl Request
+include::{snippets}/farm-controller-test/get-farm-paging/curl-request.adoc[]
+==== Http Request
+include::{snippets}/farm-controller-test/get-farm-paging/http-request.adoc[]
+==== Http Response
+include::{snippets}/farm-controller-test/get-farm-paging/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/farm-controller-test/get-farm-paging/httpie-request.adoc[]
+==== Request Header
+include::{snippets}/farm-controller-test/get-farm-paging/request-headers.adoc[]
+==== Request Parameters
+include::{snippets}/farm-controller-test/get-farm-paging/request-parameters.adoc[]
+==== Response Body
+include::{snippets}/farm-controller-test/get-farm-paging/response-body.adoc[]
+==== Response Fields
+include::{snippets}/farm-controller-test/get-farm-paging/response-fields.adoc[]
+
 [[농가-배포]]
 === 농가 배포
 ==== Curl Request
@@ -1081,6 +1117,26 @@ include::{snippets}/farm-controller-test/get-farm-distribute/httpie-request.adoc
 include::{snippets}/farm-controller-test/get-farm-distribute/response-body.adoc[]
 ==== Response Fields
 include::{snippets}/farm-controller-test/get-farm-distribute/response-fields.adoc[]
+
+[[농가-수정]]
+=== 농가 수정 이미지 있을 경우
+==== Curl Request
+include::{snippets}/farm-controller-test/edit-farm-image/curl-request.adoc[]
+==== Http Response
+include::{snippets}/farm-controller-test/edit-farm-image/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/farm-controller-test/edit-farm-image/httpie-request.adoc[]
+==== Request Part Farm Request Body
+include::{snippets}/farm-controller-test/edit-farm-image/request-part-farm_request-body.adoc[]
+==== Request Part Farm Request Fields
+include::{snippets}/farm-controller-test/edit-farm-image/request-part-farm_request-fields.adoc[]
+==== Request Parts
+include::{snippets}/farm-controller-test/edit-farm-image/request-parts.adoc[]
+==== Response Body
+include::{snippets}/farm-controller-test/edit-farm-image/response-body.adoc[]
+
+
+
 
 [[구매자-리뷰]]
 == 구매자 리뷰
@@ -1118,6 +1174,7 @@ include::{snippets}/buyer-controller-test/edit-buyer/request-headers.adoc[]
 include::{snippets}/buyer-controller-test/edit-buyer/response-body.adoc[]
 ==== Response Fields
 include::{snippets}/buyer-controller-test/edit-buyer/response-fields.adoc[]
+
 
 
 [[자주묻는질문]]
