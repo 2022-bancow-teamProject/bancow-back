@@ -1045,6 +1045,24 @@ include::{snippets}/chart-controller-test/qna-year/response-body.adoc[]
 ==== Response Fields
 include::{snippets}/chart-controller-test/qna-year/response-fields.adoc[]
 
+
+[[한우-차트]]
+=== 한우 차트
+==== Curl Request
+include::{snippets}/chart-controller-test/korean-cow/curl-request.adoc[]
+==== Http Request
+include::{snippets}/chart-controller-test/korean-cow/http-request.adoc[]
+==== Http Response
+include::{snippets}/chart-controller-test/korean-cow/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/chart-controller-test/korean-cow/httpie-request.adoc[]
+==== Path Parameters
+include::{snippets}/chart-controller-test/korean-cow/path-parameters.adoc[]
+==== Response Body
+include::{snippets}/chart-controller-test/korean-cow/response-body.adoc[]
+==== Response Fields
+include::{snippets}/chart-controller-test/korean-cow/response-fields.adoc[]
+
 [[농가소개]]
 == 농가소개
 

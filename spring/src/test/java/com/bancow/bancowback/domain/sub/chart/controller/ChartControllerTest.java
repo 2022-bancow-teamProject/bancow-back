@@ -14,6 +14,7 @@ import com.bancow.bancowback.TestSupport;
 import com.bancow.bancowback.domain.common.util.token.entity.Token;
 import com.bancow.bancowback.domain.common.util.token.repository.TokenRepository;
 import com.bancow.bancowback.domain.manager.entity.Manager;
+import com.bancow.bancowback.domain.sub.chart.entity.KoreanCowCategory;
 
 class ChartControllerTest extends TestSupport {
 
@@ -98,6 +99,38 @@ class ChartControllerTest extends TestSupport {
 						fieldWithPath("data").description("결과 데이터"),
 						fieldWithPath("data[0].MONTH_COUNT").description("해당 연월의 농가 입점 문의 갯수"),
 						fieldWithPath("data[0].YEAR_MONTH").description("해당 연월"),
+						fieldWithPath("status").description("HTTP Status")
+					)
+				)
+			)
+		;
+	}
+
+	@Test
+	public void koreanCow() throws Exception {
+		mockMvc.perform(
+			get("/api/chart/koreancow/{category}", "AUCTION_PRICE")
+		)
+			.andExpect(status().isOk())
+			.andDo(
+				restDocs.document(
+					pathParameters(
+						parameterWithName("category").description("한우 차트 카테고리 (AUCTION_PRICE, BEEF_PRICE, CONSUME_KG) 중 선택")
+					),
+					responseFields(
+						fieldWithPath("data").description("결과 데이터"),
+						fieldWithPath("data.category").description("한우 차트 카테고리"),
+						fieldWithPath("data.info").description("연도별 결과 데이터"),
+						fieldWithPath("data.info[0].2011").description("2011년 데이터"),
+						fieldWithPath("data.info[0].2012").description("2012년 데이터"),
+						fieldWithPath("data.info[0].2013").description("2013년 데이터"),
+						fieldWithPath("data.info[0].2014").description("2014년 데이터"),
+						fieldWithPath("data.info[0].2015").description("2015년 데이터"),
+						fieldWithPath("data.info[0].2016").description("2016년 데이터"),
+						fieldWithPath("data.info[0].2017").description("2017년 데이터"),
+						fieldWithPath("data.info[0].2018").description("2018년 데이터"),
+						fieldWithPath("data.info[0].2019").description("2019년 데이터"),
+						fieldWithPath("data.info[0].2020").description("2020년 데이터"),
 						fieldWithPath("status").description("HTTP Status")
 					)
 				)
