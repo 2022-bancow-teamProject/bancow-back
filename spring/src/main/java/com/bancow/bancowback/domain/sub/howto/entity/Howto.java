@@ -6,6 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -22,9 +24,11 @@ public class Howto {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@JsonProperty("movie_name")
 	@Column(name = "movie_name", nullable = false)
 	private String movieName;
 
+	@JsonProperty("movie_url")
 	@Column(name = "movie_url", nullable = false)
 	private String movieUrl;
 }
