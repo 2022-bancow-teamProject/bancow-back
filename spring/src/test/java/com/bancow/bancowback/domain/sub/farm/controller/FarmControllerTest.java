@@ -96,6 +96,45 @@ public class FarmControllerTest extends TestSupport {
 
 	@Test
 	@Transactional
+	void getFarmDetail() throws Exception {
+		Long id = 1L;
+		Manager adminManager = adminManagerLogin();
+		Token tokenAdmin = tokenRepository.findByManager(adminManager).get();
+
+		mockMvc.perform(
+				get("/api/farm/{id}", id)
+					.header("TOKEN", tokenAdmin.getToken())
+
+			).andExpect(status().isOk())
+			.andDo(
+				restDocs.document(
+					requestHeaders(
+						headerWithName("TOKEN").description("해당 로그인 유저의 토큰값")
+					),
+					pathParameters(
+						parameterWithName("id").description("번호")
+					),
+					responseFields(
+						fieldWithPath("data").description("결과 데이터"),
+						fieldWithPath("data.id").description("id (pk)"),
+						fieldWithPath("data.title").description("제목"),
+						fieldWithPath("data.farm_name").description("농장 이름"),
+						fieldWithPath("data.ceo_name").description("대표님 이름"),
+						fieldWithPath("data.ceo_name").description("대표님 이름"),
+						fieldWithPath("data.farm_image").description("농장 사진"),
+						fieldWithPath("data.farm_ceo_image").description("대표님 사진"),
+						fieldWithPath("data.status").description("게시여부"),
+						fieldWithPath("data.user_name").description("생성한 관리자"),
+						fieldWithPath("data.create_date").description("생성시간"),
+						fieldWithPath("status").description("HTTP Status")
+					)
+				)
+			)
+		;
+	}
+
+	@Test
+	@Transactional
 	void getFarmPaging() throws Exception {
 		Manager adminManager = adminManagerLogin();
 		Token tokenAdmin = tokenRepository.findByManager(adminManager).get();
