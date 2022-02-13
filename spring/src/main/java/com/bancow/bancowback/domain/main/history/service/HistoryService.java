@@ -34,7 +34,7 @@ public class HistoryService {
 	}
 
 	public Page<HistoryResponseDto> getPublicHistoryPaging(int page) {
-		Page<History> historyList = historyRepository.findAll(PageRequest.of(page, 10, Sort.by(Sort.Direction.DESC, "id")));
+		Page<History> historyList = historyRepository.findAll(PageRequest.of(page, 5, Sort.by(Sort.Direction.DESC, "id")));
 		return historyList.map(history -> historyMapper.toResponseDto(history));
 	}
 
@@ -50,7 +50,7 @@ public class HistoryService {
 
 	public Page<HistoryResponseDto> getHistoryPaging(String token, int page) {
 		tokenService.validTokenAuthority(token);
-		Page<History> historyList = historyRepository.findAll(PageRequest.of(page, 10, Sort.by(Sort.Direction.DESC, "id")));
+		Page<History> historyList = historyRepository.findAll(PageRequest.of(page, 5, Sort.by(Sort.Direction.DESC, "id")));
 		return historyList.map(history -> historyMapper.toResponseDto(history));
 	}
 

@@ -45,7 +45,7 @@ public class PopupService {
 	}
 
 	public Page<PopupResponseDto> getPopupPaging(int page) {
-		Page<Popup> popupList = popupRepository.findAll(PageRequest.of(page, 10, Sort.by(Sort.Direction.DESC, "id")));
+		Page<Popup> popupList = popupRepository.findAll(PageRequest.of(page, 5, Sort.by(Sort.Direction.DESC, "id")));
 		return popupList.map(popup -> popupMapper.toResponseDto(popup));
 	}
 
