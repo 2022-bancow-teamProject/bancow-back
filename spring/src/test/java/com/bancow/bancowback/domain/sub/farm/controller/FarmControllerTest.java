@@ -193,49 +193,115 @@ public class FarmControllerTest extends TestSupport {
 	}
 
 	@Test
-		@Transactional
-		void editFarmImage() throws Exception {
-			Manager adminManager = adminManagerLogin();
-			Token tokenAdmin = tokenRepository.findByManager(adminManager).get();
+	@Transactional
+	void editFarmImage() throws Exception {
+		Manager adminManager = adminManagerLogin();
+		Token tokenAdmin = tokenRepository.findByManager(adminManager).get();
 
-			MockMultipartFile farm_image = new MockMultipartFile("farm_image", "bancow.png", "image/png",
-				readImage("/img/bancow.png").getBytes());
-			MockMultipartFile farm_ceo_image = new MockMultipartFile("farm_ceo_image", "bancow.png", "image/png",
-				readImage("/img/bancow.png").getBytes());
-			MockMultipartFile farm_request = new MockMultipartFile("farm_request", "req.json", "application/json",
-				readJson("/json/farm/edit.json").getBytes(StandardCharsets.UTF_8));
+		MockMultipartFile farm_image = new MockMultipartFile("farm_image", "bancow.png", "image/png",
+			readImage("/img/bancow.png").getBytes());
+		MockMultipartFile farm_ceo_image = new MockMultipartFile("farm_ceo_image", "bancow.png", "image/png",
+			readImage("/img/bancow.png").getBytes());
+		MockMultipartFile farm_request = new MockMultipartFile("farm_request", "req.json", "application/json",
+			readJson("/json/farm/edit.json").getBytes(StandardCharsets.UTF_8));
 
-			mockMvc.perform(
-					multipart("/api/farm/edit")
-						.file(farm_image)
-						.file(farm_request)
-						.file(farm_ceo_image)
-						.header("TOKEN", tokenAdmin.getToken())
-						.accept(MediaType.APPLICATION_JSON))
-				.andExpect(status().isOk())
-				.andDo(restDocs.document(
+		mockMvc.perform(
+				multipart("/api/farm/edit")
+					.file(farm_image)
+					.file(farm_request)
+					.file(farm_ceo_image)
+					.header("TOKEN", tokenAdmin.getToken())
+					.accept(MediaType.APPLICATION_JSON))
+			.andExpect(status().isOk())
+			.andDo(restDocs.document(
+				requestHeaders(
+					headerWithName("TOKEN").description("해당 로그인 유저의 토큰값")
+				),
+				requestParts(
+					partWithName("farm_image").description("농장 이미지 파일"),
+					partWithName("farm_ceo_image").description("농장 대표님 이미지 파일"),
+					partWithName("farm_request").description("Json 파일")),
+				requestPartBody("farm_request"),
+				requestPartFields("farm_request",
+					fieldWithPath("id").description("번호"),
+					fieldWithPath("farm_name").description("농장 이름"),
+					fieldWithPath("ceo_name").description("대표님 이름"),
+					fieldWithPath("title").description("제목"),
+					fieldWithPath("content").description("내용"),
+					fieldWithPath("status").description("상태 값")
+				),
+				responseFields(
+					fieldWithPath("data").description("결과 데이터"),
+					fieldWithPath("data.result").description("결과"),
+					fieldWithPath("data.message").description("메시지"),
+					fieldWithPath("status").description("HTTP Status")
+				)
+			));
+	}
+
+	@Test
+	@Transactional
+	void editFarmNotImage() throws Exception {
+		Manager adminManager = adminManagerLogin();
+		Token tokenAdmin = tokenRepository.findByManager(adminManager).get();
+
+		mockMvc.perform(
+				patch("/api/farm/edit")
+					.contentType(MediaType.APPLICATION_JSON)
+					.header("TOKEN", tokenAdmin.getToken())
+					.content(readJson("/json/farm/edit.json"))
+			)
+
+			.andExpect(status().isOk())
+			.andDo(restDocs.document(
+				requestHeaders(
+					headerWithName("TOKEN").description("해당 로그인 유저의 토큰값")
+				),
+				requestFields(
+					fieldWithPath("id").description("번호"),
+					fieldWithPath("farm_name").description("농장 이름"),
+					fieldWithPath("ceo_name").description("대표님 이름"),
+					fieldWithPath("title").description("제목"),
+					fieldWithPath("content").description("내용"),
+					fieldWithPath("status").description("상태 값")
+				),
+				responseFields(
+					fieldWithPath("data").description("결과 데이터"),
+					fieldWithPath("data.result").description("인증 성공 여부"),
+					fieldWithPath("data.message").description("response 메시지"),
+					fieldWithPath("status").description("HTTP Status")
+				)
+			));
+	}
+
+	@Test
+	@Transactional
+	void deleteFarmOne() throws Exception {
+		Manager adminManager = adminManagerLogin();
+		Token tokenAdmin = tokenRepository.findByManager(adminManager).get();
+
+		mockMvc.perform(
+				delete("/api/farm/{id}", 1)
+					.header("TOKEN", tokenAdmin.getToken())
+					.accept(MediaType.APPLICATION_JSON)
+			)
+			.andExpect(status().isOk())
+			.andDo(
+				restDocs.document(
 					requestHeaders(
 						headerWithName("TOKEN").description("해당 로그인 유저의 토큰값")
 					),
-					requestParts(
-						partWithName("farm_image").description("농장 이미지 파일"),
-						partWithName("farm_ceo_image").description("농장 대표님 이미지 파일"),
-						partWithName("farm_request").description("Json 파일")),
-					requestPartBody("farm_request"),
-					requestPartFields("farm_request",
-						fieldWithPath("id").description("번호"),
-						fieldWithPath("farm_name").description("농장 이름"),
-						fieldWithPath("ceo_name").description("대표님 이름"),
-						fieldWithPath("title").description("제목"),
-						fieldWithPath("content").description("내용"),
-						fieldWithPath("status").description("상태 값")
+					pathParameters(
+						parameterWithName("id").description("ID")
 					),
 					responseFields(
 						fieldWithPath("data").description("결과 데이터"),
-						fieldWithPath("data.result").description("결과"),
-						fieldWithPath("data.message").description("메시지"),
+						fieldWithPath("data.result").description("문의 삭제 전송 성공 여부"),
+						fieldWithPath("data.message").description("response 메시지"),
 						fieldWithPath("status").description("HTTP Status")
 					)
-				));
-		}
+				)
+			)
+		;
+	}
 }
