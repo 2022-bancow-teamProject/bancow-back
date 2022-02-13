@@ -7,6 +7,7 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -61,6 +62,13 @@ public class FarmController {
 		@NotNull @RequestParam("page") final int page) {
 		tokenService.validTokenAuthority(token);
 		return new Response<>(farmService.getFarmPaging(page), HttpStatus.OK);
+	}
+
+	@GetMapping("/{id}")
+	public Response<?> getFarmDetail(@RequestHeader("TOKEN") final String token,
+		@NotNull @PathVariable final Long id) {
+		tokenService.validTokenAuthority(token);
+		return new Response<>(farmService.getFarmDetail(id), HttpStatus.OK);
 	}
 
 }

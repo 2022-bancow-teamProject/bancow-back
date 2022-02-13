@@ -14,8 +14,9 @@ import com.bancow.bancowback.domain.common.exception.ErrorCode;
 import com.bancow.bancowback.domain.common.exception.FarmException;
 
 import com.bancow.bancowback.domain.sub.farm.dto.FarmAddRequestDto;
+import com.bancow.bancowback.domain.sub.farm.dto.FarmDetailResponseDto;
 import com.bancow.bancowback.domain.sub.farm.dto.FarmDistributeResponseDto;
-import com.bancow.bancowback.domain.sub.farm.dto.FarmResponseDto;
+import com.bancow.bancowback.domain.sub.farm.dto.FarmPagingResponseDto;
 import com.bancow.bancowback.domain.sub.farm.entity.Farm;
 import com.bancow.bancowback.domain.sub.farm.entity.FarmInfo;
 import com.bancow.bancowback.domain.sub.farm.mapper.FarmMapper;
@@ -48,8 +49,17 @@ public class FarmService {
 
 	}
 
-	public Page<FarmResponseDto> getFarmPaging(int page) {
+	public Page<FarmPagingResponseDto> getFarmPaging(int page) {
 		Page<Farm> farmList = farmRepository.findAll(PageRequest.of(page, 5, Sort.by(Sort.Direction.DESC, "id")));
-		return farmList.map(farm -> farmMapper.toResponseDto(farm));
+		return farmList.map(farm -> farmMapper.toFarmPagingResponseDto(farm));
+	}
+
+	public FarmDetailResponseDto getFarmDetail(Long id) {
+		return farmMapper.toFarmDetailResponseDto(getFarmId(id));
+	}
+
+	public Farm getFarmId(Long id) {
+		return farmRepository.findById(id)
+			.orElseThrow(() -> new FarmException(ErrorCode.NOT_FOUND_FARM, "농장 없음"));
 	}
 }
