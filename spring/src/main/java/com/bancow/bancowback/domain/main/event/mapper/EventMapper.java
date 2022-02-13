@@ -56,7 +56,7 @@ public interface EventMapper {
 			.build();
 	}
 
-	default public Event toUpdateEntity(Event event, EventUpdateRequestDto eventUpdateRequestDto,
+	default public Event toUpdateEntity(Manager manager,Event event, EventUpdateRequestDto eventUpdateRequestDto,
 		String eventUploadPath) {
 		return Event.builder()
 			.id(event.getId())
@@ -66,13 +66,13 @@ public interface EventMapper {
 			.startDate(eventUpdateRequestDto.getStartDate())
 			.endDate(eventUpdateRequestDto.getEndDate())
 			.image(eventUploadPath)
-			.manager(event.getManager())
+			.manager(manager)
 			.status(eventUpdateRequestDto.getStatus())
 			.createDate(event.getCreateDate())
 			.build();
 	}
 
-	default public Event toUpdateNotImageEntity(Event event, EventUpdateRequestDto eventUpdateRequestDto) {
+	default public Event toUpdateNotImageEntity(Manager manager,Event event, EventUpdateRequestDto eventUpdateRequestDto) {
 		return Event.builder()
 			.id(event.getId())
 			.title(eventUpdateRequestDto.getTitle())
@@ -81,7 +81,7 @@ public interface EventMapper {
 			.startDate(eventUpdateRequestDto.getStartDate())
 			.endDate(eventUpdateRequestDto.getEndDate())
 			.image(event.getImage())
-			.manager(event.getManager())
+			.manager(manager)
 			.status(eventUpdateRequestDto.getStatus())
 			.createDate(event.getCreateDate())
 			.build();

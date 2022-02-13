@@ -14,6 +14,7 @@ import com.bancow.bancowback.domain.common.exception.ErrorCode;
 
 import com.bancow.bancowback.domain.common.exception.FarmException;
 
+import com.bancow.bancowback.domain.manager.entity.Manager;
 import com.bancow.bancowback.domain.sub.farm.dto.FarmAddRequestDto;
 import com.bancow.bancowback.domain.sub.farm.dto.FarmDetailResponseDto;
 import com.bancow.bancowback.domain.sub.farm.dto.FarmDistributeResponseDto;
@@ -69,6 +70,13 @@ public class FarmService {
 		Farm farm = farmMapper.toUpdateEntity(farmInfo.getManager(), getFarmId(farmInfo.getDto().getId()),
 			farmInfo.getDto());
 		farmRepository.save(farm);
-		return ServiceResult.success("농장이 등록 됐습니다.");
+		return ServiceResult.success("농장이 수정 됐습니다.");
 	}
+
+	public ServiceResult editFarmNotImage(Manager manager, FarmUpdateRequestDto farmUpdateRequestDto) {
+			Farm farm = farmMapper.toUpdateNotImageEntity(manager, getFarmId(farmUpdateRequestDto.getId()), farmUpdateRequestDto);
+			farmRepository.save(farm);
+			return ServiceResult.success("농장이 수정 됐습니다.");
+	}
+
 }
