@@ -80,9 +80,9 @@ public class EventController {
 
 	@PatchMapping("/edit")
 	public Response<?> editEventNotImage(@RequestHeader("TOKEN") final String token,
-		@Valid @RequestBody EventUpdateRequestDto eventDto) {
+		@Valid @RequestBody EventUpdateRequestDto EventUpdateRequestDto) {
 		tokenService.validTokenAuthority(token);
-		return new Response<>(eventService.editEventNotImage(eventDto), HttpStatus.OK);
+		return new Response<>(eventService.editEventNotImage(tokenService.getManager(token),EventUpdateRequestDto), HttpStatus.OK);
 	}
 
 	@DeleteMapping("/{id}")
