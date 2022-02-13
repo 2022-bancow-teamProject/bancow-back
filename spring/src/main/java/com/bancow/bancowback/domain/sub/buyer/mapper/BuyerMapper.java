@@ -2,6 +2,7 @@ package com.bancow.bancowback.domain.sub.buyer.mapper;
 
 import org.springframework.stereotype.Component;
 
+import com.bancow.bancowback.domain.sub.buyer.dto.BuyerDetailResponseDto;
 import com.bancow.bancowback.domain.sub.buyer.dto.BuyerDistributeResponseDto;
 import com.bancow.bancowback.domain.sub.buyer.dto.BuyerPagingResponseDto;
 import com.bancow.bancowback.domain.sub.buyer.dto.BuyerUpdateRequestDto;
@@ -42,6 +43,18 @@ public class BuyerMapper {
 			.status(buyer.getStatus())
 			.create_date(buyer.getCreateDate())
 			.build();
+	}
 
+	public BuyerDetailResponseDto toBuyerDetailResponseDto(Buyer buyer){
+		return BuyerDetailResponseDto.builder()
+			.id(buyer.getId())
+			.buyerName(buyer.getBuyerName())
+			.title(buyer.getTitle())
+			.content(buyer.getContent())
+			.userName(buyer.getManager().getUsername())
+			.farmName(buyer.getFarm().getFarmName())
+			.status(buyer.getStatus())
+			.create_date(buyer.getCreateDate())
+			.build();
 	}
 }
