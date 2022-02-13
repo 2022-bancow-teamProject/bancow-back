@@ -45,13 +45,13 @@ class QnaControllerTest extends TestSupport {
 						fieldWithPath("data").description("결과 데이터"),
 						fieldWithPath("data.id").description("아이디"),
 						fieldWithPath("data.category").description("문의 카테고리 (제휴, 투자, 기타)"),
-						fieldWithPath("data.qnaName").description("문의자 이름"),
-						fieldWithPath("data.phoneNumber").description("전화번호"),
+						fieldWithPath("data.qna_name").description("문의자 이름"),
+						fieldWithPath("data.phone_number").description("전화번호"),
 						fieldWithPath("data.email").description("이메일"),
 						fieldWithPath("data.title").description("제목"),
 						fieldWithPath("data.message").description("메시지"),
 						fieldWithPath("data.checked").description("Manager 답장 여부"),
-						fieldWithPath("data.createDate").description("문의 날짜"),
+						fieldWithPath("data.create_date").description("문의 날짜"),
 						fieldWithPath("status").description("HTTP Status")
 					)
 				)
@@ -83,13 +83,13 @@ class QnaControllerTest extends TestSupport {
 						fieldWithPath("data.content").description("모든 문의 정보"),
 						fieldWithPath("data.content[0].id").description("아이디"),
 						fieldWithPath("data.content[0].category").description("문의 카테고리 (제휴, 투자, 기타)"),
-						fieldWithPath("data.content[0].qnaName").description("문의자 이름"),
-						fieldWithPath("data.content[0].phoneNumber").description("전화번호"),
+						fieldWithPath("data.content[0].qna_name").description("문의자 이름"),
+						fieldWithPath("data.content[0].phone_number").description("전화번호"),
 						fieldWithPath("data.content[0].email").description("이메일"),
 						fieldWithPath("data.content[0].title").description("제목"),
 						fieldWithPath("data.content[0].message").description("메시지"),
 						fieldWithPath("data.content[0].checked").description("동의 여부"),
-						fieldWithPath("data.content[0].createDate").description("문의 날짜"),
+						fieldWithPath("data.content[0].create_date").description("문의 날짜"),
 						fieldWithPath("data.pageable").description("Pageable 설명"),
 						fieldWithPath("data.pageable.sort").description("페이지 정렬 설명"),
 						fieldWithPath("data.pageable.sort.empty").description("비어있는 지 여부"),
@@ -158,7 +158,7 @@ class QnaControllerTest extends TestSupport {
 					"{"
 						+ "  \"category\": \"INVESTMENT\",\n"
 						+ "  \"qna_name\": \"KimJiHun\",\n"
-						+ "  \"phoneNumber\": \"010-1234-5678\",\n"
+						+ "  \"phone_number\": \"010-1234-5678\",\n"
 						+ "  \"email\": \"gmldnr2222@naver.com\",\n"
 						+ "  \"title\": \"투자 문의 입니다.\",\n"
 						+ "  \"message\": \"이메일 혹은 전화로 연락 부탁드립니다.\"\n"
@@ -172,22 +172,15 @@ class QnaControllerTest extends TestSupport {
 					requestFields(
 						fieldWithPath("category").description("카테고리"),
 						fieldWithPath("qna_name").description("이름"),
-						fieldWithPath("phoneNumber").description("전화번호"),
+						fieldWithPath("phone_number").description("전화번호"),
 						fieldWithPath("email").description("이메일"),
 						fieldWithPath("title").description("제목"),
 						fieldWithPath("message").description("메시지")
 					),
 					responseFields(
 						fieldWithPath("data").description("결과 데이터"),
-						fieldWithPath("data.id").description("아이디"),
-						fieldWithPath("data.category").description("문의 카테고리 (제휴, 투자, 기타)"),
-						fieldWithPath("data.qnaName").description("문의자 이름"),
-						fieldWithPath("data.phoneNumber").description("전화번호"),
-						fieldWithPath("data.email").description("이메일"),
-						fieldWithPath("data.title").description("제목"),
-						fieldWithPath("data.message").description("메시지"),
-						fieldWithPath("data.checked").description("동의 여부"),
-						fieldWithPath("data.createDate").description("문의 날짜"),
+						fieldWithPath("data.result").description("문의 추가 성공 여부"),
+						fieldWithPath("data.message").description("response 메시지"),
 						fieldWithPath("status").description("HTTP Status")
 					)
 				)

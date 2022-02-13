@@ -18,6 +18,7 @@ import com.bancow.bancowback.domain.common.dto.Response;
 import com.bancow.bancowback.domain.common.dto.ServiceResult;
 import com.bancow.bancowback.domain.main.qna.dto.QnaReplyDto;
 import com.bancow.bancowback.domain.main.qna.dto.QnaRequestDto;
+import com.bancow.bancowback.domain.main.qna.dto.QnaResponseDto;
 import com.bancow.bancowback.domain.main.qna.entity.Qna;
 import com.bancow.bancowback.domain.main.qna.service.QnaService;
 
@@ -31,14 +32,14 @@ public class QnaController {
 	private final QnaService qnaService;
 
 	@GetMapping("/{id}")
-	public Response<Qna> getQna(@PathVariable Long id, @RequestHeader("TOKEN") String token) {
-		Qna qna = qnaService.getQna(token, id);
-		return new Response<>(qna, HttpStatus.OK);
+	public Response<QnaResponseDto> getQna(@PathVariable Long id, @RequestHeader("TOKEN") String token) {
+		QnaResponseDto dto = qnaService.getQna(token, id);
+		return new Response<>(dto, HttpStatus.OK);
 	}
 
 	@GetMapping
-	public Response<Page<Qna>> getQnaPaging(@RequestParam int page, @RequestHeader("TOKEN") String token) {
-		Page<Qna> pagingQna = qnaService.getQnaPaging(page, token);
+	public Response<Page<QnaResponseDto>> getQnaPaging(@RequestParam int page, @RequestHeader("TOKEN") String token) {
+		Page<QnaResponseDto> pagingQna = qnaService.getQnaPaging(page, token);
 		return new Response<>(pagingQna, HttpStatus.OK);
 	}
 
@@ -49,8 +50,8 @@ public class QnaController {
 	}
 
 	@PostMapping("/add")
-	public Response<Qna> addQna(@RequestBody @Valid QnaRequestDto qnaRequestDto) {
-		Qna result = qnaService.addQna(qnaRequestDto);
+	public Response<ServiceResult> addQna(@RequestBody @Valid QnaRequestDto qnaRequestDto) {
+		ServiceResult result = qnaService.addQna(qnaRequestDto);
 		return new Response<>(result, HttpStatus.OK);
 	}
 

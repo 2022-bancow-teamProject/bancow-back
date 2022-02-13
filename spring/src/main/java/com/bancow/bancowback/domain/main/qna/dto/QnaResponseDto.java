@@ -1,41 +1,40 @@
 package com.bancow.bancowback.domain.main.qna.dto;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 
 import com.bancow.bancowback.domain.main.qna.entity.QnaCategory;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class QnaRequestDto {
+public class QnaResponseDto {
+	private Long id;
 
-	@NotNull
 	private QnaCategory category;
 
-	@NotEmpty
-	@JsonProperty("phone_number")
-	private String phoneNumber;
-
-	@NotEmpty
 	@JsonProperty("qna_name")
 	private String qnaName;
 
-	@Email
-	@NotEmpty
+	@JsonProperty("phone_number")
+	private String phoneNumber;
+
 	private String email;
 
-	@NotEmpty
 	private String title;
 
-	@NotEmpty
 	private String message;
+
+	private boolean checked;
+
+	@JsonProperty("create_date")
+	private LocalDateTime createDate;
 }
