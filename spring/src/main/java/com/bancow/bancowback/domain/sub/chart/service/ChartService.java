@@ -2,6 +2,7 @@ package com.bancow.bancowback.domain.sub.chart.service;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -10,8 +11,12 @@ import org.springframework.stereotype.Service;
 import com.bancow.bancowback.domain.common.util.token.service.TokenService;
 import com.bancow.bancowback.domain.main.farmqna.service.FarmQnaService;
 import com.bancow.bancowback.domain.main.qna.service.QnaService;
+import com.bancow.bancowback.domain.sub.chart.dto.KoreanCowResponseDto;
 import com.bancow.bancowback.domain.sub.chart.dto.QnaNumResponseDto;
-import com.bancow.bancowback.domain.sub.chart.mapper.QnaChartMapper;
+import com.bancow.bancowback.domain.sub.chart.entity.KoreanCow;
+import com.bancow.bancowback.domain.sub.chart.entity.KoreanCowCategory;
+import com.bancow.bancowback.domain.sub.chart.mapper.ChartMapper;
+import com.bancow.bancowback.domain.sub.chart.repository.KoreanCowRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -19,11 +24,13 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ChartService {
 
+	private final KoreanCowRepository koreanCowRepository;
+
 	private final QnaService qnaService;
 	private final FarmQnaService farmQnaService;
 	private final TokenService tokenService;
 
-	private final QnaChartMapper mapper;
+	private final ChartMapper mapper;
 
 	public QnaNumResponseDto qnaNum(String token) {
 		tokenService.validTokenAuthority(token);
@@ -78,5 +85,9 @@ public class ChartService {
 		}
 	}
 
+	public KoreanCowResponseDto koreanCow(KoreanCowCategory category) {
+		List<KoreanCow> koreanCowList = koreanCowRepository.findByCategory(category);
+		return mapper.toKoreanCowResponse( category, koreanCowList);
+	}
 }
 
