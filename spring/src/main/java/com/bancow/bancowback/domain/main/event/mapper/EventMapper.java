@@ -5,6 +5,7 @@ import org.mapstruct.factory.Mappers;
 
 import com.bancow.bancowback.domain.main.event.dto.EventAddRequestDto;
 import com.bancow.bancowback.domain.main.event.dto.EventDistributeResponseDto;
+import com.bancow.bancowback.domain.main.event.dto.EventResponseDto;
 import com.bancow.bancowback.domain.main.event.dto.EventUpdateRequestDto;
 import com.bancow.bancowback.domain.main.event.entity.Event;
 import com.bancow.bancowback.domain.manager.entity.Manager;
@@ -40,6 +41,20 @@ public interface EventMapper {
 			.build();
 	}
 
+	default public EventResponseDto toResponseDto(Event event) {
+		return EventResponseDto.builder()
+			.id(event.getId())
+			.title(event.getTitle())
+			.content(event.getContent())
+			.url(event.getUrl())
+			.status(event.getStatus())
+			.userName(event.getManager().getUsername())
+			.startDate(event.getStartDate())
+			.endDate(event.getEndDate())
+			.image(event.getImage())
+			.build();
+	}
+
 	default public Event toUpdateEntity(Event event, EventUpdateRequestDto eventUpdateRequestDto,
 		String eventUploadPath) {
 		return Event.builder()
@@ -56,7 +71,7 @@ public interface EventMapper {
 			.build();
 	}
 
-	default public Event toUpdateNotImageEntity(Event event, EventUpdateRequestDto eventUpdateRequestDto){
+	default public Event toUpdateNotImageEntity(Event event, EventUpdateRequestDto eventUpdateRequestDto) {
 		return Event.builder()
 			.id(event.getId())
 			.title(eventUpdateRequestDto.getTitle())
