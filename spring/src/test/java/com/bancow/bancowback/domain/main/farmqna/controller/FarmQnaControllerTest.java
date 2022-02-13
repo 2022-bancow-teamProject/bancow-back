@@ -29,13 +29,13 @@ class FarmQnaControllerTest extends TestSupport {
 				.contentType(MediaType.APPLICATION_JSON)
 				.content("{\n"
 					+ "  \"farm_qna_name\": \"김철수\",\n"
-					+ "  \"phoneNumber\": \"010-3991-7102\",\n"
+					+ "  \"phone_number\": \"010-3991-7102\",\n"
 					+ "  \"email\": \"gmldnr2222@naver.com\",\n"
-					+ "  \"farmName\": \"속초농장\",\n"
-					+ "  \"farmAddress\": \"강원도 속초시 교동 밤골3길\",\n"
-					+ "  \"cowNum\": \"100\",\n"
-					+ "  \"feedName\": \"먹이이름입니다.\",\n"
-					+ "  \"availableDate\": \"2022-02-20\"\n"
+					+ "  \"farm_name\": \"속초농장\",\n"
+					+ "  \"farm_address\": \"강원도 속초시 교동 밤골3길\",\n"
+					+ "  \"cow_num\": \"100\",\n"
+					+ "  \"feed_name\": \"먹이이름입니다.\",\n"
+					+ "  \"available_date\": \"2022-02-20\"\n"
 					+ "}")
 				.accept(MediaType.APPLICATION_JSON)
 		)
@@ -44,13 +44,13 @@ class FarmQnaControllerTest extends TestSupport {
 				restDocs.document(
 					requestFields(
 						fieldWithPath("farm_qna_name").description("이름"),
-						fieldWithPath("phoneNumber").description("전화 번호"),
+						fieldWithPath("phone_number").description("전화 번호"),
 						fieldWithPath("email").description("이메일"),
-						fieldWithPath("farmName").description("농가 이름"),
-						fieldWithPath("farmAddress").description("농가 주소"),
-						fieldWithPath("cowNum").description("사육 두수"),
-						fieldWithPath("feedName").description("사용 사료"),
-						fieldWithPath("availableDate").description("실사 가능 일자")
+						fieldWithPath("farm_name").description("농가 이름"),
+						fieldWithPath("farm_address").description("농가 주소"),
+						fieldWithPath("cow_num").description("사육 두수"),
+						fieldWithPath("feed_name").description("사용 사료"),
+						fieldWithPath("available_date").description("실사 가능 일자")
 					),
 					responseFields(
 						fieldWithPath("data").description("결과 데이터"),
@@ -87,17 +87,17 @@ class FarmQnaControllerTest extends TestSupport {
 					responseFields(
 						fieldWithPath("data").description("결과 데이터"),
 						fieldWithPath("data.id").description("아이디"),
-						fieldWithPath("data.farmQnaName").description("이름"),
-						fieldWithPath("data.phoneNumber").description("전화번호"),
+						fieldWithPath("data.farm_qna_name").description("이름"),
+						fieldWithPath("data.phone_number").description("전화번호"),
 						fieldWithPath("data.email").description("이메일"),
-						fieldWithPath("data.farmName").description("농가 이름"),
+						fieldWithPath("data.farm_name").description("농가 이름"),
 						fieldWithPath("data.id").description("아이디"),
-						fieldWithPath("data.farmAddress").description("농가 주소"),
-						fieldWithPath("data.cowNum").description("사육 두수"),
-						fieldWithPath("data.feedName").description("사용사료"),
+						fieldWithPath("data.farm_address").description("농가 주소"),
+						fieldWithPath("data.cow_num").description("사육 두수"),
+						fieldWithPath("data.feed_name").description("사용사료"),
 						fieldWithPath("data.checked").description("답변여부"),
-						fieldWithPath("data.availableDate").description("실사 가능 일자"),
-						fieldWithPath("data.createDate").description("문의 날짜"),
+						fieldWithPath("data.available_date").description("실사 가능 일자"),
+						fieldWithPath("data.create_date").description("문의 날짜"),
 						fieldWithPath("status").description("HTTP Status")
 					)
 				)
@@ -130,17 +130,17 @@ class FarmQnaControllerTest extends TestSupport {
 						fieldWithPath("data").description("결과 데이터"),
 						fieldWithPath("data.content").description("농가 입점 문의 정보"),
 						fieldWithPath("data.content[0].id").description("아이디"),
-						fieldWithPath("data.content[0].farmQnaName").description("이름"),
-						fieldWithPath("data.content[0].phoneNumber").description("전화번호"),
+						fieldWithPath("data.content[0].farm_qna_name").description("이름"),
+						fieldWithPath("data.content[0].phone_number").description("전화번호"),
 						fieldWithPath("data.content[0].email").description("이메일"),
-						fieldWithPath("data.content[0].farmName").description("농가 이름"),
+						fieldWithPath("data.content[0].farm_name").description("농가 이름"),
 						fieldWithPath("data.content[0].id").description("아이디"),
-						fieldWithPath("data.content[0].farmAddress").description("농가 주소"),
-						fieldWithPath("data.content[0].cowNum").description("사육 두수"),
-						fieldWithPath("data.content[0].feedName").description("사용사료"),
+						fieldWithPath("data.content[0].farm_address").description("농가 주소"),
+						fieldWithPath("data.content[0].cow_num").description("사육 두수"),
+						fieldWithPath("data.content[0].feed_name").description("사용사료"),
 						fieldWithPath("data.content[0].checked").description("답변여부"),
-						fieldWithPath("data.content[0].availableDate").description("실사 가능 일자"),
-						fieldWithPath("data.content[0].createDate").description("문의 날짜"),
+						fieldWithPath("data.content[0].available_date").description("실사 가능 일자"),
+						fieldWithPath("data.content[0].create_date").description("문의 날짜"),
 						fieldWithPath("data.pageable").description("Pageable 설명"),
 						fieldWithPath("data.pageable.sort").description("페이지 정렬 설명"),
 						fieldWithPath("data.pageable.sort.empty").description("비어있는 지 여부"),
