@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.bancow.bancowback.domain.common.dto.Response;
 import com.bancow.bancowback.domain.common.dto.ServiceResult;
+import com.bancow.bancowback.domain.main.qna.dto.QnaDeleteRequestDto;
 import com.bancow.bancowback.domain.main.qna.dto.QnaReplyDto;
 import com.bancow.bancowback.domain.main.qna.dto.QnaRequestDto;
 import com.bancow.bancowback.domain.main.qna.dto.QnaResponseDto;
-import com.bancow.bancowback.domain.main.qna.entity.Qna;
 import com.bancow.bancowback.domain.main.qna.service.QnaService;
 
 import lombok.RequiredArgsConstructor;
@@ -46,6 +46,13 @@ public class QnaController {
 	@DeleteMapping("/{id}")
 	public Response<?> deleteQna(@PathVariable Long id, @RequestHeader("TOKEN") String token) {
 		ServiceResult result = qnaService.deleteQna(token, id);
+		return new Response<>(result, HttpStatus.OK);
+	}
+
+	@DeleteMapping("/delete")
+	public Response<?> deleteQnaList(@RequestHeader("TOKEN") String token,
+		@RequestBody @Valid QnaDeleteRequestDto dto) {
+		ServiceResult result = qnaService.deleteQnaList(token, dto);
 		return new Response<>(result, HttpStatus.OK);
 	}
 

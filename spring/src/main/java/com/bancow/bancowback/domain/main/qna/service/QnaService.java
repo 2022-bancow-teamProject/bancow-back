@@ -14,6 +14,7 @@ import com.bancow.bancowback.domain.common.dto.ServiceResult;
 import com.bancow.bancowback.domain.common.exception.QnaException;
 import com.bancow.bancowback.domain.common.util.mail.service.MailService;
 import com.bancow.bancowback.domain.common.util.token.service.TokenService;
+import com.bancow.bancowback.domain.main.qna.dto.QnaDeleteRequestDto;
 import com.bancow.bancowback.domain.main.qna.dto.QnaReplyDto;
 import com.bancow.bancowback.domain.main.qna.dto.QnaRequestDto;
 import com.bancow.bancowback.domain.main.qna.dto.QnaResponseDto;
@@ -62,6 +63,16 @@ public class QnaService {
 		return ServiceResult.success("QnA를 성공적으로 삭제하였습니다.");
 	}
 
+	public ServiceResult deleteQnaList(String token, QnaDeleteRequestDto dto) {
+		tokenService.validTokenAuthority(token);
+		List<Qna> deleteList = qnaRepository.findByIdIn(dto.getId());
+		if (deleteList.size() == 0) {
+			throw new QnaException(NOT_Found_QNA, "해당 ID의 QnA를 찾을 수 없습니다.");
+		}
+		deleteList.forEach(qnaRepository::delete);
+		return ServiceResult.success("해당 문의를 성공적으로 삭제하였습니다.");
+	}
+
 	public ServiceResult addQna(QnaRequestDto qnaRequestDto) {
 		Qna qna = qnaMapper.toEntity(qnaRequestDto);
 		qnaRepository.save(qna);
@@ -92,4 +103,5 @@ public class QnaService {
 	public List<Map<String, Object>> countMonth(int year) {
 		return qnaRepository.countMonth(year);
 	}
+
 }
