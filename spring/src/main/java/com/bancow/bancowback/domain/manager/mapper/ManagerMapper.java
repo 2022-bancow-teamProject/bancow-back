@@ -7,7 +7,7 @@ import org.mapstruct.factory.Mappers;
 
 import com.bancow.bancowback.domain.common.util.PasswordUtils;
 import com.bancow.bancowback.domain.manager.dto.ManagerRegisterDto;
-import com.bancow.bancowback.domain.manager.dto.ManagerRequestDto;
+import com.bancow.bancowback.domain.manager.dto.ManagerResponseDto;
 import com.bancow.bancowback.domain.manager.entity.Manager;
 import com.bancow.bancowback.domain.manager.entity.ManagerStatus;
 
@@ -28,8 +28,8 @@ public interface ManagerMapper {
 			.build();
 	}
 
-	default public ManagerRequestDto toRequest(Manager manager) {
-		return ManagerRequestDto.builder()
+	default public ManagerResponseDto toRequest(Manager manager) {
+		return ManagerResponseDto.builder()
 			.id(manager.getId())
 			.email(manager.getEmail())
 			.username(manager.getUsername())
