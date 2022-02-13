@@ -1445,3 +1445,132 @@ include::{snippets}/history-controller-test/update-history/request-headers.adoc[
 include::{snippets}/history-controller-test/update-history/response-body.adoc[]
 ==== Response Fields
 include::{snippets}/history-controller-test/update-history/response-fields.adoc[]
+
+[[News]]
+== NEWS
+
+[[News-추가]]
+=== News 추가
+==== Curl Request
+include::{snippets}/news-controller-test/add-news/curl-request.adoc[]
+==== Http Request
+include::{snippets}/news-controller-test/add-news/http-request.adoc[]
+==== Http Response
+include::{snippets}/news-controller-test/add-news/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/news-controller-test/add-news/httpie-request.adoc[]
+==== Request Body
+include::{snippets}/news-controller-test/add-news/request-body.adoc[]
+==== Request Fields
+include::{snippets}/news-controller-test/add-news/request-fields.adoc[]
+==== Request Headers
+include::{snippets}/news-controller-test/add-news/request-headers.adoc[]
+==== Response Body
+include::{snippets}/news-controller-test/add-news/response-body.adoc[]
+==== Response Fields
+include::{snippets}/news-controller-test/add-news/response-fields.adoc[]
+
+
+
+[[News-페이징]]
+=== News 페이징
+==== Curl Request
+include::{snippets}/news-controller-test/get-news-paging/curl-request.adoc[]
+==== Http Request
+include::{snippets}/news-controller-test/get-news-paging/http-request.adoc[]
+==== Http Response
+include::{snippets}/news-controller-test/get-news-paging/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/news-controller-test/get-news-paging/httpie-request.adoc[]
+==== Request Body
+include::{snippets}/news-controller-test/get-news-paging/request-body.adoc[]
+==== Response Body
+include::{snippets}/news-controller-test/get-news-paging/response-body.adoc[]
+==== Response Fields
+include::{snippets}/news-controller-test/get-news-paging/response-fields.adoc[]
+
+
+[[News-상세-Manager]]
+=== News 상세 (Manager)
+==== Curl Request
+include::{snippets}/news-controller-test/get-news/curl-request.adoc[]
+==== Http Request
+include::{snippets}/news-controller-test/get-news/http-request.adoc[]
+==== Http Response
+include::{snippets}/news-controller-test/get-news/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/news-controller-test/get-news/httpie-request.adoc[]
+==== Request Body
+include::{snippets}/news-controller-test/get-news/request-body.adoc[]
+==== Request Headers
+include::{snippets}/news-controller-test/get-news/request-headers.adoc[]
+==== Response Body
+include::{snippets}/news-controller-test/get-news/response-body.adoc[]
+==== Response Fields
+include::{snippets}/news-controller-test/get-news/response-fields.adoc[]
+
+[[News-수정]]
+=== News 수정
+==== Curl Request
+include::{snippets}/news-controller-test/update-news/curl-request.adoc[]
+==== Http Request
+include::{snippets}/news-controller-test/update-news/http-request.adoc[]
+==== Http Response
+include::{snippets}/news-controller-test/update-news/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/news-controller-test/update-news/httpie-request.adoc[]
+==== Path Parameters
+include::{snippets}/news-controller-test/update-news/path-parameters.adoc[]
+==== Request Body
+include::{snippets}/news-controller-test/update-news/request-body.adoc[]
+==== Request Fields
+include::{snippets}/news-controller-test/update-news/request-fields.adoc[]
+==== Request Headers
+include::{snippets}/news-controller-test/update-news/request-headers.adoc[]
+==== Response Body
+include::{snippets}/news-controller-test/update-news/response-body.adoc[]
+==== Response Fields
+include::{snippets}/news-controller-test/update-news/response-fields.adoc[]
+
+
+[[News-단일-식제]]
+=== News 단일 삭제
+==== Curl Request
+include::{snippets}/news-controller-test/delete-news/curl-request.adoc[]
+==== Http Request
+include::{snippets}/news-controller-test/delete-news/http-request.adoc[]
+==== Http Response
+include::{snippets}/news-controller-test/delete-news/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/news-controller-test/delete-news/httpie-request.adoc[]
+==== Path Parameters
+include::{snippets}/news-controller-test/delete-news/path-parameters.adoc[]
+==== Request Body
+include::{snippets}/news-controller-test/delete-news/request-body.adoc[]
+==== Request Headers
+include::{snippets}/news-controller-test/delete-news/request-headers.adoc[]
+==== Response Body
+include::{snippets}/news-controller-test/delete-news/response-body.adoc[]
+==== Response Fields
+include::{snippets}/news-controller-test/delete-news/response-fields.adoc[]
+
+[[News-다중-식제]]
+=== News 다중 삭제
+==== Curl Request
+include::{snippets}/news-controller-test/delete-news-list/curl-request.adoc[]
+==== Http Request
+include::{snippets}/news-controller-test/delete-news-list/http-request.adoc[]
+==== Http Response
+include::{snippets}/news-controller-test/delete-news-list/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/news-controller-test/delete-news-list/httpie-request.adoc[]
+==== Request Fields
+include::{snippets}/news-controller-test/delete-news-list/request-fields.adoc[]
+==== Request Body
+include::{snippets}/news-controller-test/delete-news-list/request-body.adoc[]
+==== Request Headers
+include::{snippets}/news-controller-test/delete-news-list/request-headers.adoc[]
+==== Response Body
+include::{snippets}/news-controller-test/delete-news-list/response-body.adoc[]
+==== Response Fields
+include::{snippets}/news-controller-test/delete-news-list/response-fields.adoc[]
