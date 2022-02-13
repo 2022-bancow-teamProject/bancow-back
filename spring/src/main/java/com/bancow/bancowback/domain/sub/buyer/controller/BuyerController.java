@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.bancow.bancowback.domain.common.dto.Response;
 
 import com.bancow.bancowback.domain.common.util.token.service.TokenService;
+import com.bancow.bancowback.domain.sub.buyer.dto.BuyerDeleteRequestDto;
 import com.bancow.bancowback.domain.sub.buyer.dto.BuyerUpdateRequestDto;
 import com.bancow.bancowback.domain.sub.buyer.service.BuyerService;
 
@@ -46,4 +47,12 @@ public class BuyerController {
 		tokenService.validTokenAuthority(token);
 		return new Response<>(buyerService.deleteBuyerOne(id), HttpStatus.OK);
 	}
+	
+	@DeleteMapping("/delete")
+		public Response<?> deleteBuyerList(@RequestHeader("TOKEN") final String token,
+			@NotNull @RequestBody final BuyerDeleteRequestDto dto) {
+			tokenService.validTokenAuthority(token);
+			return new Response<>(buyerService.deleteBuyerList(dto.getId()), HttpStatus.OK);
+		}
+	
 }
