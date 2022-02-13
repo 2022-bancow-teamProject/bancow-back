@@ -25,7 +25,7 @@ import com.bancow.bancowback.domain.manager.dto.ManagerLoginDto;
 import com.bancow.bancowback.domain.manager.dto.ManagerLoginResultDto;
 import com.bancow.bancowback.domain.manager.dto.ManagerPasswordDto;
 import com.bancow.bancowback.domain.manager.dto.ManagerRegisterDto;
-import com.bancow.bancowback.domain.manager.dto.ManagerRequestDto;
+import com.bancow.bancowback.domain.manager.dto.ManagerResponseDto;
 import com.bancow.bancowback.domain.manager.entity.Manager;
 import com.bancow.bancowback.domain.manager.entity.ManagerStatus;
 import com.bancow.bancowback.domain.manager.mapper.ManagerMapper;
@@ -111,7 +111,7 @@ public class ManagerService {
 		return ServiceResult.success(manager.getUsername() + " 님의 상태를 ADMIN으로 변경하였습니다.");
 	}
 
-	public Page<ManagerRequestDto> findPagingManager(int page, String token) {
+	public Page<ManagerResponseDto> findPagingManager(int page, String token) {
 
 		tokenService.validTokenSuper(token);
 		Page<Manager> allManager = managerRepository.findAll(

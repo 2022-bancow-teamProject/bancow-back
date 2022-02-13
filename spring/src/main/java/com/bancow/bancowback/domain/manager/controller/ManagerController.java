@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.bancow.bancowback.domain.common.dto.Response;
 import com.bancow.bancowback.domain.common.dto.ServiceResult;
-import com.bancow.bancowback.domain.manager.dto.ManagerRequestDto;
+import com.bancow.bancowback.domain.manager.dto.ManagerResponseDto;
 import com.bancow.bancowback.domain.manager.dto.ManagerFindDto;
 import com.bancow.bancowback.domain.manager.dto.ManagerLoginDto;
 import com.bancow.bancowback.domain.manager.dto.ManagerLoginResultDto;
@@ -64,8 +64,8 @@ public class ManagerController {
 	}
 
 	@GetMapping("/allmanager")
-	public Response<Page<ManagerRequestDto>> findPagingManager(@RequestParam int page, @RequestHeader("TOKEN") String token) {
-		Page<ManagerRequestDto> pagingManager = managerService.findPagingManager(page, token);
+	public Response<Page<ManagerResponseDto>> findPagingManager(@RequestParam int page, @RequestHeader("TOKEN") String token) {
+		Page<ManagerResponseDto> pagingManager = managerService.findPagingManager(page, token);
 		return new Response<>(pagingManager, HttpStatus.OK);
 	}
 
