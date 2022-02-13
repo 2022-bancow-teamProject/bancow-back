@@ -47,6 +47,43 @@ class BuyerControllerTest extends TestSupport {
 
 	@Test
 	@Transactional
+	void getBuyerDetail() throws Exception {
+		Long id = 1L;
+		Manager adminManager = adminManagerLogin();
+		Token tokenAdmin = tokenRepository.findByManager(adminManager).get();
+
+		mockMvc.perform(
+				get("/api/buyer/{id}", id)
+					.header("TOKEN", tokenAdmin.getToken())
+
+			).andExpect(status().isOk())
+			.andDo(
+				restDocs.document(
+					requestHeaders(
+						headerWithName("TOKEN").description("해당 로그인 유저의 토큰값")
+					),
+					pathParameters(
+						parameterWithName("id").description("번호")
+					),
+					responseFields(
+						fieldWithPath("data").description("결과 데이터"),
+						fieldWithPath("data.id").description("id(pk)"),
+						fieldWithPath("data.title").description("제목"),
+						fieldWithPath("data.buyer_name").description("구매자 이름"),
+						fieldWithPath("data.content").description("내용"),
+						fieldWithPath("data.user_name").description("관리자 이름"),
+						fieldWithPath("data.farm_name").description("농장 이름"),
+						fieldWithPath("data.status").description("게시여부"),
+						fieldWithPath("data.create_date").description("생성시간"),
+						fieldWithPath("status").description("HTTP Status")
+					)
+				)
+			)
+		;
+	}
+
+	@Test
+	@Transactional
 	void getBuyerPaging() throws Exception {
 		Manager adminManager = adminManagerLogin();
 		Token tokenAdmin = tokenRepository.findByManager(adminManager).get();
@@ -102,36 +139,37 @@ class BuyerControllerTest extends TestSupport {
 				)
 			);
 	}
+
 	@Test
 	@Transactional
 	void editBuyer() throws Exception {
-			Manager adminManager = adminManagerLogin();
-			Token tokenAdmin = tokenRepository.findByManager(adminManager).get();
+		Manager adminManager = adminManagerLogin();
+		Token tokenAdmin = tokenRepository.findByManager(adminManager).get();
 
-			mockMvc.perform(
-					patch("/api/buyer/edit")
-						.contentType(MediaType.APPLICATION_JSON)
-						.header("TOKEN", tokenAdmin.getToken())
-						.content(readJson("/json/buyer/update.json"))
-				)
+		mockMvc.perform(
+				patch("/api/buyer/edit")
+					.contentType(MediaType.APPLICATION_JSON)
+					.header("TOKEN", tokenAdmin.getToken())
+					.content(readJson("/json/buyer/update.json"))
+			)
 
-				.andExpect(status().isOk())
-				.andDo(restDocs.document(
-						requestHeaders(
-							headerWithName("TOKEN").description("해당 로그인 유저의 토큰값")
-						),
-						requestFields(
-							fieldWithPath("id").description("번호"),
-							fieldWithPath("status").description("공개여부 값")
-						),
-						responseFields(
-							fieldWithPath("data").description("결과 데이터"),
-							fieldWithPath("data.result").description("인증 성공 여부"),
-							fieldWithPath("data.message").description("response 메시지"),
-							fieldWithPath("status").description("HTTP Status")
-						)
+			.andExpect(status().isOk())
+			.andDo(restDocs.document(
+					requestHeaders(
+						headerWithName("TOKEN").description("해당 로그인 유저의 토큰값")
+					),
+					requestFields(
+						fieldWithPath("id").description("번호"),
+						fieldWithPath("status").description("공개여부 값")
+					),
+					responseFields(
+						fieldWithPath("data").description("결과 데이터"),
+						fieldWithPath("data.result").description("인증 성공 여부"),
+						fieldWithPath("data.message").description("response 메시지"),
+						fieldWithPath("status").description("HTTP Status")
 					)
-				);
+				)
+			);
 
 	}
 
@@ -166,35 +204,35 @@ class BuyerControllerTest extends TestSupport {
 		;
 	}
 
-		@Test
-		@Transactional
-		void deleteBuyerList() throws Exception {
+	@Test
+	@Transactional
+	void deleteBuyerList() throws Exception {
 
-			Manager adminManager = adminManagerLogin();
-			Token tokenAdmin = tokenRepository.findByManager(adminManager).get();
+		Manager adminManager = adminManagerLogin();
+		Token tokenAdmin = tokenRepository.findByManager(adminManager).get();
 
-			mockMvc.perform(
-					delete("/api/buyer/delete")
-						.header("TOKEN", tokenAdmin.getToken())
-						.content(readJson("/json/delete.json"))
-						.contentType(MediaType.APPLICATION_JSON)
-				)
-				.andExpect(status().isOk())
-				.andDo(restDocs.document(
-						requestHeaders(
-							headerWithName("TOKEN").description("해당 로그인 유저의 토큰값")
-						),
-						requestFields(
-							fieldWithPath("id").description("번호")
-						),
-						responseFields(
-							fieldWithPath("data").description("결과 데이터"),
-							fieldWithPath("data.result").description("문의 삭제 전송 성공 여부"),
-							fieldWithPath("data.message").description("response 메시지"),
-							fieldWithPath("status").description("HTTP Status")
-						)
+		mockMvc.perform(
+				delete("/api/buyer/delete")
+					.header("TOKEN", tokenAdmin.getToken())
+					.content(readJson("/json/delete.json"))
+					.contentType(MediaType.APPLICATION_JSON)
+			)
+			.andExpect(status().isOk())
+			.andDo(restDocs.document(
+					requestHeaders(
+						headerWithName("TOKEN").description("해당 로그인 유저의 토큰값")
+					),
+					requestFields(
+						fieldWithPath("id").description("번호")
+					),
+					responseFields(
+						fieldWithPath("data").description("결과 데이터"),
+						fieldWithPath("data.result").description("문의 삭제 전송 성공 여부"),
+						fieldWithPath("data.message").description("response 메시지"),
+						fieldWithPath("status").description("HTTP Status")
 					)
-				);
-		}
+				)
+			);
+	}
 
 }
