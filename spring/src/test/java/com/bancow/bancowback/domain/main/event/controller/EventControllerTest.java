@@ -33,7 +33,7 @@ class EventControllerTest extends TestSupport {
 		MockMultipartFile event_image = new MockMultipartFile("event_image", "bancow.png", "image/png",
 			readImage("/img/bancow.png").getBytes());
 		MockMultipartFile event_request = new MockMultipartFile("event_request", "req.json", "application/json",
-			readJson("/json/req.json").getBytes(StandardCharsets.UTF_8));
+			readJson("/json/event/req.json").getBytes(StandardCharsets.UTF_8));
 
 		mockMvc.perform(multipart("/api/event/add")
 				.file(event_image)
@@ -51,6 +51,8 @@ class EventControllerTest extends TestSupport {
 				requestPartBody("event_request"),
 				requestPartFields("event_request",
 					fieldWithPath("title").description("제목"),
+					fieldWithPath("content").description("내용"),
+					fieldWithPath("url").description("이벤트 url"),
 					fieldWithPath("start_date").description("게시 시작 날짜"),
 					fieldWithPath("end_date").description("게시 마감 날짜")
 				),
@@ -78,6 +80,9 @@ class EventControllerTest extends TestSupport {
 					responseFields(
 						fieldWithPath("data").description("결과 데이터"),
 						fieldWithPath("data[0].id").description("id"),
+						fieldWithPath("data[0].title").description("제목"),
+						fieldWithPath("data[0].content").description("제목"),
+						fieldWithPath("data[0].url").description("이벤트 url"),
 						fieldWithPath("data[0].image").description("이미지"),
 						fieldWithPath("data[0].start_date").description("게시 시작 날짜"),
 						fieldWithPath("data[0].end_date").description("게시 마감 날짜"),
@@ -97,7 +102,7 @@ class EventControllerTest extends TestSupport {
 		MockMultipartFile event_image = new MockMultipartFile("event_image", "bancow.png", "image/png",
 			readImage("/img/bancow.png").getBytes());
 		MockMultipartFile event_request = new MockMultipartFile("event_request", "update.json", "application/json",
-			readJson("/json/update.json").getBytes(StandardCharsets.UTF_8));
+			readJson("/json/event/update.json").getBytes(StandardCharsets.UTF_8));
 
 		mockMvc.perform(
 				multipart("/api/event/edit")
@@ -117,6 +122,8 @@ class EventControllerTest extends TestSupport {
 				requestPartFields("event_request",
 					fieldWithPath("id").description("번호"),
 					fieldWithPath("title").description("제목"),
+					fieldWithPath("content").description("내용"),
+					fieldWithPath("url").description("내용"),
 					fieldWithPath("start_date").description("게시 시작 날짜"),
 					fieldWithPath("end_date").description("게시 마감 날짜"),
 					fieldWithPath("status").description("상태 값")
@@ -140,7 +147,7 @@ class EventControllerTest extends TestSupport {
 				patch("/api/event/edit")
 					.contentType(MediaType.APPLICATION_JSON)
 					.header("TOKEN", tokenAdmin.getToken())
-					.content(readJson("/json/update.json"))
+					.content(readJson("/json/event/update.json"))
 			)
 
 			.andExpect(status().isOk())
@@ -151,6 +158,8 @@ class EventControllerTest extends TestSupport {
 				requestFields(
 					fieldWithPath("id").description("번호"),
 					fieldWithPath("title").description("제목"),
+					fieldWithPath("content").description("내용"),
+					fieldWithPath("url").description("이벤트 url"),
 					fieldWithPath("start_date").description("게시 시작 날짜"),
 					fieldWithPath("end_date").description("게시 마감 날짜"),
 					fieldWithPath("status").description("상태 값")
