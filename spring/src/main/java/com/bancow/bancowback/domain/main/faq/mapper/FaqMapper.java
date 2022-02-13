@@ -1,8 +1,6 @@
 package com.bancow.bancowback.domain.main.faq.mapper;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
@@ -70,22 +68,16 @@ public interface FaqMapper {
 			.build();
 	}
 
-	default public List<FaqSearchResultDto> toSearchResultDto(List<Faq> faqList) {
-		List<FaqSearchResultDto> resultDto = new ArrayList<>();
-		faqList.forEach(e ->
-			{
-				FaqSearchResultDto dto = FaqSearchResultDto.builder()
-					.id(e.getId())
-					.faqCategory(e.getFaqCategory())
-					.title(e.getTitle())
-					.message(e.getMessage())
-					.status(e.isStatus())
-					.createDate(e.getCreateDate())
-					.updateDate(e.getUpdateDate())
-					.build();
-				resultDto.add(dto);
-			}
-		);
-		return resultDto;
+	default public FaqSearchResultDto toSearchResultDto(Faq faq) {
+
+		return FaqSearchResultDto.builder()
+			.id(faq.getId())
+			.faqCategory(faq.getFaqCategory())
+			.title(faq.getTitle())
+			.message(faq.getMessage())
+			.status(faq.isStatus())
+			.createDate(faq.getCreateDate())
+			.updateDate(faq.getUpdateDate())
+			.build();
 	}
 }
