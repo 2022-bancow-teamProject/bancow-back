@@ -20,6 +20,7 @@ import com.bancow.bancowback.domain.main.event.dto.EventUpdateRequestDto;
 import com.bancow.bancowback.domain.main.event.entity.Event;
 import com.bancow.bancowback.domain.main.event.mapper.EventMapper;
 import com.bancow.bancowback.domain.main.event.repository.EventRepository;
+import com.bancow.bancowback.domain.manager.entity.Manager;
 
 import lombok.RequiredArgsConstructor;
 
@@ -62,14 +63,8 @@ public class EventService {
 	}
 
 	public ServiceResult editEventImage(EventInfo<EventUpdateRequestDto> eventInfo) {
-		Event event = eventMapper.toUpdateEntity(getEventId(eventInfo.getDto().getId()), eventInfo.getDto(),
+		Event event = eventMapper.toUpdateEntity(eventInfo.getManager(),getEventId(eventInfo.getDto().getId()), eventInfo.getDto(),
 			eventInfo.getImagePath());
-		eventRepository.save(event);
-		return ServiceResult.success("이벤트가 업데이트 됐습니다.");
-	}
-
-	public ServiceResult editEventNotImage(EventUpdateRequestDto eventDto) {
-		Event event = eventMapper.toUpdateNotImageEntity(getEventId(eventDto.getId()), eventDto);
 		eventRepository.save(event);
 		return ServiceResult.success("이벤트가 업데이트 됐습니다.");
 	}
@@ -95,5 +90,9 @@ public class EventService {
 
 	}
 
-
+	public ServiceResult editEventNotImage(Manager manager, EventUpdateRequestDto eventUpdateRequestDto) {
+			Event event = eventMapper.toUpdateNotImageEntity(manager,getEventId(eventUpdateRequestDto.getId()), eventUpdateRequestDto);
+			eventRepository.save(event);
+			return ServiceResult.success("이벤트가 업데이트 됐습니다.");
+	}
 }
