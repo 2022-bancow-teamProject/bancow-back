@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -25,8 +27,10 @@ public class HistoryResponseDto {
 
 	private boolean status;
 
+	@JsonProperty("create_date")
 	private LocalDateTime createDate;
 
+	@JsonProperty("update_date")
 	private LocalDateTime updateDate;
 
 	@Column(name = "user_name")
