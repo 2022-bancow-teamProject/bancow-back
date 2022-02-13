@@ -37,7 +37,7 @@ public class NewsService {
 	}
 
 	public Page<NewsResponseDto> getNewsPaging(int page) {
-		Page<News> newsList = newsRepository.findAll(PageRequest.of(page, 10, Sort.by(Sort.Direction.DESC, "id")));
+		Page<News> newsList = newsRepository.findAll(PageRequest.of(page, 5, Sort.by(Sort.Direction.DESC, "id")));
 		return newsList.map(news -> newsMapper.toResponseDto(news));
 	}
 

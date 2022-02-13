@@ -98,7 +98,7 @@ public class FaqService {
 
 	public Page<FaqSearchResultDto> search(String word, int page) {
 		Page<Faq> pageFaq = faqRepository.findByTitleContainingWithPagination(word,
-			PageRequest.of(page, 10, Sort.by(Sort.Direction.DESC, "id")));
+			PageRequest.of(page, 5, Sort.by(Sort.Direction.DESC, "id")));
 		return pageFaq.map(faqMapper::toSearchResultDto);
 	}
 }

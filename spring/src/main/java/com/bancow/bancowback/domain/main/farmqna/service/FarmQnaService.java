@@ -57,7 +57,7 @@ public class FarmQnaService {
 		tokenService.validTokenAuthority(token);
 
 		Page<FarmQna> farmQnaPage = farmQnaRepository.findAll(
-			PageRequest.of(page, 10, Sort.by(Sort.Direction.DESC, "id"))
+			PageRequest.of(page, 5, Sort.by(Sort.Direction.DESC, "id"))
 		);
 		return farmQnaPage.map(farmQnaMapper::toResponse);
 	}
