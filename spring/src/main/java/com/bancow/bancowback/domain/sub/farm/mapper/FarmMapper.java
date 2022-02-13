@@ -82,14 +82,15 @@ public class FarmMapper {
 			.farmName(farm.getFarmName())
 			.ceoName(farm.getCeoName())
 			.userName(farm.getManager().getUsername())
-			.farmImage(farm.getFarmImage())
-			.farmCEOImage(farm.getFarmCEOImage())
+			.farmImage("https://kr.object.ncloudstorage.com/bancowback/" + farm.getFarmImage())
+			.farmCEOImage("https://kr.object.ncloudstorage.com/bancowback/" + farm.getFarmCEOImage())
 			.status(farm.getStatus())
 			.create_date(farm.getCreateDate())
 			.build();
 	}
 
-	public FarmUpdateRequestDto toFarmUpdateRequestDto(FarmUpdateRequestDto farmUpdateRequestDto, String farmImageUploadPath, String farmCEOImageUploadPath) {
+	public FarmUpdateRequestDto toFarmUpdateRequestDto(FarmUpdateRequestDto farmUpdateRequestDto,
+		String farmImageUploadPath, String farmCEOImageUploadPath) {
 		return FarmUpdateRequestDto.builder()
 			.id(farmUpdateRequestDto.getId())
 			.farmName(farmUpdateRequestDto.getFarmName())
@@ -102,7 +103,7 @@ public class FarmMapper {
 			.build();
 	}
 
-	public Farm toUpdateEntity(Manager manager, Farm farm, FarmUpdateRequestDto farmUpdateRequestDto){
+	public Farm toUpdateEntity(Manager manager, Farm farm, FarmUpdateRequestDto farmUpdateRequestDto) {
 		return Farm.builder()
 			.id(farmUpdateRequestDto.getId())
 			.farmName(farmUpdateRequestDto.getFarmName())
@@ -117,18 +118,18 @@ public class FarmMapper {
 			.build();
 	}
 
-	public Farm toUpdateNotImageEntity(Manager manager,Farm farm, FarmUpdateRequestDto farmUpdateRequestDto) {
+	public Farm toUpdateNotImageEntity(Manager manager, Farm farm, FarmUpdateRequestDto farmUpdateRequestDto) {
 		return Farm.builder()
-		.id(farmUpdateRequestDto.getId())
-		.farmName(farmUpdateRequestDto.getFarmName())
-		.ceoName(farmUpdateRequestDto.getCeoName())
-		.title(farmUpdateRequestDto.getTitle())
-		.content(farmUpdateRequestDto.getContent())
-		.farmImage(farm.getFarmImage())
-		.farmCEOImage(farm.getFarmCEOImage())
-		.status(farmUpdateRequestDto.getStatus())
-		.createDate(farm.getCreateDate())
-		.manager(manager)
-		.build();
+			.id(farmUpdateRequestDto.getId())
+			.farmName(farmUpdateRequestDto.getFarmName())
+			.ceoName(farmUpdateRequestDto.getCeoName())
+			.title(farmUpdateRequestDto.getTitle())
+			.content(farmUpdateRequestDto.getContent())
+			.farmImage(farm.getFarmImage())
+			.farmCEOImage(farm.getFarmCEOImage())
+			.status(farmUpdateRequestDto.getStatus())
+			.createDate(farm.getCreateDate())
+			.manager(manager)
+			.build();
 	}
 }

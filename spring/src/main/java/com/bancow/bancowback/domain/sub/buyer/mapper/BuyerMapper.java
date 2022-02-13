@@ -8,13 +8,13 @@ import com.bancow.bancowback.domain.sub.buyer.entity.Buyer;
 
 @Component
 public class BuyerMapper {
-	public BuyerDistributeResponseDto toDistributeResponseDto(Buyer buyer){
+	public BuyerDistributeResponseDto toDistributeResponseDto(Buyer buyer) {
 		return BuyerDistributeResponseDto.builder()
 			.id(buyer.getId())
 			.buyerName(buyer.getBuyerName())
 			.farmName(buyer.getFarm().getFarmName())
 			.farmCEOName(buyer.getFarm().getCeoName())
-			.farmImage(buyer.getFarm().getFarmImage())
+			.farmImage("https://kr.object.ncloudstorage.com/bancowback/" + buyer.getFarm().getFarmImage())
 			.build();
 	}
 

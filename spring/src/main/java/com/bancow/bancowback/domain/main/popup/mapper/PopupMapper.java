@@ -32,7 +32,7 @@ public interface PopupMapper {
 			.title(popup.getTitle())
 			.startDate(popup.getStartDate())
 			.endDate(popup.getEndDate())
-			.image("https://kr.object.ncloudstorage.com/bancowback/"+popup.getImage())
+			.image("https://kr.object.ncloudstorage.com/bancowback/" + popup.getImage())
 			.status(popup.getStatus())
 			.createDate(popup.getCreateDate())
 			.username(popup.getManager().getUsername())
@@ -43,7 +43,7 @@ public interface PopupMapper {
 		return PopupDistributeResponseDto.builder()
 			.startDate(popup.getStartDate())
 			.endDate(popup.getEndDate())
-			.image("https://kr.object.ncloudstorage.com/bancowback/"+popup.getImage())
+			.image("https://kr.object.ncloudstorage.com/bancowback/" + popup.getImage())
 			.build();
 	}
 
@@ -60,7 +60,8 @@ public interface PopupMapper {
 			.build();
 	}
 
-	default public Popup toUpdateEntity(Popup popup, PopupUpdateRequestDto popupUpdateRequestDto , String popupUploadPath){
+	default public Popup toUpdateEntity(Popup popup, PopupUpdateRequestDto popupUpdateRequestDto,
+		String popupUploadPath) {
 		return Popup.builder()
 			.id(popup.getId())
 			.title(popupUpdateRequestDto.getTitle())
@@ -73,7 +74,7 @@ public interface PopupMapper {
 			.build();
 	}
 
-	default public Popup toUpdateNotImageEntity(Popup popup, PopupUpdateRequestDto popupUpdateRequestDto){
+	default public Popup toUpdateNotImageEntity(Popup popup, PopupUpdateRequestDto popupUpdateRequestDto) {
 		return Popup.builder()
 			.id(popup.getId())
 			.title(popupUpdateRequestDto.getTitle())

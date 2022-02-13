@@ -37,7 +37,7 @@ public interface EventMapper {
 			.status(event.getStatus())
 			.startDate(event.getStartDate())
 			.endDate(event.getEndDate())
-			.image(event.getImage())
+			.image("https://kr.object.ncloudstorage.com/bancowback/" + event.getImage())
 			.build();
 	}
 
@@ -51,12 +51,12 @@ public interface EventMapper {
 			.userName(event.getManager().getUsername())
 			.startDate(event.getStartDate())
 			.endDate(event.getEndDate())
-			.image(event.getImage())
+			.image("https://kr.object.ncloudstorage.com/bancowback/" + event.getImage())
 			.createDate(event.getCreateDate())
 			.build();
 	}
 
-	default public Event toUpdateEntity(Manager manager,Event event, EventUpdateRequestDto eventUpdateRequestDto,
+	default public Event toUpdateEntity(Manager manager, Event event, EventUpdateRequestDto eventUpdateRequestDto,
 		String eventUploadPath) {
 		return Event.builder()
 			.id(event.getId())
@@ -72,7 +72,8 @@ public interface EventMapper {
 			.build();
 	}
 
-	default public Event toUpdateNotImageEntity(Manager manager,Event event, EventUpdateRequestDto eventUpdateRequestDto) {
+	default public Event toUpdateNotImageEntity(Manager manager, Event event,
+		EventUpdateRequestDto eventUpdateRequestDto) {
 		return Event.builder()
 			.id(event.getId())
 			.title(eventUpdateRequestDto.getTitle())

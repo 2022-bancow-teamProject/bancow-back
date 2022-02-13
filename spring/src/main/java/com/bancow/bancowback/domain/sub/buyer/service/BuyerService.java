@@ -52,4 +52,6 @@ public class BuyerService {
 		buyerRepository.delete(getBuyerId(id));
 		return ServiceResult.success("구매자리뷰가 삭제 됐습니다. ");
 	}
+
+
 }
