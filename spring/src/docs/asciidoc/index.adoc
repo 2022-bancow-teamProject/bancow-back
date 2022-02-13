@@ -1246,7 +1246,41 @@ include::{snippets}/buyer-controller-test/edit-buyer/response-body.adoc[]
 ==== Response Fields
 include::{snippets}/buyer-controller-test/edit-buyer/response-fields.adoc[]
 
+[[구매자-한개만-삭제]]
+=== 구매자 한개만 삭제
+==== Curl Request
+include::{snippets}/buyer-controller-test/delete-buyer-one/curl-request.adoc[]
+==== Http Request
+include::{snippets}/buyer-controller-test/delete-buyer-one/http-request.adoc[]
+==== Http Response
+include::{snippets}/buyer-controller-test/delete-buyer-one/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/buyer-controller-test/delete-buyer-one/httpie-request.adoc[]
+==== Request Header
+include::{snippets}/buyer-controller-test/delete-buyer-one/request-headers.adoc[]
+==== Path Parameters
+include::{snippets}/buyer-controller-test/delete-buyer-one/path-parameters.adoc[]
+==== Response Body
+include::{snippets}/buyer-controller-test/delete-buyer-one/response-body.adoc[]
+==== Response Fields
+include::{snippets}/buyer-controller-test/delete-buyer-one/response-fields.adoc[]
 
+[[구매자-선택-삭제]]
+=== 구매자 선택 삭제
+==== Curl Request
+include::{snippets}/buyer-controller-test/delete-buyer-List/curl-request.adoc[]
+==== Http Request
+include::{snippets}/buyer-controller-test/delete-buyer-List/http-request.adoc[]
+==== Http Response
+include::{snippets}/buyer-controller-test/delete-buyer-List/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/buyer-controller-test/delete-buyer-List/httpie-request.adoc[]
+==== Request Header
+include::{snippets}/buyer-controller-test/delete-buyer-List/request-headers.adoc[]
+==== Response Body
+include::{snippets}/buyer-controller-test/delete-buyer-List/response-body.adoc[]
+==== Response Fields
+include::{snippets}/buyer-controller-test/delete-buyer-List/response-fields.adoc[]
 
 [[자주묻는질문]]
 == 자주묻는질문
