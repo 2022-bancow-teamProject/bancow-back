@@ -15,7 +15,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class FarmUpdateRequestDto {
 
-	@NotBlank
 	private Long id;
 
 	@JsonProperty("farm_name")
@@ -34,7 +33,6 @@ public class FarmUpdateRequestDto {
 
 	private String farmCEOImageUploadPath;
 
-	@NotBlank
 	private Boolean status;
 
 }

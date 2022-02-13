@@ -98,7 +98,7 @@ public class FarmMapper {
 			.content(farmUpdateRequestDto.getContent())
 			.farmImageUploadPath(farmImageUploadPath)
 			.farmCEOImageUploadPath(farmCEOImageUploadPath)
-			.status(Boolean.FALSE)
+			.status(farmUpdateRequestDto.getStatus())
 			.build();
 	}
 
