@@ -6,6 +6,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
 import com.bancow.bancowback.domain.main.farmqna.dto.FarmQnaAddRequestDto;
+import com.bancow.bancowback.domain.main.farmqna.dto.FarmQnaResponseDto;
 import com.bancow.bancowback.domain.main.farmqna.entity.FarmQna;
 
 @Mapper(componentModel = "spring")
@@ -24,6 +25,22 @@ public interface FarmQnaMapper {
 			.checked(false)
 			.availableDate(dto.getAvailableDate())
 			.createDate(LocalDateTime.now())
+			.build();
+	}
+
+	default FarmQnaResponseDto toResponse(FarmQna farmQna) {
+		return FarmQnaResponseDto.builder()
+			.id(farmQna.getId())
+			.farmQnaName(farmQna.getFarmQnaName())
+			.phoneNumber(farmQna.getPhoneNumber())
+			.email(farmQna.getEmail())
+			.farmName(farmQna.getFarmQnaName())
+			.farmAddress(farmQna.getFarmAddress())
+			.cowNum(farmQna.getCowNum())
+			.feedName(farmQna.getFeedName())
+			.checked(farmQna.getChecked())
+			.availableDate(farmQna.getAvailableDate())
+			.createDate(farmQna.getCreateDate())
 			.build();
 	}
 }
