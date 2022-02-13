@@ -54,6 +54,13 @@ public class EventController {
 		return new Response<>(eventService.getEventDistribute(status), HttpStatus.OK);
 	}
 
+	@GetMapping()
+	public Response<?> getEventPaging(@RequestHeader("TOKEN") final String token,
+		@NotNull @RequestParam("page") final int page) {
+		tokenService.validTokenAuthority(token);
+		return new Response<>(eventService.getEventPaging(page), HttpStatus.OK);
+	}
+
 	@PostMapping("/edit")
 	public Response<?> editEventImage(@RequestHeader("TOKEN") final String token,
 		@Valid @RequestPart("event_request") EventUpdateRequestDto dto,

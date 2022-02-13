@@ -3,6 +3,9 @@ package com.bancow.bancowback.domain.main.event.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.bancow.bancowback.domain.common.dto.ServiceResult;
@@ -12,6 +15,7 @@ import com.bancow.bancowback.domain.common.exception.EventException;
 import com.bancow.bancowback.domain.main.event.dto.EventAddRequestDto;
 import com.bancow.bancowback.domain.main.event.dto.EventDistributeResponseDto;
 import com.bancow.bancowback.domain.main.event.dto.EventInfo;
+import com.bancow.bancowback.domain.main.event.dto.EventResponseDto;
 import com.bancow.bancowback.domain.main.event.dto.EventUpdateRequestDto;
 import com.bancow.bancowback.domain.main.event.entity.Event;
 import com.bancow.bancowback.domain.main.event.mapper.EventMapper;
@@ -24,6 +28,11 @@ import lombok.RequiredArgsConstructor;
 public class EventService {
 	private final EventRepository eventRepository;
 	private final EventMapper eventMapper;
+
+	public Page<EventResponseDto> getEventPaging(int page) {
+		Page<Event> eventList = eventRepository.findAll(PageRequest.of(page, 5, Sort.by(Sort.Direction.DESC, "id")));
+		return eventList.map(event -> eventMapper.toResponseDto(event));
+	}
 
 	public ServiceResult addEvent(EventInfo eventInfo) {
 		Event event = eventMapper.toEntity(eventInfo.getManager(), (EventAddRequestDto)eventInfo.getDto(),
