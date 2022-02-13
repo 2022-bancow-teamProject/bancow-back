@@ -1,5 +1,7 @@
 package com.bancow.bancowback.domain.manager.service;
 
+import static com.bancow.bancowback.domain.common.exception.ErrorCode.*;
+
 import java.util.Optional;
 
 import org.springframework.data.domain.Page;
@@ -8,7 +10,12 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.bancow.bancowback.domain.common.dto.ServiceResult;
-import com.bancow.bancowback.domain.common.exception.BizException;
+import com.bancow.bancowback.domain.common.exception.ManagerNotFoundException;
+import com.bancow.bancowback.domain.common.exception.ManagerNotValidException;
+import com.bancow.bancowback.domain.common.exception.ManagerNotValidPasswordException;
+import com.bancow.bancowback.domain.common.exception.RegisterDuplicateEmailException;
+import com.bancow.bancowback.domain.common.exception.RegisterNotEqualPasswordException;
+import com.bancow.bancowback.domain.common.exception.TokenNotFoundException;
 import com.bancow.bancowback.domain.common.util.PasswordUtils;
 import com.bancow.bancowback.domain.common.util.mail.service.MailService;
 import com.bancow.bancowback.domain.common.util.token.entity.Token;
@@ -39,11 +46,11 @@ public class ManagerService {
 
 		Optional<Manager> optionalUser = managerRepository.findByEmail(managerRegisterDto.getEmail());
 		if (optionalUser.isPresent()) {
-			throw new BizException("이미 가입된 이메일입니다.");
+			throw new RegisterDuplicateEmailException(DUPLICATE_EMAIL, "이미 가입된 이메일입니다.");
 		}
 
 		if (!(managerRegisterDto.getPassword().equals(managerRegisterDto.getPassword2()))) {
-			throw new BizException("비밀번호와 비밀번호 확인이 일치하지 않습니다.");
+			throw new RegisterNotEqualPasswordException(NOT_EQUAL_PASSWORD, "비밀번호와 비밀번호 확인이 일치하지 않습니다.");
 		}
 
 		Manager manager = managerMapper.registerToEntity(managerRegisterDto);
@@ -58,13 +65,14 @@ public class ManagerService {
 	public ManagerLoginResultDto loginManager(ManagerLoginDto managerLoginDto) {
 
 		Manager manager = managerRepository.findByEmail(managerLoginDto.getEmail())
-			.orElseThrow(() -> new BizException("사용자 정보가 없습니다."));
+			.orElseThrow(() -> new ManagerNotFoundException(NOT_FOUND_MANAGER, "사용자 정보가 없습니다."));
 
 		if (!PasswordUtils.equalPassword(managerLoginDto.getPassword(), manager.getPassword())) {
-			throw new BizException("비밀번호가 일치하지 않습니다.");
+			throw new ManagerNotValidPasswordException(NOT_VALID_PASSWORD, "비밀번호가 일치하지 않습니다.");
 		}
 
 		Token token = tokenService.saveByManager(manager);
+		tokenService.validTokenAuthority(token.getToken());
 		return ManagerLoginResultDto.builder()
 			.token(token.getToken())
 			.build();
@@ -72,7 +80,7 @@ public class ManagerService {
 
 	public ServiceResult logoutManager(String token) {
 		Token findToken = tokenService.findByToken(token)
-			.orElseThrow(() -> new BizException("토큰 정보를 찾을 수 없습니다."));
+			.orElseThrow(() -> new TokenNotFoundException(NOT_FOUND_TOKEN, "토큰 정보를 찾을 수 없습니다."));
 		String username = findToken.getManager().getUsername();
 		tokenService.delete(findToken);
 		return ServiceResult.success(username + " 님의 로그아웃에 성공하였습니다.");
@@ -80,10 +88,10 @@ public class ManagerService {
 
 	public ServiceResult authentication(String token) {
 		Token findToken = tokenService.findByToken(token)
-			.orElseThrow(() -> new BizException("Not Found Token"));
+			.orElseThrow(() -> new TokenNotFoundException(NOT_FOUND_TOKEN, "Not Found Token"));
 		String email = findToken.getManager().getEmail();
 		Manager user = managerRepository.findByEmail(email)
-			.orElseThrow(() -> new BizException("User Not Found"));
+			.orElseThrow(() -> new ManagerNotFoundException(NOT_FOUND_MANAGER, "User Not Found"));
 		user.setManagerStatus(ManagerStatus.PENDING_SUPER);
 		managerRepository.save(user);
 		tokenService.delete(findToken);
@@ -96,7 +104,7 @@ public class ManagerService {
 		tokenService.validTokenSuper(token);
 
 		Manager manager = managerRepository.findById(id)
-			.orElseThrow(() -> new BizException("해당 정보의 유저가 존재하지 않습니다."));
+			.orElseThrow(() -> new ManagerNotFoundException(NOT_FOUND_MANAGER, "해당 정보의 유저가 존재하지 않습니다."));
 		manager.setManagerStatus(ManagerStatus.ADMIN);
 		managerRepository.save(manager);
 
@@ -114,11 +122,11 @@ public class ManagerService {
 	public ServiceResult findManager(ManagerFindDto managerFindDto) {
 		Optional<Manager> optionalManager = managerRepository.findByEmail(managerFindDto.getEmail());
 		if (optionalManager.isEmpty()) {
-			throw new BizException("존재하지 않는 이메일입니다.");
+			throw new ManagerNotValidException(NOT_VALID_USER, "존재하지 않는 이메일입니다.");
 		}
 		Manager manager = optionalManager.get();
 		if (!manager.getUsername().equals(managerFindDto.getUsername())) {
-			throw new BizException("회원정보가 틀립니다.");
+			throw new ManagerNotValidException(NOT_VALID_USER, "회원정보가 틀립니다.");
 		}
 
 		mailService.sendMail(manager, "FIND_MANAGER");
@@ -132,15 +140,15 @@ public class ManagerService {
 
 	private Manager getManagerAuthenticationPassword(String token) {
 		Token findToken = tokenService.findByToken(token)
-			.orElseThrow(() -> new BizException("Not Found Token"));
+			.orElseThrow(() -> new TokenNotFoundException(NOT_FOUND_TOKEN, "Not Found Token"));
 		String email = findToken.getManager().getEmail();
-		return managerRepository.findByEmail(email).orElseThrow(() -> new BizException("User Not Found"));
+		return managerRepository.findByEmail(email).orElseThrow(() -> new ManagerNotFoundException(NOT_FOUND_MANAGER, "User Not Found"));
 	}
 
 	public ServiceResult changePassword(String token, ManagerPasswordDto managerPasswordDto) {
 		Manager manager = getManagerAuthenticationPassword(token);
 		if (!managerPasswordDto.getPassword1().equals(managerPasswordDto.getPassword2())) {
-			throw new BizException("비밀번호1, 2가 일치하지 않습니다.");
+			throw new RegisterNotEqualPasswordException(NOT_EQUAL_PASSWORD, "비밀번호1, 2가 일치하지 않습니다.");
 		}
 		String encryptPassword = PasswordUtils.encryptedPassword(managerPasswordDto.getPassword1());
 		manager.setPassword(encryptPassword);

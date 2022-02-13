@@ -65,6 +65,70 @@ Bancow;
 | Not Found Event
 |===
 
+=== Farm Error Code
+|===
+| Error Code | Usage
+
+| F001
+| Not Found Farm
+|===
+
+=== Buyer Error Code
+|===
+| Error Code | Usage
+
+| B001
+| Not Found Buyer
+|===
+
+
+=== NEWS Error Code
+|===
+| Error Code | Usage
+
+| N001
+| Not Found NEWS
+|===
+
+
+=== TOKEN Error Code
+|===
+| Error Code | Usage
+
+| TK001
+| Not Found Token
+
+| TK002
+| Not Authority Token
+
+| TK003
+| Not Super Token
+|===
+
+=== MANGER Error Code
+|===
+| Error Code | Usage
+
+| M001
+| Not Found MANAGER
+
+| M002
+| NOT VALID PASSWORD
+
+| M003
+| NOT VALID USER
+|===
+
+=== MANGER REGISTER Error Code
+|===
+| Error Code | Usage
+
+| R001
+| Duplicate Email
+
+| R002
+| Password 1, 2 Not Equal
+|===
 
 [[Manager]]
 == Manager

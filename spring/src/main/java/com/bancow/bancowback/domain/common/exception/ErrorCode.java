@@ -45,6 +45,21 @@ public enum ErrorCode {
 
 	// NEWS
 	NOT_FOUND_NEWS("N001", "Not Found News"),
+
+	// TOKEN
+	NOT_FOUND_TOKEN("TK001", "Not Found Token"),
+	NOT_AUTHORITY("TK002", "Not Authority Token"),
+	NOT_AUTHORITY_SUPER("TK003", "Not Super Token"),
+
+	// MANGER
+	NOT_FOUND_MANAGER("M001", "NOT FOUND MANAGER"),
+	NOT_VALID_PASSWORD("M002", "NOT VALID PASSWORD"),
+	NOT_VALID_USER("M003", "NOT VALID USER"),
+
+	// REGISTER
+	DUPLICATE_EMAIL("R001", "Duplicate Email"),
+	NOT_EQUAL_PASSWORD("R002", "Password 1, 2 Not Equal"),
+
 	;
 	private final String code;
 	private final String message;

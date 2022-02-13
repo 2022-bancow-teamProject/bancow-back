@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
-import com.bancow.bancowback.domain.sub.news.entity.News;
-
 import lombok.extern.slf4j.Slf4j;
 
 @ControllerAdvice
@@ -120,6 +118,63 @@ public class GlobalExceptionHandler {
 	protected ResponseEntity<ErrorResponse> handlerNewsException(NewsException e) {
 		log.error("NewsException", e);
 		final ErrorResponse response = ErrorResponse.of(ErrorCode.NOT_FOUND_NEWS);
+		return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+
+	@ExceptionHandler(TokenAuthorityException.class)
+	protected ResponseEntity<ErrorResponse> handlerTokenAuthorityException(TokenAuthorityException e) {
+		log.error("TokenAuthorityException", e);
+		final ErrorResponse response = ErrorResponse.of(ErrorCode.NOT_AUTHORITY);
+		return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+
+	@ExceptionHandler(TokenAuthoritySuperException.class)
+	protected ResponseEntity<ErrorResponse> handlerTokenAuthoritySuperException(TokenAuthoritySuperException e) {
+		log.error("TokenAuthoritySuperException", e);
+		final ErrorResponse response = ErrorResponse.of(ErrorCode.NOT_AUTHORITY_SUPER);
+		return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+
+	@ExceptionHandler(TokenNotFoundException.class)
+	protected ResponseEntity<ErrorResponse> handlerTokenException(TokenNotFoundException e) {
+		log.error("TokenNotFoundException", e);
+		final ErrorResponse response = ErrorResponse.of(ErrorCode.NOT_FOUND_TOKEN);
+		return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+
+	@ExceptionHandler(ManagerNotFoundException.class)
+	protected ResponseEntity<ErrorResponse> handlerManagerNotFoundException(ManagerNotFoundException e) {
+		log.error("ManagerNotFoundException", e);
+		final ErrorResponse response = ErrorResponse.of(ErrorCode.NOT_FOUND_MANAGER);
+		return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+
+	@ExceptionHandler(ManagerNotValidPasswordException.class)
+	protected ResponseEntity<ErrorResponse> handlerManagerNotValidPasswordException(ManagerNotValidPasswordException e) {
+		log.error("ManagerNotValidPasswordException", e);
+		final ErrorResponse response = ErrorResponse.of(ErrorCode.NOT_VALID_PASSWORD);
+		return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+
+	@ExceptionHandler(ManagerNotValidException.class)
+	protected ResponseEntity<ErrorResponse> handlerManagerNotValidException(ManagerNotValidException e) {
+		log.error("ManagerNotValidException", e);
+		final ErrorResponse response = ErrorResponse.of(ErrorCode.NOT_VALID_USER);
+		return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+
+	@ExceptionHandler(RegisterDuplicateEmailException.class)
+	protected ResponseEntity<ErrorResponse> handlerRegisterDuplicateEmailException(RegisterDuplicateEmailException e) {
+		log.error("RegisterDuplicateEmailException", e);
+		final ErrorResponse response = ErrorResponse.of(ErrorCode.DUPLICATE_EMAIL);
+		return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+
+	@ExceptionHandler(RegisterNotEqualPasswordException.class)
+	protected ResponseEntity<ErrorResponse> handlerRegisterNotEqualPasswordException(
+		RegisterNotEqualPasswordException e) {
+		log.error("RegisterNotEqualPasswordException", e);
+		final ErrorResponse response = ErrorResponse.of(ErrorCode.NOT_EQUAL_PASSWORD);
 		return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 }
