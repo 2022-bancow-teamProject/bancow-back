@@ -24,23 +24,29 @@ public class FarmQnaAddRequestDto {
 	private String farmQnaName;
 
 	@NotBlank
+	@JsonProperty("phone_number")
 	private String phoneNumber;
 
 	@NotBlank
 	private String email;
 
 	@NotBlank
+	@JsonProperty("farm_name")
 	private String farmName;
 
 	@NotBlank
+	@JsonProperty("farm_address")
 	private String farmAddress;
 
 	@NotNull
+	@JsonProperty("cow_num")
 	private Integer cowNum;
 
 	@NotBlank
+	@JsonProperty("feed_name")
 	private String feedName;
 
 	@NotNull
+	@JsonProperty("available_date")
 	private LocalDate availableDate;
 }
