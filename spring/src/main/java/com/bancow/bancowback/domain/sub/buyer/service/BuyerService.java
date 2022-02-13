@@ -53,5 +53,18 @@ public class BuyerService {
 		return ServiceResult.success("구매자리뷰가 삭제 됐습니다. ");
 	}
 
+	public Object deleteBuyerList(List<Long> id) {
+		List<Buyer> deleteBuyerList = buyerRepository.findByIdIn(id);
 
+		if (deleteBuyerList.size() == 0) {
+			throw new BuyerException(ErrorCode.NOT_FOUND_BUYER, "구매자 없음");
+		}
+
+		deleteBuyerList
+			.stream().forEach(e -> {
+				buyerRepository.delete(e);
+			});
+
+		return ServiceResult.success("구매자 성공.");
+	}
 }

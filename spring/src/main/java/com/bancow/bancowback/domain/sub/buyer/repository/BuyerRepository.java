@@ -8,4 +8,6 @@ import com.bancow.bancowback.domain.sub.buyer.entity.Buyer;
 
 public interface BuyerRepository extends JpaRepository<Buyer, Long> {
 	List<Buyer> findByStatus(boolean b);
+
+	List<Buyer> findByIdIn(List<Long> id);
 }
