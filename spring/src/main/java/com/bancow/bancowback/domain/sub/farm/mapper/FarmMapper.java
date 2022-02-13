@@ -116,4 +116,19 @@ public class FarmMapper {
 			.manager(manager)
 			.build();
 	}
+
+	public Farm toUpdateNotImageEntity(Manager manager,Farm farm, FarmUpdateRequestDto farmUpdateRequestDto) {
+		return Farm.builder()
+		.id(farmUpdateRequestDto.getId())
+		.farmName(farmUpdateRequestDto.getFarmName())
+		.ceoName(farmUpdateRequestDto.getCeoName())
+		.title(farmUpdateRequestDto.getTitle())
+		.content(farmUpdateRequestDto.getContent())
+		.farmImage(farm.getFarmImage())
+		.farmCEOImage(farm.getFarmCEOImage())
+		.status(farmUpdateRequestDto.getStatus())
+		.createDate(farm.getCreateDate())
+		.manager(manager)
+		.build();
+	}
 }
