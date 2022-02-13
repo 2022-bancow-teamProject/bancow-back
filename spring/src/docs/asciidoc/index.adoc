@@ -809,8 +809,6 @@ include::{snippets}/event-controller-test/get-event/http-request.adoc[]
 include::{snippets}/event-controller-test/get-event/http-response.adoc[]
 ==== Httpie Request
 include::{snippets}/event-controller-test/get-event/httpie-request.adoc[]
-==== Request Body
-include::{snippets}/event-controller-test/get-event/request-body.adoc[]
 ==== Response Body
 include::{snippets}/event-controller-test/get-event/response-body.adoc[]
 ==== Response Fields
@@ -1544,6 +1542,24 @@ include::{snippets}/faq-controller-test/update-faq/response-body.adoc[]
 ==== Response Fields
 include::{snippets}/faq-controller-test/update-faq/response-fields.adoc[]
 
+[[자주묻는질문-검색]]
+=== 자주묻는질문 검색
+==== Curl Request
+include::{snippets}/faq-controller-test/search/curl-request.adoc[]
+==== Http Request
+include::{snippets}/faq-controller-test/search/http-request.adoc[]
+==== Http Response
+include::{snippets}/faq-controller-test/search/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/faq-controller-test/search/httpie-request.adoc[]
+==== Request Parameters
+include::{snippets}/faq-controller-test/search/request-parameters.adoc[]
+==== Response Body
+include::{snippets}/faq-controller-test/search/response-body.adoc[]
+==== Response Fields
+include::{snippets}/faq-controller-test/search/response-fields.adoc[]
+
+
 
 
 [[HISTORY]]
@@ -1744,8 +1760,6 @@ include::{snippets}/news-controller-test/get-news-paging/http-request.adoc[]
 include::{snippets}/news-controller-test/get-news-paging/http-response.adoc[]
 ==== Httpie Request
 include::{snippets}/news-controller-test/get-news-paging/httpie-request.adoc[]
-==== Request Body
-include::{snippets}/news-controller-test/get-news-paging/request-body.adoc[]
 ==== Response Body
 include::{snippets}/news-controller-test/get-news-paging/response-body.adoc[]
 ==== Response Fields
@@ -1762,8 +1776,6 @@ include::{snippets}/news-controller-test/get-news/http-request.adoc[]
 include::{snippets}/news-controller-test/get-news/http-response.adoc[]
 ==== Httpie Request
 include::{snippets}/news-controller-test/get-news/httpie-request.adoc[]
-==== Request Body
-include::{snippets}/news-controller-test/get-news/request-body.adoc[]
 ==== Request Headers
 include::{snippets}/news-controller-test/get-news/request-headers.adoc[]
 ==== Response Body
@@ -1807,8 +1819,6 @@ include::{snippets}/news-controller-test/delete-news/http-response.adoc[]
 include::{snippets}/news-controller-test/delete-news/httpie-request.adoc[]
 ==== Path Parameters
 include::{snippets}/news-controller-test/delete-news/path-parameters.adoc[]
-==== Request Body
-include::{snippets}/news-controller-test/delete-news/request-body.adoc[]
 ==== Request Headers
 include::{snippets}/news-controller-test/delete-news/request-headers.adoc[]
 ==== Response Body
