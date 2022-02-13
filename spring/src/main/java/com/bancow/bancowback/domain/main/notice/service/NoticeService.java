@@ -37,7 +37,7 @@ public class NoticeService {
 	}
 
 	public Page<NoticeResponseDto> getPublicNoticePaging(int page) {
-		Page<Notice> noticeList = noticeRepository.findAll(PageRequest.of(page, 10, Sort.by(Sort.Direction.DESC, "id")));
+		Page<Notice> noticeList = noticeRepository.findAll(PageRequest.of(page, 5, Sort.by(Sort.Direction.DESC, "id")));
 		return noticeList.map(notice -> noticeMapper.toResponseDto(notice));
 	}
 
@@ -53,7 +53,7 @@ public class NoticeService {
 
 	public Page<NoticeResponseDto> getNoticePaging(String token, int page) {
 		tokenService.validTokenAuthority(token);
-		Page<Notice> noticeList = noticeRepository.findAll(PageRequest.of(page, 10, Sort.by(Sort.Direction.DESC, "id")));
+		Page<Notice> noticeList = noticeRepository.findAll(PageRequest.of(page, 5, Sort.by(Sort.Direction.DESC, "id")));
 		return noticeList.map(notice -> noticeMapper.toResponseDto(notice));
 	}
 

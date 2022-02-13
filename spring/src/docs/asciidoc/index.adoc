@@ -356,7 +356,7 @@ include::{snippets}/popup-controller-test/get-popup-detail/response-body.adoc[]
 include::{snippets}/popup-controller-test/get-popup-detail/response-fields.adoc[]
 
 [[팝업-페이징]]
-=== 팝업 10개씩 가져오기
+=== 팝업 5개씩 가져오기
 ==== Curl Request
 include::{snippets}/popup-controller-test/get-popup-paging/curl-request.adoc[]
 ==== Http Request
@@ -698,6 +698,24 @@ include::{snippets}/event-controller-test/add-event/response-body.adoc[]
 ==== Response Fields
 include::{snippets}/event-controller-test/add-event/response-fields.adoc[]
 
+[[이벤트-페이징]]
+=== 이벤트 5개씩 가져오기
+==== Curl Request
+include::{snippets}/event-controller-test/get-event-paging/curl-request.adoc[]
+==== Http Request
+include::{snippets}/event-controller-test/get-event-paging/http-request.adoc[]
+==== Http Response
+include::{snippets}/event-controller-test/get-event-paging/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/event-controller-test/get-event-paging/httpie-request.adoc[]
+==== Request Header
+include::{snippets}/event-controller-test/get-event-paging/request-headers.adoc[]
+==== Request Parameters
+include::{snippets}/event-controller-test/get-event-paging/request-parameters.adoc[]
+==== Response Body
+include::{snippets}/event-controller-test/get-event-paging/response-body.adoc[]
+==== Response Fields
+include::{snippets}/event-controller-test/get-event-paging/response-fields.adoc[]
 
 [[이벤트-배포]]
 === 이벤트 배포
@@ -709,6 +727,8 @@ include::{snippets}/event-controller-test/get-event/http-request.adoc[]
 include::{snippets}/event-controller-test/get-event/http-response.adoc[]
 ==== Httpie Request
 include::{snippets}/event-controller-test/get-event/httpie-request.adoc[]
+==== Request Body
+include::{snippets}/event-controller-test/get-event/request-body.adoc[]
 ==== Response Body
 include::{snippets}/event-controller-test/get-event/response-body.adoc[]
 ==== Response Fields
