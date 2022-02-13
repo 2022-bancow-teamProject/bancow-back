@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import javax.persistence.Column;
 
 import com.bancow.bancowback.domain.main.faq.entity.FaqCategory;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,7 +22,7 @@ public class FaqResponseDto {
 
 	private Long id;
 
-	@Column(name = "faq_category", nullable = false)
+	@JsonProperty("faq_category")
 	private FaqCategory faqCategory;
 
 	private String title;
@@ -30,8 +31,10 @@ public class FaqResponseDto {
 
 	private boolean status;
 
+	@JsonProperty("create_date")
 	private LocalDateTime createDate;
 
+	@JsonProperty("update_date")
 	private LocalDateTime updateDate;
 
 	@Column(name = "user_name")
