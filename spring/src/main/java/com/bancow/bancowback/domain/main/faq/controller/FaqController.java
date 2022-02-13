@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -75,8 +76,8 @@ public class FaqController {
 	}
 
 	@GetMapping("/search")
-	public Response<List<FaqSearchResultDto>> SearchFaq(@RequestParam String word) {
-		List<FaqSearchResultDto> result = faqService.search(word);
+	public Response<Page<FaqSearchResultDto>> SearchFaq(@RequestParam String word, @RequestParam int page) {
+		Page<FaqSearchResultDto> result = faqService.search(word, page);
 		return new Response<>(result, HttpStatus.OK);
 	}
 }

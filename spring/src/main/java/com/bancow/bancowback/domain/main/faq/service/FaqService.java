@@ -5,6 +5,7 @@ import static com.bancow.bancowback.domain.common.exception.ErrorCode.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.mapstruct.Mapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -95,8 +96,9 @@ public class FaqService {
 		return ServiceResult.success("FAQ 수정 성공!");
 	}
 
-	public List<FaqSearchResultDto> search(String word) {
-		List<Faq> result = faqRepository.findByTitleContaining(word);
-		return faqMapper.toSearchResultDto(result);
+	public Page<FaqSearchResultDto> search(String word, int page) {
+		Page<Faq> pageFaq = faqRepository.findByTitleContainingWithPagination(word,
+			PageRequest.of(page, 10, Sort.by(Sort.Direction.DESC, "id")));
+		return pageFaq.map(faqMapper::toSearchResultDto);
 	}
 }
