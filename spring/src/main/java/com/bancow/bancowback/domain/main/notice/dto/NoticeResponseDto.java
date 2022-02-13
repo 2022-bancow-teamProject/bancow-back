@@ -15,6 +15,7 @@ import javax.validation.constraints.NotNull;
 
 import com.bancow.bancowback.domain.main.notice.entity.NoticeCategory;
 import com.bancow.bancowback.domain.manager.entity.Manager;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -31,7 +32,7 @@ public class NoticeResponseDto {
 
 	private Long id;
 
-	@Column(name = "notice_category", nullable = false)
+	@JsonProperty("notice_category")
 	private NoticeCategory noticeCategory;
 
 	private String title;
@@ -40,8 +41,10 @@ public class NoticeResponseDto {
 
 	private boolean status;
 
+	@JsonProperty("create_date")
 	private LocalDateTime createDate;
 
+	@JsonProperty("update_date")
 	private LocalDateTime updateDate;
 
 	@Column(name = "user_name")
