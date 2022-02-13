@@ -1,7 +1,10 @@
 package com.bancow.bancowback.domain.sub.chart.mapper;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -38,10 +41,22 @@ public interface ChartMapper {
 		cowList.forEach(e ->
 			info.put(e.getInfoYear(), e.getInfo())
 		);
-		infoList.add(info);
+		Map<Integer, Long> sortInfo = sortMapByKey(info);
+		infoList.add(sortInfo);
 		return KoreanCowResponseDto.builder()
 			.category(category)
 			.info(infoList)
 			.build();
+	}
+
+	default public HashMap<Integer, Long> sortMapByKey(Map<Integer, Long> map) {
+		List<Map.Entry<Integer, Long>> entries = new LinkedList<>(map.entrySet());
+		entries.sort((o1, o2) -> o1.getKey().compareTo(o2.getKey()));
+
+		LinkedHashMap<Integer, Long> result = new LinkedHashMap<>();
+		for (Map.Entry<Integer, Long> entry : entries) {
+			result.put(entry.getKey(), entry.getValue());
+		}
+		return result;
 	}
 }
