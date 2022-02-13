@@ -42,6 +42,13 @@ public class BuyerController {
 		return new Response<>(buyerService.getBuyerPaging(page), HttpStatus.OK);
 	}
 
+	@GetMapping("/{id}")
+	public Response<?> getBuyerDetail(@RequestHeader("TOKEN") final String token,
+		@NotNull @PathVariable final Long id) {
+		tokenService.validTokenAuthority(token);
+		return new Response<>(buyerService.getBuyerDetail(id), HttpStatus.OK);
+	}
+
 	@PatchMapping("/edit")
 	public Response<?> editBuyer(@RequestHeader("TOKEN") final String token,
 		@Valid @RequestBody BuyerUpdateRequestDto buyerUpdateRequestDto) {
