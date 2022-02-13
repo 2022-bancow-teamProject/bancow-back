@@ -503,8 +503,8 @@ include::{snippets}/qna-controller-test/get-qna/response-body.adoc[]
 ==== Response Fields
 include::{snippets}/qna-controller-test/get-qna/response-fields.adoc[]
 
-[[문의-10개씩-가져오기]]
-=== 문의 10개씩 가져오기
+[[문의-5개씩-가져오기]]
+=== 문의 5개씩 가져오기
 ==== Curl Request
 include::{snippets}/qna-controller-test/get-qna-paging/curl-request.adoc[]
 ==== Http Request
@@ -600,8 +600,8 @@ include::{snippets}/farm-qna-controller-test/get-farm-qna/response-body.adoc[]
 ==== Response Fields
 include::{snippets}/farm-qna-controller-test/get-farm-qna/response-fields.adoc[]
 
-[[농가-입점-문의-10개씩-가져오기]]
-=== 농가 입점 문의 10개씩 가져오기
+[[농가-입점-문의-5개씩-가져오기]]
+=== 농가 입점 문의 5개씩 가져오기
 ==== Curl Request
 include::{snippets}/farm-qna-controller-test/get-farm-qna-paging/curl-request.adoc[]
 ==== Http Request
