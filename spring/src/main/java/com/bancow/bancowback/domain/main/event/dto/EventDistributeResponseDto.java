@@ -19,6 +19,12 @@ public class EventDistributeResponseDto {
 
 	private Long id;
 
+	private String title;
+
+	private String content;
+
+	private String url;
+
 	private String image;
 
 	@JsonProperty("start_date")
