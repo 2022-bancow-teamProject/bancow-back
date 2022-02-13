@@ -3,6 +3,9 @@ package com.bancow.bancowback.domain.sub.buyer.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.bancow.bancowback.domain.common.dto.ServiceResult;
@@ -10,6 +13,7 @@ import com.bancow.bancowback.domain.common.exception.BuyerException;
 import com.bancow.bancowback.domain.common.exception.ErrorCode;
 import com.bancow.bancowback.domain.common.exception.EventException;
 import com.bancow.bancowback.domain.sub.buyer.dto.BuyerDistributeResponseDto;
+import com.bancow.bancowback.domain.sub.buyer.dto.BuyerPagingResponseDto;
 import com.bancow.bancowback.domain.sub.buyer.dto.BuyerUpdateRequestDto;
 import com.bancow.bancowback.domain.sub.buyer.entity.Buyer;
 import com.bancow.bancowback.domain.sub.buyer.mapper.BuyerMapper;
@@ -66,5 +70,10 @@ public class BuyerService {
 			});
 
 		return ServiceResult.success("구매자 성공.");
+	}
+
+	public Page<BuyerPagingResponseDto> getBuyerPaging(int page) {
+		Page<Buyer> buyerList = buyerRepository.findAll(PageRequest.of(page, 5, Sort.by(Sort.Direction.DESC, "id")));
+		return buyerList.map(buyer -> buyerMapper.toBuyerPagingResponseDto(buyer));
 	}
 }

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bancow.bancowback.domain.common.dto.Response;
@@ -32,6 +33,13 @@ public class BuyerController {
 	@GetMapping("/distribute")
 	public Response<?> getBuyerDistribute() {
 		return new Response<>(buyerService.getBuyerDistribute(), HttpStatus.OK);
+	}
+
+	@GetMapping()
+	public Response<?> getBuyerPaging(@RequestHeader("TOKEN") final String token,
+		@NotNull @RequestParam("page") final int page) {
+		tokenService.validTokenAuthority(token);
+		return new Response<>(buyerService.getBuyerPaging(page), HttpStatus.OK);
 	}
 
 	@PatchMapping("/edit")
