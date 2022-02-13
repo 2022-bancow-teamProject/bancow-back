@@ -12,6 +12,7 @@ import com.bancow.bancowback.domain.common.dto.ServiceResult;
 import com.bancow.bancowback.domain.common.exception.BuyerException;
 import com.bancow.bancowback.domain.common.exception.ErrorCode;
 import com.bancow.bancowback.domain.common.exception.EventException;
+import com.bancow.bancowback.domain.sub.buyer.dto.BuyerDetailResponseDto;
 import com.bancow.bancowback.domain.sub.buyer.dto.BuyerDistributeResponseDto;
 import com.bancow.bancowback.domain.sub.buyer.dto.BuyerPagingResponseDto;
 import com.bancow.bancowback.domain.sub.buyer.dto.BuyerUpdateRequestDto;
@@ -75,5 +76,9 @@ public class BuyerService {
 	public Page<BuyerPagingResponseDto> getBuyerPaging(int page) {
 		Page<Buyer> buyerList = buyerRepository.findAll(PageRequest.of(page, 5, Sort.by(Sort.Direction.DESC, "id")));
 		return buyerList.map(buyer -> buyerMapper.toBuyerPagingResponseDto(buyer));
+	}
+
+	public BuyerDetailResponseDto getBuyerDetail(Long id) {
+		return buyerMapper.toBuyerDetailResponseDto(getBuyerId(id));
 	}
 }
