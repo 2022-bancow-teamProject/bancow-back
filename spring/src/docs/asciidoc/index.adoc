@@ -1153,7 +1153,43 @@ include::{snippets}/farm-controller-test/edit-farm-image/request-parts.adoc[]
 ==== Response Body
 include::{snippets}/farm-controller-test/edit-farm-image/response-body.adoc[]
 
+[[농가-수정]]
+=== 농가 수정 이미지 없을 경우
+==== Curl Request
+include::{snippets}/farm-controller-test/edit-farm-not-image/curl-request.adoc[]
+==== Http Response
+include::{snippets}/farm-controller-test/edit-farm-not-image/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/farm-controller-test/edit-farm-not-image/httpie-request.adoc[]
+==== Request Body
+include::{snippets}/farm-controller-test/edit-farm-not-image/request-body.adoc[]
+==== Request Fields
+include::{snippets}/farm-controller-test/edit-farm-not-image/request-fields.adoc[]
+==== Request headers
+include::{snippets}/farm-controller-test/edit-farm-not-image/request-headers.adoc[]
+==== Response Body
+include::{snippets}/farm-controller-test/edit-farm-not-image/response-body.adoc[]
+==== Response Fields
+include::{snippets}/farm-controller-test/edit-farm-not-image/response-fields.adoc[]
 
+[[농가-한개만-삭제]]
+=== 농가 한개만 삭제
+==== Curl Request
+include::{snippets}/farm-controller-test/delete-farm-one/curl-request.adoc[]
+==== Http Request
+include::{snippets}/farm-controller-test/delete-farm-one/http-request.adoc[]
+==== Http Response
+include::{snippets}/farm-controller-test/delete-farm-one/http-response.adoc[]
+==== Httpie Request
+include::{snippets}/farm-controller-test/delete-farm-one/httpie-request.adoc[]
+==== Request Header
+include::{snippets}/farm-controller-test/delete-farm-one/request-headers.adoc[]
+==== Path Parameters
+include::{snippets}/farm-controller-test/delete-farm-one/path-parameters.adoc[]
+==== Response Body
+include::{snippets}/farm-controller-test/delete-farm-one/response-body.adoc[]
+==== Response Fields
+include::{snippets}/farm-controller-test/delete-farm-one/response-fields.adoc[]
 
 
 [[구매자-리뷰]]
