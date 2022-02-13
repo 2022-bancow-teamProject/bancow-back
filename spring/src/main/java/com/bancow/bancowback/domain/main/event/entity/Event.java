@@ -36,6 +36,12 @@ public class Event extends BaseTimeEntity {
 	private String title;
 
 	@Column(nullable = false)
+	private String content;
+
+	@Column(nullable = false)
+	private String url;
+
+	@Column(nullable = false)
 	private String image;
 
 	@Column(name = "start_date", nullable = false)

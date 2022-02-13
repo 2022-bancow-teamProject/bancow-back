@@ -23,6 +23,12 @@ public class EventUpdateRequestDto {
 	@NotBlank
 	private String title;
 
+	@NotBlank
+	private String content;
+
+	@NotBlank
+	private String url;
+
 	@NotNull
 	@JsonProperty("start_date")
 	private LocalDate startDate;
