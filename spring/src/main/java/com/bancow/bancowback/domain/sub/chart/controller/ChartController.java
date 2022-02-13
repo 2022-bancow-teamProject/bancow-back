@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bancow.bancowback.domain.common.dto.Response;
+import com.bancow.bancowback.domain.sub.chart.dto.KoreanCowResponseDto;
 import com.bancow.bancowback.domain.sub.chart.dto.QnaNumResponseDto;
+import com.bancow.bancowback.domain.sub.chart.entity.KoreanCowCategory;
 import com.bancow.bancowback.domain.sub.chart.service.ChartService;
 
 import lombok.RequiredArgsConstructor;
@@ -39,6 +41,12 @@ public class ChartController {
 	public Response<?> qnaYear(@RequestHeader("TOKEN") String token, @PathVariable int year) {
 		List<Map<String, Object>> maps = chartService.qnaYear(token, year);
 		return new Response<>(maps, HttpStatus.OK);
+	}
+
+	@GetMapping("/koreancow/{category}")
+	public Response<?> koreanCow(@PathVariable KoreanCowCategory category) {
+		KoreanCowResponseDto result = chartService.koreanCow(category);
+		return new Response<>(result, HttpStatus.OK);
 	}
 
 }
