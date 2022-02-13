@@ -42,6 +42,9 @@ public enum ErrorCode {
 
 	//Buyer
 	NOT_FOUND_BUYER("B001", "Not Found Buyer"),
+
+	// NEWS
+	NOT_FOUND_NEWS("N001", "Not Found News"),
 	;
 	private final String code;
 	private final String message;

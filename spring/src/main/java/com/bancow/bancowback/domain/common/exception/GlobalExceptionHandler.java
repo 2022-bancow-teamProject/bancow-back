@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
+import com.bancow.bancowback.domain.sub.news.entity.News;
+
 import lombok.extern.slf4j.Slf4j;
 
 @ControllerAdvice
@@ -111,6 +113,13 @@ public class GlobalExceptionHandler {
 	protected ResponseEntity<ErrorResponse> handlePopupException(FaqException e) {
 		log.error("FaqException", e);
 		final ErrorResponse response = ErrorResponse.of(ErrorCode.NOT_FOUND_FAQ);
+		return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+
+	@ExceptionHandler(NewsException.class)
+	protected ResponseEntity<ErrorResponse> handlerNewsException(NewsException e) {
+		log.error("NewsException", e);
+		final ErrorResponse response = ErrorResponse.of(ErrorCode.NOT_FOUND_NEWS);
 		return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 }
