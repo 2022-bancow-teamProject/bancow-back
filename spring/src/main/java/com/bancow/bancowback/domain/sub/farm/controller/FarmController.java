@@ -22,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.bancow.bancowback.domain.common.dto.Response;
 import com.bancow.bancowback.domain.common.util.token.service.TokenService;
 import com.bancow.bancowback.domain.sub.farm.dto.FarmAddRequestDto;
+import com.bancow.bancowback.domain.sub.farm.dto.FarmDeleteRequestDto;
 import com.bancow.bancowback.domain.sub.farm.dto.FarmUpdateRequestDto;
 import com.bancow.bancowback.domain.sub.farm.entity.FarmInfo;
 import com.bancow.bancowback.domain.sub.farm.mapper.FarmMapper;
@@ -100,6 +101,12 @@ public class FarmController {
 		@NotNull @PathVariable final Long id) {
 		tokenService.validTokenAuthority(token);
 		return new Response<>(farmService.deleteFarmOne(id), HttpStatus.OK);
+	}
+
+	public Response<?> deleteFarmList(@RequestHeader("TOKEN") final String token,
+		@NotNull @RequestBody final FarmDeleteRequestDto dto) {
+		tokenService.validTokenAuthority(token);
+		return new Response<>(farmService.deleteFarmList(dto.getId()), HttpStatus.OK);
 	}
 
 }
