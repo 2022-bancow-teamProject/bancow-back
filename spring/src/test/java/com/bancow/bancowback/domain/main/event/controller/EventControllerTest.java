@@ -68,15 +68,17 @@ class EventControllerTest extends TestSupport {
 	@Test
 	@Transactional
 	void getEvent() throws Exception {
-		Manager adminManager = adminManagerLogin();
-		Token tokenAdmin = tokenRepository.findByManager(adminManager).get();
 
 		mockMvc.perform(
 				get("/api/event/distribute")
+					.param("status", "0")
 
 			).andExpect(status().isOk())
 			.andDo(
 				restDocs.document(
+					requestParameters(
+						parameterWithName("status").description("진행 중인 케이스, 종료 된 케이스 분류")
+					),
 					responseFields(
 						fieldWithPath("data").description("결과 데이터"),
 						fieldWithPath("data[0].id").description("id"),
@@ -84,6 +86,7 @@ class EventControllerTest extends TestSupport {
 						fieldWithPath("data[0].content").description("제목"),
 						fieldWithPath("data[0].url").description("이벤트 url"),
 						fieldWithPath("data[0].image").description("이미지"),
+						fieldWithPath("data[0].status").description("진행, 종료 상태 값"),
 						fieldWithPath("data[0].start_date").description("게시 시작 날짜"),
 						fieldWithPath("data[0].end_date").description("게시 마감 날짜"),
 						fieldWithPath("status").description("HTTP Status")
