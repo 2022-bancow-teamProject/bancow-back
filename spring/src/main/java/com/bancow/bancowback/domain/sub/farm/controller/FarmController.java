@@ -19,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.bancow.bancowback.domain.common.dto.Response;
 import com.bancow.bancowback.domain.common.util.token.service.TokenService;
 import com.bancow.bancowback.domain.sub.farm.dto.FarmAddRequestDto;
+import com.bancow.bancowback.domain.sub.farm.dto.FarmUpdateRequestDto;
 import com.bancow.bancowback.domain.sub.farm.entity.FarmInfo;
 import com.bancow.bancowback.domain.sub.farm.mapper.FarmMapper;
 import com.bancow.bancowback.domain.sub.farm.service.FarmService;
@@ -39,13 +40,12 @@ public class FarmController {
 	@PostMapping("/add")
 	public Response<?> addFarmInfo(@RequestHeader("TOKEN") String token,
 		@Valid @RequestPart("farm_request") final FarmAddRequestDto dto,
-		@RequestPart(value = "farm_image", required = false) final MultipartFile farm_image,
-		@RequestPart(value = "farm_ceo_image", required = false) final MultipartFile farm_ceo_image)
+		@RequestPart(value = "farm_image", required = false) final MultipartFile farmImage,
+		@RequestPart(value = "farm_ceo_image", required = false) final MultipartFile farmCeoImage)
 		throws IOException {
-
 		tokenService.validTokenAuthority(token);
-		String farmImageUploadPath = ncpService.objectUpload("farm", farm_image);
-		String farmCEOImageUploadPath = ncpService.objectUpload("farm", farm_ceo_image);
+		String farmImageUploadPath = ncpService.objectUpload("farm", farmImage);
+		String farmCEOImageUploadPath = ncpService.objectUpload("farm", farmCeoImage);
 		FarmAddRequestDto farmAddRequestDto = farmMapper.toFarmAddRequestDto(dto, farmImageUploadPath,
 			farmCEOImageUploadPath);
 		FarmInfo farmInfo = farmMapper.toFarmInfo(tokenService.getManager(token), farmAddRequestDto);
@@ -69,6 +69,20 @@ public class FarmController {
 		@NotNull @PathVariable final Long id) {
 		tokenService.validTokenAuthority(token);
 		return new Response<>(farmService.getFarmDetail(id), HttpStatus.OK);
+	}
+
+	@PostMapping("/edit")
+	public Response<?> editFarmImage(@RequestHeader("TOKEN") final String token,
+		@Valid @RequestPart("farm_request") FarmUpdateRequestDto FarmUpdateRequestDto,
+		@RequestPart(value = "farm_image", required = false) final MultipartFile farmImage,
+		@RequestPart(value = "farm_ceo_image", required = false) final MultipartFile farmCeoImage) throws IOException {
+		tokenService.validTokenAuthority(token);
+		String farmImageUploadPath = ncpService.objectUpload("farm", farmImage);
+		String farmCEOImageUploadPath = ncpService.objectUpload("farm", farmCeoImage);
+		FarmUpdateRequestDto farmUpdateRequestDto = farmMapper.toFarmUpdateRequestDto(FarmUpdateRequestDto, farmImageUploadPath,
+			farmCEOImageUploadPath);
+		FarmInfo farmInfo = farmMapper.toUpdateFarmInfo(tokenService.getManager(token),farmUpdateRequestDto);
+		return new Response<>(farmService.editFarmImage(farmInfo), HttpStatus.OK);
 	}
 
 }

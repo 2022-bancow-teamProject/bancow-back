@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+
 import org.springframework.stereotype.Service;
 
 import com.bancow.bancowback.domain.common.dto.ServiceResult;
@@ -17,6 +18,7 @@ import com.bancow.bancowback.domain.sub.farm.dto.FarmAddRequestDto;
 import com.bancow.bancowback.domain.sub.farm.dto.FarmDetailResponseDto;
 import com.bancow.bancowback.domain.sub.farm.dto.FarmDistributeResponseDto;
 import com.bancow.bancowback.domain.sub.farm.dto.FarmPagingResponseDto;
+import com.bancow.bancowback.domain.sub.farm.dto.FarmUpdateRequestDto;
 import com.bancow.bancowback.domain.sub.farm.entity.Farm;
 import com.bancow.bancowback.domain.sub.farm.entity.FarmInfo;
 import com.bancow.bancowback.domain.sub.farm.mapper.FarmMapper;
@@ -61,5 +63,12 @@ public class FarmService {
 	public Farm getFarmId(Long id) {
 		return farmRepository.findById(id)
 			.orElseThrow(() -> new FarmException(ErrorCode.NOT_FOUND_FARM, "농장 없음"));
+	}
+
+	public ServiceResult editFarmImage(FarmInfo<FarmUpdateRequestDto> farmInfo) {
+		Farm farm = farmMapper.toUpdateEntity(farmInfo.getManager(), getFarmId(farmInfo.getDto().getId()),
+			farmInfo.getDto());
+		farmRepository.save(farm);
+		return ServiceResult.success("농장이 등록 됐습니다.");
 	}
 }

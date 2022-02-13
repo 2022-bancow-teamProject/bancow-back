@@ -7,6 +7,7 @@ import com.bancow.bancowback.domain.sub.farm.dto.FarmAddRequestDto;
 import com.bancow.bancowback.domain.sub.farm.dto.FarmDetailResponseDto;
 import com.bancow.bancowback.domain.sub.farm.dto.FarmDistributeResponseDto;
 import com.bancow.bancowback.domain.sub.farm.dto.FarmPagingResponseDto;
+import com.bancow.bancowback.domain.sub.farm.dto.FarmUpdateRequestDto;
 import com.bancow.bancowback.domain.sub.farm.entity.Farm;
 import com.bancow.bancowback.domain.sub.farm.entity.FarmInfo;
 
@@ -29,6 +30,13 @@ public class FarmMapper {
 		return FarmInfo.<FarmAddRequestDto>builder()
 			.manager(manager)
 			.Dto(farmAddRequestDto)
+			.build();
+	}
+
+	public FarmInfo<FarmUpdateRequestDto> toUpdateFarmInfo(Manager manager, FarmUpdateRequestDto farmUpdateRequestDto) {
+		return FarmInfo.<FarmUpdateRequestDto>builder()
+			.manager(manager)
+			.Dto(farmUpdateRequestDto)
 			.build();
 	}
 
@@ -78,6 +86,34 @@ public class FarmMapper {
 			.farmCEOImage(farm.getFarmCEOImage())
 			.status(farm.getStatus())
 			.create_date(farm.getCreateDate())
+			.build();
+	}
+
+	public FarmUpdateRequestDto toFarmUpdateRequestDto(FarmUpdateRequestDto farmUpdateRequestDto, String farmImageUploadPath, String farmCEOImageUploadPath) {
+		return FarmUpdateRequestDto.builder()
+			.id(farmUpdateRequestDto.getId())
+			.farmName(farmUpdateRequestDto.getFarmName())
+			.ceoName(farmUpdateRequestDto.getCeoName())
+			.title(farmUpdateRequestDto.getTitle())
+			.content(farmUpdateRequestDto.getContent())
+			.farmImageUploadPath(farmImageUploadPath)
+			.farmCEOImageUploadPath(farmCEOImageUploadPath)
+			.status(Boolean.FALSE)
+			.build();
+	}
+
+	public Farm toUpdateEntity(Manager manager, Farm farm, FarmUpdateRequestDto farmUpdateRequestDto){
+		return Farm.builder()
+			.id(farmUpdateRequestDto.getId())
+			.farmName(farmUpdateRequestDto.getFarmName())
+			.ceoName(farmUpdateRequestDto.getCeoName())
+			.title(farmUpdateRequestDto.getTitle())
+			.content(farmUpdateRequestDto.getContent())
+			.farmImage(farmUpdateRequestDto.getFarmImageUploadPath())
+			.farmCEOImage(farmUpdateRequestDto.getFarmCEOImageUploadPath())
+			.status(farmUpdateRequestDto.getStatus())
+			.createDate(farm.getCreateDate())
+			.manager(manager)
 			.build();
 	}
 }
