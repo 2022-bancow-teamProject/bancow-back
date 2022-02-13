@@ -15,6 +15,8 @@ public class BuyerMapper {
 			.id(buyer.getId())
 			.buyerName(buyer.getBuyerName())
 			.farmName(buyer.getFarm().getFarmName())
+			.content(buyer.getContent())
+			.title(buyer.getTitle())
 			.farmCEOName(buyer.getFarm().getCeoName())
 			.farmImage("https://kr.object.ncloudstorage.com/bancowback/" + buyer.getFarm().getFarmImage())
 			.build();

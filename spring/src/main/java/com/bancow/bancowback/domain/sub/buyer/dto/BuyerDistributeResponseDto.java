@@ -26,6 +26,9 @@ public class BuyerDistributeResponseDto {
 	@JsonProperty("farm_ceo_name")
 	private String farmCEOName;
 
+	private String content;
+	private String title;
+
 	@JsonProperty("farm_image")
 	private String farmImage;
 
