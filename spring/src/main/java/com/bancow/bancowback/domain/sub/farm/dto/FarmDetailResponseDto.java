@@ -21,6 +21,8 @@ public class FarmDetailResponseDto {
 
 	private String title;
 
+	private String content;
+
 	@JsonProperty("farm_name")
 	private String farmName;
 

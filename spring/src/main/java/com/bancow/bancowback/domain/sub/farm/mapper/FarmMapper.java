@@ -59,6 +59,7 @@ public class FarmMapper {
 			.farmName(farm.getFarmName())
 			.ceoName(farm.getCeoName())
 			.title(farm.getTitle())
+			.content(farm.getContent())
 			.farmCEOImage("https://kr.object.ncloudstorage.com/bancowback/" + farm.getFarmCEOImage())
 			.build();
 	}
@@ -79,6 +80,7 @@ public class FarmMapper {
 		return FarmDetailResponseDto.builder()
 			.id(farm.getId())
 			.title(farm.getTitle())
+			.content(farm.getContent())
 			.farmName(farm.getFarmName())
 			.ceoName(farm.getCeoName())
 			.userName(farm.getManager().getUsername())

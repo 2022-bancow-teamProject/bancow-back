@@ -18,6 +18,7 @@ public class FarmDistributeResponseDto {
 	private Long id;
 
 	private String title;
+	private String content;
 
 	@JsonProperty("farm_name")
 	private String farmName;
