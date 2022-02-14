@@ -30,6 +30,7 @@ public interface QnaMapper {
 	default QnaResponseDto toResponse(Qna qna) {
 		return QnaResponseDto.builder()
 			.id(qna.getId())
+			.category(qna.getCategory())
 			.qnaName(qna.getQnaName())
 			.phoneNumber(qna.getPhoneNumber())
 			.email(qna.getEmail())
