@@ -306,8 +306,8 @@ include::{snippets}/manager-controller-test/status-to-admin/response-body.adoc[]
 ==== Response Fields
 include::{snippets}/manager-controller-test/status-to-admin/response-fields.adoc[]
 
-[[모든-Manager-가져오기]]
-=== 모든 Manager 가져오기
+[[Manager-5명씩-가져오기]]
+=== Manager 5명씩 가져오기
 ==== Curl Request
 include::{snippets}/manager-controller-test/find-all-manager/curl-request.adoc[]
 ==== Http Request
