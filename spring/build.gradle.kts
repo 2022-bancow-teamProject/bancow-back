@@ -45,12 +45,11 @@ dependencies {
     implementation ("org.projectlombok:lombok-mapstruct-binding:0.2.0")
     implementation ("org.mapstruct:mapstruct:1.4.1.Final")
     annotationProcessor ("org.mapstruct:mapstruct-processor:1.4.1.Final")
+    implementation ("mysql:mysql-connector-java")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation ("org.springframework.restdocs:spring-restdocs-mockmvc")
     testImplementation("org.springframework.security:spring-security-test:5.6.1")
-
     asciidoctorExt("org.springframework.restdocs:spring-restdocs-asciidoctor")
-
 }
 
 tasks.withType<Test> {

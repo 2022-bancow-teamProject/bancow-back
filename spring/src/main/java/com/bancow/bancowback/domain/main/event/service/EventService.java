@@ -80,10 +80,9 @@ public class EventService {
 			throw new EventException(ErrorCode.NOT_FOUND_EVENT, "해당 이벤트 없음");
 		}
 
-		deleteEventList
-			.stream().forEach(e -> {
-				eventRepository.delete(e);
-			});
+		for (Event e : deleteEventList) {
+			eventRepository.delete(e);
+		}
 
 		return ServiceResult.success("이벤트 삭제 성공.");
 

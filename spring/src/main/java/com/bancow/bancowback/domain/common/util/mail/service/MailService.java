@@ -2,6 +2,7 @@ package com.bancow.bancowback.domain.common.util.mail.service;
 
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.bancow.bancowback.domain.common.util.mail.MailComponent;
@@ -25,8 +26,11 @@ public class MailService {
 	private final MailTemplateRepository mailTemplateRepository;
 	private final MailComponent mailComponent;
 
+	@Value("${url.main}")
+	private String main;
+
 	public void sendMail(Manager manager, String templateId) {
-		String serverURL = "http://localhost:8080";
+		String serverURL = main;
 
 		String userAuthenticationKey = tokenService.makeJwtToken(manager);
 		tokenService.saveByManager(manager);

@@ -16,13 +16,23 @@ public class WebConfig implements WebMvcConfigurer {
 	@Value("${url.admin}")
 	private String admin;
 
+
+	@Value("${url.admin2}")
+	private String admin2;
+
+	@Value("${url.admin3}")
+	private String admin3;
+
+
 	@Value("${url.client}")
 	private String client;
+
+
 
 	@Override
 	public void addCorsMappings(CorsRegistry registry) {
 		registry.addMapping("/**")
-			.allowedOrigins(client, admin, main)
+			.allowedOrigins(client, admin, admin2,main, admin3)
 			.allowedMethods("GET","POST", "PUT","DELETE","PATCH")
 			.allowedHeaders("*")
 			.allowCredentials(true)
