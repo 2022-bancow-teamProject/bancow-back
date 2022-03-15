@@ -103,6 +103,7 @@ public class FarmController {
 		return new Response<>(farmService.deleteFarmOne(id), HttpStatus.OK);
 	}
 
+	@DeleteMapping("/delete")
 	public Response<?> deleteFarmList(@RequestHeader("TOKEN") final String token,
 		@NotNull @RequestBody final FarmDeleteRequestDto dto) {
 		tokenService.validTokenAuthority(token);

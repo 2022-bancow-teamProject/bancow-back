@@ -314,7 +314,7 @@ public class FarmControllerTest extends TestSupport {
 		Token tokenAdmin = tokenRepository.findByManager(adminManager).get();
 
 		mockMvc.perform(
-				delete("/api/event/delete")
+				delete("/api/farm/delete")
 					.header("TOKEN", tokenAdmin.getToken())
 					.content(readJson("/json/delete.json"))
 					.contentType(MediaType.APPLICATION_JSON)
