@@ -67,8 +67,8 @@ class ChartControllerTest extends TestSupport {
 					),
 					responseFields(
 						fieldWithPath("data").description("결과 데이터"),
-						fieldWithPath("data[0].MONTH_COUNT").description("해당 연월의 농가 입점 문의 갯수"),
-						fieldWithPath("data[0].YEAR_MONTH").description("해당 연월"),
+						fieldWithPath("data[0].month_count").description("해당 연월의 농가 입점 문의 갯수"),
+						fieldWithPath("data[0].ym").description("해당 연월"),
 						fieldWithPath("status").description("HTTP Status")
 					)
 				)
@@ -96,8 +96,8 @@ class ChartControllerTest extends TestSupport {
 					),
 					responseFields(
 						fieldWithPath("data").description("결과 데이터"),
-						fieldWithPath("data[0].MONTH_COUNT").description("해당 연월의 농가 입점 문의 갯수"),
-						fieldWithPath("data[0].YEAR_MONTH").description("해당 연월"),
+						fieldWithPath("data[0].month_count").description("해당 연월의 농가 입점 문의 갯수"),
+						fieldWithPath("data[0].ym").description("해당 연월"),
 						fieldWithPath("status").description("HTTP Status")
 					)
 				)

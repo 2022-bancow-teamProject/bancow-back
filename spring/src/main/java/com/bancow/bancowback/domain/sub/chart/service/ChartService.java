@@ -55,9 +55,9 @@ public class ChartService {
 		tokenService.validTokenAuthority(token);
 		List<Integer> existMonth = new ArrayList<>();
 		for (Map<String, Object> map : monthData) {
-			existMonth.add(Integer.parseInt(map.get("YEAR_MONTH").toString().substring(5)));
+			existMonth.add(Integer.parseInt(map.get("ym").toString().substring(5)));
 		}
-		String yearInfo = monthData.get(0).get("YEAR_MONTH").toString().substring(0, 5);
+		String yearInfo = monthData.get(0).get("ym").toString().substring(0, 5);
 
 		noMonthZero(monthData, existMonth, yearInfo);
 		monthData.sort(mapSortComparator());
@@ -66,8 +66,8 @@ public class ChartService {
 
 	private Comparator<Map<String, Object>> mapSortComparator() {
 		return (o1, o2) -> {
-			String year_month = (String)o1.get("YEAR_MONTH");
-			String year_month2 = (String)o2.get("YEAR_MONTH");
+			String year_month = (String)o1.get("ym");
+			String year_month2 = (String)o2.get("ym");
 
 			return year_month.compareTo(year_month2);
 		};
@@ -77,8 +77,8 @@ public class ChartService {
 		for (int month = 1; month <= 12; month++) {
 			if (!existMonth.contains(month)) {
 				res.add(Map.of(
-					"MONTH_COUNT", 0,
-					"YEAR_MONTH", yearInfo + String.format("%02d", month)
+					"month_count", 0,
+					"ym", yearInfo + String.format("%02d", month)
 				));
 			}
 		}

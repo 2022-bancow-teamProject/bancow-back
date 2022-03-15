@@ -18,8 +18,8 @@ public interface QnaRepository extends JpaRepository<Qna, Long> {
 	Integer uncheckedQna();
 
 	@Query(nativeQuery = true, value =
-		"select concat(year(q.create_date) , '-', lpad(month(q.create_date), 2, '0')) year_month, count(q.create_date) month_count "
-			+ "from qna q where year(q.create_date) = :#{#year} group by year_month")
+		"select concat(year(q.create_date) , '-', lpad(month(q.create_date), 2, '0')) ym, count(q.create_date) month_count "
+			+ "from bancow.qna q where year(q.create_date) = :#{#year} group by ym")
 	List<Map<String, Object>> countMonth(int year);
 
 	List<Qna> findByIdIn(List<Long> id);

@@ -20,8 +20,8 @@ public interface FarmQnaRepository extends JpaRepository<FarmQna, Long> {
 	@Query("select count(f) from FarmQna f where f.checked = false")
 	Integer uncheckedFarmQna();
 
-	@Query(nativeQuery = true, value = "select concat(year(f.create_date) , '-', lpad(month(f.create_date), 2, '0')) year_month, count(f.create_date) month_count "
-		+"from Farm_qna f where year(f.create_date) = :#{#year} group by year_month")
+	@Query(nativeQuery = true, value = "select concat(year(f.create_date) , '-', lpad(month(f.create_date), 2, '0')) ym, count(f.create_date) month_count "
+		+"from bancow.farm_qna as f where year(f.create_date) = :#{#year} group by ym")
 	List<Map<String, Object>> countMonth(int year);
 
 }
